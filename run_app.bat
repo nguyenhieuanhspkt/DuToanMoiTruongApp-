@@ -3,7 +3,7 @@ title DuToanMoiTruongApp - EVN Vinh Tan 4
 color 0B
 echo ==============================================================================
 echo     DuToanMoiTruongApp - EVN VINH TAN 4
-echo     He Thong Tham Dinh Du Toan Quan Trac Moi Truong 2026 (TT20 ^& VB 3072)
+echo     He Thong Tham Dinh Du Toan Quan Trac Moi Truong 2026 (TT20 ^& VB 5691/EVN)
 echo ==============================================================================
 echo.
 

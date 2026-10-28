@@ -1,13 +1,16 @@
 # 📋 KẾ HOẠCH DỰ ÁN: DuToanMoiTruongApp
 **Hệ Thống Lập & Thẩm Định Dự Toán Quan Trắc Môi Trường EVN Vĩnh Tân 4**  
-**Cơ sở pháp lý & Kỹ thuật:** Thông tư 20/2017/TT-BTNMT & Văn bản số 3072/EVN-MTPTBV ngày 31/5/2026  
+**Cơ sở pháp lý & Kỹ thuật:** Thông tư 20/2017/TT-BTNMT & Văn bản số 5691/EVN-MTPTBV ngày 06/10/2026 của EVN; Quyết định số 1155/QĐ-NĐVT4  
 **Kiến trúc:** Layered Architecture & Single Source of Truth ("1 biến từ Cha đến Con")  
 
 ---
 
-## 📌 I. CĂN CỨ PHÁP LÝ: VĂN BẢN SỐ 3072/EVN-MTPTBV
-> **Văn bản số 3072/EVN-MTPTBV ngày 31/5/2026 của Tập đoàn Điện lực Việt Nam:**  
-> Ban hành về việc phổ biến, quán triệt thực hiện Nghị quyết số 66.19/2026/NQ-CP ngày 18/5/2026 của Chính phủ. Tập đoàn chỉ đạo các đơn vị thành viên rà soát, cắt giảm, đơn giản hóa và chuẩn hóa toàn bộ khối lượng, định mức quan trắc môi trường theo đúng quy định tại Thông tư 20/2017/TT-BTNMT, chấm dứt triệt để việc lập dự toán trùng lặp khối lượng hoặc vượt định mức quy chuẩn Nhà nước.
+## 📌 I. CĂN CỨ PHÁP LÝ & ĐẶC TẢ NGHIỆP VỤ: VĂN BẢN SỐ 5691/EVN-MTPTBV & THÔNG TƯ 20
+> **Văn bản số 5691/EVN-MTPTBV ngày 06/10/2026 của Tập đoàn Điện lực Việt Nam:**  
+> Ban hành về việc tăng cường quản lý về công tác quan trắc, phân tích môi trường; quán triệt thực hiện Nghị quyết số 66.19/2026/NQ-CP ngày 18/5/2026 của Chính phủ. Tập đoàn chỉ đạo các đơn vị thành viên rà soát, cắt giảm, đơn giản hóa và chuẩn hóa toàn bộ khối lượng, định mức quan trắc môi trường theo đúng quy định tại Thông tư 20/2017/TT-BTNMT, chấm dứt triệt để việc lập dự toán trùng lặp khối lượng hoặc vượt định mức quy chuẩn Nhà nước.  
+>  
+> **Bản đặc tả phương án xác định đơn giá (đồng/mẫu):**  
+> Chi tiết toàn diện tại [docs/PHUONG_AN_XAC_DINH_DON_GIA.md](docs/PHUONG_AN_XAC_DINH_DON_GIA.md) (Phân tầng cấu trúc 2 tầng: Chi phí Trực tiếp $T$ và Chi phí Gián tiếp $C_{GT}$; bóc tách rạch ròi giữa Nhóm yếu tố TRONG ĐỊNH MỨC TT20 và Nhóm yếu tố NGOÀI ĐỊNH MỨC/TÍNH RIÊNG theo Khoản 4.5 TT20).
 
 ---
 
@@ -38,7 +41,7 @@ D:\TaskApp_kiet\DuToanMoiTruongApp/
 ├── README.md                            # Hướng dẫn kiến trúc & vận hành
 ├── docs/                                # Hồ sơ kỹ thuật & Căn cứ pháp lý
 │   ├── ARCHITECTURE.md                  # Tài liệu kiến trúc "1 biến từ Cha đến Con"
-│   └── PHAP_LY_3072_TT20.md             # Thư viện quy chuẩn Thông tư 20 & VB 3072
+│   └── PHUONG_AN_XAC_DINH_DON_GIA.md   # Bản đặc tả phương án xác định đơn giá (đồng/mẫu)
 ├── backend/                             # TẦNG 1, 2: MODELS, STORAGE & SERVICES (Python)
 │   ├── app.py                           # Local Service Entrypoint
 │   ├── models/                          # Pure Data Schemas (pakt_item, norm_models, pricing_models)
@@ -63,7 +66,7 @@ D:\TaskApp_kiet\DuToanMoiTruongApp/
 ### 3. Phân Tách Lưu Trữ: Code Repo vs CSDL OneDrive
 
 * **Mã nguồn (Source Code Repository):**  
-  * Lưu tại: `D:\TaskApp_kiet\DuToanMoiTruongApp` (chạy trên SSD, biên dịch Vite cực nhanh, không nghẽn OneDrive).
+  * Lưu tại: `D:\TaskApp_kiet\DuToanMoiTruongApp-` (chạy trên SSD, biên dịch Vite cực nhanh, không nghẽn OneDrive).
 * **CSDL & Cache dự án (Data Storage & Cloud Cache):**  
   * Lưu tại: `D:\onedrive_hieuna\OneDrive - EVN\Tổ Thẩm định\Hiếu\2026_DuToanMoiTruongApp`  
   * Cấu trúc:
@@ -71,8 +74,9 @@ D:\TaskApp_kiet\DuToanMoiTruongApp/
     2026_DuToanMoiTruongApp/
     ├── data/
     │   ├── pakt_253_items.json          # 253 dòng công việc Phụ lục 1 gốc
-    │   ├── tt20_norm_database.json      # CSDL chuẩn hóa 13 học phần TT20
-    │   ├── pricing_config.json          # Bảng đơn giá lương 3072, vật tư, ca máy
+    │   ├── tt20_norm_database.json      # CSDL chuẩn hóa 13 học phần TT20 (6.42 MB, 742 thông số)
+    │   ├── tt20_sections/               # Thư mục 13 file JSON học phần TT20
+    │   ├── pricing_config.json          # Bảng đơn giá lương nhân công, vật tư, ca máy
     │   └── overhead_config.json         # Định mức % chi phí gián tiếp
     └── exports/                         # Nơi lưu file Excel/Word xuất bản
     ```
@@ -237,51 +241,79 @@ flowchart LR
 
 ## 📅 V. LỘ TRÌNH TRIỂN KHAI CHI TIẾT
 
-### Giai đoạn 0: Thiết lập Git Repository, Chạy Khung App & Commit Git Lần Đầu
-* **Đường dẫn Repository:** `D:\TaskApp_kiet\DuToanMoiTruongApp`
+### Giai đoạn 0: Thiết lập Nền tảng, Khung App & Ban hành Bản Đặc tả Đơn giá (ĐÃ HOÀN THÀNH - Baseline v0.1.0)
+* **Đường dẫn Repository:** `D:\TaskApp_kiet\DuToanMoiTruongApp-`
 * **CSDL & Cache dự án:** `D:\onedrive_hieuna\OneDrive - EVN\Tổ Thẩm định\Hiếu\2026_DuToanMoiTruongApp`
 * **Git Author:** Name: `Anh Hieu` | Email: `nguyenhieuanhspkt@gmail.com`
-* **Nhiệm vụ & Các bước cụ thể:**
-  - [ ] **Bước 0.1**: Tạo thư mục repo tại `D:\TaskApp_kiet\DuToanMoiTruongApp`, cấu hình git (`user.name`, `user.email`).
-  - [ ] **Bước 0.2**: Tạo thư mục CSDL OneDrive tại `D:\onedrive_hieuna\OneDrive - EVN\Tổ Thẩm định\Hiếu\2026_DuToanMoiTruongApp\data`, xuất file dữ liệu chuẩn hóa 253 dòng PAKT và định mức TT20.
-  - [ ] **Bước 0.3**: Xây dựng khung **Backend Python** (Models Pure Data, Storage kết nối OneDrive, API nạp dữ liệu).
-  - [ ] **Bước 0.4**: Xây dựng khung **Frontend React 19 + TypeScript + Vite**:
+* **Nhiệm vụ & Kết quả nghiệm thu:**
+  - [x] **Bước 0.1**: Tạo thư mục repo tại `D:\TaskApp_kiet\DuToanMoiTruongApp-`, cấu hình git (`user.name`, `user.email`).
+  - [x] **Bước 0.2**: Thiết lập thư mục CSDL OneDrive tại `...\data`, tích hợp 253 dòng PAKT gốc (`pakt_253_items.json`), 13 tệp JSON học phần `tt20_sections/`, và CSDL chuẩn hóa toàn diện `tt20_norm_database.json` (6.42 MB, 742 thông số, 13 học phần).
+  - [x] **Bước 0.3**: Xây dựng khung **Backend Python FastAPI** (Models Pure Data Pydantic v2, Storage kết nối OneDrive, In-memory Caching, bộ API tra cứu `/api/tt20/*`, test tính toàn vẹn đạt 100%).
+  - [x] **Bước 0.4**: Xây dựng khung **Frontend React 19 + TypeScript + Vite**:
     * Thiết lập đúng quy chuẩn UI App Shell: Header cố định, Sidebar thu gọn, Smart Pagination, Drawer đa tầng, không cuộn thừa.
     * Tích hợp Tabular Numbers, Phím tắt (`Ctrl+F`, `Alt+1..0`, `Esc`), Empty State trực quan.
     * Quản lý Master State ("1 biến từ Cha đến Con").
     * Xây dựng **Tab 1: Khối lượng** và **Tab 2: Nhân công**.
-    * **Tiêu chí nghiệm thu cốt lõi:** Đảm bảo hiển thị và tính năng chuẩn xác, đầy đủ tương đương với file hiện tại `Bang_Doi_Chieu_Boc_Tach_PAKT_TT20.html` (chạy mượt mà, lọc tìm kiếm tức thì, không giật lag).
-  - [ ] **Bước 0.5 (MỐC COMMIT GIT LẦN ĐẦU - v0.1.0 Baseline):**
-    * Sau khi đã chạy được cả Backend và Frontend, kiểm tra giao diện và số liệu khớp 100% với file HTML cũ.
-    * Tiến hành **Commit Git lần đầu tiên** (`feat: initial baseline v0.1.0 - migration from standalone html to layered architecture`).
-    * **Chỉ sau khi hoàn thành commit này mới bắt đầu làm các tab tiếp theo.**
+  - [x] **Bước 0.5 (MỐC COMMIT BASELINE v0.1.0 & BAN HÀNH ĐẶC TẢ ĐƠN GIÁ)**:
+    * Commit Git Baseline v0.1.0 (`843ff22`) và CSDL đồng bộ (`af78b47`).
+    * Ban hành Bản đặc tả nghiệp vụ & Phương án xác định đơn giá chuẩn 2 tầng tại [docs/PHUONG_AN_XAC_DINH_DON_GIA.md](docs/PHUONG_AN_XAC_DINH_DON_GIA.md) (Commit `e20a6bb`, `82b23f8`).
 
 ---
 
-### Giai đoạn 1: Hoàn thiện 3 Tab Định Mức Kỹ Thuật Còn Lại (Vật Liệu, Dụng Cụ, Thiết Bị)
-* **Nhiệm vụ:**
-  - [ ] Xây dựng **Tab 3: Vật liệu** (Bóc tách hóa chất, giấy lọc, môi trường nuôi cấy theo khối lượng mẫu).
-  - [ ] Xây dựng **Tab 4: Dụng cụ** (Bóc tách dụng cụ lấy mẫu, bình chứa, bảo hộ lao động).
-  - [ ] Xây dựng **Tab 5: Thiết bị** (Bóc tách ca máy quan trắc hiện trường, tủ sấy, cân phân tích, điện năng PTN).
-  - [ ] Tích hợp Drawer đa tầng drill-down từ Bậc 1/Bậc 2 vào Bậc 4.
-  - [ ] Chạy Unit Test kiểm tra chéo: Đảm bảo dữ liệu 5 Tab định mức khớp 100% với file TT20 gốc.
-  - [ ] **Commit Git:** `feat: complete technical norm breakdown (tabs 1-5)`.
+### Giai đoạn 1: Hoàn thiện 3 Tab Định Mức Kỹ Thuật (Vật Liệu, Dụng Cụ, Thiết Bị)
+* **Nhiệm vụ & Quy chuẩn kỹ thuật áp dụng:**
+  - [ ] **Tab 3: Định mức Vật liệu & Hóa chất**:
+    * Trích xuất tự động danh mục định mức hóa chất, giấy lọc từ `tt20_norm_database.json`.
+    * Tự động tính toán hệ số **+8% vật liệu vụn vặt và hao hụt** ($k_{\text{hh}} = 0{,}08$) theo Khoản 4.4 TT20:
+      $$D_{VL\_tổng} = \sum (D_{VL\_TT20}) \times (1 + k_{\text{hh}}), \quad k_{\text{hh}} = 0{,}08$$
+    * Bảng ma trận tổng hợp nhu cầu vật liệu/hóa chất toàn gói thầu theo $N$ mẫu.
+  - [ ] **Tab 4: Định mức Dụng cụ**:
+    * Trích xuất danh mục dụng cụ đo, bình lấy mẫu, đồ bảo hộ lao động từ CSDL TT20.
+    * Quy đổi niên hạn sử dụng theo số ca chuẩn ($22$ ca/tháng: $S_{\text{ca}} = T_m \times 22$).
+    * Tự động cộng thêm **+10% dụng cụ nhỏ, phụ** ($k_{\text{dc\_phụ}} = 0{,}10$) theo Khoản 4.2 TT20:
+      $$D_{DC\_tổng} = \sum \left( \frac{1}{T_m \times 22} \right) \times (1 + k_{\text{dc\_phụ}}), \quad k_{\text{dc\_phụ}} = 0{,}10$$
+  - [ ] **Tab 5: Định mức Thiết bị & Ca máy**:
+    * Phân loại số ca máy chuẩn hàng năm theo Khoản 4.3 TT20:
+      - Ngoại nghiệp đất liền: $250$ ca/năm.
+      - Ngoại nghiệp vùng biển xa (Học phần II.6): $200$ ca/năm.
+      - Nội nghiệp phòng thí nghiệm: $500$ ca/năm.
+    * Cơ chế kế thừa thiết bị: Đối với các chỉ tiêu đo đồng thời trên cùng máy đa chỉ tiêu, thông số phụ kế thừa có định mức ca máy $= 0$ để triệt tiêu việc tính trùng ca máy.
+    * Tính toán suất điện năng tiêu thụ ($kWh$) theo công suất máy phòng lab.
+  - [ ] Chạy Unit Test kiểm tra chéo: Đảm bảo dữ liệu 5 Tab định mức khớp 100% với CSDL TT20.
+  - [ ] **Commit Git:** `feat: complete technical norm breakdown tabs 3, 4, 5 with statutory factors`.
 
 ---
 
-### Giai đoạn 2: Xây dựng Bộ Tính Đơn Giá & Chi Phí Gián Tiếp (Tab 6, 7, 8, 9)
-* **Nhiệm vụ:**
-  - [ ] Xây dựng **Tab 6: Tính đơn giá nhân công** (áp dụng mức lương theo hướng dẫn EVN cho các bậc thợ QTVTNMT).
-  - [ ] Xây dựng **Tab 7: Tính đơn giá vật liệu** (bảng đơn giá vật liệu, hóa chất).
-  - [ ] Xây dựng **Tab 8: Tính đơn giá dụng cụ, thiết bị** (bảng tính chi phí khấu hao ca máy và dụng cụ).
-  - [ ] Xây dựng **Tab 9: Hệ số các chi phí gián tiếp** (chi phí chung, phụ trợ, dự phòng).
-  - [ ] Ràng buộc Data-binding: Thay đổi đơn giá ở Tab đơn giá $\rightarrow$ Tự động tính lại thành tiền.
+### Giai đoạn 2: Xây dựng Bộ Tính Đơn Giá & Chi Phí Gián Tiếp (Tabs 6, 7, 8, 9)
+* **Nhiệm vụ & Quy chuẩn tài chính áp dụng:**
+  - [ ] **Tab 6: Đơn giá Nhân công**:
+    * Áp dụng định mức ngày công TT20 nhân với đơn giá ngày công theo thang lương chuyên gia/kỹ sư môi trường.
+    * Ngoại nghiệp nhân hệ số thời tiết $+20\%$ ($k_{\text{tt}} = 0{,}2$ theo Khoản 4.1.3 TT20).
+    * Phân bổ công lấy mẫu dùng chung: $C_{NC\_field\_per\_test} = C_{NC\_field} / M$ ($M \ge 1$).
+  - [ ] **Tab 7: Đơn giá Vật liệu**:
+    * Nạp bảng giá thị trường từ 3 báo giá cạnh tranh hoặc kết quả trúng thầu gần nhất (theo Luật Đấu thầu và NĐ 24/2024/NĐ-CP).
+  - [ ] **Tab 8: Đơn giá Dụng cụ & Ca máy**:
+    * Tính đơn giá ca máy khấu hao theo Thông tư 45/2013/TT-BTC chia cho số ca chuẩn $250 / 200 / 500$ ca:
+      $$ĐG_{\text{ca}} = \frac{\text{Nguyên giá} \times (T_{\text{khấu hao}} + T_{\text{bảo dưỡng}})}{S_{\text{ca\_năm}}} + ĐG_{\text{năng lượng}} + ĐG_{\text{thay thế}}$$
+  - [ ] **Tab 9: Chi phí Gián tiếp & Phân hệ Chi phí Ngoài Định Mức (Tính riêng)**:
+    * Quản lý các hệ số gián tiếp: Chi phí chung ($k_{\text{c}} = 15\%$), Thu nhập chịu thuế tính trước ($TL = 6\%$), Dự phòng phí ($k_{\text{dp}} = 5\%$), Thuế VAT ($8\%$ hoặc $10\%$).
+    * **Phân hệ Chi phí Ngoài định mức tính riêng (Khoản 4.5 TT20)**:
+      - Chi phí đi lại, lưu trú chuyên gia: Theo Thông tư 40/2017/TT-BTC.
+      - Chi phí giàn giáo phục vụ đo khí thải ống khói cao: Áp dụng định mức Bộ Xây dựng (TT 12/2021/TT-BXD).
+      - Chi phí thuê tàu biển đo đạc xa bờ Vĩnh Tân: 3 báo giá tàu dịch vụ biển địa phương.
+      - Chi phí vận chuyển mẫu lạnh hỏa tốc về PTN: Hợp đồng chuyển phát nhanh chuyên dụng.
   - [ ] **Commit Git:** `feat: integrate unit pricing and indirect cost calculation (tabs 6-9)`.
 
 ---
 
-### Giai đoạn 3: Hoàn thiện Tab 10 (Tổng Hợp Kinh Phí) & Xuất Excel 10 Sheet
-* **Nhiệm vụ:**
-  - [ ] Xây dựng **Tab 10: Tổng hợp kinh phí** (Dashboard tổng hợp chi phí trực tiếp + gián tiếp + VAT).
-  - [ ] Tích hợp tính năng Xuất Excel động 10 Sheet liên kết công thức sống.
-  - [ ] **Commit Git:** `feat: complete executive summary (tab 10) & 10-sheet excel exporter`.
+### Giai đoạn 3: Dashboard Tab 10 & Xuất Excel 10 Sheet Động Khép Kín Công Thức
+* **Nhiệm vụ & Sản phẩm bàn giao:**
+  - [ ] **Tab 10: Dashboard Tổng hợp So sánh Đa kịch bản (PAKT)**:
+    * **Phương án 1 (Chuẩn định mức TT20)**: Tính chi tiết từ 9 Tab theo định mức kinh tế kỹ thuật.
+    * **Phương án 2 (Báo giá thị trường Điều 16 NĐ 24/2024/NĐ-CP)**: Tổng hợp từ 3 báo giá trọn gói của các đơn vị quan trắc có Vimcerts.
+    * **Phương án 3 (Kế thừa lịch sử)**: Dựa trên đơn giá Hợp đồng số 71/2025/HĐ-DV có tính trượt giá CPI.
+    * Bảng so sánh trực quan chênh lệch kinh phí giữa 3 phương án để Tổ thẩm định ra quyết định phê duyệt trần dự toán.
+  - [ ] **Engine Xuất Bản Báo Cáo Thẩm Định & File Excel 10 Sheet (OpenPyXL)**:
+    * Tự động sinh tệp Excel thẩm định 10 sheet giữ nguyên công thức sống giữa các sheet kế thừa từ mẫu biểu `01_Excel_Dinh_Muc_6_Bang`.
+    * Xuất file Word/PDF Báo cáo thẩm định kinh phí tự động theo mẫu biểu quản lý nội bộ.
+  - [ ] **Commit Git:** `feat: complete executive summary dashboard (tab 10) & 10-sheet dynamic excel exporter`.

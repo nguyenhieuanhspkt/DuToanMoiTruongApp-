@@ -16,7 +16,7 @@ from backend.models.pakt_item import PricingConfig, OverheadConfig
 
 app = FastAPI(
     title="DuToanMoiTruongApp API",
-    description="Backend Service Thẩm Định Dự Toán Quan Trắc Môi Trường EVN Vĩnh Tân 4 theo Thông tư 20 & Văn bản 3072",
+    description="Backend Service Thẩm Định Dự Toán Quan Trắc Môi Trường EVN Vĩnh Tân 4 theo Thông tư 20 & Văn bản 5691/EVN-MTPTBV",
     version="0.1.0"
 )
 
@@ -89,6 +89,25 @@ def lookup_tt20_parameter(code: str):
     if not res:
         raise HTTPException(status_code=404, detail=f"Parameter code '{code}' not found in TT20 database")
     return res
+
+@app.get("/api/norms/materials-summary")
+def get_materials_summary():
+    items = adapter.load_pakt_items()
+    return NormCalcService.calculate_material_summary(items)
+
+@app.get("/api/norms/breakdown/{item_id}")
+def get_item_norm_breakdown(item_id: int):
+    items = adapter.load_pakt_items()
+    target = next((it for it in items if it.get("id") == item_id), None)
+    if not target:
+        raise HTTPException(status_code=404, detail=f"PAKT Item with id {item_id} not found")
+    return {
+        "item": target,
+        "labor": NormCalcService.extract_labor_details(target),
+        "materials": NormCalcService.extract_materials_details(target),
+        "tools": NormCalcService.extract_tools_details(target),
+        "equipment": NormCalcService.extract_equipment_details(target)
+    }
 
 if __name__ == "__main__":
     import uvicorn

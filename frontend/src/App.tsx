@@ -8,6 +8,9 @@ import { EmptyState } from './components/EmptyState';
 import { MultiLevelDrawer } from './components/MultiLevelDrawer';
 import { Tab01_KhoiLuong } from './tabs/Tab01_KhoiLuong';
 import { Tab02_NhanCong } from './tabs/Tab02_NhanCong';
+import { Tab03_VatLieu } from './tabs/Tab03_VatLieu';
+import { Tab04_DungCu } from './tabs/Tab04_DungCu';
+import { Tab05_ThietBi } from './tabs/Tab05_ThietBi';
 import type { PaktItem, FilterState } from './types';
 
 export const App: React.FC = () => {
@@ -124,9 +127,9 @@ export const App: React.FC = () => {
       samples += N;
       const tt = row.tt20_data;
       if (tt) {
-        if (tt.field) field += Number(tt.field.dinh_muc_cong || 0) * N;
+        if (tt.field) field += Number(tt.field.dinh_muc_cong || 0) * 1.2 * N;
         if (tt.lab) lab += Number(tt.lab.dinh_muc_cong || 0) * N;
-        if (tt.single) field += Number(tt.single.dinh_muc_cong || 0) * N;
+        if (tt.single) field += Number(tt.single.dinh_muc_cong || 0) * 1.2 * N;
       }
     });
 
@@ -215,16 +218,31 @@ export const App: React.FC = () => {
                 items={paginatedItems}
                 onSelectDrawerItem={setSelectedDrawerItem}
               />
+            ) : activeTab === 3 ? (
+              <Tab03_VatLieu
+                items={paginatedItems}
+                onSelectDrawerItem={setSelectedDrawerItem}
+              />
+            ) : activeTab === 4 ? (
+              <Tab04_DungCu
+                items={paginatedItems}
+                onSelectDrawerItem={setSelectedDrawerItem}
+              />
+            ) : activeTab === 5 ? (
+              <Tab05_ThietBi
+                items={paginatedItems}
+                onSelectDrawerItem={setSelectedDrawerItem}
+              />
             ) : (
               <div className="flex-1 flex flex-col items-center justify-center p-8 text-center bg-slate-950">
                 <div className="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-blue-400 mb-3 shadow-lg">
                   <span className="font-bold text-lg">{activeTab}</span>
                 </div>
                 <h3 className="text-base font-bold text-white mb-1">
-                  Tab {activeTab}: Sẵn sàng phát triển ở Giai đoạn tiếp theo
+                  Tab {activeTab}: Sẵn sàng phát triển ở Giai đoạn 2 (Đơn giá & Phí gián tiếp)
                 </h3>
                 <p className="text-xs text-slate-400 max-w-md">
-                  Toàn bộ dữ liệu 253 dòng và CSDL 13 học phần đã sẵn sàng trong Master State. Tab này sẽ được mở rộng ngay sau mốc Baseline v0.1.0!
+                  Toàn bộ 5 Tab Định mức Kỹ thuật (Khối lượng, Nhân công, Vật liệu, Dụng cụ, Thiết bị) đã hoàn thành! Tab Đơn giá này sẽ được kết nối ở Giai đoạn tiếp theo.
                 </p>
               </div>
             )}

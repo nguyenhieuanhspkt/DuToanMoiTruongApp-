@@ -19,19 +19,19 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
   onToggleCollapse
 }) => {
   const normTabs = [
-    { id: 1, label: 'Khối lượng', icon: FileSpreadsheet, badge: '253' },
-    { id: 2, label: 'Nhân công', icon: Users, badge: 'Định mức' },
-    { id: 3, label: 'Vật liệu', icon: Layers, badge: 'Phase 1' },
-    { id: 4, label: 'Dụng cụ', icon: Wrench, badge: 'Phase 1' },
-    { id: 5, label: 'Thiết bị', icon: Cpu, badge: 'Phase 1' },
+    { id: 1, label: 'Khối lượng', icon: FileSpreadsheet, badge: '253 dòng' },
+    { id: 2, label: 'Nhân công', icon: Users, badge: '+20% TT' },
+    { id: 3, label: 'Vật liệu', icon: Layers, badge: '+8% TT' },
+    { id: 4, label: 'Dụng cụ', icon: Wrench, badge: '+10% TT' },
+    { id: 5, label: 'Thiết bị', icon: Cpu, badge: '250/500 ca' },
   ];
 
   const pricingTabs = [
-    { id: 6, label: 'ĐG Nhân công', icon: Coins, badge: 'VB 3072' },
-    { id: 7, label: 'ĐG Vật liệu', icon: ShoppingCart, badge: 'Báo giá' },
-    { id: 8, label: 'ĐG Dụng cụ, Thiết bị', icon: Activity, badge: 'Khấu hao' },
-    { id: 9, label: 'Chi phí gián tiếp', icon: Percent, badge: 'Tỷ lệ %' },
-    { id: 10, label: 'Tổng hợp kinh phí', icon: PieChart, badge: 'Dự toán' },
+    { id: 6, label: 'ĐG Nhân công', icon: Coins, badge: 'Lương TT56' },
+    { id: 7, label: 'ĐG Vật liệu', icon: ShoppingCart, badge: '3 Báo giá' },
+    { id: 8, label: 'ĐG Dụng cụ, Thiết bị', icon: Activity, badge: 'TT 45/BTC' },
+    { id: 9, label: 'Chi phí gián tiếp', icon: Percent, badge: '+38,23%' },
+    { id: 10, label: 'Tổng hợp kinh phí', icon: PieChart, badge: '3 PAKT' },
   ];
 
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Eye } from 'lucide-react';
+import { Eye, CloudRain } from 'lucide-react';
 import type { PaktItem } from '../types';
 
 interface Tab02NhanCongProps {
@@ -17,8 +17,8 @@ export const Tab02_NhanCong: React.FC<Tab02NhanCongProps> = ({ items, onSelectDr
             <th colSpan={7} className="py-2 px-3 text-center bg-slate-900 border-r border-slate-800 text-slate-400 uppercase tracking-wider">
               Khối lượng công việc Phụ lục 1 (PAKT Đề xuất)
             </th>
-            <th colSpan={3} className="py-2 px-3 text-center bg-amber-950/30 text-amber-300 border-r border-slate-800 uppercase tracking-wider">
-              1. Ngoại nghiệp (Hiện trường)
+            <th colSpan={4} className="py-2 px-3 text-center bg-amber-950/30 text-amber-300 border-r border-slate-800 uppercase tracking-wider">
+              1. Ngoại nghiệp (Khoản 4.1.3 TT20: Hệ số thời tiết +20%)
             </th>
             <th colSpan={3} className="py-2 px-3 text-center bg-purple-950/30 text-purple-300 border-r border-slate-800 uppercase tracking-wider">
               2. Nội nghiệp (Phòng thí nghiệm)
@@ -37,17 +37,23 @@ export const Tab02_NhanCong: React.FC<Tab02NhanCongProps> = ({ items, onSelectDr
             <th className="py-2 px-2.5 w-16 text-right tabular-nums border-r border-slate-800">Mẫu (N)</th>
 
             {/* Ngoại nghiệp */}
-            <th className="py-2 px-2.5 w-32 bg-amber-950/20 text-amber-300">Bậc thợ</th>
-            <th className="py-2 px-2 w-20 text-right bg-amber-950/20 text-amber-300 tabular-nums">ĐM/mẫu</th>
+            <th className="py-2 px-2.5 w-28 bg-amber-950/20 text-amber-300">Bậc thợ</th>
+            <th className="py-2 px-2 w-16 text-right bg-amber-950/20 text-amber-400/80 tabular-nums" title="Định mức công gốc theo TT20">ĐM gốc</th>
+            <th className="py-2 px-2 w-20 text-right bg-amber-950/20 text-amber-300 tabular-nums font-semibold" title="Định mức đã nhân hệ số thời tiết 1,2 theo Khoản 4.1.3 TT20">
+              <span className="flex items-center justify-end space-x-1">
+                <CloudRain className="w-3 h-3 text-amber-400" />
+                <span>+20% TT</span>
+              </span>
+            </th>
             <th className="py-2 px-2.5 w-24 text-right bg-amber-950/20 text-amber-300 tabular-nums font-bold border-r border-slate-800">
-              Tổng công
+              Tổng ngoại
             </th>
 
             {/* Nội nghiệp */}
-            <th className="py-2 px-2.5 w-32 bg-purple-950/20 text-purple-300">Bậc thợ</th>
-            <th className="py-2 px-2 w-20 text-right bg-purple-950/20 text-purple-300 tabular-nums">ĐM/mẫu</th>
+            <th className="py-2 px-2.5 w-28 bg-purple-950/20 text-purple-300">Bậc thợ</th>
+            <th className="py-2 px-2 w-16 text-right bg-purple-950/20 text-purple-300 tabular-nums">ĐM/mẫu</th>
             <th className="py-2 px-2.5 w-24 text-right bg-purple-950/20 text-purple-300 tabular-nums font-bold border-r border-slate-800">
-              Tổng công
+              Tổng nội
             </th>
 
             {/* Tổng công */}
@@ -63,7 +69,8 @@ export const Tab02_NhanCong: React.FC<Tab02NhanCongProps> = ({ items, onSelectDr
             const tt = row.tt20_data;
 
             let fieldRank = '—';
-            let fieldNorm = 0;
+            let fieldNormRaw = 0;
+            let fieldNormWeather = 0;
             let fieldTotal = 0;
 
             let labRank = '—';
@@ -73,8 +80,10 @@ export const Tab02_NhanCong: React.FC<Tab02NhanCongProps> = ({ items, onSelectDr
             if (tt) {
               if (tt.field) {
                 fieldRank = tt.field.dinh_bien || 'QTVTNMT';
-                fieldNorm = Number(tt.field.dinh_muc_cong || 0);
-                fieldTotal = fieldNorm * N;
+                fieldNormRaw = Number(tt.field.dinh_muc_cong || 0);
+                // Áp dụng hệ số ngừng nghỉ thời tiết +20% (Khoản 4.1.3 TT20)
+                fieldNormWeather = fieldNormRaw * 1.2;
+                fieldTotal = fieldNormWeather * N;
               }
               if (tt.lab) {
                 labRank = tt.lab.dinh_bien || 'QTVTNMT';
@@ -83,8 +92,9 @@ export const Tab02_NhanCong: React.FC<Tab02NhanCongProps> = ({ items, onSelectDr
               }
               if (tt.single) {
                 fieldRank = tt.single.dinh_bien || 'QTVTNMT';
-                fieldNorm = Number(tt.single.dinh_muc_cong || 0);
-                fieldTotal = fieldNorm * N;
+                fieldNormRaw = Number(tt.single.dinh_muc_cong || 0);
+                fieldNormWeather = fieldNormRaw * 1.2;
+                fieldTotal = fieldNormWeather * N;
               }
             }
 
@@ -120,8 +130,11 @@ export const Tab02_NhanCong: React.FC<Tab02NhanCongProps> = ({ items, onSelectDr
                 <td className="py-2 px-2.5 text-amber-300/90 truncate max-w-[130px] bg-amber-950/10" title={fieldRank}>
                   {fieldRank}
                 </td>
-                <td className="py-2 px-2 text-right text-slate-400 tabular-nums font-mono bg-amber-950/10">
-                  {fieldNorm > 0 ? fieldNorm.toFixed(3) : '—'}
+                <td className="py-2 px-2 text-right text-slate-500 tabular-nums font-mono bg-amber-950/10" title="Định mức gốc chưa nhân hệ số thời tiết">
+                  {fieldNormRaw > 0 ? fieldNormRaw.toFixed(3) : '—'}
+                </td>
+                <td className="py-2 px-2 text-right text-amber-400 tabular-nums font-mono font-medium bg-amber-950/10" title="Đã nhân 1,2 theo Khoản 4.1.3 TT20">
+                  {fieldNormWeather > 0 ? fieldNormWeather.toFixed(3) : '—'}
                 </td>
                 <td className="py-2 px-2.5 text-right font-bold text-amber-300 tabular-nums font-mono bg-amber-950/10 border-r border-slate-800">
                   {fieldTotal > 0 ? fieldTotal.toFixed(2) : '—'}

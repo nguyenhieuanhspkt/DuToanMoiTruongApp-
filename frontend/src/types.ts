@@ -49,9 +49,51 @@ export interface LaborRowData {
   item: PaktItem;
   fieldRank: string;
   fieldNorm: number;
+  fieldNormWeather: number;
   fieldTotal: number;
   labRank: string;
   labNorm: number;
   labTotal: number;
   grandTotal: number;
+}
+
+export interface MaterialNormDetail {
+  stage: string;
+  name: string;
+  unit: string;
+  norm_raw: number;
+  waste_factor: number;
+  norm_per_sample: number;
+  total_qty: number;
+}
+
+export interface ToolNormDetail {
+  stage: string;
+  name: string;
+  unit: string;
+  lifespan_months: number;
+  standard_shifts: number;
+  minor_tool_factor: number;
+  norm_shift_per_sample: number;
+  total_shifts: number;
+}
+
+export interface EquipmentNormDetail {
+  stage: string;
+  name: string;
+  unit: string;
+  spec: string;
+  power_kw: number;
+  annual_standard_shifts: number;
+  norm_shift_per_sample: number;
+  total_shifts: number;
+  total_kwh: number;
+  is_inherited: boolean;
+}
+
+export interface MaterialSummaryItem {
+  name: string;
+  unit: string;
+  total_quantity: number;
+  used_by_parameters_count: number;
 }

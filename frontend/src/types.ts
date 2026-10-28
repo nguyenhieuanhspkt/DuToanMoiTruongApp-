@@ -98,3 +98,21 @@ export interface MaterialSummaryItem {
   total_quantity: number;
   used_by_parameters_count: number;
 }
+
+export interface LaborRankPricing {
+  id: string;
+  rank_name: string;
+  code_ngach: string;
+  salary_coefficient_ref: string;
+  daily_rate: number;
+  legal_basis: string;
+  note: string;
+}
+
+export interface PricingConfigData {
+  labor_rates: Record<string, number>;
+  currency: string;
+  source?: string;
+  legal_bases?: string[];
+  last_updated?: string;
+}

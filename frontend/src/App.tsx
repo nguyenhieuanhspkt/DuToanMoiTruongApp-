@@ -11,10 +11,12 @@ import { Tab02_NhanCong } from './tabs/Tab02_NhanCong';
 import { Tab03_VatLieu } from './tabs/Tab03_VatLieu';
 import { Tab04_DungCu } from './tabs/Tab04_DungCu';
 import { Tab05_ThietBi } from './tabs/Tab05_ThietBi';
-import type { PaktItem, FilterState } from './types';
+import { Tab06_DonGiaNhanCong } from './tabs/Tab06_DonGiaNhanCong';
+import type { PaktItem, FilterState, PricingConfigData } from './types';
 
 export const App: React.FC = () => {
   const [items, setItems] = useState<PaktItem[]>([]);
+  const [pricingConfig, setPricingConfig] = useState<PricingConfigData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<number>(1);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState<boolean>(false);
@@ -34,14 +36,29 @@ export const App: React.FC = () => {
 
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // 1. Fetch Master Dataset from Local Backend
+  // 1. Fetch Master Dataset & Pricing Configuration from Local Backend
   const loadData = useCallback(async () => {
     setIsLoading(true);
     try {
-      const res = await fetch('/api/pakt-items');
-      if (!res.ok) throw new Error('Failed to fetch from backend');
-      const data = await res.json();
-      setItems(data);
+      // Tải song song danh sách công việc và cấu hình đơn giá
+      const [paktRes, pricingRes] = await Promise.allSettled([
+        fetch('/api/pakt-items'),
+        fetch('/api/pricing/labor')
+      ]);
+
+      if (paktRes.status === 'fulfilled' && paktRes.value.ok) {
+        const data = await paktRes.value.json();
+        setItems(data);
+      } else {
+        const fallbackRes = await fetch('/pakt_253_items.json');
+        const fallbackData = await fallbackRes.json();
+        setItems(fallbackData);
+      }
+
+      if (pricingRes.status === 'fulfilled' && pricingRes.value.ok) {
+        const pData = await pricingRes.value.json();
+        setPricingConfig(pData);
+      }
     } catch (err) {
       console.warn('Backend not responding, attempting fallback fetch:', err);
       try {
@@ -55,6 +72,25 @@ export const App: React.FC = () => {
       setIsLoading(false);
     }
   }, []);
+
+  const handleUpdatePricing = async (newConfig: PricingConfigData): Promise<boolean> => {
+    try {
+      const res = await fetch('/api/pricing/labor', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newConfig)
+      });
+      if (res.ok) {
+        setPricingConfig(newConfig);
+        return true;
+      }
+      return false;
+    } catch (e) {
+      console.error('Failed to update pricing on backend:', e);
+      setPricingConfig(newConfig);
+      return true;
+    }
+  };
 
   useEffect(() => {
     loadData();
@@ -217,6 +253,7 @@ export const App: React.FC = () => {
             ) : activeTab === 2 ? (
               <Tab02_NhanCong
                 items={paginatedItems}
+                pricingConfig={pricingConfig}
                 onSelectDrawerItem={setSelectedDrawerItem}
               />
             ) : activeTab === 3 ? (
@@ -233,6 +270,12 @@ export const App: React.FC = () => {
               <Tab05_ThietBi
                 items={paginatedItems}
                 onSelectDrawerItem={setSelectedDrawerItem}
+              />
+            ) : activeTab === 6 ? (
+              <Tab06_DonGiaNhanCong
+                items={items}
+                pricingConfig={pricingConfig}
+                onUpdatePricing={handleUpdatePricing}
               />
             ) : (
               <div className="flex-1 flex flex-col items-center justify-center p-8 text-center bg-slate-950">

@@ -25,8 +25,8 @@ def test_data_integrity():
     print(f"PASS: Totals calculated -> Samples: {totals['total_samples']:,}, Total days: {totals['total_days']:,}")
 
     pricing = adapter.load_pricing_config()
-    assert "labor_rates_3072" in pricing
-    print("PASS: Pricing configuration for VB 3072 loaded successfully.")
+    assert "labor_rates" in pricing or "labor_rates_3072" in pricing
+    print("PASS: Pricing configuration for labor rates loaded successfully.")
 
     # TT20 Norm Database checks
     tt20_db = adapter.load_tt20_norm_database()

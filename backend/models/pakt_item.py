@@ -36,10 +36,12 @@ class PaktItem(BaseModel):
     tt20_data: Optional[TT20GroupData] = None
 
 class PricingConfig(BaseModel):
-    labor_rates_3072: Dict[str, float]
+    labor_rates: Dict[str, float] = Field(default_factory=dict)
+    labor_rates_3072: Optional[Dict[str, float]] = None
     currency: str = "VND"
     last_updated: Optional[str] = None
     source: Optional[str] = None
+    legal_bases: Optional[List[str]] = Field(default_factory=list)
 
 class OverheadConfig(BaseModel):
     indirect_cost_rate: float = 0.15

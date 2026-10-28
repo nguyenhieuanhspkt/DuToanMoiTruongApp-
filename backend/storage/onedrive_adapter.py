@@ -29,18 +29,41 @@ class OneDriveAdapter:
 
     def load_pricing_config(self) -> Dict[str, Any]:
         if not os.path.exists(self.pricing_config_path):
-            return {
-                "labor_rates_3072": {
+            default_config = {
+                "labor_rates": {
                     "Quan trắc viên tài nguyên môi trường hạng II": 850000,
                     "Quan trắc viên tài nguyên môi trường hạng III.1": 650000,
                     "Quan trắc viên tài nguyên môi trường hạng III.2": 550000,
+                    "Quan trắc viên tài nguyên môi trường hạng III.3": 450000,
                     "Quan trắc viên tài nguyên môi trường hạng IV": 450000,
                     "Kỹ thuật viên / Lao động phổ thông": 350000
                 },
                 "currency": "VND",
-                "source": "Văn bản số 3072/EVN-MTPTBV ngày 31/5/2026"
+                "source": "Văn bản số 5691/EVN-MTPTBV ngày 06/10/2026 và Quyết định số 1155/QĐ-NĐVT4",
+                "legal_bases": [
+                    "Thông tư liên tịch số 56/2015/TTLT-BTNMT-BNV ngày 08/12/2015",
+                    "Nghị định số 73/2024/NĐ-CP ngày 30/6/2024 (Lương cơ sở 2.340.000 đồng/tháng)",
+                    "Văn bản số 5691/EVN-MTPTBV ngày 06/10/2026 của Tập đoàn Điện lực Việt Nam",
+                    "Quyết định số 1155/QĐ-NĐVT4 của NMNĐ Vĩnh Tân 4"
+                ]
             }
-        return AtomicWriter.read_json(self.pricing_config_path)
+            AtomicWriter.write_json(self.pricing_config_path, default_config)
+            return default_config
+        data = AtomicWriter.read_json(self.pricing_config_path)
+        # Tự động đồng bộ khóa labor_rates nếu tệp cũ chỉ có labor_rates_3072
+        if "labor_rates" not in data and "labor_rates_3072" in data:
+            data["labor_rates"] = data["labor_rates_3072"]
+            if "Quan trắc viên tài nguyên môi trường hạng III.3" not in data["labor_rates"]:
+                data["labor_rates"]["Quan trắc viên tài nguyên môi trường hạng III.3"] = 450000
+            data["source"] = "Văn bản số 5691/EVN-MTPTBV ngày 06/10/2026 và Quyết định số 1155/QĐ-NĐVT4"
+            data["legal_bases"] = [
+                "Thông tư liên tịch số 56/2015/TTLT-BTNMT-BNV ngày 08/12/2015",
+                "Nghị định số 73/2024/NĐ-CP ngày 30/6/2024 (Lương cơ sở 2.340.000 đồng/tháng)",
+                "Văn bản số 5691/EVN-MTPTBV ngày 06/10/2026 của Tập đoàn Điện lực Việt Nam",
+                "Quyết định số 1155/QĐ-NĐVT4 của NMNĐ Vĩnh Tân 4"
+            ]
+            AtomicWriter.write_json(self.pricing_config_path, data)
+        return data
 
     def save_pricing_config(self, config: Dict[str, Any]) -> None:
         AtomicWriter.write_json(self.pricing_config_path, config)

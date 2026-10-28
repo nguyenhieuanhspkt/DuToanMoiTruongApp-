@@ -68,6 +68,17 @@ def update_pricing_config(config: Dict[str, Any]):
     adapter.save_pricing_config(config)
     return {"status": "success", "message": "Updated pricing configuration"}
 
+@app.get("/api/pricing/labor")
+def get_labor_pricing():
+    return adapter.load_pricing_config()
+
+@app.post("/api/pricing/labor")
+def update_labor_pricing(config: Dict[str, Any]):
+    current = adapter.load_pricing_config()
+    current.update(config)
+    adapter.save_pricing_config(current)
+    return {"status": "success", "message": "Updated labor pricing", "data": current}
+
 @app.get("/api/overhead-config")
 def get_overhead_config():
     return adapter.load_overhead_config()

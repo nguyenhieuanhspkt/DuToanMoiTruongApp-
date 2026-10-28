@@ -72,6 +72,24 @@ def update_pricing_config(config: Dict[str, Any]):
 def get_overhead_config():
     return adapter.load_overhead_config()
 
+@app.get("/api/tt20/sections")
+def get_tt20_sections():
+    return adapter.get_tt20_sections_summary()
+
+@app.get("/api/tt20/database")
+def get_tt20_database():
+    db = adapter.load_tt20_norm_database()
+    if not db:
+        raise HTTPException(status_code=404, detail="TT20 Norm Database not found in OneDrive storage")
+    return db
+
+@app.get("/api/tt20/lookup/{code}")
+def lookup_tt20_parameter(code: str):
+    res = adapter.lookup_tt20_parameter(code)
+    if not res:
+        raise HTTPException(status_code=404, detail=f"Parameter code '{code}' not found in TT20 database")
+    return res
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("backend.app:app", host="127.0.0.1", port=8000, reload=True)

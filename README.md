@@ -38,7 +38,8 @@ D:\TaskApp_kiet\DuToanMoiTruongApp/
 ├── README.md                            # Hướng dẫn kiến trúc & vận hành
 ├── docs/                                # Hồ sơ kỹ thuật & Căn cứ pháp lý
 │   ├── ARCHITECTURE.md                  # Tài liệu kiến trúc "1 biến từ Cha đến Con"
-│   └── PHAP_LY_3072_TT20.md             # Thư viện quy chuẩn Thông tư 20 & VB 3072
+│   ├── PHAP_LY_3072_TT20.md             # Thư viện quy chuẩn Thông tư 20 & VB 3072
+│   └── PHUONG_AN_XAC_DINH_DON_GIA.md   # Bản đặc tả phương án xác định đơn giá (đồng/mẫu)
 ├── backend/                             # TẦNG 1, 2: MODELS, STORAGE & SERVICES (Python)
 │   ├── app.py                           # Local Service Entrypoint
 │   ├── models/                          # Pure Data Schemas (pakt_item, norm_models, pricing_models)

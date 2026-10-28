@@ -5,30 +5,63 @@ from backend.models.pakt_item import PaktItem, PricingConfig, OverheadConfig
 
 class OneDriveAdapter:
     """
-    Adapter interfacing between DuToanMoiTruongApp and EVN OneDrive cache storage.
-    Default path: D:\\onedrive_hieuna\\OneDrive - EVN\\Tổ Thẩm định\\Hiếu\\2026_DuToanMoiTruongApp\\data
+    Adapter interfacing between DuToanMoiTruongApp, Git Local Repo and EVN OneDrive storage.
+    Supports smart 2-tier fallback:
+    1. Primary: EVN OneDrive path if available (D:\\onedrive_hieuna\\...)
+    2. Fallback: Internal Git repository storage (backend/data/)
+    Guarantees 100% standalone execution when cloning or pulling on an office machine!
     """
     DEFAULT_ONEDRIVE_DATA_DIR = r"D:\onedrive_hieuna\OneDrive - EVN\Tổ Thẩm định\Hiếu\2026_DuToanMoiTruongApp\data"
+    REPO_BACKEND_DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data"))
 
     def __init__(self, data_dir: Optional[str] = None):
-        self.data_dir = data_dir or self.DEFAULT_ONEDRIVE_DATA_DIR
-        self.pakt_items_path = os.path.join(self.data_dir, "pakt_253_items.json")
-        self.pricing_config_path = os.path.join(self.data_dir, "pricing_config.json")
-        self.overhead_config_path = os.path.join(self.data_dir, "overhead_config.json")
-        self.tt20_norm_db_path = os.path.join(self.data_dir, "tt20_norm_database.json")
-        self.tt20_sections_dir = os.path.join(self.data_dir, "tt20_sections")
-        os.makedirs(self.data_dir, exist_ok=True)
+        self.repo_dir = self.REPO_BACKEND_DATA_DIR
+        os.makedirs(self.repo_dir, exist_ok=True)
+
+        if data_dir and os.path.exists(data_dir):
+            self.primary_dir = data_dir
+        elif os.environ.get("ONEDRIVE_DATA_DIR") and os.path.exists(os.environ.get("ONEDRIVE_DATA_DIR")):
+            self.primary_dir = os.environ.get("ONEDRIVE_DATA_DIR")
+        elif os.path.exists(self.DEFAULT_ONEDRIVE_DATA_DIR):
+            self.primary_dir = self.DEFAULT_ONEDRIVE_DATA_DIR
+        else:
+            self.primary_dir = self.repo_dir
+
+        self.data_dir = self.primary_dir
+
+    def _resolve_read_path(self, filename: str) -> str:
+        """Kiểm tra tệp tại primary_dir trước, nếu không có thì fallback sang repo_dir."""
+        primary_path = os.path.join(self.primary_dir, filename)
+        if os.path.exists(primary_path):
+            return primary_path
+        repo_path = os.path.join(self.repo_dir, filename)
+        if os.path.exists(repo_path):
+            return repo_path
+        return primary_path
+
+    def _write_dual(self, filename: str, data: Any) -> None:
+        """Ghi đồng thời vào cả repo_dir (để Git quản lý) và primary_dir (OneDrive)."""
+        repo_path = os.path.join(self.repo_dir, filename)
+        AtomicWriter.write_json(repo_path, data)
+        if self.primary_dir != self.repo_dir and os.path.exists(self.primary_dir):
+            try:
+                primary_path = os.path.join(self.primary_dir, filename)
+                AtomicWriter.write_json(primary_path, data)
+            except Exception as e:
+                print(f"Warning: Could not sync to OneDrive {self.primary_dir}: {e}")
 
     def load_pakt_items(self) -> List[Dict[str, Any]]:
-        if not os.path.exists(self.pakt_items_path):
+        target_path = self._resolve_read_path("pakt_253_items.json")
+        if not os.path.exists(target_path):
             return []
-        return AtomicWriter.read_json(self.pakt_items_path)
+        return AtomicWriter.read_json(target_path)
 
     def save_pakt_items(self, items: List[Dict[str, Any]]) -> None:
-        AtomicWriter.write_json(self.pakt_items_path, items)
+        self._write_dual("pakt_253_items.json", items)
 
     def load_pricing_config(self) -> Dict[str, Any]:
-        if not os.path.exists(self.pricing_config_path):
+        target_path = self._resolve_read_path("pricing_config.json")
+        if not os.path.exists(target_path):
             default_config = {
                 "labor_rates": {
                     "Quan trắc viên tài nguyên môi trường hạng II": 850000,
@@ -42,14 +75,15 @@ class OneDriveAdapter:
                 "source": "Văn bản số 5691/EVN-MTPTBV ngày 06/10/2026 và Quyết định số 1155/QĐ-NĐVT4",
                 "legal_bases": [
                     "Thông tư liên tịch số 56/2015/TTLT-BTNMT-BNV ngày 08/12/2015",
-                    "Nghị định số 73/2024/NĐ-CP ngày 30/6/2024 (Lương cơ sở 2.340.000 đồng/tháng)",
+                    "Nghị định số 161/2026/NĐ-CP ngày 15/5/2026 (Mức lương cơ sở 2.530.000 đồng/tháng từ 01/7/2026)",
                     "Văn bản số 5691/EVN-MTPTBV ngày 06/10/2026 của Tập đoàn Điện lực Việt Nam",
                     "Quyết định số 1155/QĐ-NĐVT4 của NMNĐ Vĩnh Tân 4"
                 ]
             }
-            AtomicWriter.write_json(self.pricing_config_path, default_config)
+            self._write_dual("pricing_config.json", default_config)
             return default_config
-        data = AtomicWriter.read_json(self.pricing_config_path)
+
+        data = AtomicWriter.read_json(target_path)
         # Tự động đồng bộ khóa labor_rates nếu tệp cũ chỉ có labor_rates_3072
         if "labor_rates" not in data and "labor_rates_3072" in data:
             data["labor_rates"] = data["labor_rates_3072"]
@@ -58,29 +92,34 @@ class OneDriveAdapter:
             data["source"] = "Văn bản số 5691/EVN-MTPTBV ngày 06/10/2026 và Quyết định số 1155/QĐ-NĐVT4"
             data["legal_bases"] = [
                 "Thông tư liên tịch số 56/2015/TTLT-BTNMT-BNV ngày 08/12/2015",
-                "Nghị định số 73/2024/NĐ-CP ngày 30/6/2024 (Lương cơ sở 2.340.000 đồng/tháng)",
+                "Nghị định số 161/2026/NĐ-CP ngày 15/5/2026 (Mức lương cơ sở 2.530.000 đồng/tháng từ 01/7/2026)",
                 "Văn bản số 5691/EVN-MTPTBV ngày 06/10/2026 của Tập đoàn Điện lực Việt Nam",
                 "Quyết định số 1155/QĐ-NĐVT4 của NMNĐ Vĩnh Tân 4"
             ]
-            AtomicWriter.write_json(self.pricing_config_path, data)
+            self._write_dual("pricing_config.json", data)
         return data
 
     def save_pricing_config(self, config: Dict[str, Any]) -> None:
-        AtomicWriter.write_json(self.pricing_config_path, config)
+        self._write_dual("pricing_config.json", config)
 
     def load_overhead_config(self) -> Dict[str, Any]:
-        if not os.path.exists(self.overhead_config_path):
-            return {
-                "indirect_cost_rate": 0.15,
+        target_path = self._resolve_read_path("overhead_config.json")
+        if not os.path.exists(target_path):
+            default_overhead = {
+                "indirect_cost_rate": 0.3823,
                 "contingency_rate": 0.05,
-                "vat_rate": 0.08
+                "vat_rate": 0.08,
+                "source": "Văn bản số 5691/EVN-MTPTBV ngày 06/10/2026"
             }
-        return AtomicWriter.read_json(self.overhead_config_path)
+            self._write_dual("overhead_config.json", default_overhead)
+            return default_overhead
+        return AtomicWriter.read_json(target_path)
 
     def load_tt20_norm_database(self) -> Dict[str, Any]:
-        if not os.path.exists(self.tt20_norm_db_path):
+        target_path = self._resolve_read_path("tt20_norm_database.json")
+        if not os.path.exists(target_path):
             return {}
-        return AtomicWriter.read_json(self.tt20_norm_db_path)
+        return AtomicWriter.read_json(target_path)
 
     def get_tt20_sections_summary(self) -> List[Dict[str, Any]]:
         db = self.load_tt20_norm_database()
@@ -111,4 +150,3 @@ class OneDriveAdapter:
             "section_title": sec_data.get("section_title"),
             "parameter": full_param
         }
-

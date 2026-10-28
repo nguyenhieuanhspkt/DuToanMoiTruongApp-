@@ -31,7 +31,7 @@ export const DEFAULT_LABOR_RANKS: LaborRankPricing[] = [
     code_ngach: 'V.06.05.13',
     salary_coefficient_ref: '4,40 - 6,78 (Viên chức A2.1)',
     daily_rate: 850000,
-    legal_basis: 'Điều 5 TTLT 56/2015 & NĐ 73/2024 & VB 5691/EVN',
+    legal_basis: 'Điều 5 TTLT 56/2015 & NĐ 161/2026 & VB 5691/EVN',
     note: 'Chủ trì lấy mẫu hiện trường phức tạp, giám sát trưởng'
   },
   {
@@ -40,7 +40,7 @@ export const DEFAULT_LABOR_RANKS: LaborRankPricing[] = [
     code_ngach: 'V.06.05.14',
     salary_coefficient_ref: '3,33 - 4,98 (Viên chức A1 - bậc cao)',
     daily_rate: 650000,
-    legal_basis: 'Điều 6 TTLT 56/2015 & NĐ 73/2024 & VB 5691/EVN',
+    legal_basis: 'Điều 6 TTLT 56/2015 & NĐ 161/2026 & VB 5691/EVN',
     note: 'Kỹ thuật viên chính lấy mẫu hiện trường và phân tích mẫu chính'
   },
   {
@@ -49,7 +49,7 @@ export const DEFAULT_LABOR_RANKS: LaborRankPricing[] = [
     code_ngach: 'V.06.05.14',
     salary_coefficient_ref: '2,67 - 3,99 (Viên chức A1 - bậc trung)',
     daily_rate: 550000,
-    legal_basis: 'Điều 6 TTLT 56/2015 & NĐ 73/2024 & VB 5691/EVN',
+    legal_basis: 'Điều 6 TTLT 56/2015 & NĐ 161/2026 & VB 5691/EVN',
     note: 'Phân tích các chỉ tiêu hóa lý thông thường trong phòng thí nghiệm'
   },
   {
@@ -58,7 +58,7 @@ export const DEFAULT_LABOR_RANKS: LaborRankPricing[] = [
     code_ngach: 'V.06.05.14',
     salary_coefficient_ref: '2,34 - 3,33 (Viên chức A1 - bậc khởi điểm)',
     daily_rate: 450000,
-    legal_basis: 'Điều 6 TTLT 56/2015 & NĐ 73/2024 & VB 5691/EVN',
+    legal_basis: 'Điều 6 TTLT 56/2015 & NĐ 161/2026 & VB 5691/EVN',
     note: 'Phân tích nhanh hiện trường, hỗ trợ đo thông số vật lý'
   },
   {
@@ -67,7 +67,7 @@ export const DEFAULT_LABOR_RANKS: LaborRankPricing[] = [
     code_ngach: 'V.06.05.15',
     salary_coefficient_ref: '1,86 - 4,06 (Viên chức loại B)',
     daily_rate: 450000,
-    legal_basis: 'Điều 7 TTLT 56/2015 & NĐ 73/2024 & VB 5691/EVN',
+    legal_basis: 'Điều 7 TTLT 56/2015 & NĐ 161/2026 & VB 5691/EVN',
     note: 'Vận hành máy đo tự động, chuẩn bị dụng cụ hiện trường'
   },
   {
@@ -120,7 +120,7 @@ export const Tab06_DonGiaNhanCong: React.FC<Tab06DonGiaNhanCongProps> = ({
         source: 'Văn bản số 5691/EVN-MTPTBV ngày 06/10/2026 và Quyết định số 1155/QĐ-NĐVT4',
         legal_bases: [
           'Thông tư liên tịch số 56/2015/TTLT-BTNMT-BNV ngày 08/12/2015',
-          'Nghị định số 73/2024/NĐ-CP ngày 30/6/2024 (Lương cơ sở 2.340.000 đồng/tháng)',
+          'Nghị định số 161/2026/NĐ-CP ngày 15/5/2026 (Mức lương cơ sở 2.530.000 đồng/tháng từ 01/7/2026)',
           'Văn bản số 5691/EVN-MTPTBV ngày 06/10/2026 của Tập đoàn Điện lực Việt Nam',
           'Quyết định số 1155/QĐ-NĐVT4 của NMNĐ Vĩnh Tân 4'
         ],
@@ -219,7 +219,7 @@ I. CĂN CỨ PHÁP LÝ:
    - Điều 5: Quan trắc viên tài nguyên môi trường hạng II (Mã số: V.06.05.13 - Xếp lương viên chức loại A2.1, hệ số 4,40 - 6,78).
    - Điều 6: Quan trắc viên tài nguyên môi trường hạng III (Mã số: V.06.05.14 - Xếp lương viên chức loại A1, hệ số 2,34 - 4,98).
    - Điều 7: Quan trắc viên tài nguyên môi trường hạng IV (Mã số: V.06.05.15 - Xếp lương viên chức loại B, hệ số 1,86 - 4,06).
-2. Nghị định số 73/2024/NĐ-CP ngày 30/6/2024 của Chính phủ: Mức lương cơ sở 2.340.000 đồng/tháng.
+2. Nghị định số 161/2026/NĐ-CP ngày 15/5/2026 của Chính phủ: Mức lương cơ sở 2.530.000 đồng/tháng (áp dụng từ 01/7/2026, thay thế Nghị định 73/2024/NĐ-CP).
 3. Thông tư số 20/2017/TT-BTNMT ngày 08/8/2017 của Bộ TN&MT:
    - Khoản 4.1.3: Nhân công ngoại nghiệp nhân hệ số thời tiết +20% (k_tt = 1,2).
    - Khoản 4.2: Chế độ làm việc quy chuẩn 22 ngày công/tháng.
@@ -341,12 +341,12 @@ III. VÍ DỤ TÍNH TOÁN CHO MÃ CÔNG VIỆC NT5b (COD TRONG NƯỚC THẢI - 
                   <h2 className="text-sm font-bold text-white uppercase tracking-wide flex items-center space-x-2">
                     <span>Căn cứ Pháp lý & Tiêu chuẩn Xác định Đơn giá Tiền lương Nhân công</span>
                     <span className="bg-blue-900/80 text-blue-300 text-[10px] px-2 py-0.5 rounded-full font-mono border border-blue-700/50">
-                      TTLT 56/2015 & NĐ 73/2024 & VB 5691/EVN
+                      TTLT 56/2015 & NĐ 161/2026 & VB 5691/EVN
                     </span>
                   </h2>
                   <div className="text-xs text-slate-300 space-y-0.5 leading-relaxed">
                     <p>• <strong>Thông tư liên tịch số 56/2015/TTLT-BTNMT-BNV</strong>: Quy định mã số và tiêu chuẩn chức danh nghề nghiệp viên chức chuyên ngành tài nguyên và môi trường (Hạng II mã V.06.05.13; Hạng III mã V.06.05.14; Hạng IV mã V.06.05.15).</p>
-                    <p>• <strong>Nghị định số 73/2024/NĐ-CP</strong>: Mức lương cơ sở áp dụng 2.340.000 đồng/tháng từ ngày 01/7/2024.</p>
+                    <p>• <strong>Nghị định số 161/2026/NĐ-CP</strong>: Mức lương cơ sở áp dụng 2.530.000 đồng/tháng từ ngày 01/7/2026 (thay thế Nghị định 73/2024/NĐ-CP).</p>
                     <p>• <strong>Văn bản số 5691/EVN-MTPTBV ngày 06/10/2026</strong> & <strong>Quyết định số 1155/QĐ-NĐVT4</strong>: Hướng dẫn cơ cấu đơn giá ngày công thẩm định cho NMNĐ Vĩnh Tân 4.</p>
                   </div>
                 </div>
@@ -531,7 +531,7 @@ III. VÍ DỤ TÍNH TOÁN CHO MÃ CÔNG VIỆC NT5b (COD TRONG NƯỚC THẢI - 
                   </li>
                 </ul>
                 <p>
-                  <strong>2. Nghị định số 73/2024/NĐ-CP ngày 30/6/2024 của Chính phủ</strong>: Quy định mức lương cơ sở áp dụng là <strong>2.340.000 đồng/tháng</strong> (từ ngày 01/7/2024).
+                  <strong>2. Nghị định số 161/2026/NĐ-CP ngày 15/5/2026 của Chính phủ</strong>: Quy định mức lương cơ sở áp dụng là <strong>2.530.000 đồng/tháng</strong> (áp dụng từ ngày 01/7/2026, chính thức thay thế Nghị định số 73/2024/NĐ-CP).
                 </p>
                 <p>
                   <strong>3. Quy chuẩn 22 ngày công/tháng</strong>: Theo <strong>Khoản 4.2 Thông tư số 20/2017/TT-BTNMT</strong> và chế độ làm việc 40 giờ/tuần (nghỉ thứ 7, Chủ nhật) của viên chức sự nghiệp nhà nước, số ngày công làm việc chuẩn trong tháng là <strong>22 ngày</strong> (hoàn toàn không phải 26 ngày).
@@ -596,28 +596,28 @@ III. VÍ DỤ TÍNH TOÁN CHO MÃ CÔNG VIỆC NT5b (COD TRONG NƯỚC THẢI - 
                       </thead>
                       <tbody className="divide-y divide-slate-800/80 text-slate-300 font-mono">
                         <tr>
-                          <td className="py-2 px-3 font-sans">1. Lương ngạch bậc cơ bản (NĐ 73/2024 / 22 ca)</td>
-                          <td className="py-2 px-3 text-slate-400 font-sans">Hệ số bậc x 2.340.000 đ / 22 ngày</td>
-                          <td className="py-2 px-3 text-right">319.090 đ</td>
-                          <td className="py-2 px-3 text-right">425.454 đ</td>
+                          <td className="py-2 px-3 font-sans">1. Lương ngạch bậc cơ bản (NĐ 161/2026 / 22 ca)</td>
+                          <td className="py-2 px-3 text-slate-400 font-sans">Hệ số bậc x 2.530.000 đ / 22 ngày</td>
+                          <td className="py-2 px-3 text-right">345.000 đ</td>
+                          <td className="py-2 px-3 text-right">420.900 đ</td>
                         </tr>
                         <tr className="bg-amber-950/20 text-amber-300 font-semibold">
                           <td className="py-2 px-3 font-sans">2. Bảo hiểm theo lương bắt buộc (23,5%)</td>
                           <td className="py-2 px-3 font-sans">Lương cơ bản x 23,5%</td>
-                          <td className="py-2 px-3 text-right">74.986 đ</td>
-                          <td className="py-2 px-3 text-right">99.982 đ</td>
+                          <td className="py-2 px-3 text-right">81.075 đ</td>
+                          <td className="py-2 px-3 text-right">98.911 đ</td>
                         </tr>
                         <tr>
                           <td className="py-2 px-3 font-sans">3. Phụ cấp ưu đãi nghề & độc hại (30%)</td>
                           <td className="py-2 px-3 text-slate-400 font-sans">Theo QĐ 73/2010/QĐ-TTg ngành môi trường</td>
-                          <td className="py-2 px-3 text-right">95.727 đ</td>
-                          <td className="py-2 px-3 text-right">127.636 đ</td>
+                          <td className="py-2 px-3 text-right">103.500 đ</td>
+                          <td className="py-2 px-3 text-right">126.270 đ</td>
                         </tr>
                         <tr>
                           <td className="py-2 px-3 font-sans">4. Phụ cấp lưu động & điều kiện nhiệt điện</td>
                           <td className="py-2 px-3 text-slate-400 font-sans">Bù đắp leo trèo ống khói cao, bụi, ồn</td>
-                          <td className="py-2 px-3 text-right">60.197 đ</td>
-                          <td className="py-2 px-3 text-right">-3.072 đ</td>
+                          <td className="py-2 px-3 text-right">20.425 đ</td>
+                          <td className="py-2 px-3 text-right">3.919 đ</td>
                         </tr>
                         <tr className="bg-emerald-950/40 text-emerald-300 font-bold text-xs">
                           <td className="py-2.5 px-3 font-sans">TỔNG ĐƠN GIÁ TRỌN GÓI 1 NGÀY CÔNG</td>

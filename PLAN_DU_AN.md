@@ -345,27 +345,26 @@ flowchart LR
 
 ---
 
-### Giai đoạn 1: Hoàn thiện 3 Tab Định Mức Kỹ Thuật (Vật Liệu, Dụng Cụ, Thiết Bị)
-* **Nhiệm vụ & Quy chuẩn kỹ thuật áp dụng:**
-  - [ ] **Tab 3: Định mức Vật liệu & Hóa chất**:
+### Giai đoạn 1: Hoàn thiện 5 Tab Định Mức Kỹ Thuật (ĐÃ HOÀN THÀNH - Commit f947e34)
+* **Nhiệm vụ & Kết quả nghiệm thu:**
+  - [x] **Tab 2: Nhân công (Cập nhật chuẩn Khoản 4.1.3 TT20)**:
+    * Tự động áp dụng hệ số ngừng việc do thời tiết **+20% ($1{,}2$)** cho toàn bộ công tác ngoại nghiệp.
+    * Phân bổ công ngoại nghiệp theo cơ chế dùng chung can mẫu $M_{\text{dùng chung}}$.
+    * Khóa cố định $H_{NC\_lab} = 0$ cho các thông số đo nhanh bằng sensor tại hiện trường (`1KT9c`, `1KT9d`, `KKC2a`).
+  - [x] **Tab 3: Định mức Vật liệu & Hóa chất (`Tab03_VatLieu.tsx`)**:
     * Trích xuất tự động danh mục định mức hóa chất, giấy lọc từ `tt20_norm_database.json`.
-    * Tự động tính toán hệ số **+8% vật liệu vụn vặt và hao hụt** ($k_{\text{hh}} = 0{,}08$) theo Khoản 4.4 TT20:
-      $$D_{VL\_tổng} = \sum (D_{VL\_TT20}) \times (1 + k_{\text{hh}}), \quad k_{\text{hh}} = 0{,}08$$
-    * Bảng ma trận tổng hợp nhu cầu vật liệu/hóa chất toàn gói thầu theo $N$ mẫu.
-  - [ ] **Tab 4: Định mức Dụng cụ**:
+    * Tự động tính toán hệ số **+8% vật liệu vụn vặt và hao hụt** ($k_{\text{hh}} = 0{,}08$) theo Khoản 4.4 TT20.
+    * Bảng ma trận tổng hợp nhu cầu vật liệu/hóa chất toàn gói thầu: 169 loại hóa chất toàn nhà máy.
+  - [x] **Tab 4: Định mức Dụng cụ (`Tab04_DungCu.tsx`)**:
     * Trích xuất danh mục dụng cụ đo, bình lấy mẫu, đồ bảo hộ lao động từ CSDL TT20.
     * Quy đổi niên hạn sử dụng theo số ca chuẩn ($22$ ca/tháng: $S_{\text{ca}} = T_m \times 22$).
-    * Tự động cộng thêm **+10% dụng cụ nhỏ, phụ** ($k_{\text{dc\_phụ}} = 0{,}10$) theo Khoản 4.2 TT20:
-      $$D_{DC\_tổng} = \sum \left( \frac{1}{T_m \times 22} \right) \times (1 + k_{\text{dc\_phụ}}), \quad k_{\text{dc\_phụ}} = 0{,}10$$
-  - [ ] **Tab 5: Định mức Thiết bị & Ca máy**:
-    * Phân loại số ca máy chuẩn hàng năm theo Khoản 4.3 TT20:
-      - Ngoại nghiệp đất liền: $250$ ca/năm.
-      - Ngoại nghiệp vùng biển xa (Học phần II.6): $200$ ca/năm.
-      - Nội nghiệp phòng thí nghiệm: $500$ ca/năm.
-    * Cơ chế kế thừa thiết bị: Đối với các chỉ tiêu đo đồng thời trên cùng máy đa chỉ tiêu, thông số phụ kế thừa có định mức ca máy $= 0$ để triệt tiêu việc tính trùng ca máy.
-    * Tính toán suất điện năng tiêu thụ ($kWh$) theo công suất máy phòng lab.
-  - [ ] Chạy Unit Test kiểm tra chéo: Đảm bảo dữ liệu 5 Tab định mức khớp 100% với CSDL TT20.
-  - [ ] **Commit Git:** `feat: complete technical norm breakdown tabs 3, 4, 5 with statutory factors`.
+    * Tự động cộng thêm **+10% dụng cụ nhỏ, phụ** ($k_{\text{dc\_phụ}} = 0{,}10$) theo Khoản 4.2 TT20.
+  - [x] **Tab 5: Định mức Thiết bị & Ca máy (`Tab05_ThietBi.tsx`)**:
+    * Phân loại số ca máy chuẩn hàng năm theo Khoản 4.3 TT20: $250$ ca (đất liền), $200$ ca (biển II.6), $500$ ca (PTN).
+    * Cơ chế kế thừa thiết bị: Gán $h_{TB} = 0$ cho các chỉ tiêu phụ đo đồng thời trên cùng máy để triệt tiêu tính trùng ca máy.
+    * Tính toán suất điện năng tiêu thụ ($kWh$) theo công suất máy phòng lab ($11.014{,}57\text{ kWh}$).
+  - [x] Chạy Unit Test kiểm tra chéo: Đạt 100% Passed.
+  - [x] **Commit Git:** `f947e34` (`feat(stage1): complete all 5 technical norm tabs with TT20 statutory factors`).
 
 ---
 

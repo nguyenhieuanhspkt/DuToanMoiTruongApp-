@@ -47,52 +47,82 @@ flowchart TD
 
 ## 🔍 III. CHI TIẾT TẦNG 1: NHÓM YẾU TỐ QUYẾT ĐỊNH CHI PHÍ TRỰC TIẾP ($T$)
 
-### 1. Phân hệ TRONG ĐỊNH MỨC (Inside Norm - Thông tư 20/2017/TT-BTNMT)
-Quy định mức tiêu hao vật lý, cơ học và thời gian lao động bắt buộc cho 1 mẫu:
-
-#### A. Hao phí Nhân công ($H_{NC}$):
-- **Cơ cấu định biên bậc thợ:** Phân định rõ 5 ngạch bậc theo từng thông số: QTVTNMT hạng II, III.1, III.2, IV, và Lao động phổ thông.
-- **Phân đoạn công đoạn kỹ thuật:**
-  - *Đo nhanh tại chỗ (Single/In-situ):* Chỉ có 1 mã duy nhất, công nội nghiệp = 0 (ví dụ `KKC2a` đo ồn, `1KT9c` đo NO, `1KT9d` đo $NO_2$).
-  - *Ghép cặp chuẩn (Paired: `1...` + `2...`):* 1 công đoạn lấy mẫu ngoại nghiệp + 1 công đoạn phân tích nội nghiệp phòng lab.
-  - *Đặc thù 3 Tiền tố Nước biển (Học phần II.6):* Phân hóa điều kiện lấy mẫu: **`1NB` (Ven bờ)** vs **`2NB` (Xa bờ - đi tàu biển lớn, số công cao hơn 20-50%)** ghép cặp với **`3NB` (Nội nghiệp phòng lab)**.
-- **Quy tắc chia sẻ mẫu chung & Chống trùng lặp theo VB 3072/EVN:**
-  - Khi 1 can nước/1 phin lọc phân tích $M$ chỉ tiêu, số ngày công lấy mẫu ngoại nghiệp của từng chỉ tiêu phải được chia đều cho $M$ ($\frac{H_{NC\_field}}{M}$), không được nhân kép làm đội dự toán!
-
-#### B. Hao phí Vật liệu, Hóa chất ($H_{VL}$):
-- Bảng *Hao_Phi_Vat_Lieu*: Khối lượng/thể tích axit tinh khiết, dung môi chiết, chất chuẩn đối chứng, giấy lọc sợi thủy tinh, túi Tedlar, chuẩn khí quy định cho 1 mẫu.
-
-#### C. Hao phí Dụng cụ & Bảo hộ lao động ($H_{DC}$):
-- Bảng *Hao_Phi_Dung_Cu*: Định lượng dụng cụ đo, bình chứa, hộp petri, quần áo BHLĐ.
-- **Niên hạn sử dụng (tháng):** TT20 quy định niên hạn chuẩn (từ 3 đến 36 tháng) để phân bổ hao mòn cho 1 ca làm việc.
-
-#### D. Hao phí Thiết bị máy móc & Điện năng ($H_{TB}$):
-- Bảng *Hao_Phi_Thiet_Bi*: Định mức số ca máy/giờ máy (máy đo khí đa chỉ tiêu, máy lấy mẫu bụi Isokinetic, quang phổ UV-VIS, sắc ký GC/MS, tủ sấy, cân 4 số).
-- **Suất tiêu hao điện năng ($kWh$):** Năng lượng điện vận hành thiết bị PTN.
-- **Quy tắc Kế thừa thiết bị:** Nếu thông số phụ có ghi chú *"Kế thừa từ mục XYZ"*, thì định mức thiết bị của thông số phụ = 0.
+Chi phí trực tiếp cho 1 mẫu bao gồm:
+$$\mathbf{T} = \mathbf{C_{NC}} + \mathbf{C_{VL}} + \mathbf{C_{DC}} + \mathbf{C_{TB}} + \mathbf{C_{\text{ngoài ĐM (tính riêng)}}}$$
 
 ---
 
-### 2. Phân hệ NGOÀI ĐỊNH MỨC (Outside Norm - Tài chính, Thị trường & Chi phí tính riêng)
+### 1. Phân hệ TRONG ĐỊNH MỨC (Inside Norm - Thông tư 20/2017/TT-BTNMT)
+Quy định lượng hao phí định mức kỹ thuật bất biến của Nhà nước cho 01 đơn vị mẫu sản phẩm:
 
-#### A. Đơn giá Tài chính Tiền lương & Vật tư:
-1. **Khung đơn giá lương ngày công EVN (Văn bản số 3072/EVN-MTPTBV ngày 31/5/2026):**
-   - QTVTNMT hạng II: **850.000 VNĐ/công**
-   - QTVTNMT hạng III.1: **650.000 VNĐ/công**
-   - QTVTNMT hạng III.2: **550.000 VNĐ/công**
-   - QTVTNMT hạng IV: **450.000 VNĐ/công**
-   - Kỹ thuật viên / Lao động phổ thông: **350.000 VNĐ/công**
-2. **Đơn giá Hóa chất & Vật liệu:** Xác định theo hóa đơn thực tế hoặc mức giá tối thiểu của **3 bảng báo giá cạnh tranh** từ nhà cung cấp hóa chất đạt chuẩn.
-3. **Đơn giá 1 ca máy ($G_{\text{ca máy}}$):** Tính toán theo Thông tư 45/2013/TT-BTC:
-   $$G_{\text{ca máy}} = \frac{\text{Nguyên giá máy} \times \text{Tỷ lệ khấu hao năm} + \text{Chi phí bảo dưỡng} + \text{Kiểm định/hiệu chuẩn}}{250 \text{ ca/năm}}$$
-4. **Đơn giá Điện năng:** Áp dụng theo biểu giá bán lẻ điện sản xuất giờ bình thường của EVN.
+#### A. Chi phí Nhân công ($C_{NC}$):
+Công thức xác định:
+$$\mathbf{C_{NC}} = \left[ \frac{H_{NC\_field} \times (1 + k_{\text{thời tiết}})}{M_{\text{dùng chung}}} \times L_{\text{bậc\_ngoại}} \right] + \Big[ H_{NC\_lab} \times L_{\text{bậc\_nội}} \Big]$$
 
-#### B. Các khoản Chi phí Trực tiếp "TÍNH RIÊNG" (Khoản 4.5 TT20):
-Thông tư 20 khẳng định dứt khoát: Định mức chỉ tính cho thao tác tại chỗ, các chi phí sau phải **tính riêng theo từng Thiết kế kỹ thuật - Dự toán**:
-1. **Chi phí đi lại & lưu trú nhân lực (Logistics con người):** Vé máy bay, vé tàu xe đưa đón từ trụ sở tư vấn đến Vĩnh Tân và phụ cấp công tác phí hiện trường (theo Thông tư 40/2017/TT-BTC).
-2. **Chi phí vận chuyển mẫu lạnh hỏa tốc:** Cước chuyển phát nhanh mẫu nước/bùn bảo quản $4^\circ\text{C}$ bằng đá gel/đá khô về PTN trong vòng 24h.
-3. **Chi phí thuê phương tiện thủy chuyên dụng (Học phần II.6):** Thuê tàu biển lớn, ca-nô lấy mẫu nước biển ven bờ và xa bờ Vĩnh Tân.
-4. **Chi phí sàn thao tác & lỗ lấy mẫu khí thải (Học phần II.8):** Chi phí dựng giàn giáo trèo cao 30m - 100m, gia công lỗ lấy mẫu theo US-EPA Method 1, kéo nguồn điện tạm phục vụ máy đo khí.
+*Các biến số và căn cứ pháp lý:*
+- **$H_{NC\_field}, H_{NC\_lab}$**: Định mức ngày công lao động công nghệ quy định trong bảng *Hao_Phi_Nhan_Cong* của TT20 (1 ngày công = 08 giờ làm việc theo Khoản 4.1.3 TT20).
+- **$k_{\text{thời tiết}} = 0,2$**: Hệ số tính thêm **$+20\%$ công ngoại nghiệp** do thời tiết phải ngừng nghỉ việc quy định bắt buộc tại **Khoản 4.1.3 TT20**.
+- **$M_{\text{dùng chung}}$**: Số lượng thông số phân tích dùng chung 1 mẫu hiện trường theo chỉ đạo chống trùng lặp tại **Văn bản số 3072/EVN-MTPTBV** ($M \ge 1$). Nếu chỉ tiêu lấy mẫu riêng độc lập thì $M_{\text{dùng chung}} = 1$.
+- **$L_{\text{bậc}}$**: Đơn giá tiền lương ngày công theo ngạch bậc định biên (Quy chuẩn chức danh theo TTLT 56/2015/TTLT-BTNMT-BNV và mức lương quy định tại Văn bản 3072/EVN: Hạng II = 850k; Hạng III.1 = 650k; Hạng III.2 = 550k; Hạng IV = 450k; Phổ thông = 350k).
+- **Phân hệ công đoạn kỹ thuật:**
+  - *Đo nhanh tại chỗ (Single/In-situ):* Chỉ có 1 mã duy nhất, $H_{NC\_lab} = 0$ (ví dụ `KKC2a` đo ồn, `1KT9c` đo NO, `1KT9d` đo $NO_2$).
+  - *Ghép cặp chuẩn (Paired: `1...` + `2...`):* 1 công đoạn ngoại nghiệp + 1 công đoạn nội nghiệp.
+  - *Phân hệ 3 Tiền tố Nước biển (Học phần II.6):* Phân hóa điều kiện lấy mẫu: **`1NB` (Ven bờ)** vs **`2NB` (Xa bờ - đi tàu biển lớn, số công cao hơn 20-50%)** ghép cặp với **`3NB` (Nội nghiệp phòng lab)**.
+
+#### B. Chi phí Vật liệu, Hóa chất ($C_{VL}$):
+Công thức xác định:
+$$\mathbf{C_{VL}} = (1 + k_{\text{hao hụt}}) \times \sum_{j=1}^{n} \Big( q_{VL\_j} \times G_{VL\_j} \Big) = \mathbf{1,08} \times \sum_{j=1}^{n} \Big( q_{VL\_j} \times G_{VL\_j} \Big)$$
+
+*Các biến số và căn cứ pháp lý:*
+- **$q_{VL\_j}$**: Định mức tiêu hao của loại vật liệu, hóa chất chính thứ $j$ quy định trong bảng *Hao_Phi_Vat_Lieu* của TT20 (lít, ml, gram, kg, cái, hộp...).
+- **$k_{\text{hao hụt}} = 0,08$**: Tỷ lệ tính thêm **$+8\%$ vật liệu phụ, vụn vặt và hao hụt** quy định bắt buộc tại **Khoản 4.4 TT20**.
+- **$G_{VL\_j}$**: Đơn giá mua sắm hóa chất, vật tư thí nghiệm (theo hóa đơn chứng từ hoặc tối thiểu 3 bảng báo giá cạnh tranh).
+
+#### C. Chi phí Dụng cụ & Bảo hộ lao động ($C_{DC}$):
+Công thức xác định:
+$$\mathbf{C_{DC}} = (1 + k_{\text{dc\_phụ}}) \times \sum_{m=1}^{p} \left( \frac{q_{DC\_m} \times G_{DC\_m}}{T_m \times 22} \right) = \mathbf{1,10} \times \sum_{m=1}^{p} \left( \frac{q_{DC\_m} \times G_{DC\_m}}{T_m \times 22} \right)$$
+
+*Các biến số và căn cứ pháp lý:*
+- **$q_{DC\_m}$**: Định mức số lượng dụng cụ chính thứ $m$ trong bảng *Hao_Phi_Dung_Cu* của TT20.
+- **$k_{\text{dc\_phụ}} = 0,10$**: Tỷ lệ tính thêm **$+10\%$ dụng cụ nhỏ, phụ** quy định bắt buộc tại **Khoản 4.2 TT20**.
+- **$T_m$**: Thời hạn niên hạn sử dụng (tính bằng tháng) quy định tại Khoản 4.2 TT20; quy đổi chuẩn 22 ca làm việc/tháng $\to$ Tổng số ca trong niên hạn $= T_m \times 22 \text{ ca}$.
+- **$G_{DC\_m}$**: Nguyên giá mua sắm dụng cụ, trang bị BHLĐ.
+
+#### D. Chi phí Thiết bị máy móc & Năng lượng ($C_{TB}$):
+Công thức xác định:
+$$\mathbf{C_{TB}} = \sum_{k=1}^{r} \Big( t_{TB\_k} \times G_{\text{ca\_}k} \Big) + \sum_{k=1}^{r} \Big( P_k \times (t_{TB\_k} \times 8) \times G_{\text{điện}} \Big)$$
+
+*Các biến số và căn cứ pháp lý:*
+- **$t_{TB\_k}$**: Định mức ca máy trên 1 mẫu trong bảng *Hao_Phi_Thiet_Bi* của TT20 (1 ca = 8 giờ). Nếu thông số phụ có ghi chú *"Kế thừa từ mục XYZ"* thì $t_{TB\_k} = 0$.
+- **$G_{\text{ca\_}k}$**: Đơn giá 1 ca máy trích khấu hao:
+  $$G_{\text{ca\_}k} = \frac{\text{Nguyên giá} \times k_{\text{khấu hao năm}} + \text{Chi phí bảo dưỡng, kiểm định/năm}}{N_{\text{ca chuẩn}}}$$
+- **$N_{\text{ca chuẩn}}$ xác định theo Khoản 4.3 TT20:**
+  - $N_{\text{ca chuẩn}} = \mathbf{250 \text{ ca/năm}}$ đối với máy ngoại nghiệp thông thường.
+  - $N_{\text{ca chuẩn}} = \mathbf{200 \text{ ca/năm}}$ đối với thiết bị đo trên biển (Học phần II.6 Nước biển).
+  - $N_{\text{ca chuẩn}} = \mathbf{500 \text{ ca/năm}}$ đối với máy phân tích nội nghiệp trong phòng lab.
+- **$P_k$**: Công suất tiêu thụ của thiết bị (kW) quy định tại bảng *Hao_Phi_Thiet_Bi* làm căn cứ tính điện năng theo Khoản 4.3 TT20; $G_{\text{điện}}$: Biểu giá điện sản xuất của EVN.
+
+---
+
+### 2. Phân hệ NGOÀI ĐỊNH MỨC (Outside Norm - Chi phí "Tính riêng" theo Khoản 4.5 TT20)
+"Ngoài định mức" có nghĩa là **các chi phí không thuộc định mức của Thông tư 20 quy định**, do đó bắt buộc phải lập dự toán riêng theo từng Thiết kế kỹ thuật - Dự toán cụ thể (Khoản 4.5 TT20). Nhóm này được phân định rạch ròi thành 2 tiểu nhóm pháp lý:
+
+#### A. Tiểu nhóm Có định mức chuyên ngành khác quy định:
+1. **Chi phí đi lại & lưu trú nhân lực (Logistics con người):**
+   - Áp dụng định mức chế độ công tác phí tại **Thông tư số 40/2017/TT-BTC** ngày 28/4/2017 của Bộ Tài chính và Quy chế quản lý nội bộ của EVN.
+   - Bao gồm: Tiền vé máy bay/tàu xe đưa đón từ trụ sở đơn vị quan trắc đến hiện trường Vĩnh Tân, phụ cấp lưu trú theo số ngày thực tế trong PAKT.
+2. **Chi phí sàn thao tác & lỗ lấy mẫu khí thải ống khói (Học phần II.8):**
+   - Áp dụng **Định mức dự toán xây dựng công trình của Bộ Xây dựng** (Thông tư 12/2021/TT-BXD).
+   - Bao gồm: Chi phí dựng giàn giáo trèo cao 30m - 100m, gia công mặt bích lỗ lấy mẫu đường kính 4 inch theo chuẩn US-EPA Method 1, kéo nguồn điện tạm 220V/380V.
+
+#### B. Tiểu nhóm KHÔNG CÓ ĐỊNH MỨC NÀO QUY ĐỊNH (Chi phí theo giá thị trường):
+Là các chi phí đặc thù không có bất kỳ văn bản định mức kinh tế - kỹ thuật nhà nước nào ban hành mức hao phí, bắt buộc phải thẩm định và xác định theo **3 bảng báo giá cạnh tranh** hoặc hợp đồng dịch vụ:
+1. **Chi phí thuê phương tiện thủy chuyên dụng biển (Học phần II.6):**
+   - Thuê tàu biển công suất lớn (có đăng kiểm hàng hải, trang bị hải đồ GPS) phục vụ khảo sát nước biển xa bờ, bãi nhận chìm tro xỉ/bùn ngoài khơi Vĩnh Tân.
+   - Thuê ca-nô chuyên dụng lấy mẫu nước biển ven bờ và kênh xả nước làm mát.
+2. **Chi phí vận chuyển mẫu lạnh hỏa tốc bằng đường hàng không/xe lạnh:**
+   - Cước dịch vụ logistics chuyển phát nhanh bảo quản nhiệt độ $2^\circ\text{C} - 6^\circ\text{C}$ bằng thùng xốp đá gel/đá khô từ hiện trường Vĩnh Tân về phòng lab trong vòng 24 giờ.
+
 
 ---
 

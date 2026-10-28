@@ -2,7 +2,6 @@
 ## QUAN TRẮC MÔI TRƯỜNG ĐƠN VỊ TÍNH (ĐỒNG / MẪU)
 **Căn cứ pháp lý & Kỹ thuật:**  
 - Thông tư số 20/2017/TT-BTNMT ngày 08/8/2017 của Bộ Tài nguyên và Môi trường.
-- Văn bản số 3072/EVN-MTPTBV ngày 31/5/2026 của Tập đoàn Điện lực Việt Nam.
 - Nghị quyết số 66.19/2026/NQ-CP ngày 18/5/2026 của Chính phủ.
 
 ---
@@ -10,7 +9,7 @@
 ## 📌 I. KẾT LUẬN TỔNG QUAN (EXECUTIVE SUMMARY)
 
 1. **Cấu trúc 2 Tầng vĩ mô của Đơn giá quan trắc môi trường (Đồng/mẫu):**  
-   Mọi đơn giá thông số quan trắc đều được cấu thành từ 2 tầng chi phí gốc rễ, trong đó mỗi tầng được phân định rạch ròi giữa **Nhóm yếu tố TRONG ĐỊNH MỨC (Kỹ thuật TT20)** và **Nhóm yếu tố NGOÀI ĐỊNH MỨC (Tài chính, Chế độ Nhà nước, VB 3072 và Chi phí tính riêng)**:
+   Mọi đơn giá thông số quan trắc đều được cấu thành từ 2 tầng chi phí gốc rễ, trong đó mỗi tầng được phân định rạch ròi giữa **Nhóm yếu tố TRONG ĐỊNH MỨC (Kỹ thuật TT20)** và **Nhóm yếu tố NGOÀI ĐỊNH MỨC (Tài chính, Chế độ Nhà nước, Quy định nội bộ và Chi phí tính riêng)**:
 
 $$\mathbf{P_{\text{(Đồng/mẫu)}}} = \underbrace{\mathbf{T_{\text{Trực tiếp}}}}_{\substack{\text{Nhân công, Hóa chất,} \\ \text{Dụng cụ, Thiết bị, Logistics}}} + \underbrace{\mathbf{C_{\text{Gián tiếp}}}}_{\substack{\text{Chi phí chung, Thu nhập tính trước,} \\ \text{Dự phòng, Thuế VAT}}}$$
 
@@ -30,8 +29,8 @@ flowchart TD
     PRICE --> C["TẦNG 2: CHI PHÍ GIÁN TIẾP & THUẾ (C_GT)<br/>Quản lý chung, QA/QC, Lợi nhuận, Dự phòng, VAT"]
     
     subgraph T_SUB["CHI PHÍ TRỰC TIẾP (T)"]
-        T1["1. TRONG ĐỊNH MỨC (TT20)<br/>- Hao phí ngày công (H_NC: Ngoại/Nội nghiệp)<br/>- Hao phí hóa chất, giấy lọc (H_VL)<br/>- Hao phí dụng cụ & niên hạn SD (H_DC)<br/>- Hao phí ca máy & điện năng (H_TB)<br/>- Quy tắc kế thừa & chia sẻ mẫu chung (VB 3072)"]
-        T2["2. NGOÀI ĐỊNH MỨC (TÀI CHÍNH & TÍNH RIÊNG)<br/>- Đơn giá lương ngày công EVN (VB 3072: 350k - 850k)<br/>- Đơn giá hóa chất thị trường (3 báo giá)<br/>- Nguyên giá & đơn giá 1 ca máy (TT45/BTC)<br/>- Chi phí logistics 'tính riêng' (Khoản 4.5 TT20):<br/>  * Vé tàu xe, công tác phí đi lại (TT40/BTC)<br/>  * Vận chuyển mẫu lạnh hỏa tốc<br/>  * Thuê tàu biển (II.6), Sàn giàn giáo ống khói (II.8)"]
+        T1["1. TRONG ĐỊNH MỨC (TT20)<br/>- Hao phí ngày công (H_NC: Ngoại/Nội nghiệp)<br/>- Hao phí hóa chất, giấy lọc (H_VL)<br/>- Hao phí dụng cụ & niên hạn SD (H_DC)<br/>- Hao phí ca máy & điện năng (H_TB)<br/>- Quy tắc kế thừa & chia sẻ mẫu chung (Chống trùng lặp)"]
+        T2["2. NGOÀI ĐỊNH MỨC (TÀI CHÍNH & TÍNH RIÊNG)<br/>- Đơn giá lương ngày công (Khung thị trường & nội bộ: 350k - 850k)<br/>- Đơn giá hóa chất thị trường (3 báo giá)<br/>- Nguyên giá & đơn giá 1 ca máy (TT45/BTC)<br/>- Chi phí logistics 'tính riêng' (Khoản 4.5 TT20):<br/>  * Vé tàu xe, công tác phí đi lại (TT40/BTC)<br/>  * Vận chuyển mẫu lạnh hỏa tốc<br/>  * Thuê tàu biển (II.6), Sàn giàn giáo ống khói (II.8)"]
     end
 
     subgraph C_SUB["CHI PHÍ GIÁN TIẾP (C_GT)"]
@@ -62,8 +61,8 @@ $$\mathbf{C_{NC}} = \left[ \frac{H_{NC\_field} \times (1 + k_{\text{thời tiế
 *Các biến số và căn cứ pháp lý:*
 - **$H_{NC\_field}, H_{NC\_lab}$**: Định mức ngày công lao động công nghệ quy định trong bảng *Hao_Phi_Nhan_Cong* của TT20 (1 ngày công = 08 giờ làm việc theo Khoản 4.1.3 TT20).
 - **$k_{\text{thời tiết}} = 0,2$**: Hệ số tính thêm **$+20\%$ công ngoại nghiệp** do thời tiết phải ngừng nghỉ việc quy định bắt buộc tại **Khoản 4.1.3 TT20**.
-- **$M_{\text{dùng chung}}$**: Số lượng thông số phân tích dùng chung 1 mẫu hiện trường theo chỉ đạo chống trùng lặp tại **Văn bản số 3072/EVN-MTPTBV** ($M \ge 1$). Nếu chỉ tiêu lấy mẫu riêng độc lập thì $M_{\text{dùng chung}} = 1$.
-- **$L_{\text{bậc}}$**: Đơn giá tiền lương ngày công theo ngạch bậc định biên (Quy chuẩn chức danh theo TTLT 56/2015/TTLT-BTNMT-BNV và mức lương quy định tại Văn bản 3072/EVN: Hạng II = 850k; Hạng III.1 = 650k; Hạng III.2 = 550k; Hạng IV = 450k; Phổ thông = 350k).
+- **$M_{\text{dùng chung}}$**: Số lượng thông số phân tích dùng chung 1 mẫu hiện trường theo nguyên tắc kỹ thuật chống trùng lặp khối lượng và định mức ($M \ge 1$). Nếu chỉ tiêu lấy mẫu riêng độc lập thì $M_{\text{dùng chung}} = 1$.
+- **$L_{\text{bậc}}$**: Đơn giá tiền lương ngày công theo ngạch bậc định biên (Quy chuẩn chức danh theo TTLT 56/2015/TTLT-BTNMT-BNV và mức lương tham chiếu theo khung chi phí nhân công: Hạng II = 850k; Hạng III.1 = 650k; Hạng III.2 = 550k; Hạng IV = 450k; Phổ thông = 350k).
 - **Phân hệ công đoạn kỹ thuật:**
   - *Đo nhanh tại chỗ (Single/In-situ):* Chỉ có 1 mã duy nhất, $H_{NC\_lab} = 0$ (ví dụ `KKC2a` đo ồn, `1KT9c` đo NO, `1KT9d` đo $NO_2$).
   - *Ghép cặp chuẩn (Paired: `1...` + `2...`):* 1 công đoạn ngoại nghiệp + 1 công đoạn nội nghiệp.
@@ -158,7 +157,7 @@ $$\mathbf{\Phi_{\text{gián tiếp & thuế}}} = (1 + k_{GT}) \times (1 + TL) \t
 
 ## 🛠️ VI. BẢNG MA TRẬN ĐỐI CHIẾU THỰC HÀNH CHO TỔ THẨM ĐỊNH EVN VĨNH TÂN 4
 
-| Nhóm thông số điển hình | Cấu trúc Mã TT20 | Chi phí Trực tiếp Trong ĐM (TT20) | Chi phí Trực tiếp Ngoài ĐM & Tính riêng | Chi phí Gián tiếp & Thuế | Lưu ý cốt tử khi Thẩm định (VB 3072) |
+| Nhóm thông số điển hình | Cấu trúc Mã TT20 | Chi phí Trực tiếp Trong ĐM (TT20) | Chi phí Trực tiếp Ngoài ĐM & Tính riêng | Chi phí Gián tiếp & Thuế | Lưu ý cốt tử khi Thẩm định & Chống trùng lặp |
 | :--- | :---: | :--- | :--- | :--- | :--- |
 | **Bụi TSP ống khói lò hơi VT4** | `1KT10a` + `2KT10a` | - Lấy mẫu Isokinetic: 4,0 công<br>- Cân phân tích lab: 0,8 công<br>- Phin lọc sợi thủy tinh chịu nhiệt | - Lương bậc III.4 (450k)<br>- Giàn giáo sàn thao tác trèo cao 60m (tính riêng)<br>- Khấu hao máy đo lưu lượng | $+38,23\%$ (Chi phí chung + Lợi nhuận + Dự phòng + VAT) | Bắt buộc phải có hạng mục sàn thao tác tính riêng; kiểm tra đúng phương pháp US-EPA Method 5. |
 | **Khí NO, NO2 đo trực tiếp ống khói** | `1KT9c`, `1KT9d` | - Đo sensor tại chỗ: 0,75 công/khí<br>- Không có mã nội nghiệp (`2...`)<br>- Không tốn hóa chất | - Lương bậc III.3 (550k)<br>- Khấu hao máy đo khí Flue Gas Analyzer | $+38,23\%$ | **CẤM tính thêm mã nội nghiệp `2KT9b`** vì đã đo trực tiếp bằng sensor; không tính trùng phương pháp. |

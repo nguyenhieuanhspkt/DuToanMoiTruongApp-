@@ -203,43 +203,128 @@ Hỗ trợ tối đa thao tác văn phòng liên tục, không phải rời tay 
 
 ---
 
-## 📑 IV. CẤU TRÚC 10 TAB CHUẨN MỰC CỦA HỆ THỐNG
+## 📐 IV. PHƯƠNG ÁN XÁC ĐỊNH ĐƠN GIÁ QUAN TRẮC MÔI TRƯỜNG (ĐỒNG / MẪU)
+> **Dẫn chiếu đặc tả toàn văn:** [docs/PHUONG_AN_XAC_DINH_DON_GIA.md](docs/PHUONG_AN_XAC_DINH_DON_GIA.md)  
+> Phương án xác định đơn giá được xây dựng dựa trên nguyên tắc chuẩn hóa kinh tế - kỹ thuật theo Thông tư 20/2017/TT-BTNMT, chỉ đạo của Tập đoàn Điện lực Việt Nam tại Văn bản số 5691/EVN-MTPTBV ngày 06/10/2026, Quyết định số 1155/QĐ-NĐVT4 và các quy định pháp luật hiện hành.
+
+### 1. Bản Chất Của Đơn Vị Tính "Đồng / Mẫu" (VNĐ/sample)
+- **Định nghĩa "Mẫu" trong TT20:** Là **01 đơn vị mẫu đại diện vật lý** (1 can nước, 1 bình khí, 1 phin lọc bụi, 1 mẫu trầm tích) hoặc **01 lần đo/thử nghiệm trực tiếp tại hiện trường** (In-situ test) theo đúng tiêu chuẩn kỹ thuật quy định.
+- **Bản chất đơn vị tính "Đồng/mẫu":** Là toàn bộ chi phí tài chính hợp lý, hợp lệ cần thiết để hoàn thành **chu trình trọn gói của mẫu đó**: từ chuẩn bị vật tư, lấy mẫu hiện trường, dán nhãn, bảo quản, vận chuyển, phân tích trong phòng lab Vilas đến khi ban hành Phiếu kết quả thử nghiệm đạt chuẩn QA/QC.
+
+### 2. Sơ Đồ Phân Tầng Vĩ Mô: Chi Phí Trực Tiếp ($T$) & Chi Phí Gián Tiếp ($C_{GT}$)
+
+```mermaid
+flowchart TD
+    PRICE["ĐƠN GIÁ 1 THÔNG SỐ (ĐỒNG/MẪU)"]
+    
+    PRICE --> T["TẦNG 1: CHI PHÍ TRỰC TIẾP (T)<br/>Toàn bộ hao phí trực tiếp gắn liền với mẫu"]
+    PRICE --> C["TẦNG 2: CHI PHÍ GIÁN TIẾP & THUẾ (C_GT)<br/>Quản lý chung, QA/QC, Lợi nhuận, Dự phòng, VAT"]
+    
+    subgraph T_SUB["CHI PHÍ TRỰC TIẾP (T)"]
+        T1["1. TRONG ĐỊNH MỨC (TT20)<br/>- Hao phí ngày công (H_NC: Ngoại/Nội nghiệp)<br/>- Hao phí hóa chất, giấy lọc (H_VL)<br/>- Hao phí dụng cụ & niên hạn SD (H_DC)<br/>- Hao phí ca máy & điện năng (H_TB)<br/>- Quy tắc kế thừa & chia sẻ mẫu chung (Chống trùng lặp)"]
+        T2["2. NGOÀI ĐỊNH MỨC (TÀI CHÍNH & TÍNH RIÊNG)<br/>- Đơn giá lương ngày công (Khung thị trường & nội bộ: 350k - 850k)<br/>- Đơn giá hóa chất thị trường (3 báo giá NĐ 24)<br/>- Nguyên giá & đơn giá 1 ca máy (TT45/BTC)<br/>- Chi phí logistics 'tính riêng' (Khoản 4.5 TT20):<br/>  * Vé tàu xe, công tác phí đi lại (TT40/BTC)<br/>  * Vận chuyển mẫu lạnh hỏa tốc<br/>  * Thuê tàu biển (II.6), Sàn giàn giáo ống khói (II.8)"]
+    end
+
+    subgraph C_SUB["CHI PHÍ GIÁN TIẾP (C_GT)"]
+        C1["1. TRONG ĐỊNH MỨC (TT20)<br/>- Chi phí hiệu chuẩn thiết bị (Khoản 4.6 TT20)<br/>- Xử lý số liệu & lập báo cáo thử nghiệm"]
+        C2["2. NGOÀI ĐỊNH MỨC (HỆ SỐ ĐỊNH MỨC NHÀ NƯỚC)<br/>- Chi phí quản lý chung k_gt: 15% x T (hoặc 45-65% x C_NC)<br/>- Thu nhập chịu thuế tính trước TL: 6% x (T + C_gt)<br/>- Chi phí dự phòng phát sinh DP: 5%<br/>- Thuế Giá trị gia tăng VAT: 8% hoặc 10%"]
+    end
+
+    T --> T_SUB
+    C --> C_SUB
+```
+
+### 3. Công Thức Toán Học Chi Tiết Tầng 1: Chi Phí Trực Tiếp ($T$)
+Chi phí trực tiếp cho 1 mẫu bao gồm:
+$$\mathbf{T} = \mathbf{C_{NC}} + \mathbf{C_{VL}} + \mathbf{C_{DC}} + \mathbf{C_{TB}} + \mathbf{C_{\text{ngoài ĐM (tính riêng)}}}$$
+
+#### A. Chi phí Nhân công ($C_{NC}$):
+$$\mathbf{C_{NC}} = \left[ \frac{H_{NC\_field} \times (1 + k_{\text{thời tiết}})}{M_{\text{dùng chung}}} \times L_{\text{bậc\_ngoại}} \right] + \Big[ H_{NC\_lab} \times L_{\text{bậc\_nội}} \Big]$$
+- $k_{\text{thời tiết}} = 0{,}2$: Bắt buộc cộng thêm **$+20\%$ công ngoại nghiệp** do thời tiết phải ngừng việc theo **Khoản 4.1.3 TT20**.
+- $M_{\text{dùng chung}}$: Số lượng thông số phân tích dùng chung 1 lần lấy mẫu hiện trường. Khử trùng lặp: chia sẻ đều chi phí lấy mẫu cho $M$ chỉ tiêu ($M \ge 1$).
+- $L_{\text{bậc}}$: Đơn giá lương ngày công theo ngạch bậc chức danh TTLT 56/2015/TTLT-BTNMT-BNV (Hạng II: 850k; Hạng III.1: 650k; Hạng III.2: 550k; Hạng IV: 450k; Phổ thông: 350k).
+- Đo nhanh sensor tại chỗ (Single/In-situ): $H_{NC\_lab} = 0$, nghiêm cấm tính thêm mã nội nghiệp.
+
+#### B. Chi phí Vật liệu, Hóa chất ($C_{VL}$):
+$$\mathbf{C_{VL}} = (1 + k_{\text{hao hụt}}) \times \sum_{j=1}^{n} \Big( q_{VL\_j} \times G_{VL\_j} \Big) = \mathbf{1{,}08} \times \sum_{j=1}^{n} \Big( q_{VL\_j} \times G_{VL\_j} \Big)$$
+- $k_{\text{hao hụt}} = 0{,}08$: Bắt buộc tính thêm **$+8\%$ vật liệu vụn vặt và hao hụt** theo **Khoản 4.4 TT20**.
+
+#### C. Chi phí Dụng cụ ($C_{DC}$):
+$$\mathbf{C_{DC}} = (1 + k_{\text{dc\_phụ}}) \times \sum_{k=1}^{m} \left( \frac{1}{T_{m\_k} \times 22} \times G_{DC\_k} \right) = \mathbf{1{,}10} \times \sum_{k=1}^{m} \left( \frac{1}{T_{m\_k} \times 22} \times G_{DC\_k} \right)$$
+- Niên hạn $T_{m\_k}$ tính bằng tháng; quy chuẩn $1\text{ tháng} = 22\text{ ca}$ theo **Khoản 4.2 TT20**.
+- $k_{\text{dc\_phụ}} = 0{,}10$: Bắt buộc tính thêm **$+10\%$ dụng cụ nhỏ, phụ** theo **Khoản 4.2 TT20**.
+
+#### D. Chi phí Thiết bị, Ca máy & Năng lượng ($C_{TB}$):
+$$\mathbf{C_{TB}} = \sum_{l=1}^{p} \Big( h_{TB\_l} \times ĐG_{\text{ca\_l}} \Big) + \Big( A_{\text{điện}} \times ĐG_{\text{điện}} \Big)$$
+- Chuẩn số ca máy hàng năm theo **Khoản 4.3 TT20**: $250\text{ ca}$ (ngoại nghiệp đất liền), $200\text{ ca}$ (biển xa bờ II.6), $500\text{ ca}$ (nội nghiệp PTN).
+- Cơ chế kế thừa: Đối với các chỉ tiêu đo đồng thời trên cùng máy đo khí/nước đa chỉ tiêu, thông số phụ kế thừa có $h_{TB} = 0$ để triệt tiêu việc tính trùng ca máy.
+
+#### E. Phân hệ Chi phí Ngoài định mức tính riêng (Khoản 4.5 TT20):
+- **Nhóm có định mức Nhà nước:**
+  1. Chi phí đi lại, công tác phí chuyên gia: Áp dụng Thông tư số 40/2017/TT-BTC.
+  2. Chi phí giàn giáo sàn thao tác trèo cao ống khói (60m - 210m): Áp dụng định mức Bộ Xây dựng (TT 12/2021/TT-BXD).
+- **Nhóm không có định mức (Bắt buộc xác định qua 3 báo giá cạnh tranh theo NĐ 24/2024/NĐ-CP):**
+  1. Chi phí thuê tàu biển chuyên dụng lớn đo đạc nước biển xa bờ bãi xỉ Vĩnh Tân.
+  2. Chi phí bảo quản lạnh hỏa tốc ($4^\circ\text{C} \pm 2^\circ\text{C}$) và cước chuyển phát nhanh chuyên biệt về phòng thí nghiệm Vilas/Vimcerts.
+
+### 4. Công Thức Chi Tiết Tầng 2: Chi Phí Gián Tiếp & Thuế ($C_{GT}$)
+$$\mathbf{C_{GT}} = \mathbf{C_{\text{chung}}} + \mathbf{TL} + \mathbf{DP} + \mathbf{\text{VAT}}$$
+- $C_{\text{chung}} = 15\% \times T$ (Chi phí quản lý chung).
+- $TL = 6\% \times (T + C_{\text{chung}})$ (Thu nhập chịu thuế tính trước).
+- $DP = 5\% \times (T + C_{\text{chung}} + TL)$ (Dự phòng phí phát sinh).
+- $\text{VAT} = 8\%$ hoặc $10\%$.
+- **Hệ số tích hợp tổng hợp**: $\Phi_{\text{gián tiếp & thuế}} = 1{,}15 \times 1{,}06 \times 1{,}05 \times 1{,}08 \approx \mathbf{1{,}3823} \quad (+38{,}23\%)$.
+
+### 5. Bảng Ma Trận Tình Huống Thẩm Định Điển Hình Tại EVN Vĩnh Tân 4
+
+| Nhóm thông số điển hình | Cấu trúc Mã TT20 | Chi phí Trực tiếp Trong ĐM (TT20) | Chi phí Trực tiếp Ngoài ĐM & Tính riêng | Chi phí Gián tiếp & Thuế | Lưu ý cốt tử khi Thẩm định & Chống trùng lặp |
+| :--- | :---: | :--- | :--- | :--- | :--- |
+| **Bụi TSP ống khói lò hơi VT4** | `1KT10a` + `2KT10a` | - Lấy mẫu Isokinetic: 4,0 công<br>- Cân phân tích lab: 0,8 công<br>- Phin lọc sợi thủy tinh chịu nhiệt | - Lương bậc III.4 (450k)<br>- Giàn giáo sàn thao tác trèo cao 60m (tính riêng BXD)<br>- Khấu hao máy đo Isokinetic | $+38,23\%$ (Chi phí chung + Lợi nhuận + Dự phòng + VAT) | Bắt buộc phải có hạng mục sàn thao tác tính riêng theo định mức BXD; kiểm tra đúng phương pháp US-EPA Method 5. |
+| **Khí NO, NO2 đo trực tiếp ống khói** | `1KT9c`, `1KT9d` | - Đo sensor tại chỗ: 0,75 công/khí<br>- Không có mã nội nghiệp (`2...`)<br>- Không tốn hóa chất | - Lương bậc III.3 (550k)<br>- Khấu hao máy đo khí Flue Gas Analyzer | $+38,23\%$ | **CẤM tính thêm mã nội nghiệp `2KT9b`** vì đã đo trực tiếp bằng sensor; không tính trùng phương pháp. |
+| **Khí tổng NOx hóa học ống khói** | `1KT9e` + `2KT9b` | - Hấp thụ Method 7: 0,70 công<br>- So màu lab: 0,80 công<br>- Hóa chất H2SO4, H2O2, PDA | - Lương bậc III.2, III.3<br>- Khấu hao máy quang phổ UV-VIS | $+38,23\%$ | Chỉ chọn HOẶC đo trực tiếp sensor, HOẶC chọn hóa ướt Method 7, không thẩm định thanh toán cả hai! |
+| **Kim loại nặng nước biển ven bờ (As, Pb, Cd)** | `1NB21` + `3NB21...` | - Lấy mẫu chung: 0,30 công<br>- Phân tích lab AAS/ICP: 0,7-1,0 công<br>- Hóa chất HNO3 tinh khiết, chuẩn | - Lương bậc III.3<br>- Thuê ca-nô lấy mẫu ven bờ (tính riêng)<br>- Khí Argon chạy máy ICP | $+38,23\%$ | **Khử trùng lặp:** 1 lần lấy mẫu chia đều cho N kim loại ($M=N$); các kim loại phụ kế thừa thiết bị lấy mẫu ($h_{TB}=0$). |
+| **Nước biển xa bờ bãi xỉ/đổ bùn** | `2NB...` + `3NB...` | - Lấy mẫu xa bờ: 0,35 - 1,0 công<br>- Định mức công cao hơn ven bờ 30% | - Thuê tàu biển chuyên dụng lớn (3 báo giá theo ngày tàu)<br>- Bảo quản mẫu đá gel hỏa tốc | $+38,23\%$ | Bắt buộc kiểm tra đăng kiểm tàu biển và nhật ký hành trình lấy mẫu xa bờ thực tế. |
+
+---
+
+## 📑 V. CẤU TRÚC & ĐẶC TẢ KỸ THUẬT 10 TAB CHUẨN MỰC CỦA HỆ THỐNG
+*(Ánh xạ trực tiếp từ Phương án xác định đơn giá sang các phân hệ phần mềm)*
 
 ```mermaid
 flowchart LR
-    subgraph P1["BƯỚC 1: BÓC TÁCH ĐỊNH MỨC KỸ THUẬT (LÀM TRƯỚC)"]
-        T1["1. Khối lượng"]
-        T2["2. Nhân công"]
-        T3["3. Vật liệu"]
-        T4["4. Dụng cụ"]
-        T5["5. Thiết bị"]
+    subgraph P1["BƯỚC 1: BÓC TÁCH ĐỊNH MỨC KỸ THUẬT (TRONG ĐỊNH MỨC TT20)"]
+        T1["Tab 1: Khối lượng (253 dòng PAKT)"]
+        T2["Tab 2: Nhân công (+20% ngoại nghiệp)"]
+        T3["Tab 3: Vật liệu (+8% hao hụt)"]
+        T4["Tab 4: Dụng cụ (+10% dụng cụ phụ)"]
+        T5["Tab 5: Thiết bị (250/200/500 ca)"]
     end
 
-    subgraph P2["BƯỚC 2: TÍNH ĐƠN GIÁ & TỔNG HỢP (LÀM SAU)"]
-        T6["6. Tính đơn giá nhân công"]
-        T7["7. Tính đơn giá vật liệu"]
-        T8["8. Tính đơn giá dụng cụ, thiết bị"]
-        T9["9. Hệ số các chi phí gián tiếp"]
-        T10["10. Tổng hợp kinh phí"]
+    subgraph P2["BƯỚC 2: TÍNH ĐƠN GIÁ, CHI PHÍ TÍNH RIÊNG & TỔNG HỢP"]
+        T6["Tab 6: ĐG Nhân công"]
+        T7["Tab 7: ĐG Vật liệu (3 báo giá)"]
+        T8["Tab 8: ĐG Ca máy & DC (TT45)"]
+        T9["Tab 9: Phí gián tiếp & Chi phí tính riêng (K4.5 TT20)"]
+        T10["Tab 10: Dashboard 3 Kịch bản & Xuất Excel 10 Sheet"]
     end
 
     P1 ==> P2
 ```
 
-1. **Tab 1: Khối lượng** — 253 dòng công việc Phụ lục 1 PAKT, đối chiếu mã gộp TT20.
-2. **Tab 2: Nhân công** — Bóc tách chi tiết định mức ngày công theo từng ngạch bậc QTVTNMT (hạng II, III.1, III.2, IV).
-3. **Tab 3: Vật liệu** — Bóc tách định mức hóa chất, thuốc thử, dung môi, giấy lọc...
-4. **Tab 4: Dụng cụ** — Bóc tách định mức dụng cụ lấy mẫu hiện trường, bảo hộ lao động...
-5. **Tab 5: Thiết bị** — Bóc tách ca máy quan trắc, máy đo quang phổ, tủ sấy, cân phân tích, điện năng...
-6. **Tab 6: Tính đơn giá nhân công** — Bảng tính đơn giá lương ngày công các bậc thợ theo hướng dẫn EVN.
-7. **Tab 7: Tính đơn giá vật liệu** — Bảng tổng hợp báo giá/hóa đơn vật liệu, hóa chất thí nghiệm.
-8. **Tab 8: Tính đơn giá dụng cụ, thiết bị** — Bảng tính chi phí khấu hao ca máy và dụng cụ.
-9. **Tab 9: Hệ số các chi phí gián tiếp** — Định mức Chi phí quản lý chung, Chi phí phụ trợ, Chi phí dự phòng.
-10. **Tab 10: Tổng hợp kinh phí** — Bảng tổng hợp dự toán trần hoàn chỉnh toàn gói thầu quan trắc môi trường 2026.
+1. **Tab 1: Khối lượng** — 253 dòng công việc Phụ lục 1 PAKT, phân 6 môi trường, đối chiếu mã gộp TT20.
+2. **Tab 2: Nhân công** — Bóc tách chi tiết định mức ngày công theo từng ngạch bậc QTVTNMT, tự động nhân hệ số thời tiết $+20\%$ cho ngoại nghiệp, chia sẻ công lấy mẫu cho $M$ thông số.
+3. **Tab 3: Vật liệu** — Bóc tách định mức hóa chất, thuốc thử, dung môi, giấy lọc; tự động tính thêm hệ số hao hụt $+8\%$.
+4. **Tab 4: Dụng cụ** — Bóc tách định mức dụng cụ lấy mẫu, bình chứa, bảo hộ lao động; tính khấu hao theo chuẩn 22 ca/tháng và cộng thêm $+10\%$ dụng cụ phụ.
+5. **Tab 5: Thiết bị** — Bóc tách ca máy quan trắc, điện năng phòng lab; áp dụng chuẩn ca máy 250/200/500 ca/năm và kế thừa thiết bị ($h_{TB} = 0$).
+6. **Tab 6: Tính đơn giá nhân công** — Bảng tính đơn giá lương ngày công các bậc thợ theo khung thị trường và tiêu chuẩn viên chức TTLT 56.
+7. **Tab 7: Tính đơn giá vật liệu** — Bảng tổng hợp đơn giá hóa chất, vật tư theo 3 báo giá cạnh tranh (Điều 16 NĐ 24/2024/NĐ-CP).
+8. **Tab 8: Tính đơn giá dụng cụ, thiết bị** — Bảng tính chi phí khấu hao ca máy theo Thông tư 45/2013/TT-BTC.
+9. **Tab 9: Hệ số các chi phí gián tiếp & Chi phí tính riêng** — Tích hợp hệ số chi phí chung, thu nhập tính trước, dự phòng, VAT ($+38{,}23\%$) và phân hệ 4 khoản chi phí ngoài định mức tính riêng Khoản 4.5 TT20 (Giàn giáo BXD, Đi lại TT40, Thuê tàu biển, Chuyển phát mẫu lạnh).
+10. **Tab 10: Tổng hợp kinh phí & Xuất bản** — Dashboard so sánh đa kịch bản (Phương án 1 Định mức TT20 vs Phương án 2 3 Báo giá vs Phương án 3 Kế thừa HĐ 71) và Engine OpenPyXL xuất file Excel 10 Sheet động khép kín công thức.
 
 ---
 
-## 📅 V. LỘ TRÌNH TRIỂN KHAI CHI TIẾT
+## 📅 VI. LỘ TRÌNH TRIỂN KHAI DỰ ÁN CHI TIẾT
 
 ### Giai đoạn 0: Thiết lập Nền tảng, Khung App & Ban hành Bản Đặc tả Đơn giá (ĐÃ HOÀN THÀNH - Baseline v0.1.0)
 * **Đường dẫn Repository:** `D:\TaskApp_kiet\DuToanMoiTruongApp-`

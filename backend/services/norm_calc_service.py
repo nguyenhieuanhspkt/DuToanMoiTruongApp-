@@ -12,11 +12,13 @@ class NormCalcService:
     @staticmethod
     def extract_labor_details(item: Dict[str, Any]) -> List[Dict[str, Any]]:
         labor_list = []
-        tt = item.get("tt20_data")
-        qty = item.get("so_luong_mau", 1) or 1
-        m_shared = item.get("m_dung_chung", 1) or 1
-        if not tt:
+        if item.get("is_header") or not item.get("tt20_data"):
             return labor_list
+        qty = item.get("so_luong_mau", 0) or 0
+        if qty <= 0:
+            return labor_list
+        m_shared = item.get("m_dung_chung", 1) or 1
+        tt = item.get("tt20_data")
 
         # 1. Field (Ngoại nghiệp) - Khoản 4.1.3 TT20: Nhân hệ số thời tiết +20% (x1,2)
         field = tt.get("field")
@@ -74,10 +76,12 @@ class NormCalcService:
         Khoản 4.4 TT20: Mức vật liệu phụ, vụn vặt và hao hụt được tính bằng 8% (factor 1,08)
         """
         materials_list = []
-        tt = item.get("tt20_data")
-        qty = item.get("so_luong_mau", 1) or 1
-        if not tt:
+        if item.get("is_header") or not item.get("tt20_data"):
             return materials_list
+        qty = item.get("so_luong_mau", 0) or 0
+        if qty <= 0:
+            return materials_list
+        tt = item.get("tt20_data")
 
         for stage, stage_name in [("field", "Ngoại nghiệp"), ("lab", "Nội nghiệp"), ("single", "Toàn phần")]:
             sub_data = tt.get(stage)
@@ -106,10 +110,12 @@ class NormCalcService:
         - Dụng cụ nhỏ, phụ được tính bằng 10% (factor 1,10).
         """
         tools_list = []
-        tt = item.get("tt20_data")
-        qty = item.get("so_luong_mau", 1) or 1
-        if not tt:
+        if item.get("is_header") or not item.get("tt20_data"):
             return tools_list
+        qty = item.get("so_luong_mau", 0) or 0
+        if qty <= 0:
+            return tools_list
+        tt = item.get("tt20_data")
 
         for stage, stage_name in [("field", "Ngoại nghiệp"), ("lab", "Nội nghiệp"), ("single", "Toàn phần")]:
             sub_data = tt.get(stage)
@@ -167,11 +173,13 @@ class NormCalcService:
         - Tính điện năng tiêu thụ (kWh) theo công suất thiết bị.
         """
         equipment_list = []
-        tt = item.get("tt20_data")
-        qty = item.get("so_luong_mau", 1) or 1
-        sec_id = item.get("sec_id", "")
-        if not tt:
+        if item.get("is_header") or not item.get("tt20_data"):
             return equipment_list
+        qty = item.get("so_luong_mau", 0) or 0
+        if qty <= 0:
+            return equipment_list
+        tt = item.get("tt20_data")
+        sec_id = item.get("sec_id", "")
 
         for stage, stage_name in [("field", "Ngoại nghiệp"), ("lab", "Nội nghiệp"), ("single", "Toàn phần")]:
             sub_data = tt.get(stage)

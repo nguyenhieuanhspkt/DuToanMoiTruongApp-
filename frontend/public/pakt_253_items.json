@@ -6463,15 +6463,709 @@
     "nhom": "Định kỳ theo GPMT",
     "khu_vuc": "NMNĐ Vĩnh Tân 4",
     "moi_truong": "Nước thải kênh thoát nước làm mát chung",
-    "thong_so": "Thuỷ ngân",
+    "thong_so": "Thủy ngân (Hg)",
     "dvt": "mg/l",
     "so_vi_tri": 1,
     "so_lan": 4,
     "so_luong_mau": 4,
     "vi_tri": "NT1: Tại cuối kênh hở thoát nước làm mát chung của NMNĐ Vĩnh Tân 4 và Vĩnh Tân 4 mở rộng trước khi xả ra biển Tần suất quan trắc: 03 tháng/lần",
-    "sec_id": "",
-    "ma_gop": "",
-    "tt20_data": null
+    "sec_id": "II.9",
+    "ma_gop": "NT10l2",
+    "tt20_data": {
+      "coreCode": "NT10l2",
+      "sec_id": "II.9",
+      "name": "Kim loại nặng (Hg)",
+      "standard": "TCVN 7877:2008",
+      "field": {
+        "ma_thong_so": "1NT10l2",
+        "ten_thong_so": "Kim loại nặng (Hg)",
+        "phan_loai": "Ngoại nghiệp",
+        "dinh_bien": "1QTVTNMT hạng III.2",
+        "dinh_muc_cong_str": "0,150",
+        "dinh_muc_cong": 0.15,
+        "tieu_chuan": "",
+        "tools": [
+          {
+            "stt": "1",
+            "name": "Chai đựng hóa chất",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "2",
+            "name": "Chai đựng mẫu",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "3",
+            "name": "Bình tia",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "4",
+            "name": "Quần áo BHLĐ",
+            "unit": "bộ",
+            "lifespan_months": "6",
+            "norm_str": "0,096",
+            "norm": 0.096,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "5",
+            "name": "Giầy BHLĐ",
+            "unit": "đôi",
+            "lifespan_months": "12",
+            "norm_str": "0,096",
+            "norm": 0.096,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "6",
+            "name": "Tất sợi",
+            "unit": "đôi",
+            "lifespan_months": "6",
+            "norm_str": "0,096",
+            "norm": 0.096,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "7",
+            "name": "Mũ cứng",
+            "unit": "cái",
+            "lifespan_months": "3",
+            "norm_str": "0,096",
+            "norm": 0.096,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "8",
+            "name": "Ô che mưa, che nắng",
+            "unit": "cái",
+            "lifespan_months": "24",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "9",
+            "name": "Bản đồ địa hình",
+            "unit": "cái",
+            "lifespan_months": "3",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "10",
+            "name": "Khẩu trang y tế",
+            "unit": "hộp",
+            "lifespan_months": "0,3",
+            "norm_str": "0,020",
+            "norm": 0.02,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "11",
+            "name": "Găng tay y tế",
+            "unit": "hộp",
+            "lifespan_months": "0,3",
+            "norm_str": "0,020",
+            "norm": 0.02,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "12",
+            "name": "Thùng đựng và bảo quản mẫu",
+            "unit": "cái",
+            "lifespan_months": "5",
+            "norm_str": "0,480",
+            "norm": 0.48,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "13",
+            "name": "Đai bảo hiểm",
+            "unit": "cái",
+            "lifespan_months": "3",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "BHLĐ_DungChung"
+          }
+        ],
+        "equipment": [
+          {
+            "stt": "",
+            "name": "Thiết bị lấy mẫu nước",
+            "unit": "bộ",
+            "spec": "",
+            "norm_str": "0,036",
+            "norm": 0.036
+          },
+          {
+            "stt": "",
+            "name": "Máy định vị GPS cầm tay",
+            "unit": "bộ",
+            "spec": "Pin khô",
+            "norm_str": "0,036",
+            "norm": 0.036
+          },
+          {
+            "stt": "",
+            "name": "Máy ảnh kỹ thuật số",
+            "unit": "cái",
+            "spec": "Pin khô",
+            "norm_str": "0,020",
+            "norm": 0.02
+          }
+        ],
+        "materials": [
+          {
+            "name": "Hóa chất bảo quản mẫu",
+            "unit": "ml",
+            "norm_str": "2,000",
+            "norm": 2.0
+          },
+          {
+            "name": "Sổ công tác",
+            "unit": "cuốn",
+            "norm_str": "0,005",
+            "norm": 0.005
+          },
+          {
+            "name": "Đá khô",
+            "unit": "túi",
+            "norm_str": "0,500",
+            "norm": 0.5
+          },
+          {
+            "name": "Bút ghi kính",
+            "unit": "cái",
+            "norm_str": "0,050",
+            "norm": 0.05
+          },
+          {
+            "name": "Giấy lau",
+            "unit": "hộp",
+            "norm_str": "0,020",
+            "norm": 0.02
+          },
+          {
+            "name": "H2SO4 đậm đặc",
+            "unit": "ml",
+            "norm_str": "1,000",
+            "norm": 1.0
+          },
+          {
+            "name": "Bản đồ địa hình",
+            "unit": "tờ",
+            "norm_str": "0,020",
+            "norm": 0.02
+          }
+        ],
+        "tool_inherit_from": "1NT10a",
+        "equip_inherit_from": "1NT10a",
+        "mat_inherit_from": "1NT10a",
+        "tool_resolved_note": "Kế thừa từ mục 1NT10a",
+        "equip_resolved_note": "Kế thừa từ mục 1NT10a",
+        "mat_resolved_note": "Kế thừa từ mục 1NT10a"
+      },
+      "lab": {
+        "ma_thong_so": "2NT10l2",
+        "ten_thong_so": "Kim loại nặng (Hg)",
+        "phan_loai": "Nội nghiệp",
+        "dinh_bien": "1QTVTNMT hạng III.3",
+        "dinh_muc_cong_str": "0,800",
+        "dinh_muc_cong": 0.8,
+        "tieu_chuan": "TCVN 7877:2008",
+        "tools": [
+          {
+            "stt": "1",
+            "name": "Chai đựng hóa chất",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,900",
+            "norm": 0.9,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "2",
+            "name": "Pipet 10ml",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,900",
+            "norm": 0.9,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "3",
+            "name": "Micropipet 1ml",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,900",
+            "norm": 0.9,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "4",
+            "name": "Đầu cone 1ml",
+            "unit": "cái",
+            "lifespan_months": "1",
+            "norm_str": "0,900",
+            "norm": 0.9,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "5",
+            "name": "Bình tia",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,900",
+            "norm": 0.9,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "6",
+            "name": "Bình định mức 25ml",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,900",
+            "norm": 0.9,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "7",
+            "name": "Bình định mức 50ml",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,900",
+            "norm": 0.9,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "8",
+            "name": "Bình định mức 1000ml",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,900",
+            "norm": 0.9,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "9",
+            "name": "Cốc thủy tinh 250ml",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,900",
+            "norm": 0.9,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "10",
+            "name": "Đũa thủy tinh",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,900",
+            "norm": 0.9,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "11",
+            "name": "Bình tam giác 250ml",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,900",
+            "norm": 0.9,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "12",
+            "name": "Cuvet thạch anh cho FIAS",
+            "unit": "cái",
+            "lifespan_months": "12",
+            "norm_str": "0,500",
+            "norm": 0.5,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "13",
+            "name": "Đèn D2",
+            "unit": "cái",
+            "lifespan_months": "24",
+            "norm_str": "0,500",
+            "norm": 0.5,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "14",
+            "name": "Màng lọc cho FIAS",
+            "unit": "cái",
+            "lifespan_months": "2",
+            "norm_str": "0,500",
+            "norm": 0.5,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "15",
+            "name": "Đèn Tungsten",
+            "unit": "cái",
+            "lifespan_months": "24",
+            "norm_str": "0,500",
+            "norm": 0.5,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "16",
+            "name": "Đèn EDL",
+            "unit": "cái",
+            "lifespan_months": "24",
+            "norm_str": "0,500",
+            "norm": 0.5,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "17",
+            "name": "Bình nhựa 2 lít",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,900",
+            "norm": 0.9,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "18",
+            "name": "Bình nhựa 5 lít",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,900",
+            "norm": 0.9,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "19",
+            "name": "Bình nhựa 0,5 lít",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,900",
+            "norm": 0.9,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "20",
+            "name": "Áo blue",
+            "unit": "cái",
+            "lifespan_months": "12",
+            "norm_str": "0,900",
+            "norm": 0.9,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "22",
+            "name": "Găng tay y tế",
+            "unit": "hộp",
+            "lifespan_months": "0,3",
+            "norm_str": "0,020",
+            "norm": 0.02,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "23",
+            "name": "Khẩu trang y tế",
+            "unit": "hộp",
+            "lifespan_months": "0,3",
+            "norm_str": "0,020",
+            "norm": 0.02,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "24",
+            "name": "Quạt trần 100w",
+            "unit": "cái",
+            "lifespan_months": "36",
+            "norm_str": "0,160",
+            "norm": 0.16,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "25",
+            "name": "Quạt thông gió 40w",
+            "unit": "cái",
+            "lifespan_months": "36",
+            "norm_str": "0,160",
+            "norm": 0.16,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "26",
+            "name": "Máy hút bụi 2kw",
+            "unit": "cái",
+            "lifespan_months": "60",
+            "norm_str": "0,008",
+            "norm": 0.008,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "27",
+            "name": "Máy hút ẩm 1,5kw",
+            "unit": "cái",
+            "lifespan_months": "36",
+            "norm_str": "0,060",
+            "norm": 0.06,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "28",
+            "name": "Đèn neon 40w",
+            "unit": "bộ",
+            "lifespan_months": "24",
+            "norm_str": "0,960",
+            "norm": 0.96,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "29",
+            "name": "Tủ đựng tài liệu",
+            "unit": "cái",
+            "lifespan_months": "72",
+            "norm_str": "0,240",
+            "norm": 0.24,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "30",
+            "name": "Bàn làm việc",
+            "unit": "cái",
+            "lifespan_months": "72",
+            "norm_str": "0,960",
+            "norm": 0.96,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "31",
+            "name": "Ghế tựa",
+            "unit": "cái",
+            "lifespan_months": "72",
+            "norm_str": "0,960",
+            "norm": 0.96,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "33",
+            "name": "Điện năng",
+            "unit": "kw",
+            "lifespan_months": "",
+            "norm_str": "1,401",
+            "norm": 1.401,
+            "tool_type": "DungCu_ChuyenDung"
+          }
+        ],
+        "equipment": [
+          {
+            "stt": "",
+            "name": "Tủ hút",
+            "unit": "cái",
+            "spec": "0,1",
+            "norm_str": "0,200",
+            "norm": 0.2
+          },
+          {
+            "stt": "",
+            "name": "Tủ sấy",
+            "unit": "cái",
+            "spec": "0,3",
+            "norm_str": "0,350",
+            "norm": 0.35
+          },
+          {
+            "stt": "",
+            "name": "Lò vi sóng",
+            "unit": "cái",
+            "spec": "0,1",
+            "norm_str": "0,030",
+            "norm": 0.03
+          },
+          {
+            "stt": "",
+            "name": "Tủ bảo quản mẫu",
+            "unit": "cái",
+            "spec": "0,16",
+            "norm_str": "0,040",
+            "norm": 0.04
+          },
+          {
+            "stt": "",
+            "name": "Tủ lưu hóa chất",
+            "unit": "cái",
+            "spec": "0,16",
+            "norm_str": "0,400",
+            "norm": 0.4
+          },
+          {
+            "stt": "",
+            "name": "Thiết bị phá mẫu",
+            "unit": "bộ",
+            "spec": "2,3",
+            "norm_str": "0,450",
+            "norm": 0.45
+          },
+          {
+            "stt": "",
+            "name": "Cân phân tích",
+            "unit": "cái",
+            "spec": "0,06",
+            "norm_str": "0,200",
+            "norm": 0.2
+          },
+          {
+            "stt": "",
+            "name": "Máy phân tích quang phổ AAS hoặc cực phổ",
+            "unit": "bộ",
+            "spec": "3",
+            "norm_str": "0,100",
+            "norm": 0.1
+          },
+          {
+            "stt": "",
+            "name": "Bộ phân tích thủy ngân và asen MHS hoặc FIAS",
+            "unit": "bộ",
+            "spec": "0,6",
+            "norm_str": "0,600",
+            "norm": 0.6
+          },
+          {
+            "stt": "",
+            "name": "Thiết bị cất nước 2 lần",
+            "unit": "bộ",
+            "spec": "0,18",
+            "norm_str": "0,200",
+            "norm": 0.2
+          },
+          {
+            "stt": "",
+            "name": "Máy điều hòa nhiệt độ",
+            "unit": "cái",
+            "spec": "2,2",
+            "norm_str": "0,067",
+            "norm": 0.067
+          },
+          {
+            "stt": "",
+            "name": "Điện năng",
+            "unit": "kw",
+            "spec": "",
+            "norm_str": "29,160",
+            "norm": 29.16
+          }
+        ],
+        "materials": [
+          {
+            "name": "Dung dịch chuẩn gốc 1.000ppm",
+            "unit": "ml",
+            "norm_str": "1,000",
+            "norm": 1.0
+          },
+          {
+            "name": "H2O2",
+            "unit": "ml",
+            "norm_str": "10,000",
+            "norm": 10.0
+          },
+          {
+            "name": "HNO3",
+            "unit": "ml",
+            "norm_str": "10,000",
+            "norm": 10.0
+          },
+          {
+            "name": "H2SO4 đậm đặc",
+            "unit": "ml",
+            "norm_str": "2,500",
+            "norm": 2.5
+          },
+          {
+            "name": "HCl",
+            "unit": "ml",
+            "norm_str": "5,000",
+            "norm": 5.0
+          },
+          {
+            "name": "KMnO4",
+            "unit": "gam",
+            "norm_str": "1,000",
+            "norm": 1.0
+          },
+          {
+            "name": "K2S2O8",
+            "unit": "gam",
+            "norm_str": "1,000",
+            "norm": 1.0
+          },
+          {
+            "name": "NH4OCl",
+            "unit": "gam",
+            "norm_str": "1,000",
+            "norm": 1.0
+          },
+          {
+            "name": "SnCl2.2H2O",
+            "unit": "gam",
+            "norm_str": "0,500",
+            "norm": 0.5
+          },
+          {
+            "name": "Cồn lau dụng cụ",
+            "unit": "ml",
+            "norm_str": "10,000",
+            "norm": 10.0
+          },
+          {
+            "name": "Giấy lọc",
+            "unit": "hộp",
+            "norm_str": "0,010",
+            "norm": 0.01
+          },
+          {
+            "name": "Sổ công tác",
+            "unit": "cuốn",
+            "norm_str": "0,005",
+            "norm": 0.005
+          },
+          {
+            "name": "Giấy lau",
+            "unit": "hộp",
+            "norm_str": "0,010",
+            "norm": 0.01
+          },
+          {
+            "name": "Khí argon",
+            "unit": "bình",
+            "norm_str": "0,002",
+            "norm": 0.002
+          },
+          {
+            "name": "Khí axetylen",
+            "unit": "bình",
+            "norm_str": "0,002",
+            "norm": 0.002
+          }
+        ],
+        "tool_inherit_from": "2NT10l1",
+        "equip_inherit_from": "2NT10l1",
+        "mat_inherit_from": null,
+        "tool_resolved_note": "Kế thừa từ mục 2NT10l1",
+        "equip_resolved_note": "Kế thừa từ mục 2NT10l1"
+      }
+    }
   },
   {
     "id": 18,
@@ -13416,15 +14110,578 @@
     "nhom": "Định kỳ theo GPMT",
     "khu_vuc": "NMNĐ Vĩnh Tân 4",
     "moi_truong": "Giám sát nước thải HTXLNT tập trung",
-    "thong_so": "BOD (20oC) 5",
+    "thong_so": "BOD5 (20°C)",
     "dvt": "mg/l",
     "so_vi_tri": 1,
     "so_lan": 4,
     "so_luong_mau": 4,
     "vi_tri": "NT2: Tại bể chứa nước thải sau xử lý từ hệ thống xử lý nước thải tập trung",
-    "sec_id": "",
-    "ma_gop": "",
-    "tt20_data": null
+    "sec_id": "II.9",
+    "ma_gop": "NT5a",
+    "tt20_data": {
+      "coreCode": "NT5a",
+      "sec_id": "II.9",
+      "name": "Nhu cầu oxy sinh hoá (BOD5)",
+      "standard": "TCVN 6001-1:2008",
+      "field": {
+        "ma_thong_so": "1NT5a",
+        "ten_thong_so": "Nhu cầu oxy sinh hoá (BOD5",
+        "phan_loai": "Ngoại nghiệp",
+        "dinh_bien": "1QTVTNMT hạng III.1",
+        "dinh_muc_cong_str": "0,200",
+        "dinh_muc_cong": 0.2,
+        "tieu_chuan": "",
+        "tools": [
+          {
+            "stt": "1",
+            "name": "Chai đựng mẫu",
+            "unit": "cai",
+            "lifespan_months": "6",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "2",
+            "name": "Bình tia",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "3",
+            "name": "Quần áo BHLĐ",
+            "unit": "bộ",
+            "lifespan_months": "6",
+            "norm_str": "0,096",
+            "norm": 0.096,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "4",
+            "name": "Giầy BHLĐ",
+            "unit": "đôi",
+            "lifespan_months": "12",
+            "norm_str": "0,096",
+            "norm": 0.096,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "5",
+            "name": "Tất sợi",
+            "unit": "đôi",
+            "lifespan_months": "6",
+            "norm_str": "0,096",
+            "norm": 0.096,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "6",
+            "name": "Mũ cứng",
+            "unit": "cái",
+            "lifespan_months": "3",
+            "norm_str": "0,096",
+            "norm": 0.096,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "7",
+            "name": "Ô che mưa, che nắng",
+            "unit": "cái",
+            "lifespan_months": "24",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "8",
+            "name": "Bản đồ địa hình",
+            "unit": "cái",
+            "lifespan_months": "3",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "9",
+            "name": "Khẩu trang y tế",
+            "unit": "hộp",
+            "lifespan_months": "0,3",
+            "norm_str": "0,020",
+            "norm": 0.02,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "10",
+            "name": "Găng tay y tế",
+            "unit": "hộp",
+            "lifespan_months": "0,3",
+            "norm_str": "0,020",
+            "norm": 0.02,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "11",
+            "name": "Thùng đựng và bảo quản mẫu",
+            "unit": "cái",
+            "lifespan_months": "5",
+            "norm_str": "0,480",
+            "norm": 0.48,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "12",
+            "name": "Đai bảo hiểm",
+            "unit": "cái",
+            "lifespan_months": "3",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "BHLĐ_DungChung"
+          }
+        ],
+        "equipment": [
+          {
+            "stt": "",
+            "name": "Thiết bị lấy mẫu nước",
+            "unit": "bộ",
+            "spec": "",
+            "norm_str": "0,036",
+            "norm": 0.036
+          },
+          {
+            "stt": "",
+            "name": "Máy định vị GPS cầm tay",
+            "unit": "bộ",
+            "spec": "Pin khô",
+            "norm_str": "0,036",
+            "norm": 0.036
+          },
+          {
+            "stt": "",
+            "name": "Máy ảnh kỹ thuật số",
+            "unit": "cái",
+            "spec": "Pin khô",
+            "norm_str": "0,020",
+            "norm": 0.02
+          }
+        ],
+        "materials": [
+          {
+            "name": "Đá khô",
+            "unit": "túi",
+            "norm_str": "0,500",
+            "norm": 0.5
+          },
+          {
+            "name": "Sổ công tác",
+            "unit": "cuốn",
+            "norm_str": "0,005",
+            "norm": 0.005
+          },
+          {
+            "name": "Bút ghi kính",
+            "unit": "cái",
+            "norm_str": "0,050",
+            "norm": 0.05
+          },
+          {
+            "name": "Giấy lau",
+            "unit": "hộp",
+            "norm_str": "0,020",
+            "norm": 0.02
+          }
+        ],
+        "tool_inherit_from": null,
+        "equip_inherit_from": null,
+        "mat_inherit_from": null
+      },
+      "lab": {
+        "ma_thong_so": "2NT5a",
+        "ten_thong_so": "Nhu cầu oxy sinh hoá (BOD5)",
+        "phan_loai": "Nội nghiệp",
+        "dinh_bien": "1QTVTNMT hạng III.1",
+        "dinh_muc_cong_str": "0,470",
+        "dinh_muc_cong": 0.47,
+        "tieu_chuan": "SMEWW 5210B: 2012",
+        "tools": [
+          {
+            "stt": "1",
+            "name": "Chai đựng hóa chất",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "2",
+            "name": "Chai BOD",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "3",
+            "name": "Micropipet 5ml",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "4",
+            "name": "Đầu cone 1ml",
+            "unit": "cái",
+            "lifespan_months": "1",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "5",
+            "name": "Bình định mức 50ml",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "6",
+            "name": "Bình định mức 100ml",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "7",
+            "name": "Bình định mức 250ml",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "8",
+            "name": "Bộ sục khí",
+            "unit": "bộ",
+            "lifespan_months": "24",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "9",
+            "name": "Chai bảo quản dung dịch",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "10",
+            "name": "Xô chứa dung dịch sục khí",
+            "unit": "cái",
+            "lifespan_months": "24",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "11",
+            "name": "Đầu điện cực",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "12",
+            "name": "Bình nhựa 2 lít",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "13",
+            "name": "Bình nhựa 5 lít",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "14",
+            "name": "Chai nhựa 0,5 lít",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "15",
+            "name": "Áo blue",
+            "unit": "cái",
+            "lifespan_months": "12",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "17",
+            "name": "Găng tay y tế",
+            "unit": "hộp",
+            "lifespan_months": "0,3",
+            "norm_str": "0,020",
+            "norm": 0.02,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "18",
+            "name": "Khẩu trang y tế",
+            "unit": "hộp",
+            "lifespan_months": "0,3",
+            "norm_str": "0,020",
+            "norm": 0.02,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "19",
+            "name": "Quạt trần 100w",
+            "unit": "cái",
+            "lifespan_months": "36",
+            "norm_str": "0,053",
+            "norm": 0.053,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "20",
+            "name": "Quạt thông gió 40w",
+            "unit": "cái",
+            "lifespan_months": "36",
+            "norm_str": "0,053",
+            "norm": 0.053,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "21",
+            "name": "Máy hút bụi 2kw",
+            "unit": "cái",
+            "lifespan_months": "60",
+            "norm_str": "0,003",
+            "norm": 0.003,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "22",
+            "name": "Máy hút ẩm 1,5kw",
+            "unit": "cái",
+            "lifespan_months": "36",
+            "norm_str": "0,020",
+            "norm": 0.02,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "23",
+            "name": "Đèn neon 40w",
+            "unit": "bộ",
+            "lifespan_months": "24",
+            "norm_str": "0,320",
+            "norm": 0.32,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "24",
+            "name": "Tủ đựng tài liệu",
+            "unit": "cái",
+            "lifespan_months": "72",
+            "norm_str": "0,080",
+            "norm": 0.08,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "25",
+            "name": "Bàn làm việc",
+            "unit": "cái",
+            "lifespan_months": "72",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "26",
+            "name": "Ghế tựa",
+            "unit": "cái",
+            "lifespan_months": "72",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "28",
+            "name": "Điện năng",
+            "unit": "kw",
+            "lifespan_months": "",
+            "norm_str": "0,464",
+            "norm": 0.464,
+            "tool_type": "DungCu_ChuyenDung"
+          }
+        ],
+        "equipment": [
+          {
+            "stt": "",
+            "name": "Tủ ủ BOD",
+            "unit": "cái",
+            "spec": "0,8",
+            "norm_str": "0,200",
+            "norm": 0.2
+          },
+          {
+            "stt": "",
+            "name": "Tủ bảo quản mẫu",
+            "unit": "cái",
+            "spec": "0,16",
+            "norm_str": "0,040",
+            "norm": 0.04
+          },
+          {
+            "stt": "",
+            "name": "Tủ lưu hóa chất",
+            "unit": "cái",
+            "spec": "0,16",
+            "norm_str": "0,400",
+            "norm": 0.4
+          },
+          {
+            "stt": "",
+            "name": "Thiết bị cất nước 2 lần",
+            "unit": "bộ",
+            "spec": "0,18",
+            "norm_str": "0,200",
+            "norm": 0.2
+          },
+          {
+            "stt": "",
+            "name": "Máy điều hòa nhiệt độ",
+            "unit": "cái",
+            "spec": "2,2",
+            "norm_str": "0,067",
+            "norm": 0.067
+          },
+          {
+            "stt": "",
+            "name": "Điện năng",
+            "unit": "kw",
+            "spec": "",
+            "norm_str": "4,045",
+            "norm": 4.045
+          }
+        ],
+        "materials": [
+          {
+            "name": "FeCl3, 6H2O",
+            "unit": "gam",
+            "norm_str": "0,060",
+            "norm": 0.06
+          },
+          {
+            "name": "CaCl2",
+            "unit": "gam",
+            "norm_str": "0,060",
+            "norm": 0.06
+          },
+          {
+            "name": "MgSO4.7H2O",
+            "unit": "gam",
+            "norm_str": "0,060",
+            "norm": 0.06
+          },
+          {
+            "name": "KH2PO4",
+            "unit": "gam",
+            "norm_str": "0,020",
+            "norm": 0.02
+          },
+          {
+            "name": "K2HPO4",
+            "unit": "gam",
+            "norm_str": "0,040",
+            "norm": 0.04
+          },
+          {
+            "name": "Na2HPO4",
+            "unit": "gam",
+            "norm_str": "0,070",
+            "norm": 0.07
+          },
+          {
+            "name": "NH4Cl",
+            "unit": "gam",
+            "norm_str": "0,030",
+            "norm": 0.03
+          },
+          {
+            "name": "Gluco",
+            "unit": "gam",
+            "norm_str": "0,060",
+            "norm": 0.06
+          },
+          {
+            "name": "Polyseed",
+            "unit": "Viên",
+            "norm_str": "0,100",
+            "norm": 0.1
+          },
+          {
+            "name": "Glutamic",
+            "unit": "gam",
+            "norm_str": "0,060",
+            "norm": 0.06
+          },
+          {
+            "name": "Cồn lau dụng cụ",
+            "unit": "ml",
+            "norm_str": "10,000",
+            "norm": 10.0
+          },
+          {
+            "name": "Giấy pH",
+            "unit": "hộp",
+            "norm_str": "0,010",
+            "norm": 0.01
+          },
+          {
+            "name": "Sổ công tác",
+            "unit": "cuốn",
+            "norm_str": "0,005",
+            "norm": 0.005
+          },
+          {
+            "name": "Giấy lau",
+            "unit": "hộp",
+            "norm_str": "0,010",
+            "norm": 0.01
+          }
+        ],
+        "tool_inherit_from": null,
+        "equip_inherit_from": null,
+        "mat_inherit_from": null
+      }
+    }
   },
   {
     "id": 32,
@@ -24140,9 +25397,547 @@
     "so_lan": 4,
     "so_luong_mau": 4,
     "vi_tri": "NB1: Tại công trình khai thác nước biển từ vịnh Vũng Mũ Tần suất quan trắc: 03 tháng/lần",
-    "sec_id": "",
-    "ma_gop": "",
-    "tt20_data": null
+    "sec_id": "II.6",
+    "ma_gop": "NB16a",
+    "tt20_data": {
+      "coreCode": "NB16a",
+      "sec_id": "II.6",
+      "name": "Nhu cầu oxy hóa học (COD)",
+      "standard": "SMEWW 5220C:2012",
+      "field": {
+        "ma_thong_so": "1NB16a",
+        "ten_thong_so": "COD",
+        "phan_loai": "Ngoại nghiệp",
+        "dinh_bien": "1QTVTNMT hạng IV.3",
+        "dinh_muc_cong_str": "0,300",
+        "dinh_muc_cong": 0.3,
+        "tieu_chuan": "",
+        "tools": [
+          {
+            "stt": "",
+            "name": "1",
+            "unit": "Thiết bị lấy mẫu thể tích 2 lít",
+            "lifespan_months": "cái",
+            "norm_str": "24",
+            "norm": 24.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "2",
+            "unit": "Thiết bị lấy mẫu thể tích 5 lít",
+            "lifespan_months": "cái",
+            "norm_str": "24",
+            "norm": 24.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "3",
+            "unit": "Thùng đựng và bảo quản mẫu",
+            "lifespan_months": "cái",
+            "norm_str": "5",
+            "norm": 5.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "4",
+            "unit": "Quần áo BHLĐ",
+            "lifespan_months": "bộ",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "5",
+            "unit": "Giầy BHLĐ",
+            "lifespan_months": "đôi",
+            "norm_str": "12",
+            "norm": 12.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "7",
+            "unit": "Mũ cứng",
+            "lifespan_months": "cái",
+            "norm_str": "3",
+            "norm": 3.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "8",
+            "unit": "Ô che mưa, che nắng",
+            "lifespan_months": "cái",
+            "norm_str": "24",
+            "norm": 24.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "9",
+            "unit": "Áo phao",
+            "lifespan_months": "cái",
+            "norm_str": "12",
+            "norm": 12.0,
+            "tool_type": "DungCu_ChuyenDung"
+          }
+        ],
+        "equipment": [
+          {
+            "stt": "",
+            "name": "Thiết bị lấy mẫu nước",
+            "unit": "bộ",
+            "spec": "",
+            "norm_str": "0,240",
+            "norm": 0.24
+          },
+          {
+            "stt": "",
+            "name": "Máy định vị GPS cầm tay",
+            "unit": "cái",
+            "spec": "Pin khô",
+            "norm_str": "0,080",
+            "norm": 0.08
+          }
+        ],
+        "materials": [
+          {
+            "name": "Đá khô",
+            "unit": "túi",
+            "norm_str": "0,500",
+            "norm": 0.5
+          },
+          {
+            "name": "Nước rửa dụng cụ",
+            "unit": "lít",
+            "norm_str": "0,150",
+            "norm": 0.15
+          },
+          {
+            "name": "Pin chuyên dụng",
+            "unit": "cục",
+            "norm_str": "0,300",
+            "norm": 0.3
+          },
+          {
+            "name": "Sổ công tác",
+            "unit": "cuốn",
+            "norm_str": "0,005",
+            "norm": 0.005
+          },
+          {
+            "name": "Bản đồ địa hình",
+            "unit": "cái",
+            "norm_str": "0,020",
+            "norm": 0.02
+          },
+          {
+            "name": "Hóa chất bảo quản mẫu",
+            "unit": "ml",
+            "norm_str": "1,000",
+            "norm": 1.0
+          }
+        ],
+        "tool_inherit_from": "1NB15",
+        "equip_inherit_from": "1NB15",
+        "mat_inherit_from": "1NB15",
+        "tool_resolved_note": "Kế thừa từ mục 1NB15",
+        "equip_resolved_note": "Kế thừa từ mục 1NB15",
+        "mat_resolved_note": "Kế thừa từ mục 1NB15"
+      },
+      "lab": {
+        "ma_thong_so": "3NB16a",
+        "ten_thong_so": "COD",
+        "phan_loai": "Nội nghiệp",
+        "dinh_bien": "1QTVTNMT hạng III.1",
+        "dinh_muc_cong_str": "0,500",
+        "dinh_muc_cong": 0.5,
+        "tieu_chuan": "",
+        "tools": [
+          {
+            "stt": "",
+            "name": "1",
+            "unit": "Chai đựng hóa chất",
+            "lifespan_months": "Cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "2",
+            "unit": "Chai BOD",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "3",
+            "unit": "Micropipet 5ml",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "4",
+            "unit": "Đầu cone 1ml",
+            "lifespan_months": "cái",
+            "norm_str": "1",
+            "norm": 1.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "5",
+            "unit": "Bình định mức 50ml",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "6",
+            "unit": "Bình định mức 100ml",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "7",
+            "unit": "Bình định mức 250ml",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "8",
+            "unit": "Bộ sục khí",
+            "lifespan_months": "bộ",
+            "norm_str": "24",
+            "norm": 24.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "9",
+            "unit": "Chai bảo quản dung dịch",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "10",
+            "unit": "Xô chứa dung dịch sục khí",
+            "lifespan_months": "cái",
+            "norm_str": "24",
+            "norm": 24.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "11",
+            "unit": "Đầu điện cực",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "12",
+            "unit": "Bình nhựa 2 lít",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "13",
+            "unit": "Bình nhựa 5 lít",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "14",
+            "unit": "Chai nhựa 0,5 lít",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "15",
+            "unit": "Áo blue",
+            "lifespan_months": "cái",
+            "norm_str": "12",
+            "norm": 12.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "17",
+            "unit": "Găng tay y tế",
+            "lifespan_months": "hộp",
+            "norm_str": "0,3",
+            "norm": 0.3,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "18",
+            "unit": "Khẩu trang y tế",
+            "lifespan_months": "hộp",
+            "norm_str": "0,3",
+            "norm": 0.3,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "19",
+            "unit": "Quạt trần 100w",
+            "lifespan_months": "cái",
+            "norm_str": "36",
+            "norm": 36.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "20",
+            "unit": "Quạt thông gió 40w",
+            "lifespan_months": "cái",
+            "norm_str": "36",
+            "norm": 36.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "21",
+            "unit": "Máy hút bụi 2kw",
+            "lifespan_months": "cái",
+            "norm_str": "60",
+            "norm": 60.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "22",
+            "unit": "Máy hút ẩm 1,5kw",
+            "lifespan_months": "cái",
+            "norm_str": "36",
+            "norm": 36.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "23",
+            "unit": "Đèn neon 40w",
+            "lifespan_months": "bộ",
+            "norm_str": "24",
+            "norm": 24.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "24",
+            "unit": "Tủ đựng tài liệu",
+            "lifespan_months": "cái",
+            "norm_str": "72",
+            "norm": 72.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "25",
+            "unit": "Bàn làm việc",
+            "lifespan_months": "cái",
+            "norm_str": "72",
+            "norm": 72.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "26",
+            "unit": "Ghế tựa",
+            "lifespan_months": "cái",
+            "norm_str": "72",
+            "norm": 72.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "28",
+            "unit": "Điện năng",
+            "lifespan_months": "kw",
+            "norm_str": "",
+            "norm": 0.0,
+            "tool_type": "DungCu_ChuyenDung"
+          }
+        ],
+        "equipment": [
+          {
+            "stt": "",
+            "name": "Tủ hút",
+            "unit": "cái",
+            "spec": "0,1",
+            "norm_str": "0,200",
+            "norm": 0.2
+          },
+          {
+            "stt": "",
+            "name": "Tủ sấy",
+            "unit": "cái",
+            "spec": "0,3",
+            "norm_str": "0,020",
+            "norm": 0.02
+          },
+          {
+            "stt": "",
+            "name": "Thiết bị phản ứng COD",
+            "unit": "bộ",
+            "spec": "0,45",
+            "norm_str": "0,200",
+            "norm": 0.2
+          },
+          {
+            "stt": "",
+            "name": "Tủ lưu hóa chất",
+            "unit": "cái",
+            "spec": "0,16",
+            "norm_str": "0,040",
+            "norm": 0.04
+          },
+          {
+            "stt": "",
+            "name": "Cân phân tích",
+            "unit": "cái",
+            "spec": "0,06",
+            "norm_str": "0,200",
+            "norm": 0.2
+          },
+          {
+            "stt": "",
+            "name": "Thiết bị cất nước 2 lần",
+            "unit": "bộ",
+            "spec": "0,18",
+            "norm_str": "0,320",
+            "norm": 0.32
+          },
+          {
+            "stt": "",
+            "name": "Máy điều hòa nhiệt độ",
+            "unit": "cái",
+            "spec": "2,2",
+            "norm_str": "0,080",
+            "norm": 0.08
+          },
+          {
+            "stt": "",
+            "name": "Điện năng",
+            "unit": "kw",
+            "spec": "",
+            "norm_str": "5,997",
+            "norm": 5.997
+          }
+        ],
+        "materials": [
+          {
+            "name": "K2Cr2O7",
+            "unit": "gam",
+            "norm_str": "0,290",
+            "norm": 0.29
+          },
+          {
+            "name": "H2SO4 đậm đặc",
+            "unit": "ml",
+            "norm_str": "2,000",
+            "norm": 2.0
+          },
+          {
+            "name": "Ag2SO4",
+            "unit": "gam",
+            "norm_str": "0,100",
+            "norm": 0.1
+          },
+          {
+            "name": "HgSO4",
+            "unit": "gam",
+            "norm_str": "0,200",
+            "norm": 0.2
+          },
+          {
+            "name": "(NH4)2Fe(SO4)2.6H2O",
+            "unit": "gam",
+            "norm_str": "0,100",
+            "norm": 0.1
+          },
+          {
+            "name": "C12H8N2.H2O",
+            "unit": "gam",
+            "norm_str": "0,010",
+            "norm": 0.01
+          },
+          {
+            "name": "FeSO4.7H2O",
+            "unit": "gam",
+            "norm_str": "0,100",
+            "norm": 0.1
+          },
+          {
+            "name": "Ống chuẩn K2C2O7 0.1N",
+            "unit": "ống",
+            "norm_str": "0,010",
+            "norm": 0.01
+          },
+          {
+            "name": "Kaliphatalat",
+            "unit": "gam",
+            "norm_str": "0,300",
+            "norm": 0.3
+          },
+          {
+            "name": "Cồn lau dụng cụ",
+            "unit": "ml",
+            "norm_str": "10,000",
+            "norm": 10.0
+          },
+          {
+            "name": "Sổ công tác",
+            "unit": "cuốn",
+            "norm_str": "0,005",
+            "norm": 0.005
+          },
+          {
+            "name": "Giấy lau",
+            "unit": "Hộp",
+            "norm_str": "0,030",
+            "norm": 0.03
+          }
+        ],
+        "tool_inherit_from": null,
+        "equip_inherit_from": null,
+        "mat_inherit_from": null
+      }
+    }
   },
   {
     "id": 51,
@@ -26130,9 +27925,558 @@
     "so_lan": 4,
     "so_luong_mau": 4,
     "vi_tri": "NB1: Tại công trình khai thác nước biển từ vịnh Vũng Mũ Tần suất quan trắc: 03 tháng/lần",
-    "sec_id": "",
-    "ma_gop": "",
-    "tt20_data": null
+    "sec_id": "II.6",
+    "ma_gop": "NB15h",
+    "tt20_data": {
+      "coreCode": "NB15h",
+      "sec_id": "II.6",
+      "name": "Crom (VI)",
+      "standard": "TCVN 6658:2000",
+      "field": {
+        "ma_thong_so": "1NB15",
+        "ten_thong_so": "NH4+, NO2-, NO3-, SO42-, PO43-, SiO32-, Tổng N, Tổng P, Cr(VI) (Định mức tính cho 01 thông số)",
+        "phan_loai": "Ngoại nghiệp",
+        "dinh_bien": "1QTVTNMT hạng III.2",
+        "dinh_muc_cong_str": "0,300",
+        "dinh_muc_cong": 0.3,
+        "tieu_chuan": "",
+        "tools": [
+          {
+            "stt": "",
+            "name": "1",
+            "unit": "Thiết bị lấy mẫu thể tích 2 lít",
+            "lifespan_months": "cái",
+            "norm_str": "24",
+            "norm": 24.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "2",
+            "unit": "Thiết bị lấy mẫu thể tích 5 lít",
+            "lifespan_months": "cái",
+            "norm_str": "24",
+            "norm": 24.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "3",
+            "unit": "Thùng đựng và bảo quản mẫu",
+            "lifespan_months": "cái",
+            "norm_str": "5",
+            "norm": 5.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "4",
+            "unit": "Quần áo BHLĐ",
+            "lifespan_months": "bộ",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "5",
+            "unit": "Giầy BHLĐ",
+            "lifespan_months": "đôi",
+            "norm_str": "12",
+            "norm": 12.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "7",
+            "unit": "Mũ cứng",
+            "lifespan_months": "cái",
+            "norm_str": "3",
+            "norm": 3.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "8",
+            "unit": "Ô che mưa, che nắng",
+            "lifespan_months": "cái",
+            "norm_str": "24",
+            "norm": 24.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "9",
+            "unit": "Áo phao",
+            "lifespan_months": "cái",
+            "norm_str": "12",
+            "norm": 12.0,
+            "tool_type": "DungCu_ChuyenDung"
+          }
+        ],
+        "equipment": [
+          {
+            "stt": "",
+            "name": "Thiết bị lấy mẫu nước",
+            "unit": "bộ",
+            "spec": "",
+            "norm_str": "0,240",
+            "norm": 0.24
+          },
+          {
+            "stt": "",
+            "name": "Máy định vị GPS cầm tay",
+            "unit": "cái",
+            "spec": "Pin khô",
+            "norm_str": "0,080",
+            "norm": 0.08
+          }
+        ],
+        "materials": [
+          {
+            "name": "Đá khô",
+            "unit": "túi",
+            "norm_str": "0,500",
+            "norm": 0.5
+          },
+          {
+            "name": "Nước rửa dụng cụ",
+            "unit": "lít",
+            "norm_str": "0,150",
+            "norm": 0.15
+          },
+          {
+            "name": "Pin chuyên dụng",
+            "unit": "cục",
+            "norm_str": "0,300",
+            "norm": 0.3
+          },
+          {
+            "name": "Sổ công tác",
+            "unit": "cuốn",
+            "norm_str": "0,005",
+            "norm": 0.005
+          },
+          {
+            "name": "Bản đồ địa hình",
+            "unit": "cái",
+            "norm_str": "0,020",
+            "norm": 0.02
+          },
+          {
+            "name": "Hóa chất bảo quản mẫu",
+            "unit": "ml",
+            "norm_str": "1,000",
+            "norm": 1.0
+          }
+        ],
+        "tool_inherit_from": "1NB15",
+        "equip_inherit_from": null,
+        "mat_inherit_from": "1NB15",
+        "tool_resolved_note": "Kế thừa từ mục 1NB15",
+        "mat_resolved_note": "Kế thừa từ mục 1NB15"
+      },
+      "lab": {
+        "ma_thong_so": "3NB15h",
+        "ten_thong_so": "Crom (VI)",
+        "phan_loai": "Nội nghiệp",
+        "dinh_bien": "1QTVTNMT hạng III.2",
+        "dinh_muc_cong_str": "0,500",
+        "dinh_muc_cong": 0.5,
+        "tieu_chuan": "TCVN 6658:2000",
+        "tools": [
+          {
+            "stt": "",
+            "name": "1",
+            "unit": "Chai đựng hóa chất",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "2",
+            "unit": "Bình tam giác 250ml",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "3",
+            "unit": "Ống chứa mẫu 15ml (có nắp)",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "4",
+            "unit": "Ống hút",
+            "lifespan_months": "cái",
+            "norm_str": "3",
+            "norm": 3.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "5",
+            "unit": "Pipet 10ml",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "6",
+            "unit": "Micropipet 5ml",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "7",
+            "unit": "Đầu cone 5ml",
+            "lifespan_months": "cái",
+            "norm_str": "1",
+            "norm": 1.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "8",
+            "unit": "Cốc thủy tinh 250ml",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "9",
+            "unit": "Đũa thủy tinh",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "10",
+            "unit": "Đèn D2",
+            "lifespan_months": "cái",
+            "norm_str": "24",
+            "norm": 24.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "11",
+            "unit": "Đèn Tungsten",
+            "lifespan_months": "cái",
+            "norm_str": "24",
+            "norm": 24.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "12",
+            "unit": "Cuvet 1cm",
+            "lifespan_months": "cái",
+            "norm_str": "12",
+            "norm": 12.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "13",
+            "unit": "Bình định mức 50ml",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "14",
+            "unit": "Bình định mức 1000ml",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "15",
+            "unit": "Bình tia",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "16",
+            "unit": "Bình nhựa 2 lít",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "17",
+            "unit": "Bình nhựa 5 lít",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "18",
+            "unit": "Chai nhựa 0,5 lít",
+            "lifespan_months": "cái",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "19",
+            "unit": "Áo blue",
+            "lifespan_months": "cái",
+            "norm_str": "12",
+            "norm": 12.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "21",
+            "unit": "Găng tay y tế",
+            "lifespan_months": "hộp",
+            "norm_str": "0,3",
+            "norm": 0.3,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "22",
+            "unit": "Khẩu trang y tế",
+            "lifespan_months": "hộp",
+            "norm_str": "0,3",
+            "norm": 0.3,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "23",
+            "unit": "Quạt trần 100w",
+            "lifespan_months": "cái",
+            "norm_str": "36",
+            "norm": 36.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "24",
+            "unit": "Quạt thông gió 40w",
+            "lifespan_months": "cái",
+            "norm_str": "36",
+            "norm": 36.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "25",
+            "unit": "Máy hút bụi 2kw",
+            "lifespan_months": "cái",
+            "norm_str": "60",
+            "norm": 60.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "26",
+            "unit": "Máy hút ẩm 1,5kw",
+            "lifespan_months": "cái",
+            "norm_str": "36",
+            "norm": 36.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "27",
+            "unit": "Đèn neon 40w",
+            "lifespan_months": "bộ",
+            "norm_str": "24",
+            "norm": 24.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "28",
+            "unit": "Tủ đựng tài liệu",
+            "lifespan_months": "cái",
+            "norm_str": "72",
+            "norm": 72.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "29",
+            "unit": "Bàn làm việc",
+            "lifespan_months": "cái",
+            "norm_str": "72",
+            "norm": 72.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "30",
+            "unit": "Ghế tựa",
+            "lifespan_months": "cái",
+            "norm_str": "72",
+            "norm": 72.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "32",
+            "unit": "Điện năng",
+            "lifespan_months": "kw",
+            "norm_str": "",
+            "norm": 0.0,
+            "tool_type": "DungCu_ChuyenDung"
+          }
+        ],
+        "equipment": [
+          {
+            "stt": "",
+            "name": "Tủ sấy",
+            "unit": "cái",
+            "spec": "0,3",
+            "norm_str": "0,400",
+            "norm": 0.4
+          },
+          {
+            "stt": "",
+            "name": "Tủ bảo quản mẫu",
+            "unit": "cái",
+            "spec": "0,16",
+            "norm_str": "0,400",
+            "norm": 0.4
+          },
+          {
+            "stt": "",
+            "name": "Tủ lưu hóa chất",
+            "unit": "cái",
+            "spec": "0,16",
+            "norm_str": "0,200",
+            "norm": 0.2
+          },
+          {
+            "stt": "",
+            "name": "Cân phân tích",
+            "unit": "cái",
+            "spec": "0,6",
+            "norm_str": "0,400",
+            "norm": 0.4
+          },
+          {
+            "stt": "",
+            "name": "Bộ lọc hút chân không",
+            "unit": "bộ",
+            "spec": "0,45",
+            "norm_str": "0,400",
+            "norm": 0.4
+          },
+          {
+            "stt": "",
+            "name": "Thiết bị lọc nước siêu sạch",
+            "unit": "bộ",
+            "spec": "0,18",
+            "norm_str": "0,400",
+            "norm": 0.4
+          },
+          {
+            "stt": "",
+            "name": "Máy điều hòa nhiệt độ",
+            "unit": "cái",
+            "spec": "2,2",
+            "norm_str": "0,080",
+            "norm": 0.08
+          },
+          {
+            "stt": "",
+            "name": "Điện năng",
+            "unit": "kw",
+            "spec": "",
+            "norm_str": "9,000",
+            "norm": 9.0
+          }
+        ],
+        "materials": [
+          {
+            "name": "Dung dịch chuẩn gốc 1000ppm",
+            "unit": "ml",
+            "norm_str": "1,000",
+            "norm": 1.0
+          },
+          {
+            "name": "1,5-Diphenylcacbazid (C13H14N4O)",
+            "unit": "gam",
+            "norm_str": "0,200",
+            "norm": 0.2
+          },
+          {
+            "name": "H3PO4",
+            "unit": "ml",
+            "norm_str": "2,000",
+            "norm": 2.0
+          },
+          {
+            "name": "K2Cr2O7",
+            "unit": "gam",
+            "norm_str": "1,000",
+            "norm": 1.0
+          },
+          {
+            "name": "H2SO4 đậm đặc",
+            "unit": "ml",
+            "norm_str": "10,000",
+            "norm": 10.0
+          },
+          {
+            "name": "Aceton",
+            "unit": "ml",
+            "norm_str": "10,000",
+            "norm": 10.0
+          },
+          {
+            "name": "Cồn lau dụng cụ",
+            "unit": "ml",
+            "norm_str": "10,000",
+            "norm": 10.0
+          },
+          {
+            "name": "Giấy lọc",
+            "unit": "hộp",
+            "norm_str": "0,025",
+            "norm": 0.025
+          }
+        ],
+        "tool_inherit_from": null,
+        "equip_inherit_from": null,
+        "mat_inherit_from": null
+      }
+    }
   },
   {
     "id": 59,
@@ -53167,15 +55511,347 @@
     "nhom": "Đối chứng Tổ giám sát",
     "khu_vuc": "NMNĐ Vĩnh Tân 4",
     "moi_truong": "Giám sát khí thải",
-    "thong_so": "NO x (tính theo NO ) 2",
+    "thong_so": "NOx (tính theo NO2)",
     "dvt": "mg/Nm3",
     "so_vi_tri": 2,
     "so_lan": 4,
     "so_luong_mau": 8,
     "vi_tri": "KT1 – Ống khói sau hệ thống xử lý khí thải của tổ máy 1 NMNĐ Vĩnh Tân 4 KT2 – Ống khói sau hệ thống xử lý khí thải của tổ máy 2 NMNĐ Vĩnh Tân 4",
-    "sec_id": "",
-    "ma_gop": "",
-    "tt20_data": null
+    "sec_id": "II.8",
+    "ma_gop": "KT9e",
+    "tt20_data": {
+      "coreCode": "KT9e",
+      "sec_id": "II.8",
+      "name": "Khí NOx",
+      "standard": "USEPA method 7",
+      "field": {
+        "ma_thong_so": "1KT9e",
+        "ten_thong_so": "Khí NOx",
+        "phan_loai": "Ngoại nghiệp",
+        "dinh_bien": "1QTVTNMT hạng III.3",
+        "dinh_muc_cong_str": "0,700",
+        "dinh_muc_cong": 0.7,
+        "tieu_chuan": "USEPA method 7",
+        "tools": [
+          {
+            "stt": "",
+            "name": "1",
+            "unit": "Bộ lọc bụi",
+            "lifespan_months": "bộ",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "2",
+            "unit": "Bộ lọc tạp chất cản trở",
+            "lifespan_months": "bộ",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "3",
+            "unit": "Sensor NOx",
+            "lifespan_months": "cái",
+            "norm_str": "12",
+            "norm": 12.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "4",
+            "unit": "Acqui",
+            "lifespan_months": "bộ",
+            "norm_str": "12",
+            "norm": 12.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "5",
+            "unit": "Khẩu trang phòng độc",
+            "lifespan_months": "đôi",
+            "norm_str": "3",
+            "norm": 3.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "6",
+            "unit": "Găng tay chống nóng",
+            "lifespan_months": "đôi",
+            "norm_str": "3",
+            "norm": 3.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "7",
+            "unit": "Quần áo BHLĐ",
+            "lifespan_months": "bộ",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "8",
+            "unit": "Giầy BHLĐ",
+            "lifespan_months": "đôi",
+            "norm_str": "12",
+            "norm": 12.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "9",
+            "unit": "Tất sợi",
+            "lifespan_months": "đôi",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "10",
+            "unit": "Mũ cứng",
+            "lifespan_months": "cái",
+            "norm_str": "3",
+            "norm": 3.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "11",
+            "unit": "Ô che mưa, che nắng",
+            "lifespan_months": "cái",
+            "norm_str": "24",
+            "norm": 24.0,
+            "tool_type": "DungCu_ChuyenDung"
+          }
+        ],
+        "equipment": [
+          {
+            "stt": "",
+            "name": "Thiết bị lấy mẫu khí NOx",
+            "unit": "bộ",
+            "spec": "Acqui",
+            "norm_str": "0,400",
+            "norm": 0.4
+          },
+          {
+            "stt": "",
+            "name": "Thiết bị hiệu chuẩn lưu lượng",
+            "unit": "bộ",
+            "spec": "",
+            "norm_str": "0,400",
+            "norm": 0.4
+          },
+          {
+            "stt": "",
+            "name": "Máy định vị GPS cầm tay",
+            "unit": "cái",
+            "spec": "Pin khô",
+            "norm_str": "0,100",
+            "norm": 0.1
+          },
+          {
+            "stt": "",
+            "name": "Điện năng",
+            "unit": "Kw",
+            "spec": "",
+            "norm_str": "13,240",
+            "norm": 13.24
+          }
+        ],
+        "materials": [
+          {
+            "name": "NaOH",
+            "unit": "gam",
+            "norm_str": "0,050",
+            "norm": 0.05
+          },
+          {
+            "name": "H2O2",
+            "unit": "gam",
+            "norm_str": "0,080",
+            "norm": 0.08
+          },
+          {
+            "name": "Na2CO3",
+            "unit": "gam",
+            "norm_str": "0,060",
+            "norm": 0.06
+          },
+          {
+            "name": "NaCH3COO",
+            "unit": "gam",
+            "norm_str": "0,050",
+            "norm": 0.05
+          },
+          {
+            "name": "Pin chuyên dụng",
+            "unit": "cục",
+            "norm_str": "0,030",
+            "norm": 0.03
+          },
+          {
+            "name": "Băng giấy in",
+            "unit": "gam",
+            "norm_str": "0,005",
+            "norm": 0.005
+          },
+          {
+            "name": "Khí chuẩn NO",
+            "unit": "bình",
+            "norm_str": "0,003",
+            "norm": 0.003
+          },
+          {
+            "name": "Mực máy in",
+            "unit": "hộp",
+            "norm_str": "0,003",
+            "norm": 0.003
+          },
+          {
+            "name": "Sổ công tác",
+            "unit": "cuốn",
+            "norm_str": "0,030",
+            "norm": 0.03
+          },
+          {
+            "name": "Gim kẹp giấy",
+            "unit": "hộp",
+            "norm_str": "0,030",
+            "norm": 0.03
+          },
+          {
+            "name": "Gim bấm",
+            "unit": "hộp",
+            "norm_str": "0,090",
+            "norm": 0.09
+          },
+          {
+            "name": "Cồn lau dụng cụ",
+            "unit": "ml",
+            "norm_str": "0,015",
+            "norm": 0.015
+          },
+          {
+            "name": "Túi nilon",
+            "unit": "cái",
+            "norm_str": "0,015",
+            "norm": 0.015
+          }
+        ],
+        "tool_inherit_from": null,
+        "equip_inherit_from": null,
+        "mat_inherit_from": null
+      },
+      "lab": {
+        "ma_thong_so": "2KT9b",
+        "ten_thong_so": "Khí NOx",
+        "phan_loai": "Nội nghiệp",
+        "dinh_bien": "1QTVTNMT hạng III.2",
+        "dinh_muc_cong_str": "0,800",
+        "dinh_muc_cong": 0.8,
+        "tieu_chuan": "US EPA method 7",
+        "tools": [],
+        "equipment": [],
+        "materials": [
+          {
+            "name": "CHCl3",
+            "unit": "ml",
+            "norm_str": "0,500",
+            "norm": 0.5
+          },
+          {
+            "name": "NaOH",
+            "unit": "gam",
+            "norm_str": "0,400",
+            "norm": 0.4
+          },
+          {
+            "name": "Sulfaniamide",
+            "unit": "gam",
+            "norm_str": "0,200",
+            "norm": 0.2
+          },
+          {
+            "name": "N-(1-naphyl)-ethyllediamine",
+            "unit": "gam",
+            "norm_str": "0,200",
+            "norm": 0.2
+          },
+          {
+            "name": "KMnO4",
+            "unit": "gam",
+            "norm_str": "1,000",
+            "norm": 1.0
+          },
+          {
+            "name": "HCl",
+            "unit": "ml",
+            "norm_str": "1,000",
+            "norm": 1.0
+          },
+          {
+            "name": "NH3",
+            "unit": "ml",
+            "norm_str": "1,000",
+            "norm": 1.0
+          },
+          {
+            "name": "H3PO4",
+            "unit": "ml",
+            "norm_str": "0,500",
+            "norm": 0.5
+          },
+          {
+            "name": "H2SO4 đậm đặc",
+            "unit": "ml",
+            "norm_str": "2,000",
+            "norm": 2.0
+          },
+          {
+            "name": "Dung dịch chuẩn NaNO2",
+            "unit": "ml",
+            "norm_str": "0,500",
+            "norm": 0.5
+          },
+          {
+            "name": "Cồn lau dụng cụ",
+            "unit": "ml",
+            "norm_str": "0,060",
+            "norm": 0.06
+          },
+          {
+            "name": "Giấy lọc",
+            "unit": "hộp",
+            "norm_str": "0,020",
+            "norm": 0.02
+          },
+          {
+            "name": "Sổ công tác",
+            "unit": "cuốn",
+            "norm_str": "0,005",
+            "norm": 0.005
+          },
+          {
+            "name": "Giấy lau",
+            "unit": "cái",
+            "norm_str": "0,010",
+            "norm": 0.01
+          }
+        ],
+        "tool_inherit_from": null,
+        "equip_inherit_from": null,
+        "mat_inherit_from": null
+      }
+    }
   },
   {
     "id": 129,
@@ -53400,15 +56076,224 @@
     "nhom": "Đối chứng Tổ giám sát",
     "khu_vuc": "NMNĐ Vĩnh Tân 4",
     "moi_truong": "Giám sát khí thải",
-    "thong_so": "O 2",
+    "thong_so": "O2",
     "dvt": "%",
     "so_vi_tri": 2,
     "so_lan": 4,
     "so_luong_mau": 8,
     "vi_tri": "KT1 – Ống khói sau hệ thống xử lý khí thải của tổ máy 1 NMNĐ Vĩnh Tân 4 KT2 – Ống khói sau hệ thống xử lý khí thải của tổ máy 2 NMNĐ Vĩnh Tân 4",
-    "sec_id": "",
-    "ma_gop": "",
-    "tt20_data": null
+    "sec_id": "II.8",
+    "ma_gop": "KT9a",
+    "tt20_data": {
+      "coreCode": "KT9a",
+      "sec_id": "II.8",
+      "name": "Khí oxy (O2)",
+      "standard": "TCVN 7241:2003",
+      "field": {
+        "ma_thong_so": "1KT9a",
+        "ten_thong_so": "Khí oxy (O2)",
+        "phan_loai": "Ngoại nghiệp",
+        "dinh_bien": "1QTVTNMT hạng III.3",
+        "dinh_muc_cong_str": "0,750",
+        "dinh_muc_cong": 0.75,
+        "tieu_chuan": "Sử dụng thiết bị đo trực tiếp",
+        "tools": [
+          {
+            "stt": "",
+            "name": "1",
+            "unit": "Bộ lọc bụi",
+            "lifespan_months": "bộ",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "2",
+            "unit": "Bộ lọc khí lưu huỳnh",
+            "lifespan_months": "bộ",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "3",
+            "unit": "Sensor O2",
+            "lifespan_months": "cái",
+            "norm_str": "12",
+            "norm": 12.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "4",
+            "unit": "Acqui",
+            "lifespan_months": "bộ",
+            "norm_str": "12",
+            "norm": 12.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "5",
+            "unit": "Khẩu trang phòng độc",
+            "lifespan_months": "đôi",
+            "norm_str": "3",
+            "norm": 3.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "6",
+            "unit": "Găng tay chống nóng",
+            "lifespan_months": "đôi",
+            "norm_str": "3",
+            "norm": 3.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "7",
+            "unit": "Quần áo BHLĐ",
+            "lifespan_months": "bộ",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "8",
+            "unit": "Giầy BHLĐ",
+            "lifespan_months": "đôi",
+            "norm_str": "12",
+            "norm": 12.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "9",
+            "unit": "Tất sợi",
+            "lifespan_months": "đôi",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "10",
+            "unit": "Mũ cứng",
+            "lifespan_months": "cái",
+            "norm_str": "3",
+            "norm": 3.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "11",
+            "unit": "Ô che mưa, che nắng",
+            "lifespan_months": "cái",
+            "norm_str": "24",
+            "norm": 24.0,
+            "tool_type": "DungCu_ChuyenDung"
+          }
+        ],
+        "equipment": [
+          {
+            "stt": "",
+            "name": "Thiết bị đo",
+            "unit": "bộ",
+            "spec": "Acqui",
+            "norm_str": "0,400",
+            "norm": 0.4
+          },
+          {
+            "stt": "",
+            "name": "Thiết bị hiệu chuẩn lưu lượng",
+            "unit": "bộ",
+            "spec": "",
+            "norm_str": "0,400",
+            "norm": 0.4
+          },
+          {
+            "stt": "",
+            "name": "Máy định vị GPS cầm tay",
+            "unit": "cái",
+            "spec": "Pin khô",
+            "norm_str": "0,100",
+            "norm": 0.1
+          },
+          {
+            "stt": "",
+            "name": "Điện năng",
+            "unit": "Kw",
+            "spec": "",
+            "norm_str": "13,240",
+            "norm": 13.24
+          }
+        ],
+        "materials": [
+          {
+            "name": "Pin chuyên dụng",
+            "unit": "cục",
+            "norm_str": "0,045",
+            "norm": 0.045
+          },
+          {
+            "name": "Băng giấy in",
+            "unit": "gam",
+            "norm_str": "0,030",
+            "norm": 0.03
+          },
+          {
+            "name": "Khí chuẩn O2",
+            "unit": "bình",
+            "norm_str": "0,012",
+            "norm": 0.012
+          },
+          {
+            "name": "Mực máy in",
+            "unit": "hộp",
+            "norm_str": "0,003",
+            "norm": 0.003
+          },
+          {
+            "name": "Sổ công tác",
+            "unit": "cuốn",
+            "norm_str": "0,003",
+            "norm": 0.003
+          },
+          {
+            "name": "Gim kẹp giấy",
+            "unit": "hộp",
+            "norm_str": "0,030",
+            "norm": 0.03
+          },
+          {
+            "name": "Gim bấm",
+            "unit": "hộp",
+            "norm_str": "0,030",
+            "norm": 0.03
+          },
+          {
+            "name": "Cồn lau dụng cụ",
+            "unit": "ml",
+            "norm_str": "0,090",
+            "norm": 0.09
+          },
+          {
+            "name": "Túi nilon",
+            "unit": "cái",
+            "norm_str": "0,015",
+            "norm": 0.015
+          }
+        ],
+        "tool_inherit_from": null,
+        "equip_inherit_from": null,
+        "mat_inherit_from": null
+      },
+      "lab": null
+    }
   },
   {
     "id": 131,
@@ -55495,15 +58380,23 @@
     "nhom": "Đối chứng Tổ giám sát",
     "khu_vuc": "NMNĐ Vĩnh Tân 4",
     "moi_truong": "Nước làm mát, nước thải từ hệ thống khử lưu huỳnh bằng nước biển, nước thải từ hệ thống lọc nước biển",
-    "thong_so": "Nước thải",
-    "dvt": "",
-    "so_vi_tri": 1,
-    "so_lan": 1,
-    "so_luong_mau": 1,
+    "thong_so": "Tiêu đề: Nước thải sau xử lý của HTXLNT tập trung",
+    "dvt": "Header",
+    "so_vi_tri": 0,
+    "so_lan": 0,
+    "so_luong_mau": 0,
     "vi_tri": "NT1: Kênh thoát nước làm mát chung (NMNĐ Vĩnh Tân 4 và Vĩnh Tân 4 mở rộng) trước khi xả ra biển NT2: Nước thải từ hệ thống lọc nước biển của NMNĐ Vĩnh Tân 4",
     "sec_id": "",
-    "ma_gop": "",
-    "tt20_data": null
+    "ma_gop": "MỤC 2",
+    "tt20_data": {
+      "coreCode": "HEADER",
+      "sec_id": "",
+      "name": "Dòng phân loại nhóm nước thải (Header)",
+      "standard": "",
+      "field": null,
+      "lab": null
+    },
+    "is_header": true
   },
   {
     "id": 137,
@@ -56072,15 +58965,578 @@
     "nhom": "Đối chứng Tổ giám sát",
     "khu_vuc": "NMNĐ Vĩnh Tân 4",
     "moi_truong": "Nước làm mát, nước thải từ hệ thống khử lưu huỳnh bằng nước biển, nước thải từ hệ thống lọc nước biển",
-    "thong_so": "BOD 5",
+    "thong_so": "BOD5",
     "dvt": "mg/l",
     "so_vi_tri": 2,
     "so_lan": 4,
     "so_luong_mau": 8,
     "vi_tri": "NT3: Nước thải sau xử lý của hệ thống xử lý nước thải tập trung NMNĐ Vĩnh Tân 4 NT4: Nước lấy tại cửa xả hệ thống thu gom, thoát nước mưa của NMNĐ Vĩnh Tân 4 trước khi thải ra môi trường",
-    "sec_id": "",
-    "ma_gop": "",
-    "tt20_data": null
+    "sec_id": "II.9",
+    "ma_gop": "NT5a",
+    "tt20_data": {
+      "coreCode": "NT5a",
+      "sec_id": "II.9",
+      "name": "Nhu cầu oxy sinh hoá (BOD5)",
+      "standard": "TCVN 6001-1:2008",
+      "field": {
+        "ma_thong_so": "1NT5a",
+        "ten_thong_so": "Nhu cầu oxy sinh hoá (BOD5",
+        "phan_loai": "Ngoại nghiệp",
+        "dinh_bien": "1QTVTNMT hạng III.1",
+        "dinh_muc_cong_str": "0,200",
+        "dinh_muc_cong": 0.2,
+        "tieu_chuan": "",
+        "tools": [
+          {
+            "stt": "1",
+            "name": "Chai đựng mẫu",
+            "unit": "cai",
+            "lifespan_months": "6",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "2",
+            "name": "Bình tia",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "3",
+            "name": "Quần áo BHLĐ",
+            "unit": "bộ",
+            "lifespan_months": "6",
+            "norm_str": "0,096",
+            "norm": 0.096,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "4",
+            "name": "Giầy BHLĐ",
+            "unit": "đôi",
+            "lifespan_months": "12",
+            "norm_str": "0,096",
+            "norm": 0.096,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "5",
+            "name": "Tất sợi",
+            "unit": "đôi",
+            "lifespan_months": "6",
+            "norm_str": "0,096",
+            "norm": 0.096,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "6",
+            "name": "Mũ cứng",
+            "unit": "cái",
+            "lifespan_months": "3",
+            "norm_str": "0,096",
+            "norm": 0.096,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "7",
+            "name": "Ô che mưa, che nắng",
+            "unit": "cái",
+            "lifespan_months": "24",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "8",
+            "name": "Bản đồ địa hình",
+            "unit": "cái",
+            "lifespan_months": "3",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "9",
+            "name": "Khẩu trang y tế",
+            "unit": "hộp",
+            "lifespan_months": "0,3",
+            "norm_str": "0,020",
+            "norm": 0.02,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "10",
+            "name": "Găng tay y tế",
+            "unit": "hộp",
+            "lifespan_months": "0,3",
+            "norm_str": "0,020",
+            "norm": 0.02,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "11",
+            "name": "Thùng đựng và bảo quản mẫu",
+            "unit": "cái",
+            "lifespan_months": "5",
+            "norm_str": "0,480",
+            "norm": 0.48,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "12",
+            "name": "Đai bảo hiểm",
+            "unit": "cái",
+            "lifespan_months": "3",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "BHLĐ_DungChung"
+          }
+        ],
+        "equipment": [
+          {
+            "stt": "",
+            "name": "Thiết bị lấy mẫu nước",
+            "unit": "bộ",
+            "spec": "",
+            "norm_str": "0,036",
+            "norm": 0.036
+          },
+          {
+            "stt": "",
+            "name": "Máy định vị GPS cầm tay",
+            "unit": "bộ",
+            "spec": "Pin khô",
+            "norm_str": "0,036",
+            "norm": 0.036
+          },
+          {
+            "stt": "",
+            "name": "Máy ảnh kỹ thuật số",
+            "unit": "cái",
+            "spec": "Pin khô",
+            "norm_str": "0,020",
+            "norm": 0.02
+          }
+        ],
+        "materials": [
+          {
+            "name": "Đá khô",
+            "unit": "túi",
+            "norm_str": "0,500",
+            "norm": 0.5
+          },
+          {
+            "name": "Sổ công tác",
+            "unit": "cuốn",
+            "norm_str": "0,005",
+            "norm": 0.005
+          },
+          {
+            "name": "Bút ghi kính",
+            "unit": "cái",
+            "norm_str": "0,050",
+            "norm": 0.05
+          },
+          {
+            "name": "Giấy lau",
+            "unit": "hộp",
+            "norm_str": "0,020",
+            "norm": 0.02
+          }
+        ],
+        "tool_inherit_from": null,
+        "equip_inherit_from": null,
+        "mat_inherit_from": null
+      },
+      "lab": {
+        "ma_thong_so": "2NT5a",
+        "ten_thong_so": "Nhu cầu oxy sinh hoá (BOD5)",
+        "phan_loai": "Nội nghiệp",
+        "dinh_bien": "1QTVTNMT hạng III.1",
+        "dinh_muc_cong_str": "0,470",
+        "dinh_muc_cong": 0.47,
+        "tieu_chuan": "SMEWW 5210B: 2012",
+        "tools": [
+          {
+            "stt": "1",
+            "name": "Chai đựng hóa chất",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "2",
+            "name": "Chai BOD",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "3",
+            "name": "Micropipet 5ml",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "4",
+            "name": "Đầu cone 1ml",
+            "unit": "cái",
+            "lifespan_months": "1",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "5",
+            "name": "Bình định mức 50ml",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "6",
+            "name": "Bình định mức 100ml",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "7",
+            "name": "Bình định mức 250ml",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "8",
+            "name": "Bộ sục khí",
+            "unit": "bộ",
+            "lifespan_months": "24",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "9",
+            "name": "Chai bảo quản dung dịch",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "10",
+            "name": "Xô chứa dung dịch sục khí",
+            "unit": "cái",
+            "lifespan_months": "24",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "11",
+            "name": "Đầu điện cực",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "12",
+            "name": "Bình nhựa 2 lít",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "13",
+            "name": "Bình nhựa 5 lít",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "14",
+            "name": "Chai nhựa 0,5 lít",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "15",
+            "name": "Áo blue",
+            "unit": "cái",
+            "lifespan_months": "12",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "17",
+            "name": "Găng tay y tế",
+            "unit": "hộp",
+            "lifespan_months": "0,3",
+            "norm_str": "0,020",
+            "norm": 0.02,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "18",
+            "name": "Khẩu trang y tế",
+            "unit": "hộp",
+            "lifespan_months": "0,3",
+            "norm_str": "0,020",
+            "norm": 0.02,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "19",
+            "name": "Quạt trần 100w",
+            "unit": "cái",
+            "lifespan_months": "36",
+            "norm_str": "0,053",
+            "norm": 0.053,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "20",
+            "name": "Quạt thông gió 40w",
+            "unit": "cái",
+            "lifespan_months": "36",
+            "norm_str": "0,053",
+            "norm": 0.053,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "21",
+            "name": "Máy hút bụi 2kw",
+            "unit": "cái",
+            "lifespan_months": "60",
+            "norm_str": "0,003",
+            "norm": 0.003,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "22",
+            "name": "Máy hút ẩm 1,5kw",
+            "unit": "cái",
+            "lifespan_months": "36",
+            "norm_str": "0,020",
+            "norm": 0.02,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "23",
+            "name": "Đèn neon 40w",
+            "unit": "bộ",
+            "lifespan_months": "24",
+            "norm_str": "0,320",
+            "norm": 0.32,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "24",
+            "name": "Tủ đựng tài liệu",
+            "unit": "cái",
+            "lifespan_months": "72",
+            "norm_str": "0,080",
+            "norm": 0.08,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "25",
+            "name": "Bàn làm việc",
+            "unit": "cái",
+            "lifespan_months": "72",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "26",
+            "name": "Ghế tựa",
+            "unit": "cái",
+            "lifespan_months": "72",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "28",
+            "name": "Điện năng",
+            "unit": "kw",
+            "lifespan_months": "",
+            "norm_str": "0,464",
+            "norm": 0.464,
+            "tool_type": "DungCu_ChuyenDung"
+          }
+        ],
+        "equipment": [
+          {
+            "stt": "",
+            "name": "Tủ ủ BOD",
+            "unit": "cái",
+            "spec": "0,8",
+            "norm_str": "0,200",
+            "norm": 0.2
+          },
+          {
+            "stt": "",
+            "name": "Tủ bảo quản mẫu",
+            "unit": "cái",
+            "spec": "0,16",
+            "norm_str": "0,040",
+            "norm": 0.04
+          },
+          {
+            "stt": "",
+            "name": "Tủ lưu hóa chất",
+            "unit": "cái",
+            "spec": "0,16",
+            "norm_str": "0,400",
+            "norm": 0.4
+          },
+          {
+            "stt": "",
+            "name": "Thiết bị cất nước 2 lần",
+            "unit": "bộ",
+            "spec": "0,18",
+            "norm_str": "0,200",
+            "norm": 0.2
+          },
+          {
+            "stt": "",
+            "name": "Máy điều hòa nhiệt độ",
+            "unit": "cái",
+            "spec": "2,2",
+            "norm_str": "0,067",
+            "norm": 0.067
+          },
+          {
+            "stt": "",
+            "name": "Điện năng",
+            "unit": "kw",
+            "spec": "",
+            "norm_str": "4,045",
+            "norm": 4.045
+          }
+        ],
+        "materials": [
+          {
+            "name": "FeCl3, 6H2O",
+            "unit": "gam",
+            "norm_str": "0,060",
+            "norm": 0.06
+          },
+          {
+            "name": "CaCl2",
+            "unit": "gam",
+            "norm_str": "0,060",
+            "norm": 0.06
+          },
+          {
+            "name": "MgSO4.7H2O",
+            "unit": "gam",
+            "norm_str": "0,060",
+            "norm": 0.06
+          },
+          {
+            "name": "KH2PO4",
+            "unit": "gam",
+            "norm_str": "0,020",
+            "norm": 0.02
+          },
+          {
+            "name": "K2HPO4",
+            "unit": "gam",
+            "norm_str": "0,040",
+            "norm": 0.04
+          },
+          {
+            "name": "Na2HPO4",
+            "unit": "gam",
+            "norm_str": "0,070",
+            "norm": 0.07
+          },
+          {
+            "name": "NH4Cl",
+            "unit": "gam",
+            "norm_str": "0,030",
+            "norm": 0.03
+          },
+          {
+            "name": "Gluco",
+            "unit": "gam",
+            "norm_str": "0,060",
+            "norm": 0.06
+          },
+          {
+            "name": "Polyseed",
+            "unit": "Viên",
+            "norm_str": "0,100",
+            "norm": 0.1
+          },
+          {
+            "name": "Glutamic",
+            "unit": "gam",
+            "norm_str": "0,060",
+            "norm": 0.06
+          },
+          {
+            "name": "Cồn lau dụng cụ",
+            "unit": "ml",
+            "norm_str": "10,000",
+            "norm": 10.0
+          },
+          {
+            "name": "Giấy pH",
+            "unit": "hộp",
+            "norm_str": "0,010",
+            "norm": 0.01
+          },
+          {
+            "name": "Sổ công tác",
+            "unit": "cuốn",
+            "norm_str": "0,005",
+            "norm": 0.005
+          },
+          {
+            "name": "Giấy lau",
+            "unit": "hộp",
+            "norm_str": "0,010",
+            "norm": 0.01
+          }
+        ],
+        "tool_inherit_from": null,
+        "equip_inherit_from": null,
+        "mat_inherit_from": null
+      }
+    }
   },
   {
     "id": 141,
@@ -84583,15 +88039,347 @@
     "nhom": "Đối chứng Tổ giám sát",
     "khu_vuc": "NMNĐ Vĩnh Tân 4 mở rộng",
     "moi_truong": "Giám sát khí thải",
-    "thong_so": "NO x (tính theo NO ) 2",
+    "thong_so": "NOx (tính theo NO2)",
     "dvt": "mg/Nm3",
     "so_vi_tri": 1,
     "so_lan": 4,
     "so_luong_mau": 4,
     "vi_tri": "KT1 – Ống khói sau hệ thống xử lý khí thải của NMNĐ Vĩnh Tân 4 mở rộng",
-    "sec_id": "",
-    "ma_gop": "",
-    "tt20_data": null
+    "sec_id": "II.8",
+    "ma_gop": "KT9e",
+    "tt20_data": {
+      "coreCode": "KT9e",
+      "sec_id": "II.8",
+      "name": "Khí NOx",
+      "standard": "USEPA method 7",
+      "field": {
+        "ma_thong_so": "1KT9e",
+        "ten_thong_so": "Khí NOx",
+        "phan_loai": "Ngoại nghiệp",
+        "dinh_bien": "1QTVTNMT hạng III.3",
+        "dinh_muc_cong_str": "0,700",
+        "dinh_muc_cong": 0.7,
+        "tieu_chuan": "USEPA method 7",
+        "tools": [
+          {
+            "stt": "",
+            "name": "1",
+            "unit": "Bộ lọc bụi",
+            "lifespan_months": "bộ",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "2",
+            "unit": "Bộ lọc tạp chất cản trở",
+            "lifespan_months": "bộ",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "3",
+            "unit": "Sensor NOx",
+            "lifespan_months": "cái",
+            "norm_str": "12",
+            "norm": 12.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "4",
+            "unit": "Acqui",
+            "lifespan_months": "bộ",
+            "norm_str": "12",
+            "norm": 12.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "5",
+            "unit": "Khẩu trang phòng độc",
+            "lifespan_months": "đôi",
+            "norm_str": "3",
+            "norm": 3.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "6",
+            "unit": "Găng tay chống nóng",
+            "lifespan_months": "đôi",
+            "norm_str": "3",
+            "norm": 3.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "7",
+            "unit": "Quần áo BHLĐ",
+            "lifespan_months": "bộ",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "8",
+            "unit": "Giầy BHLĐ",
+            "lifespan_months": "đôi",
+            "norm_str": "12",
+            "norm": 12.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "9",
+            "unit": "Tất sợi",
+            "lifespan_months": "đôi",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "10",
+            "unit": "Mũ cứng",
+            "lifespan_months": "cái",
+            "norm_str": "3",
+            "norm": 3.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "11",
+            "unit": "Ô che mưa, che nắng",
+            "lifespan_months": "cái",
+            "norm_str": "24",
+            "norm": 24.0,
+            "tool_type": "DungCu_ChuyenDung"
+          }
+        ],
+        "equipment": [
+          {
+            "stt": "",
+            "name": "Thiết bị lấy mẫu khí NOx",
+            "unit": "bộ",
+            "spec": "Acqui",
+            "norm_str": "0,400",
+            "norm": 0.4
+          },
+          {
+            "stt": "",
+            "name": "Thiết bị hiệu chuẩn lưu lượng",
+            "unit": "bộ",
+            "spec": "",
+            "norm_str": "0,400",
+            "norm": 0.4
+          },
+          {
+            "stt": "",
+            "name": "Máy định vị GPS cầm tay",
+            "unit": "cái",
+            "spec": "Pin khô",
+            "norm_str": "0,100",
+            "norm": 0.1
+          },
+          {
+            "stt": "",
+            "name": "Điện năng",
+            "unit": "Kw",
+            "spec": "",
+            "norm_str": "13,240",
+            "norm": 13.24
+          }
+        ],
+        "materials": [
+          {
+            "name": "NaOH",
+            "unit": "gam",
+            "norm_str": "0,050",
+            "norm": 0.05
+          },
+          {
+            "name": "H2O2",
+            "unit": "gam",
+            "norm_str": "0,080",
+            "norm": 0.08
+          },
+          {
+            "name": "Na2CO3",
+            "unit": "gam",
+            "norm_str": "0,060",
+            "norm": 0.06
+          },
+          {
+            "name": "NaCH3COO",
+            "unit": "gam",
+            "norm_str": "0,050",
+            "norm": 0.05
+          },
+          {
+            "name": "Pin chuyên dụng",
+            "unit": "cục",
+            "norm_str": "0,030",
+            "norm": 0.03
+          },
+          {
+            "name": "Băng giấy in",
+            "unit": "gam",
+            "norm_str": "0,005",
+            "norm": 0.005
+          },
+          {
+            "name": "Khí chuẩn NO",
+            "unit": "bình",
+            "norm_str": "0,003",
+            "norm": 0.003
+          },
+          {
+            "name": "Mực máy in",
+            "unit": "hộp",
+            "norm_str": "0,003",
+            "norm": 0.003
+          },
+          {
+            "name": "Sổ công tác",
+            "unit": "cuốn",
+            "norm_str": "0,030",
+            "norm": 0.03
+          },
+          {
+            "name": "Gim kẹp giấy",
+            "unit": "hộp",
+            "norm_str": "0,030",
+            "norm": 0.03
+          },
+          {
+            "name": "Gim bấm",
+            "unit": "hộp",
+            "norm_str": "0,090",
+            "norm": 0.09
+          },
+          {
+            "name": "Cồn lau dụng cụ",
+            "unit": "ml",
+            "norm_str": "0,015",
+            "norm": 0.015
+          },
+          {
+            "name": "Túi nilon",
+            "unit": "cái",
+            "norm_str": "0,015",
+            "norm": 0.015
+          }
+        ],
+        "tool_inherit_from": null,
+        "equip_inherit_from": null,
+        "mat_inherit_from": null
+      },
+      "lab": {
+        "ma_thong_so": "2KT9b",
+        "ten_thong_so": "Khí NOx",
+        "phan_loai": "Nội nghiệp",
+        "dinh_bien": "1QTVTNMT hạng III.2",
+        "dinh_muc_cong_str": "0,800",
+        "dinh_muc_cong": 0.8,
+        "tieu_chuan": "US EPA method 7",
+        "tools": [],
+        "equipment": [],
+        "materials": [
+          {
+            "name": "CHCl3",
+            "unit": "ml",
+            "norm_str": "0,500",
+            "norm": 0.5
+          },
+          {
+            "name": "NaOH",
+            "unit": "gam",
+            "norm_str": "0,400",
+            "norm": 0.4
+          },
+          {
+            "name": "Sulfaniamide",
+            "unit": "gam",
+            "norm_str": "0,200",
+            "norm": 0.2
+          },
+          {
+            "name": "N-(1-naphyl)-ethyllediamine",
+            "unit": "gam",
+            "norm_str": "0,200",
+            "norm": 0.2
+          },
+          {
+            "name": "KMnO4",
+            "unit": "gam",
+            "norm_str": "1,000",
+            "norm": 1.0
+          },
+          {
+            "name": "HCl",
+            "unit": "ml",
+            "norm_str": "1,000",
+            "norm": 1.0
+          },
+          {
+            "name": "NH3",
+            "unit": "ml",
+            "norm_str": "1,000",
+            "norm": 1.0
+          },
+          {
+            "name": "H3PO4",
+            "unit": "ml",
+            "norm_str": "0,500",
+            "norm": 0.5
+          },
+          {
+            "name": "H2SO4 đậm đặc",
+            "unit": "ml",
+            "norm_str": "2,000",
+            "norm": 2.0
+          },
+          {
+            "name": "Dung dịch chuẩn NaNO2",
+            "unit": "ml",
+            "norm_str": "0,500",
+            "norm": 0.5
+          },
+          {
+            "name": "Cồn lau dụng cụ",
+            "unit": "ml",
+            "norm_str": "0,060",
+            "norm": 0.06
+          },
+          {
+            "name": "Giấy lọc",
+            "unit": "hộp",
+            "norm_str": "0,020",
+            "norm": 0.02
+          },
+          {
+            "name": "Sổ công tác",
+            "unit": "cuốn",
+            "norm_str": "0,005",
+            "norm": 0.005
+          },
+          {
+            "name": "Giấy lau",
+            "unit": "cái",
+            "norm_str": "0,010",
+            "norm": 0.01
+          }
+        ],
+        "tool_inherit_from": null,
+        "equip_inherit_from": null,
+        "mat_inherit_from": null
+      }
+    }
   },
   {
     "id": 204,
@@ -85296,15 +89084,224 @@
     "nhom": "Đối chứng Tổ giám sát",
     "khu_vuc": "NMNĐ Vĩnh Tân 4 mở rộng",
     "moi_truong": "Giám sát khí thải",
-    "thong_so": "O 2",
+    "thong_so": "O2",
     "dvt": "%",
     "so_vi_tri": 1,
     "so_lan": 4,
     "so_luong_mau": 4,
     "vi_tri": "KT1 – Ống khói sau hệ thống xử lý khí thải của NMNĐ Vĩnh Tân 4 mở rộng",
-    "sec_id": "",
-    "ma_gop": "",
-    "tt20_data": null
+    "sec_id": "II.8",
+    "ma_gop": "KT9a",
+    "tt20_data": {
+      "coreCode": "KT9a",
+      "sec_id": "II.8",
+      "name": "Khí oxy (O2)",
+      "standard": "TCVN 7241:2003",
+      "field": {
+        "ma_thong_so": "1KT9a",
+        "ten_thong_so": "Khí oxy (O2)",
+        "phan_loai": "Ngoại nghiệp",
+        "dinh_bien": "1QTVTNMT hạng III.3",
+        "dinh_muc_cong_str": "0,750",
+        "dinh_muc_cong": 0.75,
+        "tieu_chuan": "Sử dụng thiết bị đo trực tiếp",
+        "tools": [
+          {
+            "stt": "",
+            "name": "1",
+            "unit": "Bộ lọc bụi",
+            "lifespan_months": "bộ",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "2",
+            "unit": "Bộ lọc khí lưu huỳnh",
+            "lifespan_months": "bộ",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "3",
+            "unit": "Sensor O2",
+            "lifespan_months": "cái",
+            "norm_str": "12",
+            "norm": 12.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "4",
+            "unit": "Acqui",
+            "lifespan_months": "bộ",
+            "norm_str": "12",
+            "norm": 12.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "5",
+            "unit": "Khẩu trang phòng độc",
+            "lifespan_months": "đôi",
+            "norm_str": "3",
+            "norm": 3.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "6",
+            "unit": "Găng tay chống nóng",
+            "lifespan_months": "đôi",
+            "norm_str": "3",
+            "norm": 3.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "7",
+            "unit": "Quần áo BHLĐ",
+            "lifespan_months": "bộ",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "8",
+            "unit": "Giầy BHLĐ",
+            "lifespan_months": "đôi",
+            "norm_str": "12",
+            "norm": 12.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "9",
+            "unit": "Tất sợi",
+            "lifespan_months": "đôi",
+            "norm_str": "6",
+            "norm": 6.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "10",
+            "unit": "Mũ cứng",
+            "lifespan_months": "cái",
+            "norm_str": "3",
+            "norm": 3.0,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "",
+            "name": "11",
+            "unit": "Ô che mưa, che nắng",
+            "lifespan_months": "cái",
+            "norm_str": "24",
+            "norm": 24.0,
+            "tool_type": "DungCu_ChuyenDung"
+          }
+        ],
+        "equipment": [
+          {
+            "stt": "",
+            "name": "Thiết bị đo",
+            "unit": "bộ",
+            "spec": "Acqui",
+            "norm_str": "0,400",
+            "norm": 0.4
+          },
+          {
+            "stt": "",
+            "name": "Thiết bị hiệu chuẩn lưu lượng",
+            "unit": "bộ",
+            "spec": "",
+            "norm_str": "0,400",
+            "norm": 0.4
+          },
+          {
+            "stt": "",
+            "name": "Máy định vị GPS cầm tay",
+            "unit": "cái",
+            "spec": "Pin khô",
+            "norm_str": "0,100",
+            "norm": 0.1
+          },
+          {
+            "stt": "",
+            "name": "Điện năng",
+            "unit": "Kw",
+            "spec": "",
+            "norm_str": "13,240",
+            "norm": 13.24
+          }
+        ],
+        "materials": [
+          {
+            "name": "Pin chuyên dụng",
+            "unit": "cục",
+            "norm_str": "0,045",
+            "norm": 0.045
+          },
+          {
+            "name": "Băng giấy in",
+            "unit": "gam",
+            "norm_str": "0,030",
+            "norm": 0.03
+          },
+          {
+            "name": "Khí chuẩn O2",
+            "unit": "bình",
+            "norm_str": "0,012",
+            "norm": 0.012
+          },
+          {
+            "name": "Mực máy in",
+            "unit": "hộp",
+            "norm_str": "0,003",
+            "norm": 0.003
+          },
+          {
+            "name": "Sổ công tác",
+            "unit": "cuốn",
+            "norm_str": "0,003",
+            "norm": 0.003
+          },
+          {
+            "name": "Gim kẹp giấy",
+            "unit": "hộp",
+            "norm_str": "0,030",
+            "norm": 0.03
+          },
+          {
+            "name": "Gim bấm",
+            "unit": "hộp",
+            "norm_str": "0,030",
+            "norm": 0.03
+          },
+          {
+            "name": "Cồn lau dụng cụ",
+            "unit": "ml",
+            "norm_str": "0,090",
+            "norm": 0.09
+          },
+          {
+            "name": "Túi nilon",
+            "unit": "cái",
+            "norm_str": "0,015",
+            "norm": 0.015
+          }
+        ],
+        "tool_inherit_from": null,
+        "equip_inherit_from": null,
+        "mat_inherit_from": null
+      },
+      "lab": null
+    }
   },
   {
     "id": 207,
@@ -87391,15 +91388,23 @@
     "nhom": "Đối chứng Tổ giám sát",
     "khu_vuc": "NMNĐ Vĩnh Tân 4 mở rộng",
     "moi_truong": "Nước làm mát, nước thải từ hệ thống khử lưu huỳnh bằng nước biển, nước thải từ hệ thống lọc nước biển",
-    "thong_so": "Nước thải",
-    "dvt": "",
-    "so_vi_tri": 1,
-    "so_lan": 1,
-    "so_luong_mau": 1,
+    "thong_so": "Tiêu đề: Nước thải sau xử lý của HTXLNT tập trung",
+    "dvt": "Header",
+    "so_vi_tri": 0,
+    "so_lan": 0,
+    "so_luong_mau": 0,
     "vi_tri": "NT1: Phía cuối bể sục khí của NMNĐ Vĩnh Tân 4 mở rộng trước khi xả vào kênh thoát nước làm mát chung (NMNĐ Vĩnh Tân 4 và Vĩnh Tân 4 mở rộng) NT2: Nước thải từ hệ thống lọc nước biển của NMNĐ Vĩnh Tân 4",
     "sec_id": "",
-    "ma_gop": "",
-    "tt20_data": null
+    "ma_gop": "MỤC 2",
+    "tt20_data": {
+      "coreCode": "HEADER",
+      "sec_id": "",
+      "name": "Dòng phân loại nhóm nước thải (Header)",
+      "standard": "",
+      "field": null,
+      "lab": null
+    },
+    "is_header": true
   },
   {
     "id": 213,
@@ -87968,15 +91973,578 @@
     "nhom": "Đối chứng Tổ giám sát",
     "khu_vuc": "NMNĐ Vĩnh Tân 4 mở rộng",
     "moi_truong": "Nước làm mát, nước thải từ hệ thống khử lưu huỳnh bằng nước biển, nước thải từ hệ thống lọc nước biển",
-    "thong_so": "BOD 5",
+    "thong_so": "BOD5",
     "dvt": "mg/l",
     "so_vi_tri": 2,
     "so_lan": 4,
     "so_luong_mau": 8,
     "vi_tri": "NT1: Nước thải sau xử lý của hệ thống xử lý nước thải tập trung NMNĐ Vĩnh Tân 4 mở rộng NT2: Nước lấy tại cửa xả hệ thống thu gom, thoát nước mưa của NMNĐ Vĩnh Tân 4 mở rộng trước khi thải ra môi trường",
-    "sec_id": "",
-    "ma_gop": "",
-    "tt20_data": null
+    "sec_id": "II.9",
+    "ma_gop": "NT5a",
+    "tt20_data": {
+      "coreCode": "NT5a",
+      "sec_id": "II.9",
+      "name": "Nhu cầu oxy sinh hoá (BOD5)",
+      "standard": "TCVN 6001-1:2008",
+      "field": {
+        "ma_thong_so": "1NT5a",
+        "ten_thong_so": "Nhu cầu oxy sinh hoá (BOD5",
+        "phan_loai": "Ngoại nghiệp",
+        "dinh_bien": "1QTVTNMT hạng III.1",
+        "dinh_muc_cong_str": "0,200",
+        "dinh_muc_cong": 0.2,
+        "tieu_chuan": "",
+        "tools": [
+          {
+            "stt": "1",
+            "name": "Chai đựng mẫu",
+            "unit": "cai",
+            "lifespan_months": "6",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "2",
+            "name": "Bình tia",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "3",
+            "name": "Quần áo BHLĐ",
+            "unit": "bộ",
+            "lifespan_months": "6",
+            "norm_str": "0,096",
+            "norm": 0.096,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "4",
+            "name": "Giầy BHLĐ",
+            "unit": "đôi",
+            "lifespan_months": "12",
+            "norm_str": "0,096",
+            "norm": 0.096,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "5",
+            "name": "Tất sợi",
+            "unit": "đôi",
+            "lifespan_months": "6",
+            "norm_str": "0,096",
+            "norm": 0.096,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "6",
+            "name": "Mũ cứng",
+            "unit": "cái",
+            "lifespan_months": "3",
+            "norm_str": "0,096",
+            "norm": 0.096,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "7",
+            "name": "Ô che mưa, che nắng",
+            "unit": "cái",
+            "lifespan_months": "24",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "8",
+            "name": "Bản đồ địa hình",
+            "unit": "cái",
+            "lifespan_months": "3",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "9",
+            "name": "Khẩu trang y tế",
+            "unit": "hộp",
+            "lifespan_months": "0,3",
+            "norm_str": "0,020",
+            "norm": 0.02,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "10",
+            "name": "Găng tay y tế",
+            "unit": "hộp",
+            "lifespan_months": "0,3",
+            "norm_str": "0,020",
+            "norm": 0.02,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "11",
+            "name": "Thùng đựng và bảo quản mẫu",
+            "unit": "cái",
+            "lifespan_months": "5",
+            "norm_str": "0,480",
+            "norm": 0.48,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "12",
+            "name": "Đai bảo hiểm",
+            "unit": "cái",
+            "lifespan_months": "3",
+            "norm_str": "0,048",
+            "norm": 0.048,
+            "tool_type": "BHLĐ_DungChung"
+          }
+        ],
+        "equipment": [
+          {
+            "stt": "",
+            "name": "Thiết bị lấy mẫu nước",
+            "unit": "bộ",
+            "spec": "",
+            "norm_str": "0,036",
+            "norm": 0.036
+          },
+          {
+            "stt": "",
+            "name": "Máy định vị GPS cầm tay",
+            "unit": "bộ",
+            "spec": "Pin khô",
+            "norm_str": "0,036",
+            "norm": 0.036
+          },
+          {
+            "stt": "",
+            "name": "Máy ảnh kỹ thuật số",
+            "unit": "cái",
+            "spec": "Pin khô",
+            "norm_str": "0,020",
+            "norm": 0.02
+          }
+        ],
+        "materials": [
+          {
+            "name": "Đá khô",
+            "unit": "túi",
+            "norm_str": "0,500",
+            "norm": 0.5
+          },
+          {
+            "name": "Sổ công tác",
+            "unit": "cuốn",
+            "norm_str": "0,005",
+            "norm": 0.005
+          },
+          {
+            "name": "Bút ghi kính",
+            "unit": "cái",
+            "norm_str": "0,050",
+            "norm": 0.05
+          },
+          {
+            "name": "Giấy lau",
+            "unit": "hộp",
+            "norm_str": "0,020",
+            "norm": 0.02
+          }
+        ],
+        "tool_inherit_from": null,
+        "equip_inherit_from": null,
+        "mat_inherit_from": null
+      },
+      "lab": {
+        "ma_thong_so": "2NT5a",
+        "ten_thong_so": "Nhu cầu oxy sinh hoá (BOD5)",
+        "phan_loai": "Nội nghiệp",
+        "dinh_bien": "1QTVTNMT hạng III.1",
+        "dinh_muc_cong_str": "0,470",
+        "dinh_muc_cong": 0.47,
+        "tieu_chuan": "SMEWW 5210B: 2012",
+        "tools": [
+          {
+            "stt": "1",
+            "name": "Chai đựng hóa chất",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "2",
+            "name": "Chai BOD",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "3",
+            "name": "Micropipet 5ml",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "4",
+            "name": "Đầu cone 1ml",
+            "unit": "cái",
+            "lifespan_months": "1",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "5",
+            "name": "Bình định mức 50ml",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "6",
+            "name": "Bình định mức 100ml",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "7",
+            "name": "Bình định mức 250ml",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "8",
+            "name": "Bộ sục khí",
+            "unit": "bộ",
+            "lifespan_months": "24",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "9",
+            "name": "Chai bảo quản dung dịch",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "10",
+            "name": "Xô chứa dung dịch sục khí",
+            "unit": "cái",
+            "lifespan_months": "24",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "11",
+            "name": "Đầu điện cực",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "12",
+            "name": "Bình nhựa 2 lít",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "13",
+            "name": "Bình nhựa 5 lít",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "14",
+            "name": "Chai nhựa 0,5 lít",
+            "unit": "cái",
+            "lifespan_months": "6",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "15",
+            "name": "Áo blue",
+            "unit": "cái",
+            "lifespan_months": "12",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "17",
+            "name": "Găng tay y tế",
+            "unit": "hộp",
+            "lifespan_months": "0,3",
+            "norm_str": "0,020",
+            "norm": 0.02,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "18",
+            "name": "Khẩu trang y tế",
+            "unit": "hộp",
+            "lifespan_months": "0,3",
+            "norm_str": "0,020",
+            "norm": 0.02,
+            "tool_type": "BHLĐ_DungChung"
+          },
+          {
+            "stt": "19",
+            "name": "Quạt trần 100w",
+            "unit": "cái",
+            "lifespan_months": "36",
+            "norm_str": "0,053",
+            "norm": 0.053,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "20",
+            "name": "Quạt thông gió 40w",
+            "unit": "cái",
+            "lifespan_months": "36",
+            "norm_str": "0,053",
+            "norm": 0.053,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "21",
+            "name": "Máy hút bụi 2kw",
+            "unit": "cái",
+            "lifespan_months": "60",
+            "norm_str": "0,003",
+            "norm": 0.003,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "22",
+            "name": "Máy hút ẩm 1,5kw",
+            "unit": "cái",
+            "lifespan_months": "36",
+            "norm_str": "0,020",
+            "norm": 0.02,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "23",
+            "name": "Đèn neon 40w",
+            "unit": "bộ",
+            "lifespan_months": "24",
+            "norm_str": "0,320",
+            "norm": 0.32,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "24",
+            "name": "Tủ đựng tài liệu",
+            "unit": "cái",
+            "lifespan_months": "72",
+            "norm_str": "0,080",
+            "norm": 0.08,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "25",
+            "name": "Bàn làm việc",
+            "unit": "cái",
+            "lifespan_months": "72",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "26",
+            "name": "Ghế tựa",
+            "unit": "cái",
+            "lifespan_months": "72",
+            "norm_str": "0,600",
+            "norm": 0.6,
+            "tool_type": "DungCu_ChuyenDung"
+          },
+          {
+            "stt": "28",
+            "name": "Điện năng",
+            "unit": "kw",
+            "lifespan_months": "",
+            "norm_str": "0,464",
+            "norm": 0.464,
+            "tool_type": "DungCu_ChuyenDung"
+          }
+        ],
+        "equipment": [
+          {
+            "stt": "",
+            "name": "Tủ ủ BOD",
+            "unit": "cái",
+            "spec": "0,8",
+            "norm_str": "0,200",
+            "norm": 0.2
+          },
+          {
+            "stt": "",
+            "name": "Tủ bảo quản mẫu",
+            "unit": "cái",
+            "spec": "0,16",
+            "norm_str": "0,040",
+            "norm": 0.04
+          },
+          {
+            "stt": "",
+            "name": "Tủ lưu hóa chất",
+            "unit": "cái",
+            "spec": "0,16",
+            "norm_str": "0,400",
+            "norm": 0.4
+          },
+          {
+            "stt": "",
+            "name": "Thiết bị cất nước 2 lần",
+            "unit": "bộ",
+            "spec": "0,18",
+            "norm_str": "0,200",
+            "norm": 0.2
+          },
+          {
+            "stt": "",
+            "name": "Máy điều hòa nhiệt độ",
+            "unit": "cái",
+            "spec": "2,2",
+            "norm_str": "0,067",
+            "norm": 0.067
+          },
+          {
+            "stt": "",
+            "name": "Điện năng",
+            "unit": "kw",
+            "spec": "",
+            "norm_str": "4,045",
+            "norm": 4.045
+          }
+        ],
+        "materials": [
+          {
+            "name": "FeCl3, 6H2O",
+            "unit": "gam",
+            "norm_str": "0,060",
+            "norm": 0.06
+          },
+          {
+            "name": "CaCl2",
+            "unit": "gam",
+            "norm_str": "0,060",
+            "norm": 0.06
+          },
+          {
+            "name": "MgSO4.7H2O",
+            "unit": "gam",
+            "norm_str": "0,060",
+            "norm": 0.06
+          },
+          {
+            "name": "KH2PO4",
+            "unit": "gam",
+            "norm_str": "0,020",
+            "norm": 0.02
+          },
+          {
+            "name": "K2HPO4",
+            "unit": "gam",
+            "norm_str": "0,040",
+            "norm": 0.04
+          },
+          {
+            "name": "Na2HPO4",
+            "unit": "gam",
+            "norm_str": "0,070",
+            "norm": 0.07
+          },
+          {
+            "name": "NH4Cl",
+            "unit": "gam",
+            "norm_str": "0,030",
+            "norm": 0.03
+          },
+          {
+            "name": "Gluco",
+            "unit": "gam",
+            "norm_str": "0,060",
+            "norm": 0.06
+          },
+          {
+            "name": "Polyseed",
+            "unit": "Viên",
+            "norm_str": "0,100",
+            "norm": 0.1
+          },
+          {
+            "name": "Glutamic",
+            "unit": "gam",
+            "norm_str": "0,060",
+            "norm": 0.06
+          },
+          {
+            "name": "Cồn lau dụng cụ",
+            "unit": "ml",
+            "norm_str": "10,000",
+            "norm": 10.0
+          },
+          {
+            "name": "Giấy pH",
+            "unit": "hộp",
+            "norm_str": "0,010",
+            "norm": 0.01
+          },
+          {
+            "name": "Sổ công tác",
+            "unit": "cuốn",
+            "norm_str": "0,005",
+            "norm": 0.005
+          },
+          {
+            "name": "Giấy lau",
+            "unit": "hộp",
+            "norm_str": "0,010",
+            "norm": 0.01
+          }
+        ],
+        "tool_inherit_from": null,
+        "equip_inherit_from": null,
+        "mat_inherit_from": null
+      }
+    }
   },
   {
     "id": 217,

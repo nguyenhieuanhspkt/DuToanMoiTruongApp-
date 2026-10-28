@@ -35,6 +35,7 @@ export interface PaktItem {
   vi_tri: string;
   sec_id: string;
   ma_gop: string;
+  is_header?: boolean;
   tt20_data?: TT20GroupData | null;
 }
 

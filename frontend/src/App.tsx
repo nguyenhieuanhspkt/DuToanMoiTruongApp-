@@ -123,7 +123,8 @@ export const App: React.FC = () => {
     let lab = 0;
 
     filteredItems.forEach((row) => {
-      const N = row.so_luong_mau || 1;
+      if (row.is_header) return;
+      const N = row.so_luong_mau || 0;
       samples += N;
       const tt = row.tt20_data;
       if (tt) {

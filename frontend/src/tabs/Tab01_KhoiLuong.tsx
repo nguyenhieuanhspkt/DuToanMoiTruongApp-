@@ -35,7 +35,27 @@ export const Tab01_KhoiLuong: React.FC<Tab01KhoiLuongProps> = ({ items, onSelect
           {items.map((row) => {
             const isExpanded = Boolean(expandedRows[row.id]);
             const tt = row.tt20_data;
-            const N = row.so_luong_mau || 1;
+            const N = row.so_luong_mau || 0;
+
+            if (row.is_header) {
+              return (
+                <tr key={row.id} className="bg-slate-900/90 border-y border-blue-900/60 text-blue-300 font-medium">
+                  <td className="py-2.5 px-3 text-center text-slate-500 font-mono text-xs">{row.id}</td>
+                  <td colSpan={5} className="py-2.5 px-3 text-xs text-blue-300 font-semibold">
+                    📂 {row.thong_so}
+                  </td>
+                  <td className="py-2.5 px-3 text-right font-mono text-xs text-slate-500">—</td>
+                  <td className="py-2.5 px-3 text-center border-l border-slate-800 bg-slate-900/50">
+                    <span className="font-mono text-[10px] text-slate-400 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700/50">
+                      HEADER
+                    </span>
+                  </td>
+                  <td colSpan={2} className="py-2.5 px-3 text-xs text-slate-400 italic">
+                    Dòng phân loại nhóm PAKT (không phát sinh mẫu quan trắc)
+                  </td>
+                </tr>
+              );
+            }
 
             return (
               <React.Fragment key={row.id}>

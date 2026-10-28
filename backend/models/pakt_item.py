@@ -32,6 +32,7 @@ class PaktItem(BaseModel):
     vi_tri: Optional[str] = ""
     sec_id: Optional[str] = ""
     ma_gop: Optional[str] = ""
+    is_header: Optional[bool] = False
     tt20_data: Optional[TT20GroupData] = None
 
 class PricingConfig(BaseModel):

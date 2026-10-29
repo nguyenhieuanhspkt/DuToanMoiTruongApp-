@@ -1,5 +1,51 @@
 # backend/models/dutoan_dto.py
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
+
+
+# ============================================================
+# DTO: Dữ liệu Định mức TT20 (một thông số quan trắc)
+# ============================================================
+class DinhMucHaoPhiDTO:
+    """Một dòng hao phí chi tiết trong bảng định mức (VL / DC / M)."""
+    def __init__(self, loai: str, name: str, unit: str, norm: float, row_index: int = None):
+        self.loai = loai          # "VL" | "DC" | "M"
+        self.name = name
+        self.unit = unit
+        self.norm = norm
+        self.row_index: Optional[int] = row_index   # dòng trong sheet Dữ liệu định mức
+
+
+class DinhMucRowDTO:
+    """
+    DTO đại diện cho một thông số định mức TT20.
+    Mỗi thông số chiếm một BLOCK dòng trong sheet 'Dữ liệu định mức':
+      - Dòng đầu  : thông tin chung + Nhân công (dinh_muc_cong) → nc_row_index
+      - Tiếp theo : Vật liệu, CCDC, Máy → mỗi cái 1 dòng
+    """
+    def __init__(self, ma: str, ten: str, phan_loai: str,
+                 dinh_bien: str, dinh_muc_cong: float, tieu_chuan: str = ""):
+        self.ma = ma
+        self.ten = ten
+        self.phan_loai = phan_loai
+        self.dinh_bien = dinh_bien
+        self.dinh_muc_cong = dinh_muc_cong
+        self.tieu_chuan = tieu_chuan
+        self.hao_phi: List[DinhMucHaoPhiDTO] = []
+        self.nc_row_index: Optional[int] = None
+        self.block_start:  Optional[int] = None
+        self.block_end:    Optional[int] = None
+
+    def add_hao_phi(self, loai: str, name: str, unit: str, norm: float):
+        self.hao_phi.append(DinhMucHaoPhiDTO(loai=loai, name=name, unit=unit, norm=norm))
+
+    def to_nc_row(self, row: int) -> List[Any]:
+        """A: Mã | B: Tên | C: Phân loại | D: Định biên | E: Loại | F: ĐVT | G: Định mức | H: Tiêu chuẩn"""
+        return [self.ma, self.ten, self.phan_loai, self.dinh_bien,
+                "Nhân công", "công", self.dinh_muc_cong, self.tieu_chuan]
+
+    def to_haophi_row(self, hp: DinhMucHaoPhiDTO) -> List[Any]:
+        return [self.ma, "", "", "", hp.loai, hp.unit, hp.norm, hp.name]
+
 
 class DetailItemDTO:
     """DTO đại diện cho một thành phần hao phí chi tiết (Cấp 2: Vật liệu, Nhân công, Máy...)"""
@@ -17,8 +63,9 @@ class DetailItemDTO:
         return [
             "",                 # STT (trống cho dòng con)
             self.code,          # Mã hiệu
-            self.sub_code,      # STT thành phần
-            display_name,       # Tên hao phí
+            self.sub_code,      # STT thành phần (Cột C)
+            "",                 # Mã hiệu VL/NC/M (Cột D)
+            display_name,       # Tên hao phí (Cột E)
             self.unit,          # Đơn vị
             self.norm,          # Định mức (Cột G)
             self.price_formula, # Đơn giá (Cột H)
@@ -59,7 +106,8 @@ class JobItemDTO:
         self.groups: Dict[str, SubtotalGroupDTO] = {
             "VL": SubtotalGroupDTO("Vật liệu", "VL"),
             "NC": SubtotalGroupDTO("Nhân công", "NC"),
-            "M": SubtotalGroupDTO("Máy thi công & CCDC", "M")
+            "DC": SubtotalGroupDTO("Công cụ dụng cụ", "DC"),
+            "M":  SubtotalGroupDTO("Máy thi công & Thiết bị", "M")
         }
         self.row_index = None
 

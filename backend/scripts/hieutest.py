@@ -9,7 +9,7 @@ if root_dir not in sys.path:
 from backend.models.hieu_models_dto import JobItemDTO, SubtotalGroupDTO, DetailItemDTO
 
 # 2. Gọi Exporter từ file hieu_exporter
-from backend.exporters.hieu_exporter import ExcelF1FullReplicaExporter
+from backend.exporters.excel_f1_full_replica_exporter import ExcelF1FullReplicaExporter
 from backend.storage.onedrive_adapter import OneDriveAdapter
 
 def run_test():

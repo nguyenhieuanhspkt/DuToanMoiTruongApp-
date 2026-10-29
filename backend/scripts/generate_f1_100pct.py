@@ -34,6 +34,20 @@ ExcelF1FullReplicaExporter.export_workbook(
     output_path=out_file
 )
 
+try:
+    import win32com.client
+    ex = win32com.client.DispatchEx("Excel.Application")
+    ex.Visible = False
+    ex.DisplayAlerts = False
+    wb = ex.Workbooks.Open(os.path.abspath(out_file))
+    ex.CalculateFull()
+    wb.Save()
+    wb.Close()
+    ex.Quit()
+    print("Pre-calculated all Excel formula values via Excel Engine.")
+except Exception as e:
+    print(f"Notice: Formula evaluation skipped ({e}).")
+
 shutil.copy2(out_file, pub_file)
 print(f"Copied to public: {pub_file}")
 

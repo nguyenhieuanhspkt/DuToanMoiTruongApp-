@@ -370,7 +370,7 @@ class ExcelF1FullReplicaExporter:
                 nc_title = sub.get('dinh_bien') or f'Quan trắc viên ({stage_lbl})'
                 if nc_norm is not None and float(nc_norm) > 0:
                     ws_hp.append([
-                        "", f"NC_{core_code}_{stage_key}", "NHÂN CÔNG", f" - {nc_title} ({stage_lbl})", "công", "",
+                        "", ("NC_LDPT" if ("phổ thông" in nc_title.lower() or "phụ việc" in nc_title.lower()) else "NC_LDKT"), "NHÂN CÔNG", f" - {nc_title} ({stage_lbl})", "công", "",
                         "", float(nc_norm), "", "", "", f"=ROUND(F{master_r}*H{hp_row}, 4)", "", "", "Bảng 1 TT20 & TTLT 56/2015"
                     ])
                     hp_row += 1
@@ -817,25 +817,25 @@ class ExcelF1FullReplicaExporter:
         ws_thdt.append(["STT", "NỘI DUNG CHI PHÍ", "CÁCH TÍNH / DIỄN GIẢI", "GIÁ TRỊ (VNĐ)", "KÝ HIỆU"])
 
         ws_thdt.append(["I", "Chi phí trực tiếp (T = VL + DC + NC + M + C_TR)", "=\"VL + DC + NC + M + C_TR\"", "=ROUND(D8+D10+D12+D14+D16, 0)", "T"])
-        ws_thdt.append(["1", "Chi phí vật liệu", "=\"VLHT\"", "=ROUND(D8, 0)", "VL"])
+        ws_thdt.append(["1", "Chi phí vật liệu", "=\"VLHT\"", "=ROUND(D9, 0)", "VL"])
         ws_thdt.append(["", " - Đơn giá vật liệu", "Theo bảng tổng hợp vật liệu", f"='Vật liệu'!$G${total_vl_row}", "VLHT"])
-        ws_thdt.append(["2", "Chi phí công cụ dụng cụ", "=\"DCHT\"", "=ROUND(D10, 0)", "DC"])
+        ws_thdt.append(["2", "Chi phí công cụ dụng cụ", "=\"DCHT\"", "=ROUND(D11, 0)", "DC"])
         ws_thdt.append(["", " - Đơn giá công cụ dụng cụ", "Theo bảng tổng hợp dụng cụ", f"='Công cụ dụng cụ'!$G${total_dc_row}", "DCHT"])
-        ws_thdt.append(["3", "Chi phí nhân công", "=\"NCHT\"", "=ROUND(D12, 0)", "NC"])
+        ws_thdt.append(["3", "Chi phí nhân công", "=\"NCHT\"", "=ROUND(D13, 0)", "NC"])
         ws_thdt.append(["", " - Đơn giá nhân công", "Theo bảng tổng hợp nhân công", "='Nhân công'!$G$9", "NCHT"])
-        ws_thdt.append(["4", "Chi phí máy và thiết bị thi công", "=\"MHT\"", "=ROUND(D14, 0)", "M"])
+        ws_thdt.append(["4", "Chi phí máy và thiết bị thi công", "=\"MHT\"", "=ROUND(D15, 0)", "M"])
         ws_thdt.append(["", " - Đơn giá máy thi công", "Theo bảng tổng hợp máy thi công", f"='Máy thi công'!$G${total_m_row}", "MHT"])
         ws_thdt.append(["5", "Chi phí tính riêng ngoài định mức (Khoản 4.5 TT20)", "=\"C_TR\"", "='Khoản 4.5 TT20'!$J$24", "C_TR"])
-        ws_thdt.append(["II", "Chi phí gián tiếp", "=\"C + TT\"", "=D16+D17", "GT"])
-        ws_thdt.append(["1", "Chi phí chung", "=\"T x 20%\"", "=ROUND(D6*'Hệ số'!$C$4, 0)", "C"])
-        ws_thdt.append(["2", "Chi phí một số công việc không xác định từ thiết kế", "=\"T x 2,5%\"", "=ROUND(D6*'Hệ số'!$C$9, 0)", "TT"])
-        ws_thdt.append(["III", "Thu nhập chịu thuế tính trước", "=\"(T + GT) x 5,5%\"", "=ROUND((D6+D15)*'Hệ số'!$C$8, 0)", "TL"])
-        ws_thdt.append(["", "Chi phí trước thuế", "=\"T + GT + TL\"", "=ROUND(D6+D15+D18, 0)", "G"])
-        ws_thdt.append(["IV", "Thuế giá trị gia tăng", "=\"G x 8%\"", "=ROUND(D19*'Hệ số'!$C$10, 0)", "GTGT"])
-        ws_thdt.append(["", "CHI PHÍ SAU THUẾ", "=\"G + GTGT\"", "=ROUND(D19+D20, 0)", "Gxd"])
-        ws_thdt.append(["V", "Chi phí nhà tạm để ở và điều hành", "=\"G x 1,1% x (1 + 8%)\"", "=ROUND(D19*'Hệ số'!$C$6*(1+'Hệ số'!$C$10), 0)", "LT"])
-        ws_thdt.append(["", "TỔNG CỘNG KINH PHÍ GÓI THẦU", "=\"Gxd + LT\"", "=ROUND(D21+D22, 0)", "TTS"])
-        ws_thdt.append(["", "LÀM TRÒN (ĐẾN HÀNG NGHÌN ĐỒNG)", "=\"ROUND(D23, -3)\"", "=ROUND(D23, -3)", "LTR"])
+        ws_thdt.append(["II", "Chi phí gián tiếp", "=\"C + TT\"", "=D18+D19", "GT"])
+        ws_thdt.append(["1", "Chi phí chung", "=\"T x 20%\"", "=ROUND(D7*'Hệ số'!$C$4, 0)", "C"])
+        ws_thdt.append(["2", "Chi phí một số công việc không xác định từ thiết kế", "=\"T x 2,5%\"", "=ROUND(D7*'Hệ số'!$C$9, 0)", "TT"])
+        ws_thdt.append(["III", "Thu nhập chịu thuế tính trước", "=\"(T + GT) x 5,5%\"", "=ROUND((D7+D17)*'Hệ số'!$C$8, 0)", "TL"])
+        ws_thdt.append(["", "Chi phí trước thuế", "=\"T + GT + TL\"", "=ROUND(D7+D17+D20, 0)", "G"])
+        ws_thdt.append(["IV", "Thuế giá trị gia tăng", "=\"G x 8%\"", "=ROUND(D21*'Hệ số'!$C$10, 0)", "GTGT"])
+        ws_thdt.append(["", "CHI PHÍ SAU THUẾ", "=\"G + GTGT\"", "=ROUND(D21+D22, 0)", "Gxd"])
+        ws_thdt.append(["V", "Chi phí nhà tạm để ở và điều hành", "=\"G x 1,1% x (1 + 8%)\"", "=ROUND(D21*'Hệ số'!$C$6*(1+'Hệ số'!$C$10), 0)", "LT"])
+        ws_thdt.append(["", "TỔNG CỘNG KINH PHÍ GÓI THẦU", "=\"Gxd + LT\"", "=ROUND(D23+D24, 0)", "TTS"])
+        ws_thdt.append(["", "LÀM TRÒN (ĐẾN HÀNG NGHÌN ĐỒNG)", "=\"ROUND(D23, -3)\"", "=ROUND(D25, -3)", "LTR"])
 
         # Format Sheet THDT hạng mục
         ws_thdt.cell(1, 1).font = font_title_15b

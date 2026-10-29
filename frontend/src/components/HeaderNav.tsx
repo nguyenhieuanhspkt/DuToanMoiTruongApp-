@@ -53,7 +53,18 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onRefresh, isLoading }) =>
           <span className="hidden sm:inline font-medium">OneDrive Synced</span>
         </div>
 
-        {/* Export Excel Button */}
+        {/* Export Excel 6-Sheet F1 Replacement Button */}
+        <a
+          href="/DU_TOAN_QUAN_TRAC_MOI_TRUONG_CHUAN_6_SHEET_F1.xlsx"
+          download="DU_TOAN_QUAN_TRAC_MOI_TRUONG_CHUAN_6_SHEET_F1.xlsx"
+          title="Tải tệp Excel 6 Sheet chuẩn thay thế phần mềm F1 (XLOOKUP, khử trùng lặp M>=1)"
+          className="px-2.5 py-1 rounded-md bg-blue-600 hover:bg-blue-500 text-white border border-blue-500 text-xs font-bold transition active:scale-95 flex items-center space-x-1.5 shadow-md shadow-blue-600/30"
+        >
+          <FileSpreadsheet className="w-3.5 h-3.5" />
+          <span className="hidden sm:inline">Excel 6 Sheet (F1)</span>
+        </a>
+
+        {/* Export Excel 10-Sheet Button */}
         <a
           href="/DU_TOAN_QUAN_TRAC_MOI_TRUONG_2026_10_SHEET.xlsx"
           download="DU_TOAN_QUAN_TRAC_MOI_TRUONG_2026_10_SHEET.xlsx"
@@ -61,7 +72,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onRefresh, isLoading }) =>
           className="px-2.5 py-1 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white border border-emerald-500 text-xs font-bold transition active:scale-95 flex items-center space-x-1.5 shadow-md shadow-emerald-600/30"
         >
           <FileSpreadsheet className="w-3.5 h-3.5" />
-          <span className="hidden sm:inline">Xuất Excel 10 Sheet</span>
+          <span className="hidden sm:inline">Excel 10 Sheet</span>
         </a>
 
         {/* Refresh button */}

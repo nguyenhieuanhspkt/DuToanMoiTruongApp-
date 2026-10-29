@@ -93,9 +93,9 @@
       "quote_2": 191100.0,
       "quote_3": 204750.0,
       "price_hd71": 185250.0,
-      "approved_price": 191100.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 370000.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Acetone Merck tinh khiết 1000ml (Chai) trúng thầu 399.600 đ/1.08 = 370.000 đ/Lít"
     },
     {
       "id": "VL_006",
@@ -110,9 +110,9 @@
       "quote_2": 235.0,
       "quote_3": 252.0,
       "price_hd71": 228.0,
-      "approved_price": 235.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 370.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Acetone Merck tinh khiết quy đổi 370.000 đ/1000ml = 370 đ/ml"
     },
     {
       "id": "VL_007",
@@ -178,9 +178,9 @@
       "quote_2": 1180.0,
       "quote_3": 1260.0,
       "price_hd71": 1140.0,
-      "approved_price": 1180.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 59100.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): L(+)-Acid ascorbic Merck (Chai 100g) trúng thầu 6.382.800 đ/1.08 = 5.910.000 đ -> 59.100 đ/gam"
     },
     {
       "id": "VL_011",
@@ -535,9 +535,9 @@
       "quote_2": 191100.0,
       "quote_3": 204750.0,
       "price_hd71": 185250.0,
-      "approved_price": 191100.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 40000.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Methanol 99.8% trúng thầu 43.200 đ/1.08 = 40.000 đ/Lít"
     },
     {
       "id": "VL_032",
@@ -552,9 +552,9 @@
       "quote_2": 191100.0,
       "quote_3": 204750.0,
       "price_hd71": 185250.0,
-      "approved_price": 191100.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 40000.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Methanol 99.8% trúng thầu 43.200 đ/1.08 = 40.000 đ/Lít"
     },
     {
       "id": "VL_033",
@@ -569,9 +569,9 @@
       "quote_2": 235.0,
       "quote_3": 252.0,
       "price_hd71": 228.0,
-      "approved_price": 235.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 40.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Methanol 99.8% quy đổi 40.000 đ/1000ml = 40 đ/ml"
     },
     {
       "id": "VL_034",
@@ -586,9 +586,9 @@
       "quote_2": 235.0,
       "quote_3": 252.0,
       "price_hd71": 228.0,
-      "approved_price": 235.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 40.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Methanol 99.8% quy đổi 40.000 đ/1000ml = 40 đ/ml"
     },
     {
       "id": "VL_035",
@@ -620,9 +620,9 @@
       "quote_2": 8330.0,
       "quote_3": 8920.0,
       "price_hd71": 8080.0,
-      "approved_price": 8330.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 4780.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Dung dịch chuẩn Amoni NSI (Chai 500ml) trúng thầu 2.581.200 đ/1.08 = 2.390.000 đ -> 4.780 đ/ml"
     },
     {
       "id": "VL_037",
@@ -722,9 +722,9 @@
       "quote_2": 8330.0,
       "quote_3": 8920.0,
       "price_hd71": 8080.0,
-      "approved_price": 8330.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 1920.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Dung dịch chuẩn pH 4 & 10 Merck trúng thầu 669.600 đ và 1.404.000 đ -> 1.920 đ/ml"
     },
     {
       "id": "VL_043",
@@ -739,9 +739,9 @@
       "quote_2": 8330.0,
       "quote_3": 8920.0,
       "price_hd71": 8080.0,
-      "approved_price": 8330.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 1707.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Dung dịch chuẩn pH 4, 7, 10 Merck trung bình 853.333 đ/chai 500ml -> 1.707 đ/ml"
     },
     {
       "id": "VL_044",
@@ -756,9 +756,9 @@
       "quote_2": 441000.0,
       "quote_3": 472500.0,
       "price_hd71": 427500.0,
-      "approved_price": 441000.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 853333.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Dung dịch chuẩn pH Merck trúng thầu TB 921.600 đ/1.08 = 853.333 đ/chai"
     },
     {
       "id": "VL_045",
@@ -773,9 +773,9 @@
       "quote_2": 274.0,
       "quote_3": 294.0,
       "price_hd71": 266.0,
-      "approved_price": 274.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 390.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Toluen làm sạch hệ thống Merck trúng thầu 421.200 đ/1.08 = 390.000 đ/Lít -> 390 đ/ml"
     },
     {
       "id": "VL_046",
@@ -790,9 +790,9 @@
       "quote_2": 274.0,
       "quote_3": 294.0,
       "price_hd71": 266.0,
-      "approved_price": 274.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 1200.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Dung dịch chuẩn DO Hanna trúng thầu 648.000 đ/1.08 = 600.000 đ/chai 500ml -> 1.200 đ/ml"
     },
     {
       "id": "VL_047",
@@ -824,9 +824,9 @@
       "quote_2": 1180.0,
       "quote_3": 1260.0,
       "price_hd71": 1140.0,
-      "approved_price": 1180.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 12700.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Hóa chất EDTA Merck 100g trúng thầu 1.371.600 đ/1.08 = 1.270.000 đ -> 12.700 đ/gam"
     },
     {
       "id": "VL_049",
@@ -841,9 +841,9 @@
       "quote_2": 274.0,
       "quote_3": 294.0,
       "price_hd71": 266.0,
-      "approved_price": 274.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 1270.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Dung dịch EDTA quy đổi -> 1.270 đ/ml"
     },
     {
       "id": "VL_050",
@@ -858,9 +858,9 @@
       "quote_2": 1180.0,
       "quote_3": 1260.0,
       "price_hd71": 1140.0,
-      "approved_price": 1180.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 6.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Sắt (III) Clorua FeCl3 40% trúng thầu 6.480 đ/1.08 = 6.000 đ/kg -> 6 đ/gam"
     },
     {
       "id": "VL_051",
@@ -875,9 +875,9 @@
       "quote_2": 1180.0,
       "quote_3": 1260.0,
       "price_hd71": 1140.0,
-      "approved_price": 1180.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 6.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Sắt (III) Clorua FeCl3 40% trúng thầu 6.480 đ/1.08 = 6.000 đ/kg -> 6 đ/gam"
     },
     {
       "id": "VL_052",
@@ -1368,9 +1368,9 @@
       "quote_2": 314.0,
       "quote_3": 336.0,
       "price_hd71": 304.0,
-      "approved_price": 314.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 600.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Acid chlohydride 36-37% Merck 1000ml trúng thầu 648.000 đ/1.08 = 600.000 đ -> 600 đ/ml"
     },
     {
       "id": "VL_081",
@@ -1640,9 +1640,9 @@
       "quote_2": 830.0,
       "quote_3": 890.0,
       "price_hd71": 810.0,
-      "approved_price": 830.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 2480.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Dung dịch điện ly KCl 3M Merck trúng thầu 669.600 đ/1.08 = 620.000 đ/250ml -> 2.480 đ/gam"
     },
     {
       "id": "VL_097",
@@ -1776,9 +1776,9 @@
       "quote_2": 14700.0,
       "quote_3": 15750.0,
       "price_hd71": 14250.0,
-      "approved_price": 14700.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 9390000.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Bình khí Heli 99.99% trúng thầu 10.141.200 đ/1.08 = 9.390.000 đ/bình"
     },
     {
       "id": "VL_105",
@@ -1793,9 +1793,9 @@
       "quote_2": 14700.0,
       "quote_3": 15750.0,
       "price_hd71": 14250.0,
-      "approved_price": 14700.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 20020000.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Khí Hydrogen Ultra High Purity Air Liquide trúng thầu 21.621.600 đ/1.08 = 20.020.000 đ/bình"
     },
     {
       "id": "VL_106",
@@ -1810,9 +1810,9 @@
       "quote_2": 14700.0,
       "quote_3": 15750.0,
       "price_hd71": 14250.0,
-      "approved_price": 14700.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 300000.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Khí Nitơ 99.99% Sovigaz trúng thầu 324.000 đ/1.08 = 300.000 đ/bình"
     },
     {
       "id": "VL_107",
@@ -1827,9 +1827,9 @@
       "quote_2": 14700.0,
       "quote_3": 15750.0,
       "price_hd71": 14250.0,
-      "approved_price": 14700.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 5660000.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Bình khí Argon 99.9999% Cryotech trúng thầu 6.112.800 đ/1.08 = 5.660.000 đ/bình"
     },
     {
       "id": "VL_108",
@@ -1844,9 +1844,9 @@
       "quote_2": 14700.0,
       "quote_3": 15750.0,
       "price_hd71": 14250.0,
-      "approved_price": 14700.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 4500000.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Bình khí Acetylen 40 lít Sovigaz trúng thầu 4.860.000 đ/1.08 = 4.500.000 đ/bình"
     },
     {
       "id": "VL_109",
@@ -1861,9 +1861,9 @@
       "quote_2": 441000.0,
       "quote_3": 472500.0,
       "price_hd71": 427500.0,
-      "approved_price": 441000.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 11270000.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Bình khí CO+CO2 Cryotech trúng thầu 12.171.600 đ/1.08 = 11.270.000 đ/bình"
     },
     {
       "id": "VL_110",
@@ -1895,9 +1895,9 @@
       "quote_2": 441000.0,
       "quote_3": 472500.0,
       "price_hd71": 427500.0,
-      "approved_price": 441000.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 34390000.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Bình Khí NO CSL trúng thầu 37.141.200 đ/1.08 = 34.390.000 đ/bình"
     },
     {
       "id": "VL_112",
@@ -1912,9 +1912,9 @@
       "quote_2": 441000.0,
       "quote_3": 472500.0,
       "price_hd71": 427500.0,
-      "approved_price": 441000.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 9140000.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Bình khí chuẩn Oxy Calgaz trúng thầu 9.871.200 đ/1.08 = 9.140.000 đ/bình"
     },
     {
       "id": "VL_113",
@@ -1929,9 +1929,9 @@
       "quote_2": 441000.0,
       "quote_3": 472500.0,
       "price_hd71": 427500.0,
-      "approved_price": 441000.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 27520000.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Bình và khí Span SO2 CSL trúng thầu 29.721.600 đ/1.08 = 27.520.000 đ/bình"
     },
     {
       "id": "VL_114",
@@ -2065,9 +2065,9 @@
       "quote_2": 274.0,
       "quote_3": 294.0,
       "price_hd71": 266.0,
-      "approved_price": 274.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 590.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Dung dịch Amoniac 32% Merck trúng thầu 637.200 đ/1.08 = 590.000 đ/Lít -> 590 đ/ml"
     },
     {
       "id": "VL_122",
@@ -2133,9 +2133,9 @@
       "quote_2": 1180.0,
       "quote_3": 1260.0,
       "price_hd71": 1140.0,
-      "approved_price": 1180.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 11.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Sodium Carbonate Na2CO3 trúng thầu 11.880 đ/1.08 = 11.000 đ/kg -> 11 đ/gam"
     },
     {
       "id": "VL_126",
@@ -2150,9 +2150,9 @@
       "quote_2": 1180.0,
       "quote_3": 1260.0,
       "price_hd71": 1140.0,
-      "approved_price": 1180.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 11.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Sodium Carbonate Na2CO3 trúng thầu 11.880 đ/1.08 = 11.000 đ/kg -> 11 đ/gam"
     },
     {
       "id": "VL_127",
@@ -2388,9 +2388,9 @@
       "quote_2": 147.0,
       "quote_3": 158.0,
       "price_hd71": 142.0,
-      "approved_price": 147.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 8.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Nước Javen NaClO Biên Hòa trúng thầu 8.640 đ/1.08 = 8.000 đ/kg -> 8 đ/ml"
     },
     {
       "id": "VL_141",
@@ -2405,9 +2405,9 @@
       "quote_2": 830.0,
       "quote_3": 890.0,
       "price_hd71": 810.0,
-      "approved_price": 830.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 26240.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Natri Clorua NaCl Merck 250g trúng thầu 7.084.800 đ/1.08 = 6.560.000 đ -> 26.240 đ/gam"
     },
     {
       "id": "VL_142",
@@ -2422,9 +2422,9 @@
       "quote_2": 830.0,
       "quote_3": 890.0,
       "price_hd71": 810.0,
-      "approved_price": 830.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 1080.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Natri hydroxit NaOH Merck 1000g trúng thầu 1.166.400 đ/1.08 = 1.080.000 đ -> 1.080 đ/gam"
     },
     {
       "id": "VL_143",
@@ -2439,9 +2439,9 @@
       "quote_2": 830.0,
       "quote_3": 890.0,
       "price_hd71": 810.0,
-      "approved_price": 830.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 1080.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Natri hydroxit NaOH Merck 1000g trúng thầu 1.166.400 đ/1.08 = 1.080.000 đ -> 1.080 đ/gam"
     },
     {
       "id": "VL_144",
@@ -2745,9 +2745,9 @@
       "quote_2": 215600.0,
       "quote_3": 231000.0,
       "price_hd71": 209000.0,
-      "approved_price": 215600.0,
-      "approval_basis": "Min 03 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP)",
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "approved_price": 390000.0,
+      "approval_basis": "KQLCNT EVN Vĩnh Tân 4 IB2600096765 (Trước thuế = Giá VAT 8% / 1.08)",
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Toluen làm sạch hệ thống Merck trúng thầu 421.200 đ/1.08 = 390.000 đ/Lít"
     },
     {
       "id": "VL_162",

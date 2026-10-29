@@ -82,12 +82,12 @@
       "quantity_with_waste": 1.1664,
       "waste_factor": 1.08,
       "param_count": 2,
-      "msc_unit_price": 191100.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 222899,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 370000.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Merck (Trung Quốc)",
+      "msc_total_amount": 431568,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Acetone Merck tinh khiết 1000ml (Chai) trúng thầu 399.600 đ/1.08 = 370.000 đ/Lít"
     },
     {
       "stt": 6,
@@ -99,12 +99,12 @@
       "quantity_with_waste": 432.0,
       "waste_factor": 1.08,
       "param_count": 8,
-      "msc_unit_price": 235.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 101520,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 370.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Merck (Trung Quốc)",
+      "msc_total_amount": 159840,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Acetone Merck tinh khiết quy đổi 370.000 đ/1000ml = 370 đ/ml"
     },
     {
       "stt": 7,
@@ -167,12 +167,12 @@
       "quantity_with_waste": 1.296,
       "waste_factor": 1.08,
       "param_count": 1,
-      "msc_unit_price": 1180.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 1529,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 59100.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Merck (Trung Quốc)",
+      "msc_total_amount": 76594,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): L(+)-Acid ascorbic Merck (Chai 100g) trúng thầu 6.382.800 đ/1.08 = 5.910.000 đ -> 59.100 đ/gam"
     },
     {
       "stt": 11,
@@ -524,12 +524,12 @@
       "quantity_with_waste": 11.5344,
       "waste_factor": 1.08,
       "param_count": 18,
-      "msc_unit_price": 191100.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 2204224,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 40000.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Brunei Methanol Company (Brunei)",
+      "msc_total_amount": 461376,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Methanol 99.8% trúng thầu 43.200 đ/1.08 = 40.000 đ/Lít"
     },
     {
       "stt": 32,
@@ -541,12 +541,12 @@
       "quantity_with_waste": 7.5816,
       "waste_factor": 1.08,
       "param_count": 10,
-      "msc_unit_price": 191100.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 1448844,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 40000.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Brunei Methanol Company (Brunei)",
+      "msc_total_amount": 303264,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Methanol 99.8% trúng thầu 43.200 đ/1.08 = 40.000 đ/Lít"
     },
     {
       "stt": 33,
@@ -558,12 +558,12 @@
       "quantity_with_waste": 22906.8216,
       "waste_factor": 1.08,
       "param_count": 214,
-      "msc_unit_price": 235.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 5383103,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 40.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Brunei Methanol Company (Brunei)",
+      "msc_total_amount": 916273,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Methanol 99.8% quy đổi 40.000 đ/1000ml = 40 đ/ml"
     },
     {
       "stt": 34,
@@ -575,12 +575,12 @@
       "quantity_with_waste": 1684.8,
       "waste_factor": 1.08,
       "param_count": 20,
-      "msc_unit_price": 235.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 395928,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 40.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Brunei Methanol Company (Brunei)",
+      "msc_total_amount": 67392,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Methanol 99.8% quy đổi 40.000 đ/1000ml = 40 đ/ml"
     },
     {
       "stt": 35,
@@ -609,12 +609,12 @@
       "quantity_with_waste": 8.64,
       "waste_factor": 1.08,
       "param_count": 2,
-      "msc_unit_price": 8330.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 71971,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 4780.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "NSI (Mỹ)",
+      "msc_total_amount": 41299,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Dung dịch chuẩn Amoni NSI (Chai 500ml) trúng thầu 2.581.200 đ/1.08 = 2.390.000 đ -> 4.780 đ/ml"
     },
     {
       "stt": 37,
@@ -711,12 +711,12 @@
       "quantity_with_waste": 417.312,
       "waste_factor": 1.08,
       "param_count": 15,
-      "msc_unit_price": 8330.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 3476209,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 1920.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Merck (Trung Quốc)",
+      "msc_total_amount": 801239,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Dung dịch chuẩn pH 4 & 10 Merck trúng thầu 669.600 đ và 1.404.000 đ -> 1.920 đ/ml"
     },
     {
       "stt": 43,
@@ -728,12 +728,12 @@
       "quantity_with_waste": 2008.8,
       "waste_factor": 1.08,
       "param_count": 24,
-      "msc_unit_price": 8330.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 16733304,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 1707.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Merck (Trung Quốc)",
+      "msc_total_amount": 3429022,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Dung dịch chuẩn pH 4, 7, 10 Merck trung bình 853.333 đ/chai 500ml -> 1.707 đ/ml"
     },
     {
       "stt": 44,
@@ -745,12 +745,12 @@
       "quantity_with_waste": 1.3824,
       "waste_factor": 1.08,
       "param_count": 4,
-      "msc_unit_price": 441000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 609638,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 853333.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Merck (Trung Quốc)",
+      "msc_total_amount": 1179648,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Dung dịch chuẩn pH Merck trúng thầu TB 921.600 đ/1.08 = 853.333 đ/chai"
     },
     {
       "stt": 45,
@@ -762,12 +762,12 @@
       "quantity_with_waste": 205.2,
       "waste_factor": 1.08,
       "param_count": 4,
-      "msc_unit_price": 274.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 56225,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 390.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Merck (Trung Quốc)",
+      "msc_total_amount": 80028,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Toluen làm sạch hệ thống Merck trúng thầu 421.200 đ/1.08 = 390.000 đ/Lít -> 390 đ/ml"
     },
     {
       "stt": 46,
@@ -779,12 +779,12 @@
       "quantity_with_waste": 205.2,
       "waste_factor": 1.08,
       "param_count": 4,
-      "msc_unit_price": 274.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 56225,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 1200.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Hanna (Romania)",
+      "msc_total_amount": 246240,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Dung dịch chuẩn DO Hanna trúng thầu 648.000 đ/1.08 = 600.000 đ/chai 500ml -> 1.200 đ/ml"
     },
     {
       "stt": 47,
@@ -813,12 +813,12 @@
       "quantity_with_waste": 0.2592,
       "waste_factor": 1.08,
       "param_count": 2,
-      "msc_unit_price": 1180.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 306,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 12700.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Merck (Trung Quốc)",
+      "msc_total_amount": 3292,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Hóa chất EDTA Merck 100g trúng thầu 1.371.600 đ/1.08 = 1.270.000 đ -> 12.700 đ/gam"
     },
     {
       "stt": 49,
@@ -830,12 +830,12 @@
       "quantity_with_waste": 0.648,
       "waste_factor": 1.08,
       "param_count": 2,
-      "msc_unit_price": 274.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 178,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 1270.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Merck (Trung Quốc)",
+      "msc_total_amount": 823,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Dung dịch EDTA quy đổi -> 1.270 đ/ml"
     },
     {
       "stt": 50,
@@ -847,12 +847,12 @@
       "quantity_with_waste": 1.5552,
       "waste_factor": 1.08,
       "param_count": 4,
-      "msc_unit_price": 1180.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 1835,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 6.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Vũ Hoàng (Việt Nam)",
+      "msc_total_amount": 9,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Sắt (III) Clorua FeCl3 40% trúng thầu 6.480 đ/1.08 = 6.000 đ/kg -> 6 đ/gam"
     },
     {
       "stt": 51,
@@ -864,12 +864,12 @@
       "quantity_with_waste": 0.311,
       "waste_factor": 1.08,
       "param_count": 4,
-      "msc_unit_price": 1180.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 367,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 6.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Vũ Hoàng (Việt Nam)",
+      "msc_total_amount": 2,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Sắt (III) Clorua FeCl3 40% trúng thầu 6.480 đ/1.08 = 6.000 đ/kg -> 6 đ/gam"
     },
     {
       "stt": 52,
@@ -1357,12 +1357,12 @@
       "quantity_with_waste": 1066.176,
       "waste_factor": 1.08,
       "param_count": 42,
-      "msc_unit_price": 314.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 334779,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 600.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Merck (Trung Quốc)",
+      "msc_total_amount": 639706,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Acid chlohydride 36-37% Merck 1000ml trúng thầu 648.000 đ/1.08 = 600.000 đ -> 600 đ/ml"
     },
     {
       "stt": 81,
@@ -1629,12 +1629,12 @@
       "quantity_with_waste": 7.2576,
       "waste_factor": 1.08,
       "param_count": 4,
-      "msc_unit_price": 830.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 6024,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 2480.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Merck (Trung Quốc)",
+      "msc_total_amount": 17999,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Dung dịch điện ly KCl 3M Merck trúng thầu 669.600 đ/1.08 = 620.000 đ/250ml -> 2.480 đ/gam"
     },
     {
       "stt": 97,
@@ -1765,12 +1765,12 @@
       "quantity_with_waste": 0.108,
       "waste_factor": 1.08,
       "param_count": 2,
-      "msc_unit_price": 14700.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 1588,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 9390000.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Quingdao Ruiming (Trung Quốc)",
+      "msc_total_amount": 1014120,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Bình khí Heli 99.99% trúng thầu 10.141.200 đ/1.08 = 9.390.000 đ/bình"
     },
     {
       "stt": 105,
@@ -1782,12 +1782,12 @@
       "quantity_with_waste": 0.108,
       "waste_factor": 1.08,
       "param_count": 2,
-      "msc_unit_price": 14700.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 1588,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 20020000.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Air Liquide (Việt Nam)",
+      "msc_total_amount": 2162160,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Khí Hydrogen Ultra High Purity Air Liquide trúng thầu 21.621.600 đ/1.08 = 20.020.000 đ/bình"
     },
     {
       "stt": 106,
@@ -1799,12 +1799,12 @@
       "quantity_with_waste": 0.108,
       "waste_factor": 1.08,
       "param_count": 2,
-      "msc_unit_price": 14700.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 1588,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 300000.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Sovigaz (Việt Nam)",
+      "msc_total_amount": 32400,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Khí Nitơ 99.99% Sovigaz trúng thầu 324.000 đ/1.08 = 300.000 đ/bình"
     },
     {
       "stt": 107,
@@ -1816,12 +1816,12 @@
       "quantity_with_waste": 0.7517,
       "waste_factor": 1.08,
       "param_count": 67,
-      "msc_unit_price": 14700.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 11050,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 5660000.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Cryotech (Việt Nam)",
+      "msc_total_amount": 4254622,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Bình khí Argon 99.9999% Cryotech trúng thầu 6.112.800 đ/1.08 = 5.660.000 đ/bình"
     },
     {
       "stt": 108,
@@ -1833,12 +1833,12 @@
       "quantity_with_waste": 0.5357,
       "waste_factor": 1.08,
       "param_count": 48,
-      "msc_unit_price": 14700.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 7875,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 4500000.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Sovigaz (Việt Nam)",
+      "msc_total_amount": 2410650,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Bình khí Acetylen 40 lít Sovigaz trúng thầu 4.860.000 đ/1.08 = 4.500.000 đ/bình"
     },
     {
       "stt": 109,
@@ -1850,12 +1850,12 @@
       "quantity_with_waste": 0.1555,
       "waste_factor": 1.08,
       "param_count": 2,
-      "msc_unit_price": 441000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 68576,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 11270000.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Cryotech (Việt Nam)",
+      "msc_total_amount": 1752485,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Bình khí CO+CO2 Cryotech trúng thầu 12.171.600 đ/1.08 = 11.270.000 đ/bình"
     },
     {
       "stt": 110,
@@ -1884,12 +1884,12 @@
       "quantity_with_waste": 0.1426,
       "waste_factor": 1.08,
       "param_count": 4,
-      "msc_unit_price": 441000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 62887,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 34390000.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "CSL (Ấn Độ)",
+      "msc_total_amount": 4904014,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Bình Khí NO CSL trúng thầu 37.141.200 đ/1.08 = 34.390.000 đ/bình"
     },
     {
       "stt": 112,
@@ -1901,12 +1901,12 @@
       "quantity_with_waste": 0.1555,
       "waste_factor": 1.08,
       "param_count": 2,
-      "msc_unit_price": 441000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 68576,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 9140000.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Calgaz (Anh)",
+      "msc_total_amount": 1421270,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Bình khí chuẩn Oxy Calgaz trúng thầu 9.871.200 đ/1.08 = 9.140.000 đ/bình"
     },
     {
       "stt": 113,
@@ -1918,12 +1918,12 @@
       "quantity_with_waste": 0.1555,
       "waste_factor": 1.08,
       "param_count": 2,
-      "msc_unit_price": 441000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 68576,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 27520000.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "CSL (Ấn Độ)",
+      "msc_total_amount": 4279360,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Bình và khí Span SO2 CSL trúng thầu 29.721.600 đ/1.08 = 27.520.000 đ/bình"
     },
     {
       "stt": 114,
@@ -2054,12 +2054,12 @@
       "quantity_with_waste": 47.52,
       "waste_factor": 1.08,
       "param_count": 6,
-      "msc_unit_price": 274.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 13020,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 590.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Merck (Trung Quốc)",
+      "msc_total_amount": 28037,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Dung dịch Amoniac 32% Merck trúng thầu 637.200 đ/1.08 = 590.000 đ/Lít -> 590 đ/ml"
     },
     {
       "stt": 122,
@@ -2122,12 +2122,12 @@
       "quantity_with_waste": 25.92,
       "waste_factor": 1.08,
       "param_count": 2,
-      "msc_unit_price": 1180.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 30586,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 11.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Jianghao (Trung Quốc)",
+      "msc_total_amount": 285,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Sodium Carbonate Na2CO3 trúng thầu 11.880 đ/1.08 = 11.000 đ/kg -> 11 đ/gam"
     },
     {
       "stt": 126,
@@ -2139,12 +2139,12 @@
       "quantity_with_waste": 0.7776,
       "waste_factor": 1.08,
       "param_count": 2,
-      "msc_unit_price": 1180.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 918,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 11.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Jianghao (Trung Quốc)",
+      "msc_total_amount": 9,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Sodium Carbonate Na2CO3 trúng thầu 11.880 đ/1.08 = 11.000 đ/kg -> 11 đ/gam"
     },
     {
       "stt": 127,
@@ -2377,12 +2377,12 @@
       "quantity_with_waste": 30.24,
       "waste_factor": 1.08,
       "param_count": 8,
-      "msc_unit_price": 147.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 4445,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 8.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Hoá Chất Biên Hoà (Việt Nam)",
+      "msc_total_amount": 242,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Nước Javen NaClO Biên Hòa trúng thầu 8.640 đ/1.08 = 8.000 đ/kg -> 8 đ/ml"
     },
     {
       "stt": 141,
@@ -2394,12 +2394,12 @@
       "quantity_with_waste": 116.64,
       "waste_factor": 1.08,
       "param_count": 7,
-      "msc_unit_price": 830.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 96811,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 26240.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Merck (Trung Quốc)",
+      "msc_total_amount": 3060634,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Natri Clorua NaCl Merck 250g trúng thầu 7.084.800 đ/1.08 = 6.560.000 đ -> 26.240 đ/gam"
     },
     {
       "stt": 142,
@@ -2411,12 +2411,12 @@
       "quantity_with_waste": 25.92,
       "waste_factor": 1.08,
       "param_count": 4,
-      "msc_unit_price": 830.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 21514,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 1080.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Merck (Trung Quốc)",
+      "msc_total_amount": 27994,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Natri hydroxit NaOH Merck 1000g trúng thầu 1.166.400 đ/1.08 = 1.080.000 đ -> 1.080 đ/gam"
     },
     {
       "stt": 143,
@@ -2428,12 +2428,12 @@
       "quantity_with_waste": 3623.184,
       "waste_factor": 1.08,
       "param_count": 106,
-      "msc_unit_price": 830.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 3007243,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 1080.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Merck (Trung Quốc)",
+      "msc_total_amount": 3913039,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Natri hydroxit NaOH Merck 1000g trúng thầu 1.166.400 đ/1.08 = 1.080.000 đ -> 1.080 đ/gam"
     },
     {
       "stt": 144,
@@ -2734,12 +2734,12 @@
       "quantity_with_waste": 1.1664,
       "waste_factor": 1.08,
       "param_count": 2,
-      "msc_unit_price": 215600.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
-      "msc_total_amount": 251476,
-      "note": "Hóa chất phân tích tiêu chuẩn Vimcerts/Vilas"
+      "msc_unit_price": 390000.0,
+      "msc_tbmt_code": "IB2600096765",
+      "msc_approval_date": "03/04/2026",
+      "msc_contractor": "Merck (Trung Quốc)",
+      "msc_total_amount": 454896,
+      "note": "KQLCNT Vĩnh Tân 4 IB2600096765 (VAT 8% -> chia 1.08): Toluen làm sạch hệ thống Merck trúng thầu 421.200 đ/1.08 = 390.000 đ/Lít"
     },
     {
       "stt": 162,

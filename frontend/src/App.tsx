@@ -16,6 +16,7 @@ import { Tab07_DonGiaVatLieu } from './tabs/Tab07_DonGiaVatLieu';
 import { Tab08_DonGiaDungCuThietBi } from './tabs/Tab08_DonGiaDungCuThietBi';
 import { Tab09_ChiPhiGianTiep } from './tabs/Tab09_ChiPhiGianTiep';
 import { Tab10_TongHopKinhPhi } from './tabs/Tab10_TongHopKinhPhi';
+import { ExcelSpreadsheetView } from './components/ExcelSpreadsheetView';
 import type { PaktItem, FilterState, PricingConfigData } from './types';
 
 export const App: React.FC = () => {
@@ -23,6 +24,7 @@ export const App: React.FC = () => {
   const [pricingConfig, setPricingConfig] = useState<PricingConfigData | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<number>(1);
+  const [viewMode, setViewMode] = useState<'excel' | 'dashboard'>('excel');
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState<boolean>(false);
   const [selectedDrawerItem, setSelectedDrawerItem] = useState<PaktItem | null>(null);
 
@@ -208,10 +210,15 @@ export const App: React.FC = () => {
   return (
     <div className="h-screen w-screen overflow-hidden flex flex-col bg-slate-950 text-slate-100 select-none">
       {/* 1. Fixed Header */}
-      <HeaderNav onRefresh={loadData} isLoading={isLoading} />
+      <HeaderNav onRefresh={loadData} isLoading={isLoading} viewMode={viewMode} onToggleViewMode={setViewMode} />
 
-      {/* 2. Middle Body: Sidebar + Main Content */}
-      <div className="flex-1 flex overflow-hidden">
+      {/* 2. Middle Body: Excel View vs Dashboard */}
+      {viewMode === 'excel' ? (
+        <div className="flex-1 overflow-hidden p-2 bg-[#2B579A]/15 flex flex-col">
+          <ExcelSpreadsheetView items={items} />
+        </div>
+      ) : (
+        <div className="flex-1 flex overflow-hidden">
         {/* Left Collapsible Sidebar */}
         <SidebarNav
           activeTab={activeTab}
@@ -317,6 +324,7 @@ export const App: React.FC = () => {
           </div>
         </main>
       </div>
+      )}
 
       {/* 3. Fixed Footer with Smart Pagination */}
       <FooterNav

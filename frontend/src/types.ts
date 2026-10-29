@@ -196,3 +196,27 @@ export interface EquipmentPriceItem {
   total_amount: number;
   note?: string;
 }
+
+export interface SeparateExpenseItem {
+  id: string;
+  name: string;
+  category: 'xay_dung_bxd' | 'cong_tac_phi' | 'thue_tau_bien' | 'van_chuyen_mau' | 'khac';
+  standard: string;
+  unit: string;
+  quantity: number;
+  unit_price: number;
+  total_amount: number;
+  method: string;
+  note?: string;
+}
+
+export interface OverheadConfigData {
+  general_overhead_rate: number;
+  taxable_income_rate: number;
+  contingency_rate: number;
+  vat_rate: number;
+  multiplier_integrated: number;
+  source?: string;
+  legal_basis?: string[];
+  separate_expenses?: SeparateExpenseItem[];
+}

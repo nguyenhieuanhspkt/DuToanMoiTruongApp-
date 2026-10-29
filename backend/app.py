@@ -83,6 +83,11 @@ def update_labor_pricing(config: Dict[str, Any]):
 def get_overhead_config():
     return adapter.load_overhead_config()
 
+@app.post("/api/overhead-config")
+def update_overhead_config(config: Dict[str, Any]):
+    adapter.save_overhead_config(config)
+    return {"status": "success", "message": "Updated overhead configuration", "data": config}
+
 @app.get("/api/tt20/sections")
 def get_tt20_sections():
     return adapter.get_tt20_sections_summary()

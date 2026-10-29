@@ -1,0 +1,65 @@
+{
+  "general_overhead_rate": 0.15,
+  "taxable_income_rate": 0.06,
+  "contingency_rate": 0.05,
+  "vat_rate": 0.08,
+  "multiplier_integrated": 1.3823,
+  "source": "Quyết định số 80/2026/QĐ-UBND ngày 19/10/2026 của UBND TP.HCM & Nghị định số 24/2024/NĐ-CP",
+  "legal_basis": [
+    "Khoản 4.5 Thông tư 20/2017/TT-BTNMT (Chi phí ngoài định mức tính riêng)",
+    "Quyết định số 80/2026/QĐ-UBND ngày 19/10/2026 của UBND TP. Hồ Chí Minh",
+    "Thông tư số 12/2021/TT-BXD của Bộ Xây dựng (Định mức dự toán xây dựng giàn giáo sàn thao tác)",
+    "Thông tư số 40/2017/TT-BTC của Bộ Tài chính (Chế độ công tác phí, lưu trú)",
+    "Điều 16 Nghị định số 24/2024/NĐ-CP (Tối thiểu 3 báo giá cạnh tranh cho thuê tàu biển & chuyển phát nhanh)"
+  ],
+  "separate_expenses": [
+    {
+      "id": "CPTR_001",
+      "name": "Giàn giáo, sàn thao tác & lỗ lấy mẫu khí thải ống khói lò hơi VT4",
+      "category": "xay_dung_bxd",
+      "standard": "Thông tư số 12/2021/TT-BXD Bộ Xây dựng & US-EPA Method 1",
+      "unit": "trọn gói/năm",
+      "quantity": 1.0,
+      "unit_price": 280000000,
+      "total_amount": 280000000,
+      "method": "Định mức Xây dựng (TT 12/2021/TT-BXD)",
+      "note": "Dựng giàn giáo trèo cao 60m-210m, gia công bích 4 inch, kéo điện tạm 220V/380V"
+    },
+    {
+      "id": "CPTR_002",
+      "name": "Công tác phí, vé máy bay & lưu trú chuyên gia quan trắc hiện trường",
+      "category": "cong_tac_phi",
+      "standard": "Thông tư số 40/2017/TT-BTC Bộ Tài chính & Quy chế EVN",
+      "unit": "đợt quan trắc",
+      "quantity": 16.0,
+      "unit_price": 12500000,
+      "total_amount": 200000000,
+      "method": "Định mức Tài chính (TT 40/2017/TT-BTC)",
+      "note": "16 đợt ngoại nghiệp/năm: Vé máy bay/tàu xe đoàn chuyên gia, phụ cấp lưu trú Tuy Phong"
+    },
+    {
+      "id": "CPTR_003",
+      "name": "Thuê tàu biển chuyên dụng khảo sát nước biển xa bờ bãi xỉ Vĩnh Tân",
+      "category": "thue_tau_bien",
+      "standard": "Khoản 2 Điều 16 Nghị định 24/2024/NĐ-CP (3 Báo giá cạnh tranh)",
+      "unit": "ngày tàu",
+      "quantity": 12.0,
+      "unit_price": 12000000,
+      "total_amount": 144000000,
+      "method": "03 Báo giá cạnh tranh dịch vụ biển địa phương",
+      "note": "Tàu công suất lớn đăng kiểm hàng hải, hải đồ GPS, khảo sát xa bờ khu vực bãi xỉ/kênh xả"
+    },
+    {
+      "id": "CPTR_004",
+      "name": "Vận chuyển mẫu lạnh hỏa tốc bảo quản chuyên dụng về phòng lab Vilas/Vimcerts",
+      "category": "van_chuyen_mau",
+      "standard": "Tiêu chuẩn bảo quản TCVN 6663 / ISO 5667 & Báo giá vận chuyển",
+      "unit": "chuyến chuyển phát",
+      "quantity": 32.0,
+      "unit_price": 2500000,
+      "total_amount": 80000000,
+      "method": "Báo giá đơn vị logistics chuyển phát chuyên dụng",
+      "note": "Thùng xốp đá gel hỏa tốc 2-6°C giao trong 24h đối với mẫu vi sinh, BOD, COD, kim loại"
+    }
+  ]
+}

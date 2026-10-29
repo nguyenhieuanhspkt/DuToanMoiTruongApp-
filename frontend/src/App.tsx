@@ -14,6 +14,7 @@ import { Tab05_ThietBi } from './tabs/Tab05_ThietBi';
 import { Tab06_DonGiaNhanCong } from './tabs/Tab06_DonGiaNhanCong';
 import { Tab07_DonGiaVatLieu } from './tabs/Tab07_DonGiaVatLieu';
 import { Tab08_DonGiaDungCuThietBi } from './tabs/Tab08_DonGiaDungCuThietBi';
+import { Tab09_ChiPhiGianTiep } from './tabs/Tab09_ChiPhiGianTiep';
 import type { PaktItem, FilterState, PricingConfigData } from './types';
 
 export const App: React.FC = () => {
@@ -288,6 +289,11 @@ export const App: React.FC = () => {
               <Tab08_DonGiaDungCuThietBi
                 paktItems={items}
                 onSelectDrawerItem={setSelectedDrawerItem}
+              />
+            ) : activeTab === 9 ? (
+              <Tab09_ChiPhiGianTiep
+                paktItems={items}
+                pricingConfig={pricingConfig}
               />
             ) : (
               <div className="flex-1 flex flex-col items-center justify-center p-8 text-center bg-slate-950">

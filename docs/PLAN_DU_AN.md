@@ -410,9 +410,17 @@ flowchart LR
       - Drawer tra cứu ngược danh sách thông số quan trắc sử dụng dụng cụ/thiết bị đó.
       - Nút Tải tệp Excel Tra Cứu 3 Sheet (`DANH_MUC_TRA_CUU_MUA_SAM_CONG_2026.xlsx`) và nút Lưu CSDL Backend/OneDrive.
     * Gắn kết hoàn thiện vào App Shell, Sidebar badge "158 DC + 72 TB", build Vite 100% 0 lỗi.
-  - [ ] **Tab 9: Chi phí Gián tiếp & Phân hệ Chi phí Ngoài Định Mức Tính Riêng (KẾ TIẾP)**:
-    * Hệ số chi phí gián tiếp $+38{,}23\%$ (Chi phí chung 15%, Thu nhập tính trước 6%, Dự phòng 5%, VAT 8%).
-    * Phân hệ 4 khoản chi phí ngoài định mức tính riêng theo Khoản 4.5 TT20 (Giàn giáo ống khói BXD, Đi lại TT40, Thuê tàu biển, Vận chuyển mẫu lạnh).
+  - [x] **Tab 9: Chi phí Gián tiếp & Phân hệ Chi phí Ngoài Định Mức Tính Riêng Khoản 4.5 TT20 (ĐÃ HOÀN THÀNH)**:
+    * **Hệ số chi phí gián tiếp tích hợp $\Phi = 1{,}3823$ ($+38{,}23\%$)**: Quản lý và tùy biến 4 tỷ lệ chuẩn: Chi phí quản lý chung ($15\%$), Thu nhập tính trước ($6\%$), Dự phòng phí ($5\%$), Thuế VAT ($8\%$).
+    * **Phân hệ 4 khoản chi phí ngoài định mức tính riêng theo Khoản 4.5 TT20**:
+      1. Giàn giáo, sàn thao tác & lỗ lấy mẫu khí thải ống khói lò hơi VT4 ($280\text{ tr đ}$ - Định mức TT 12/2021/TT-BXD).
+      2. Công tác phí, vé máy bay & lưu trú chuyên gia quan trắc ($200\text{ tr đ}$ - Thông tư 40/2017/TT-BTC & Quy chế EVN).
+      3. Thuê tàu biển chuyên dụng khảo sát nước biển xa bờ bãi xỉ Vĩnh Tân ($144\text{ tr đ}$ - 03 Báo giá cạnh tranh NĐ 24/2024).
+      4. Vận chuyển mẫu lạnh hỏa tốc bảo quản chuyên dụng về phòng lab ($80\text{ tr đ}$ - Logistics Vimcerts).
+    * **Giao diện `Tab09_ChiPhiGianTiep.tsx`**: Hỗ trợ 3 phân hệ trực quan (Cấu thành hệ số & ví dụ tính, Quản lý các khoản tính riêng kèm modal thêm/xóa/sửa, Thuyết minh căn cứ pháp lý), lưu CSDL backend & OneDrive.
+  - [ ] **Tab 10: Dashboard Tổng Hợp So Sánh 3 Kịch Bản & Engine Xuất Excel 10 Sheet (KẾ TIẾP - GIAI ĐOẠN 3)**:
+    * So sánh đa kịch bản: **PA1 (Định mức TT20)** vs **PA2 (3 Báo giá cạnh tranh NĐ 24/2024)** vs **PA3 (Hợp đồng số 71/2025/HĐ-DV)**.
+    * Engine sinh file Excel 10 Sheet động khép kín công thức kế thừa từ `01_Excel_Dinh_Muc_6_Bang`.
 
 ---
 

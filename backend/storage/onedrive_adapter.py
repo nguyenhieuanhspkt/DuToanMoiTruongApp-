@@ -105,15 +105,11 @@ class OneDriveAdapter:
     def load_overhead_config(self) -> Dict[str, Any]:
         target_path = self._resolve_read_path("overhead_config.json")
         if not os.path.exists(target_path):
-            default_overhead = {
-                "indirect_cost_rate": 0.3823,
-                "contingency_rate": 0.05,
-                "vat_rate": 0.08,
-                "source": "Văn bản số 5691/EVN-MTPTBV ngày 06/10/2026"
-            }
-            self._write_dual("overhead_config.json", default_overhead)
-            return default_overhead
+            return {}
         return AtomicWriter.read_json(target_path)
+
+    def save_overhead_config(self, config: Dict[str, Any]) -> None:
+        self._write_dual("overhead_config.json", config)
 
     def load_tt20_norm_database(self) -> Dict[str, Any]:
         target_path = self._resolve_read_path("tt20_norm_database.json")

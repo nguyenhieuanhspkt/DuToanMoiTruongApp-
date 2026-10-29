@@ -5,6 +5,251 @@ from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 from typing import Dict, Any, List
 
+def build_sheet_12(wb, pakt_items, mats_map, tools_map, eq_map, mat_items, tools_items, equip_items, font_title_15b, font_sub_11i, font_header_11b, font_sec_12b, font_data_11r, font_data_11b, fill_header_gray, fill_sub_gray, fill_total_pale, border_cell, border_total, FMT_CURRENCY, FMT_NORM, FMT_PCT):
+    """
+    File con thí nghiệm (testcon.py) chuyên trách Sheet 12 ('Đơn giá chi tiết').
+    Cơ chế: Tra cứu định danh (tên/mã) qua Python Map Lookup để sinh công thức link trực tiếp tọa độ cell.
+    """
+    ws_dgct = wb.create_sheet(title="Đơn giá chi tiết")
+    ws_dgct.views.sheetView[0].showGridLines = True
+    ws_dgct.append(["BẢNG ĐƠN GIÁ CHI TIẾT 1 ĐƠN VỊ CÔNG TÁC QUAN TRẮC MÔI TRƯỜNG"])
+    ws_dgct.append(["='Công trình'!A3"])
+    ws_dgct.append(["='Công trình'!A4"])
+    ws_dgct.append([])
+    ws_dgct.append([
+        "STT", "Mã hiệu đơn giá", "TT Vật tư", "Mã hiệu VL, NC, M",
+        "Tên công tác / Thành phần hao phí chi tiết", "Đơn vị", "Định mức", "Đơn giá (VNĐ)", "Hệ số", "Thành tiền (VNĐ)"
+    ])
+
+    curr_dgct_r = 6
+    map_dgct = {}
+
+    # Lập bản đồ định danh dòng (mapping) để trỏ trực tiếp đến cell tương ứng ở các sheet tổng hợp
+    vl_row_mapping = {str(m.get('name', '')).lower().strip(): idx_m for idx_m, m in enumerate(mat_items, start=7)}
+    nc_row_mapping = {"nc_ldkt": 7, "nc_ldpt": 8}
+    eq_row_mapping = {str(e.get('name', '')).lower().strip(): idx_e for idx_e, e in enumerate(equip_items, start=7)}
+    tools_row_mapping = {str(t.get('name', '')).lower().strip(): idx_t for idx_t, t in enumerate(tools_items, start=7)}
+
+    for idx, it in enumerate(pakt_items, start=1):
+        code_str = it.get("ma_gop", f"TT20_{idx:03d}")
+        name_str = it.get("thong_so", "Thông số quan trắc")
+        dvt_str = it.get("dvt", "mẫu")
+        core_code = it.get("code", f"P_{idx}")
+        tt20_data = it.get("tt20_data", {})
+
+        master_dgct_r = curr_dgct_r
+        ws_dgct.append([idx, code_str, "", "", name_str, dvt_str, "", "", "", ""])
+        curr_dgct_r += 1
+
+        mat_list, labor_list, tool_list, eq_list = [], [], [], []
+
+        for stage_key, stage_lbl in [('field', 'Ngoại nghiệp'), ('lab', 'Nội nghiệp'), ('single', 'Toàn phần')]:
+            sub = tt20_data.get(stage_key)
+            if not sub or not isinstance(sub, dict):
+                continue
+            nc_norm = sub.get('dinh_muc_cong')
+            nc_title = sub.get('dinh_bien') or f'Quan trắc viên ({stage_lbl})'
+            if nc_norm and float(nc_norm) > 0:
+                labor_list.append((nc_title, float(nc_norm), stage_lbl))
+            for m in sub.get('materials', []):
+                m_name = m.get('name', '').strip()
+                m_unit = m.get('unit', '').strip()
+                m_norm = float(m.get('norm') or 0.0)
+                if m_norm > 0:
+                    mat_list.append((m_name, m_unit, m_norm, stage_lbl))
+            for t in sub.get('tools', []):
+                raw_name = str(t.get('name') or '').strip()
+                raw_unit = str(t.get('unit') or '').strip()
+                raw_life = str(t.get('lifespan_months') or '').strip().lower()
+                t_norm = float(t.get('norm') or 0.0)
+                if raw_name.isdigit() or raw_name == "":
+                    t_name = raw_unit
+                    valid_units = ['cái', 'bộ', 'đôi', 'hộp', 'chiếc', 'dây', 'tấm', 'cuốn', 'bình', 'kw']
+                    t_unit = raw_life if raw_life in valid_units else 'cái'
+                else:
+                    t_name = raw_name
+                    t_unit = raw_unit or 'cái'
+                if t_norm > 0 and t_name:
+                    tool_list.append((t_name, t_unit, t_norm, stage_lbl))
+            for e in sub.get('equipment', []):
+                e_name = e.get('name', '').strip()
+                e_unit = e.get('unit', '').strip()
+                e_norm = float(e.get('norm') or 0.0)
+                if e_norm > 0:
+                    eq_list.append((e_name, e_unit, e_norm, stage_lbl))
+
+        # 1. Phần Vật liệu: Link trực tiếp cell đơn giá sang sheet 'Vật liệu'
+        vl_row = curr_dgct_r
+        if mat_list:
+            vl_start = curr_dgct_r + 1
+            ws_dgct.append(["", "", "", "", "Vật liệu", "", "", "", "", ""])
+            curr_dgct_r += 1
+            for m_idx, (m_name, m_unit, m_norm, stage_lbl) in enumerate(mat_list, 1):
+                target_row_vl = vl_row_mapping.get(m_name.lower().strip(), 7)
+                price_formula = f"='Vật liệu'!$F${target_row_vl}"
+                ws_dgct.append([
+                    "", f"VL_{core_code}", m_idx, f"VL_{m_idx:03d}", f" - {m_name} ({stage_lbl})", m_unit,
+                    m_norm, price_formula, 1.0, f"=ROUND(G{curr_dgct_r}*H{curr_dgct_r}*I{curr_dgct_r}, 0)"
+                ])
+                curr_dgct_r += 1
+            vl_end_main = curr_dgct_r - 1
+            ws_dgct.append([
+                "", "VL_KHAC", len(mat_list)+1, "VL_KHAC", " - Vật liệu phụ khác (8% VL chính)", "%",
+                "='Hệ số'!$C$11", "", 1.0, f"=ROUND(SUM(J{vl_start}:J{vl_end_main})*G{curr_dgct_r}, 0)"
+            ])
+            vl_end = curr_dgct_r
+            curr_dgct_r += 1
+            ws_dgct.cell(vl_row, 10).value = f"=ROUND(SUM(J{vl_start}:J{vl_end}), 0)"
+        else:
+            ws_dgct.append(["", "", "", "", "Vật liệu", "", "", "", "", 0])
+            curr_dgct_r += 1
+
+        # 2. Phần Nhân công: Link trực tiếp cell đơn giá sang sheet 'Nhân công'
+        nc_row = curr_dgct_r
+        if labor_list:
+            nc_start = curr_dgct_r + 1
+            ws_dgct.append(["", "", "", "", "Nhân công", "", "", "", "", ""])
+            curr_dgct_r += 1
+            for l_idx, (nc_title, nc_norm, stage_lbl) in enumerate(labor_list, 1):
+                is_pt = ("phổ thông" in nc_title.lower() or "phụ việc" in nc_title.lower())
+                target_row_nc = nc_row_mapping.get("nc_ldpt" if is_pt else "nc_ldkt", 7)
+                price_formula = f"='Nhân công'!$F${target_row_nc}"
+                ws_dgct.append([
+                    "", f"NC_{core_code}", l_idx, f"NC_{l_idx:02d}", f" - {nc_title} ({stage_lbl})", "công",
+                    nc_norm, price_formula, 1.0, f"=ROUND(G{curr_dgct_r}*H{curr_dgct_r}*I{curr_dgct_r}, 0)"
+                ])
+                curr_dgct_r += 1
+            nc_end = curr_dgct_r - 1
+            ws_dgct.cell(nc_row, 10).value = f"=ROUND(SUM(J{nc_start}:J{nc_end}), 0)"
+        else:
+            ws_dgct.append(["", "", "", "", "Nhân công", "", "", "", "", 0])
+            curr_dgct_r += 1
+
+        # 3. Phần Máy thi công & CCDC
+        m_row = curr_dgct_r
+        all_machinery = []
+        for t_name, t_unit, t_norm, stage_lbl in tool_list:
+            all_machinery.append((f"DC: {t_name}", t_unit, t_norm, stage_lbl, "Công cụ dụng cụ", tools_row_mapping))
+        for e_name, e_unit, e_norm, stage_lbl in eq_list:
+            all_machinery.append((f"M: {e_name}", e_unit, e_norm, stage_lbl, "Máy thi công", eq_row_mapping))
+
+        if all_machinery:
+            m_start = curr_dgct_r + 1
+            ws_dgct.append(["", "", "", "", "Máy thi công & CCDC", "", "", "", "", ""])
+            curr_dgct_r += 1
+            for m_idx, (m_name, m_unit, m_norm, stage_lbl, target_sheet, mapping_dict) in enumerate(all_machinery, 1):
+                clean_name = m_name.replace("DC: ", "").replace("M: ", "").lower().strip()
+                target_row_m = mapping_dict.get(clean_name, 7)
+                price_formula = f"='{target_sheet}'!$F${target_row_m}"
+                ws_dgct.append([
+                    "", f"M_{core_code}", m_idx, f"M_{m_idx:02d}", f" - {m_name} ({stage_lbl})", m_unit,
+                    m_norm, price_formula, 1.0, f"=ROUND(G{curr_dgct_r}*H{curr_dgct_r}*I{curr_dgct_r}, 0)"
+                ])
+                curr_dgct_r += 1
+            m_end = curr_dgct_r - 1
+            ws_dgct.cell(m_row, 10).value = f"=ROUND(SUM(J{m_start}:J{m_end}), 0)"
+        else:
+            ws_dgct.append(["", "", "", "", "Máy thi công & CCDC", "", "", "", "", 0])
+            curr_dgct_r += 1
+
+        # 4. Khối tổng hợp chi phí 1 mẫu
+        t_row = curr_dgct_r
+        ws_dgct.append(["", "", "", "", "Chi phí trực tiếp (VL + NC + M)", "T", "", "", "", f"=ROUND(J{vl_row}+J{nc_row}+J{m_row}, 0)"])
+        curr_dgct_r += 1
+
+        gt_row = curr_dgct_r
+        c_row = curr_dgct_r + 1
+        tt_row = curr_dgct_r + 2
+        tl_row = curr_dgct_r + 3
+        g_row = curr_dgct_r + 4
+        gtgt_row = curr_dgct_r + 5
+        gxd_row = curr_dgct_r + 6
+        lt_row = curr_dgct_r + 7
+        total_row = curr_dgct_r + 8
+
+        ws_dgct.append(["", "", "", "", "Chi phí gián tiếp (C + TT)", "GT", "", "", "", f"=J{c_row}+J{tt_row}"])
+        curr_dgct_r += 1
+        ws_dgct.append(["", "", "", "", "Chi phí chung (T x 20%)", "C", "='Hệ số'!$C$4", "", "", f"=ROUND(J{t_row}*G{c_row}, 0)"])
+        curr_dgct_r += 1
+        ws_dgct.append(["", "", "", "", "Chi phí công việc không xác định từ thiết kế", "TT", "='Hệ số'!$C$9", "", "", f"=ROUND(J{t_row}*G{tt_row}, 0)"])
+        curr_dgct_r += 1
+        ws_dgct.append(["", "", "", "", "Thu nhập chịu thuế tính trước", "TL", "='Hệ số'!$C$8", "", "", f"=ROUND((J{t_row}+J{gt_row})*G{tl_row}, 0)"])
+        curr_dgct_r += 1
+        ws_dgct.append(["", "", "", "", "Chi phí trước thuế", "G", "", "", "", f"=ROUND(J{t_row}+J{gt_row}+J{tl_row}, 0)"])
+        curr_dgct_r += 1
+        ws_dgct.append(["", "", "", "", "Thuế giá trị gia tăng (VAT 8%)", "GTGT", "='Hệ số'!$C$10", "", "", f"=ROUND(J{g_row}*G{gtgt_row}, 0)"])
+        curr_dgct_r += 1
+        ws_dgct.append(["", "", "", "", "CHI PHÍ SAU THUẾ", "Gxd", "", "", "", f"=ROUND(J{g_row}+J{gtgt_row}, 0)"])
+        curr_dgct_r += 1
+        ws_dgct.append(["", "", "", "", "Chi phí nhà tạm để ở và điều hành", "LT", "='Hệ số'!$C$6", "", "", f"=ROUND(J{g_row}*G{lt_row}*(1+'Hệ số'!$C$10), 0)"])
+        curr_dgct_r += 1
+        ws_dgct.append(["", "", "", "", "Tổng cộng đơn giá dự thầu 1 mẫu", "VNĐ", "", "", "", f"=ROUND(J{gxd_row}+J{lt_row}, 0)"])
+        curr_dgct_r += 1
+
+        ws_dgct.append([])
+        curr_dgct_r += 1
+
+        map_dgct[idx] = {
+            'row_vl': vl_row,
+            'row_nc': nc_row,
+            'row_m': m_row,
+            'row_t': t_row,
+            'row_total': total_row
+        }
+
+    # Định dạng Sheet Đơn giá chi tiết
+    ws_dgct.cell(1, 1).font = font_title_15b
+    ws_dgct.cell(2, 1).font = font_sub_11i
+    ws_dgct.cell(3, 1).font = font_sub_11i
+    for c in range(1, 11):
+        ws_dgct.cell(5, c).font = font_header_11b
+        ws_dgct.cell(5, c).fill = fill_header_gray
+        ws_dgct.cell(5, c).alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+
+    for r in range(6, curr_dgct_r):
+        col_e_val = str(ws_dgct.cell(r, 5).value or "")
+        col_a_val = ws_dgct.cell(r, 1).value
+        is_master = isinstance(col_a_val, int)
+        is_sub = col_e_val in ("Vật liệu", "Nhân công", "Máy thi công & CCDC", "Chi phí trực tiếp (VL + NC + M)")
+        is_total = "Tổng cộng đơn giá dự thầu" in col_e_val
+
+        for c in range(1, 11):
+            cell = ws_dgct.cell(r, c)
+            cell.font = font_data_11r
+            if cell.value is not None and str(cell.value) != "":
+                cell.border = border_cell
+            if is_master:
+                cell.font = font_data_11b
+                cell.fill = fill_header_gray
+            elif is_sub:
+                cell.font = font_data_11b
+            elif is_total:
+                cell.font = font_data_11b
+                cell.fill = fill_total_pale
+            if c in (7, 8, 10):
+                if c == 7 and isinstance(cell.value, float) and cell.value < 1.0:
+                    cell.number_format = FMT_PCT
+                elif c == 7:
+                    cell.number_format = FMT_NORM
+                else:
+                    cell.number_format = FMT_CURRENCY
+            if c in (1, 6, 9):
+                cell.alignment = Alignment(horizontal="center", vertical="center")
+
+    ws_dgct.column_dimensions['A'].width = 8
+    ws_dgct.column_dimensions['B'].width = 16
+    ws_dgct.column_dimensions['C'].width = 8
+    ws_dgct.column_dimensions['D'].width = 14
+    ws_dgct.column_dimensions['E'].width = 46
+    ws_dgct.column_dimensions['F'].width = 10
+    ws_dgct.column_dimensions['G'].width = 14
+    ws_dgct.column_dimensions['H'].width = 16
+    ws_dgct.column_dimensions['I'].width = 8
+    ws_dgct.column_dimensions['J'].width = 20
+
+    return map_dgct
+
+
 class ExcelF1FullReplicaExporter:
     """
     Engine xuất file Excel Dự toán Chi phí Quan trắc Môi trường
@@ -224,269 +469,46 @@ class ExcelF1FullReplicaExporter:
 
         # =============================================================
                 # =============================================================
-        # SHEET 12: 'Đơn giá chi tiết' (Chiết tính 2 tầng Micro & Macro cho toàn bộ 253 công tác)
+                # =============================================================
+        # SHEET 12: 'Đơn giá chi tiết' (Gọi build_sheet_12 chuyên trách)
         # =============================================================
-        ws_dgct = wb.create_sheet(title="Đơn giá chi tiết")
-        ws_dgct.views.sheetView[0].showGridLines = True
-        ws_dgct.append(["BẢNG ĐƠN GIÁ CHI TIẾT 1 ĐƠN VỊ CÔNG TÁC QUAN TRẮC MÔI TRƯỜNG"])
-        ws_dgct.append(["='Công trình'!A3"])
-        ws_dgct.append(["='Công trình'!A4"])
-        ws_dgct.append([])
-        ws_dgct.append([
-            "STT", "Mã hiệu đơn giá", "TT Vật tư", "Mã hiệu VL, NC, M",
-            "Tên công tác / Thành phần hao phí chi tiết", "Đơn vị", "Định mức", "Đơn giá (VNĐ)", "Hệ số", "Thành tiền (VNĐ)"
-        ])
+        mat_items = materials_db.get('items', []) if isinstance(materials_db, dict) else (materials_db or [])
+        tools_items = tools_db.get('items', []) if isinstance(tools_db, dict) else (tools_db or [])
+        equip_items = equipment_db.get('items', []) if isinstance(equipment_db, dict) else (equipment_db or [])
 
-        # Pre-build lookup dictionaries for fast mapping
-        mats_map = {}
-        for m in (materials_db.get('items', []) if isinstance(materials_db, dict) else materials_db):
-            mats_map[m.get('name', '').lower().strip()] = float(m.get('approved_price') or m.get('price_ktat') or 85000)
+        if not mat_items:
+            mat_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "material_pricing.json")
+            if os.path.exists(mat_path):
+                with open(mat_path, "r", encoding="utf-8") as f:
+                    mat_items = json.load(f).get("items", [])
+        if not tools_items:
+            tools_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "msc_tools.json")
+            if not os.path.exists(tools_path):
+                tools_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "msc_lookup_tools.json")
+            if os.path.exists(tools_path):
+                with open(tools_path, "r", encoding="utf-8") as f:
+                    tools_items = json.load(f).get("items", [])
+        if not equip_items:
+            equip_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "msc_equipment.json")
+            if not os.path.exists(equip_path):
+                equip_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "msc_lookup_equipment.json")
+            if os.path.exists(equip_path):
+                with open(equip_path, "r", encoding="utf-8") as f:
+                    equip_items = json.load(f).get("items", [])
 
-        tools_map = {}
-        for t in (tools_db.get('items', []) if isinstance(tools_db, dict) else tools_db):
-            tools_map[t.get('name', '').lower().strip()] = float(t.get('shift_unit_price') or 1458)
+        mats_map = {m.get('name', '').lower().strip(): float(m.get('approved_price') or m.get('price_ktat') or 85000) for m in mat_items}
+        tools_map = {t.get('name', '').lower().strip(): float(t.get('shift_unit_price') or 1458) for t in tools_items}
+        eq_map = {e.get('name', '').lower().strip(): float(e.get('shift_unit_rate') or 88800) for e in equip_items}
 
-        eq_map = {}
-        for e in (equipment_db.get('items', []) if isinstance(equipment_db, dict) else equipment_db):
-            eq_map[e.get('name', '').lower().strip()] = float(e.get('shift_unit_rate') or 88800)
+        map_dgct = build_sheet_12(
+            wb, pakt_items, mats_map, tools_map, eq_map, mat_items, tools_items, equip_items,
+            font_title_15b, font_sub_11i, font_header_11b, font_sec_12b, font_data_11r, font_data_11b,
+            fill_header_gray, fill_sub_gray, fill_total_pale, border_cell, border_total,
+            FMT_CURRENCY, FMT_NORM, FMT_PCT
+        )
+        ws_dgct = wb["Đơn giá chi tiết"]
 
-        curr_dgct_r = 6
-        map_dgct = {}
-
-        for idx, it in enumerate(pakt_items, start=1):
-            code_str = it.get("ma_gop", f"TT20_{idx:03d}")
-            name_str = it.get("thong_so", "Thông số quan trắc")
-            dvt_str = it.get("dvt", "mẫu")
-            core_code = it.get("code", f"P_{idx}")
-            tt20_data = it.get("tt20_data", {})
-
-            # 1. Master row of the công tác
-            master_dgct_r = curr_dgct_r
-            ws_dgct.append([idx, code_str, "", "", name_str, dvt_str, "", "", "", ""])
-            curr_dgct_r += 1
-
-            # Extract norms from field, lab, single
-            mat_list = []
-            labor_list = []
-            tool_list = []
-            eq_list = []
-
-            for stage_key, stage_lbl in [('field', 'Ngoại nghiệp'), ('lab', 'Nội nghiệp'), ('single', 'Toàn phần')]:
-                sub = tt20_data.get(stage_key)
-                if not sub or not isinstance(sub, dict):
-                    continue
-                nc_norm = sub.get('dinh_muc_cong')
-                nc_title = sub.get('dinh_bien') or f'Quan trắc viên ({stage_lbl})'
-                if nc_norm and float(nc_norm) > 0:
-                    labor_list.append((nc_title, float(nc_norm), stage_lbl))
-                for m in sub.get('materials', []):
-                    m_name = m.get('name', '').strip()
-                    m_unit = m.get('unit', '').strip()
-                    m_norm = float(m.get('norm') or 0.0)
-                    if m_norm > 0:
-                        mat_list.append((m_name, m_unit, m_norm, stage_lbl))
-                for t in sub.get('tools', []):
-                    raw_name = str(t.get('name') or '').strip()
-                    raw_unit = str(t.get('unit') or '').strip()
-                    raw_life = str(t.get('lifespan_months') or '').strip().lower()
-                    t_norm = float(t.get('norm') or 0.0)
-                    if raw_name.isdigit() or raw_name == "":
-                        t_name = raw_unit
-                        valid_units = ['cái', 'bộ', 'đôi', 'hộp', 'chiếc', 'dây', 'tấm', 'cuốn', 'bình', 'kw']
-                        t_unit = raw_life if raw_life in valid_units else 'cái'
-                    else:
-                        t_name = raw_name
-                        t_unit = raw_unit or 'cái'
-                    if t_norm > 0 and t_name:
-                        tool_list.append((t_name, t_unit, t_norm, stage_lbl))
-                for e in sub.get('equipment', []):
-                    e_name = e.get('name', '').strip()
-                    e_unit = e.get('unit', '').strip()
-                    e_norm = float(e.get('norm') or 0.0)
-                    if e_norm > 0:
-                        eq_list.append((e_name, e_unit, e_norm, stage_lbl))
-
-            # 2. Section Vật liệu
-            vl_row = curr_dgct_r
-            if mat_list:
-                vl_start = curr_dgct_r + 1
-                ws_dgct.append(["", "", "", "", "Vật liệu", "", "", "", "", ""])
-                curr_dgct_r += 1
-                for m_idx, (m_name, m_unit, m_norm, stage_lbl) in enumerate(mat_list, 1):
-                    price = mats_map.get(m_name.lower().strip(), 85000)
-                    ws_dgct.append([
-                        "", f"VL_{core_code}", m_idx, f"VL_{m_idx:03d}", f" - {m_name} ({stage_lbl})", m_unit,
-                        m_norm, price, 1.0, f"=ROUND(G{curr_dgct_r}*H{curr_dgct_r}*I{curr_dgct_r}, 0)"
-                    ])
-                    curr_dgct_r += 1
-                vl_end_main = curr_dgct_r - 1
-                # 8% Vật liệu phụ khác theo Khoản 4.4 TT20
-                ws_dgct.append([
-                    "", "VL_KHAC", len(mat_list)+1, "VL_KHAC", " - Vật liệu phụ khác (8% VL chính theo Khoản 4.4 TT20)", "%",
-                    "='Hệ số'!$C$11", "", 1.0, f"=ROUND(SUM(J{vl_start}:J{vl_end_main})*G{curr_dgct_r}, 0)"
-                ])
-                vl_end = curr_dgct_r
-                curr_dgct_r += 1
-                ws_dgct.cell(vl_row, 10).value = f"=ROUND(SUM(J{vl_start}:J{vl_end}), 0)"
-            else:
-                ws_dgct.append(["", "", "", "", "Vật liệu", "", "", "", "", 0])
-                curr_dgct_r += 1
-
-            # 3. Section Nhân công
-            nc_row = curr_dgct_r
-            if labor_list:
-                nc_start = curr_dgct_r + 1
-                ws_dgct.append(["", "", "", "", "Nhân công", "", "", "", "", ""])
-                curr_dgct_r += 1
-                for l_idx, (nc_title, nc_norm, stage_lbl) in enumerate(labor_list, 1):
-                    price_formula = "='Lương nhân công'!$E$9" if ("phổ thông" in nc_title.lower() or "phụ việc" in nc_title.lower()) else "='Lương nhân công'!$E$8"
-                    ws_dgct.append([
-                        "", f"NC_{core_code}", l_idx, f"NC_{l_idx:02d}", f" - {nc_title} ({stage_lbl})", "công",
-                        nc_norm, price_formula, 1.0, f"=ROUND(G{curr_dgct_r}*H{curr_dgct_r}*I{curr_dgct_r}, 0)"
-                    ])
-                    curr_dgct_r += 1
-                nc_end = curr_dgct_r - 1
-                ws_dgct.cell(nc_row, 10).value = f"=ROUND(SUM(J{nc_start}:J{nc_end}), 0)"
-            else:
-                ws_dgct.append(["", "", "", "", "Nhân công", "", "", "", "", 0])
-                curr_dgct_r += 1
-
-            # 4. Section CCDC & Máy thi công
-            m_row = curr_dgct_r
-            all_machinery = []
-            for t_name, t_unit, t_norm, stage_lbl in tool_list:
-                price = tools_map.get(t_name.lower().strip(), 1458)
-                all_machinery.append((f"DC: {t_name}", t_unit, t_norm, price, stage_lbl))
-            for e_name, e_unit, e_norm, stage_lbl in eq_list:
-                price = eq_map.get(e_name.lower().strip(), 85000)
-                all_machinery.append((f"M: {e_name}", e_unit, e_norm, price, stage_lbl))
-
-            if all_machinery:
-                m_start = curr_dgct_r + 1
-                ws_dgct.append(["", "", "", "", "Máy thi công & CCDC", "", "", "", "", ""])
-                curr_dgct_r += 1
-                for m_idx, (m_name, m_unit, m_norm, price, stage_lbl) in enumerate(all_machinery, 1):
-                    ws_dgct.append([
-                        "", f"M_{core_code}", m_idx, f"M_{m_idx:02d}", f" - {m_name} ({stage_lbl})", m_unit,
-                        m_norm, price, 1.0, f"=ROUND(G{curr_dgct_r}*H{curr_dgct_r}*I{curr_dgct_r}, 0)"
-                    ])
-                    curr_dgct_r += 1
-                m_end = curr_dgct_r - 1
-                ws_dgct.cell(m_row, 10).value = f"=ROUND(SUM(J{m_start}:J{m_end}), 0)"
-            else:
-                ws_dgct.append(["", "", "", "", "Máy thi công & CCDC", "", "", "", "", 0])
-                curr_dgct_r += 1
-
-            # 5. Khối chi phí vĩ mô 1 mẫu (Tier 2 Macro Costs)
-            t_row = curr_dgct_r
-            ws_dgct.append(["", "", "", "", "Chi phí trực tiếp (VL + NC + M)", "T", "", "", "", f"=ROUND(J{vl_row}+J{nc_row}+J{m_row}, 0)"])
-            curr_dgct_r += 1
-
-            gt_row = curr_dgct_r
-            c_row = curr_dgct_r + 1
-            tt_row = curr_dgct_r + 2
-            tl_row = curr_dgct_r + 3
-            g_row = curr_dgct_r + 4
-            gtgt_row = curr_dgct_r + 5
-            gxd_row = curr_dgct_r + 6
-            lt_row = curr_dgct_r + 7
-            total_row = curr_dgct_r + 8
-
-            ws_dgct.append(["", "", "", "", "Chi phí gián tiếp (C + TT)", "GT", "", "", "", f"=J{c_row}+J{tt_row}"])
-            curr_dgct_r += 1
-
-            ws_dgct.append(["", "", "", "", "Chi phí chung (T x 20%)", "C", "='Hệ số'!$C$4", "", "", f"=ROUND(J{t_row}*G{c_row}, 0)"])
-            curr_dgct_r += 1
-
-            ws_dgct.append(["", "", "", "", "Chi phí một số công việc không xác định (T x 2,5%)", "TT", "='Hệ số'!$C$9", "", "", f"=ROUND(J{t_row}*G{tt_row}, 0)"])
-            curr_dgct_r += 1
-
-            ws_dgct.append(["", "", "", "", "Thu nhập chịu thuế tính trước ((T + GT) x 5,5%)", "TL", "='Hệ số'!$C$8", "", "", f"=ROUND((J{t_row}+J{gt_row})*G{tl_row}, 0)"])
-            curr_dgct_r += 1
-
-            ws_dgct.append(["", "", "", "", "Chi phí xây dựng trước thuế (T + GT + TL)", "G", "", "", "", f"=ROUND(J{t_row}+J{gt_row}+J{tl_row}, 0)"])
-            curr_dgct_r += 1
-
-            ws_dgct.append(["", "", "", "", "Thuế giá trị gia tăng (G x 8%)", "GTGT", "='Hệ số'!$C$10", "", "", f"=ROUND(J{g_row}*G{gtgt_row}, 0)"])
-            curr_dgct_r += 1
-
-            ws_dgct.append(["", "", "", "", "CHI PHÍ SAU THUẾ (G + GTGT)", "Gxd", "", "", "", f"=ROUND(J{g_row}+J{gtgt_row}, 0)"])
-            curr_dgct_r += 1
-
-            ws_dgct.append(["", "", "", "", "Chi phí nhà tạm để ở và điều hành (G x 1,1% x (1 + 8%))", "LT", "='Hệ số'!$C$6", "", "", f"=ROUND(J{g_row}*G{lt_row}*(1+'Hệ số'!$C$10), 0)"])
-            curr_dgct_r += 1
-
-            ws_dgct.append(["", "", "", "", "Tổng cộng đơn giá dự thầu 1 mẫu (Gxd + LT)", "VNĐ", "", "", "", f"=ROUND(J{gxd_row}+J{lt_row}, 0)"])
-            curr_dgct_r += 1
-
-            # Dòng phân cách giữa các công tác
-            ws_dgct.append([])
-            curr_dgct_r += 1
-
-            map_dgct[idx] = {
-                'row_vl': vl_row,
-                'row_nc': nc_row,
-                'row_m': m_row,
-                'row_t': t_row,
-                'row_total': total_row
-            }
-
-        # Format Sheet Đơn giá chi tiết
-        ws_dgct.cell(1, 1).font = font_title_15b
-        ws_dgct.cell(2, 1).font = font_sub_11i
-        ws_dgct.cell(3, 1).font = font_sub_11i
-        for c in range(1, 11):
-            ws_dgct.cell(5, c).font = font_header_11b
-            ws_dgct.cell(5, c).fill = fill_header_gray
-            ws_dgct.cell(5, c).alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
-
-        for r in range(6, curr_dgct_r):
-            col_e_val = str(ws_dgct.cell(r, 5).value or "")
-            col_a_val = ws_dgct.cell(r, 1).value
-            is_master = isinstance(col_a_val, int)
-            is_sub = col_e_val in ("Vật liệu", "Nhân công", "Máy thi công & CCDC", "Chi phí trực tiếp (VL + NC + M)")
-            is_total = "Tổng cộng đơn giá dự thầu" in col_e_val
-
-            for c in range(1, 11):
-                cell = ws_dgct.cell(r, c)
-                cell.font = font_data_11r
-                if cell.value is not None and str(cell.value) != "":
-                    cell.border = border_cell
-
-                if is_master:
-                    cell.font = font_data_11b
-                    cell.fill = fill_header_gray
-                elif is_sub:
-                    cell.font = font_data_11b
-                    if col_e_val == "Chi phí trực tiếp (VL + NC + M)":
-                        cell.fill = fill_sub_gray
-                elif is_total:
-                    cell.font = font_data_11b
-                    cell.fill = fill_total_pale
-
-                if c in (7, 8, 10):
-                    if c == 7 and isinstance(cell.value, float) and cell.value < 1.0:
-                        cell.number_format = FMT_PCT2
-                    elif c == 7:
-                        cell.number_format = FMT_NORM
-                    else:
-                        cell.number_format = FMT_CURRENCY
-                if c in (1, 6, 9):
-                    cell.alignment = Alignment(horizontal="center", vertical="center")
-
-        ws_dgct.column_dimensions['A'].width = 8
-        ws_dgct.column_dimensions['B'].width = 16
-        ws_dgct.column_dimensions['C'].width = 8
-        ws_dgct.column_dimensions['D'].width = 14
-        ws_dgct.column_dimensions['E'].width = 46
-        ws_dgct.column_dimensions['F'].width = 10
-        ws_dgct.column_dimensions['G'].width = 14
-        ws_dgct.column_dimensions['H'].width = 16
-        ws_dgct.column_dimensions['I'].width = 8
-        ws_dgct.column_dimensions['J'].width = 20
-
-        # =============================================================
-        # SHEET 4: 'Công trình' (Bảng tiên lượng khối lượng 253 dòng PAKT)
+# SHEET 4: 'Công trình' (Bảng tiên lượng khối lượng 253 dòng PAKT)
         # =============================================================
         ws_ct = wb.create_sheet(title="Công trình")
         ws_ct.views.sheetView[0].showGridLines = True

@@ -20,8 +20,6 @@ eq = adapter.load_msc_equipment()
 overhead = adapter.load_overhead_config()
 
 out_file = os.path.join(root_dir, "backend", "data", "DU_TOAN_QUAN_TRAC_MOI_TRUONG_CHUAN_F1_100PCT.xlsx")
-pub_file = os.path.join(root_dir, "frontend", "public", "DU_TOAN_QUAN_TRAC_MOI_TRUONG_CHUAN_F1_100PCT.xlsx")
-onedrive_file = r"D:\onedrive_hieuna\OneDrive - EVN\Tổ Thẩm định\Hiếu\2026_DuToanMoiTruongApp\exports\DU_TOAN_QUAN_TRAC_MOI_TRUONG_CHUAN_F1_100PCT.xlsx"
 
 print(f"Generating 100% F1 Replica Workbook for EVN Vinh Tan 4 ({len(items)} items)...")
 ExcelF1FullReplicaExporter.export_workbook(
@@ -48,28 +46,4 @@ try:
 except Exception as e:
     print(f"Notice: Formula evaluation skipped ({e}).")
 
-shutil.copy2(out_file, pub_file)
-print(f"Copied to public: {pub_file}")
-
-targets = [
-    onedrive_file,
-    r"D:\onedrive_hieuna\OneDrive - EVN\Tổ Thẩm định\Năm 2026\Thẩm định 345_hieuna\DU_TOAN_QUAN_TRAC_MOI_TRUONG_CHUAN_F1_100PCT.xlsx",
-    r"D:\onedrive_hieuna\OneDrive - EVN\Tổ Thẩm định\Năm 2026\Thẩm định 345_hieuna\Thông tư 20\So_Hoa_Tung_Hoc_Phan\DU_TOAN_QUAN_TRAC_MOI_TRUONG_CHUAN_F1_100PCT.xlsx"
-]
-
-for target in targets:
-    try:
-        if os.path.exists(os.path.dirname(target)):
-            shutil.copy2(out_file, target)
-            print(f"Copied to: {target}")
-    except PermissionError:
-        alt = target.replace('.xlsx', '_CapNhatMoi.xlsx')
-        try:
-            shutil.copy2(out_file, alt)
-            print(f"File chính đang mở trong Excel, đã lưu bản cập nhật tại: {alt}")
-        except Exception as e:
-            print(f"Warning: {e}")
-    except Exception as e:
-        print(f"Error copying to {target}: {e}")
-
-print(f"Generated successfully: {out_file} (Size: {os.path.getsize(out_file):,} bytes)")
+print(f"Generated successfully at data folder: {out_file} (Size: {os.path.getsize(out_file):,} bytes)")

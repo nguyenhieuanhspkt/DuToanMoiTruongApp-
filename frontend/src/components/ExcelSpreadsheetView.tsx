@@ -42,12 +42,12 @@ export const ExcelSpreadsheetView: React.FC<ExcelSpreadsheetViewProps> = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(100);
 
-  // Load workbook from public folder
+  // Load workbook from backend data
   const loadWorkbook = useCallback(async () => {
     setLoading(true);
     setLoadError(null);
     try {
-      const response = await fetch('/DU_TOAN_QUAN_TRAC_MOI_TRUONG_CHUAN_F1_100PCT.xlsx?t=' + Date.now());
+      const response = await fetch('/api/export/excel-f1-replica?t=' + Date.now());
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: Không thể tải file Excel từ server`);
       }
@@ -338,7 +338,7 @@ export const ExcelSpreadsheetView: React.FC<ExcelSpreadsheetViewProps> = () => {
 
           {/* Download Original XLSX */}
           <a
-            href="/DU_TOAN_QUAN_TRAC_MOI_TRUONG_CHUAN_F1_100PCT.xlsx"
+            href="/api/export/excel-f1-replica"
             download="DU_TOAN_QUAN_TRAC_MOI_TRUONG_CHUAN_F1_100PCT.xlsx"
             className="flex items-center space-x-1 px-2.5 py-1 bg-emerald-700 hover:bg-emerald-800 text-white rounded font-medium shadow-sm transition-colors"
           >

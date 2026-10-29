@@ -132,6 +132,10 @@ export interface MaterialPriceItem {
   price_hd71: number;
   approved_price: number;
   approval_basis: string;
+  msc_unit_price?: number;
+  msc_tbmt_code?: string;
+  msc_approval_date?: string;
+  msc_contractor?: string;
   note?: string;
 }
 
@@ -147,4 +151,48 @@ export interface MaterialPricingMetadata {
 export interface MaterialPricingDatabase {
   metadata: MaterialPricingMetadata;
   items: MaterialPriceItem[];
+}
+
+export interface ToolPriceItem {
+  stt: number;
+  id: string;
+  name: string;
+  unit: string;
+  lifespan_months: number;
+  standard_shifts: number;
+  minor_factor: number;
+  total_shifts: number;
+  param_count: number;
+  msc_original_price: number;
+  msc_tbmt_code: string;
+  msc_approval_date: string;
+  msc_contractor: string;
+  shift_unit_price: number;
+  total_amount: number;
+  note?: string;
+}
+
+export interface EquipmentPriceItem {
+  stt: number;
+  id: string;
+  name: string;
+  unit: string;
+  spec: string;
+  power_kw: number;
+  stage: string;
+  annual_shifts: number;
+  deprec_years: number;
+  total_shifts: number;
+  total_kwh: number;
+  param_count: number;
+  msc_original_price: number;
+  msc_tbmt_code: string;
+  msc_approval_date: string;
+  msc_contractor: string;
+  deprec_per_shift: number;
+  maint_per_shift: number;
+  power_cost_per_shift: number;
+  shift_unit_rate: number;
+  total_amount: number;
+  note?: string;
 }

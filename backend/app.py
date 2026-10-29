@@ -129,6 +129,34 @@ def update_material_pricing(data: Dict[str, Any]):
     adapter.save_material_pricing(data)
     return {"status": "success", "message": "Updated material pricing successfully", "total_items": len(data.get("items", []))}
 
+
+@app.get("/api/msc-lookup/tools")
+def get_msc_tools():
+    return adapter.load_msc_tools()
+
+@app.post("/api/msc-lookup/tools")
+def update_msc_tools(data: Dict[str, Any]):
+    adapter.save_msc_tools(data)
+    return {"status": "success", "message": "Updated MSC tools pricing", "total": len(data.get("items", []))}
+
+@app.get("/api/msc-lookup/equipment")
+def get_msc_equipment():
+    return adapter.load_msc_equipment()
+
+@app.post("/api/msc-lookup/equipment")
+def update_msc_equipment(data: Dict[str, Any]):
+    adapter.save_msc_equipment(data)
+    return {"status": "success", "message": "Updated MSC equipment pricing", "total": len(data.get("items", []))}
+
+@app.get("/api/msc-lookup/materials")
+def get_msc_materials():
+    return adapter.load_msc_materials()
+
+@app.post("/api/msc-lookup/materials")
+def update_msc_materials(data: Dict[str, Any]):
+    adapter.save_msc_materials(data)
+    return {"status": "success", "message": "Updated MSC materials pricing", "total": len(data.get("items", []))}
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("backend.app:app", host="127.0.0.1", port=8000, reload=True)

@@ -17,6 +17,8 @@ export const Tab07_DonGiaVatLieu: React.FC<Tab07DonGiaVatLieuProps> = ({ paktIte
   const [isSaving, setIsSaving] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [viewMode, setViewMode] = useState<'quotes' | 'msc'>('quotes');
+  const [statusFilter, setStatusFilter] = useState<'all' | 'filled' | 'pending'>('all');
   const [selectedMaterialForDetail, setSelectedMaterialForDetail] = useState<MaterialPriceItem | null>(null);
   const [saveToast, setSaveToast] = useState<string | null>(null);
 
@@ -46,7 +48,7 @@ export const Tab07_DonGiaVatLieu: React.FC<Tab07DonGiaVatLieuProps> = ({ paktIte
     fetchPricing();
   }, [fetchPricing]);
 
-  // 2. Cập nhật đơn giá duyệt cục bộ
+  // 2. Cập nhật đơn giá & trường Mua sắm công cục bộ
   const handleUpdatePrice = (id: string, newPrice: number) => {
     setItems(prev => prev.map(item => {
       if (item.id === id) {
@@ -55,6 +57,21 @@ export const Tab07_DonGiaVatLieu: React.FC<Tab07DonGiaVatLieuProps> = ({ paktIte
           approved_price: Math.max(0, newPrice),
           approval_basis: 'Điều chỉnh thẩm định trực tiếp'
         };
+      }
+      return item;
+    }));
+  };
+
+  const handleUpdateMscField = (id: string, field: keyof MaterialPriceItem, value: any) => {
+    setItems(prev => prev.map(item => {
+      if (item.id === id) {
+        const updated = { ...item, [field]: value };
+        if (field === 'msc_unit_price') {
+          updated.msc_unit_price = Math.max(0, Number(value) || 0);
+          updated.approved_price = updated.msc_unit_price;
+          updated.approval_basis = 'Tra cứu kết quả LCNT trên Hệ thống Mua sắm công';
+        }
+        return updated;
       }
       return item;
     }));
@@ -127,16 +144,19 @@ export const Tab07_DonGiaVatLieu: React.FC<Tab07DonGiaVatLieuProps> = ({ paktIte
   const filteredList = useMemo(() => {
     return items.filter(it => {
       if (selectedCategory !== 'all' && it.category !== selectedCategory) return false;
+      if (statusFilter === 'filled' && (!it.msc_tbmt_code || !it.msc_tbmt_code.trim())) return false;
+      if (statusFilter === 'pending' && it.msc_tbmt_code && it.msc_tbmt_code.trim()) return false;
       if (searchQuery.trim()) {
         const q = searchQuery.trim().toLowerCase();
         const mName = it.name.toLowerCase().includes(q);
         const mUnit = it.unit.toLowerCase().includes(q);
         const mId = it.id.toLowerCase().includes(q);
-        if (!mName && !mUnit && !mId) return false;
+        const mTbmt = (it.msc_tbmt_code || '').toLowerCase().includes(q);
+        if (!mName && !mUnit && !mId && !mTbmt) return false;
       }
       return true;
     });
-  }, [items, selectedCategory, searchQuery]);
+  }, [items, selectedCategory, statusFilter, searchQuery]);
 
   // 6. Tính toán tổng hợp KPI toàn bộ danh mục vật tư
   const kpis = useMemo(() => {
@@ -274,6 +294,58 @@ export const Tab07_DonGiaVatLieu: React.FC<Tab07DonGiaVatLieuProps> = ({ paktIte
             <option value="vat_tu_tieu_hao">Vật tư tiêu hao / Phin lọc</option>
             <option value="thong_dung">Vật tư thông dụng & Bảo quản</option>
           </select>
+
+          {/* Status Filter for Public Procurement */}
+          {viewMode === 'msc' && (
+            <div className="flex bg-slate-950 p-1 rounded-lg border border-slate-800 text-xs">
+              <button
+                onClick={() => setStatusFilter('all')}
+                className={`px-2 py-0.5 rounded ${statusFilter === 'all' ? 'bg-slate-800 text-white font-bold' : 'text-slate-400 hover:text-white'}`}
+              >
+                Tất cả
+              </button>
+              <button
+                onClick={() => setStatusFilter('filled')}
+                className={`px-2 py-0.5 rounded ${statusFilter === 'filled' ? 'bg-emerald-950 text-emerald-300 font-bold border border-emerald-800/60' : 'text-slate-400 hover:text-white'}`}
+              >
+                Đã có mã MSC
+              </button>
+              <button
+                onClick={() => setStatusFilter('pending')}
+                className={`px-2 py-0.5 rounded ${statusFilter === 'pending' ? 'bg-amber-950 text-amber-300 font-bold border border-amber-800/60' : 'text-slate-400 hover:text-white'}`}
+              >
+                Chưa tra cứu
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Mode Toggle & Public Procurement */}
+        <div className="flex items-center space-x-2 text-xs">
+          <div className="flex bg-slate-950 p-1 rounded-lg border border-slate-700 font-semibold">
+            <button
+              onClick={() => setViewMode('quotes')}
+              className={`px-2.5 py-1 rounded transition ${viewMode === 'quotes' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-400 hover:text-white'}`}
+            >
+              3 Báo Giá
+            </button>
+            <button
+              onClick={() => setViewMode('msc')}
+              className={`px-2.5 py-1 rounded transition ${viewMode === 'msc' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-400 hover:text-white'}`}
+            >
+              Mua Sắm Công
+            </button>
+          </div>
+
+          <a
+            href="/DANH_MUC_TRA_CUU_MUA_SAM_CONG_2026.xlsx"
+            download="DANH_MUC_TRA_CUU_MUA_SAM_CONG_2026.xlsx"
+            className="px-2.5 py-1.5 bg-blue-900/40 hover:bg-blue-800/60 text-blue-200 border border-blue-700/50 rounded-lg font-semibold transition active:scale-95 flex items-center space-x-1"
+            title="Tải tệp Excel tra cứu 3 Sheet"
+          >
+            <FileSpreadsheet className="w-3.5 h-3.5 text-blue-400" />
+            <span>Tải Excel</span>
+          </a>
         </div>
 
         {/* Action Buttons: Apply Presets & Save */}
@@ -402,20 +474,27 @@ export const Tab07_DonGiaVatLieu: React.FC<Tab07DonGiaVatLieuProps> = ({ paktIte
               <th className="py-2 px-2 w-16 text-center">ĐVT</th>
               <th className="py-2 px-3 w-28 text-right tabular-nums border-r border-slate-800">Tổng Nhu Cầu</th>
 
-              {/* Quotes */}
-              <th className="py-2 px-2.5 w-24 text-right bg-slate-900/50 text-slate-400 tabular-nums">KTAT Đề xuất</th>
-              <th className="py-2 px-2.5 w-24 text-right bg-blue-950/20 text-slate-300 tabular-nums">Báo giá 1</th>
-              <th className="py-2 px-2.5 w-24 text-right bg-blue-950/20 text-slate-300 tabular-nums">Báo giá 2</th>
-              <th className="py-2 px-2.5 w-24 text-right bg-blue-950/20 text-slate-300 tabular-nums">Báo giá 3</th>
-              <th className="py-2 px-2.5 w-24 text-right bg-purple-950/20 text-purple-300 tabular-nums border-r border-slate-800">HĐ 71/2025</th>
-
-              {/* Approved Price & Totals */}
-              <th className="py-2 px-3 w-32 text-right bg-emerald-950/20 text-emerald-300 tabular-nums">ĐG Duyệt (đ)</th>
-              <th className="py-2 px-3 min-w-[160px] bg-emerald-950/20 text-slate-300">Căn cứ Thẩm định</th>
-              <th className="py-2 px-3 w-28 text-right bg-emerald-950/20 text-slate-400 tabular-nums">Tiền gốc</th>
-              <th className="py-2 px-3 w-32 text-right bg-emerald-950/20 text-emerald-300 tabular-nums font-black">
-                +8% TT20 (đ)
-              </th>
+              {viewMode === 'quotes' ? (
+                <>
+                  <th className="py-2 px-2.5 w-24 text-right bg-slate-900/50 text-slate-400 tabular-nums">KTAT Đề xuất</th>
+                  <th className="py-2 px-2.5 w-24 text-right bg-blue-950/20 text-slate-300 tabular-nums">Báo giá 1</th>
+                  <th className="py-2 px-2.5 w-24 text-right bg-blue-950/20 text-slate-300 tabular-nums">Báo giá 2</th>
+                  <th className="py-2 px-2.5 w-24 text-right bg-blue-950/20 text-slate-300 tabular-nums">Báo giá 3</th>
+                  <th className="py-2 px-2.5 w-24 text-right bg-purple-950/20 text-purple-300 tabular-nums border-r border-slate-800">HĐ 71/2025</th>
+                  <th className="py-2 px-3 w-32 text-right bg-emerald-950/20 text-emerald-300 tabular-nums">ĐG Duyệt (đ)</th>
+                  <th className="py-2 px-3 min-w-[160px] bg-emerald-950/20 text-slate-300">Căn cứ Thẩm định</th>
+                  <th className="py-2 px-3 w-28 text-right bg-emerald-950/20 text-slate-400 tabular-nums">Tiền gốc</th>
+                  <th className="py-2 px-3 w-32 text-right bg-emerald-950/20 text-emerald-300 tabular-nums font-black">+8% TT20 (đ)</th>
+                </>
+              ) : (
+                <>
+                  <th className="py-2 px-3 w-36 text-right bg-blue-950/40 text-blue-200 tabular-nums border-r border-slate-800">Đơn Giá MSC (đ)</th>
+                  <th className="py-2 px-2 w-32 text-slate-300">Mã TBMT / KQLCNT</th>
+                  <th className="py-2 px-2 w-28 text-slate-300">Ngày Duyệt</th>
+                  <th className="py-2 px-2 min-w-[160px] text-slate-300">Đơn Vị Trúng Thầu</th>
+                  <th className="py-2 px-3 w-36 text-right bg-emerald-950/30 text-emerald-300 tabular-nums font-black">+8% TT20 Thành Tiền (đ)</th>
+                </>
+              )}
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-800 text-slate-300 font-mono text-[11px]">
@@ -448,43 +527,84 @@ export const Tab07_DonGiaVatLieu: React.FC<Tab07DonGiaVatLieuProps> = ({ paktIte
                   </td>
 
                   {/* Multi-source quotes */}
-                  <td className="py-2 px-2.5 text-right text-slate-400 tabular-nums bg-slate-900/30">
-                    {item.price_ktat.toLocaleString('vi-VN')}
-                  </td>
-                  <td className="py-2 px-2.5 text-right text-slate-300 tabular-nums bg-blue-950/10">
-                    {item.quote_1.toLocaleString('vi-VN')}
-                  </td>
-                  <td className="py-2 px-2.5 text-right text-slate-300 tabular-nums bg-blue-950/10">
-                    {item.quote_2.toLocaleString('vi-VN')}
-                  </td>
-                  <td className="py-2 px-2.5 text-right text-slate-300 tabular-nums bg-blue-950/10">
-                    {item.quote_3.toLocaleString('vi-VN')}
-                  </td>
-                  <td className="py-2 px-2.5 text-right text-purple-300 tabular-nums bg-purple-950/10 border-r border-slate-800">
-                    {item.price_hd71.toLocaleString('vi-VN')}
-                  </td>
-
-                  {/* Approved Price Input */}
-                  <td className="py-1 px-2 text-right bg-emerald-950/10">
-                    <input
-                      type="number"
-                      value={item.approved_price}
-                      onChange={(e) => handleUpdatePrice(item.id, Number(e.target.value))}
-                      className="w-full text-right bg-slate-800 border border-slate-700 rounded px-2 py-1 text-emerald-300 font-bold font-mono focus:border-emerald-500 outline-none"
-                    />
-                  </td>
-
-                  <td className="py-2 px-3 text-slate-400 font-sans text-[10px] truncate max-w-[160px] bg-emerald-950/10" title={item.approval_basis}>
-                    {item.approval_basis}
-                  </td>
-
-                  <td className="py-2 px-3 text-right text-slate-400 tabular-nums bg-emerald-950/10">
-                    {Math.round(lineRaw).toLocaleString('vi-VN')}
-                  </td>
-
-                  <td className="py-2 px-3 text-right font-black text-emerald-300 tabular-nums bg-emerald-950/20">
-                    {Math.round(lineWithWaste).toLocaleString('vi-VN')} đ
-                  </td>
+                  {viewMode === 'quotes' ? (
+                    <>
+                      <td className="py-2 px-2.5 text-right text-slate-400 tabular-nums bg-slate-900/30">
+                        {item.price_ktat.toLocaleString('vi-VN')}
+                      </td>
+                      <td className="py-2 px-2.5 text-right text-slate-300 tabular-nums bg-blue-950/10">
+                        {item.quote_1.toLocaleString('vi-VN')}
+                      </td>
+                      <td className="py-2 px-2.5 text-right text-slate-300 tabular-nums bg-blue-950/10">
+                        {item.quote_2.toLocaleString('vi-VN')}
+                      </td>
+                      <td className="py-2 px-2.5 text-right text-slate-300 tabular-nums bg-blue-950/10">
+                        {item.quote_3.toLocaleString('vi-VN')}
+                      </td>
+                      <td className="py-2 px-2.5 text-right text-purple-300 tabular-nums bg-purple-950/10 border-r border-slate-800">
+                        {item.price_hd71.toLocaleString('vi-VN')}
+                      </td>
+                      <td className="py-1 px-2 text-right bg-emerald-950/10">
+                        <input
+                          type="number"
+                          value={item.approved_price}
+                          onChange={(e) => handleUpdatePrice(item.id, Number(e.target.value))}
+                          className="w-full text-right bg-slate-800 border border-slate-700 rounded px-2 py-1 text-emerald-300 font-bold font-mono focus:border-emerald-500 outline-none"
+                        />
+                      </td>
+                      <td className="py-2 px-3 text-slate-400 font-sans text-[10px] truncate max-w-[160px] bg-emerald-950/10" title={item.approval_basis}>
+                        {item.approval_basis}
+                      </td>
+                      <td className="py-2 px-3 text-right text-slate-400 tabular-nums bg-emerald-950/10">
+                        {Math.round(lineRaw).toLocaleString('vi-VN')}
+                      </td>
+                      <td className="py-2 px-3 text-right font-black text-emerald-300 tabular-nums bg-emerald-950/20">
+                        {Math.round(lineWithWaste).toLocaleString('vi-VN')} đ
+                      </td>
+                    </>
+                  ) : (
+                    <>
+                      <td className="py-1 px-2 text-right bg-blue-950/20 border-r border-slate-800">
+                        <input
+                          type="number"
+                          value={item.msc_unit_price || item.approved_price || ''}
+                          onChange={(e) => handleUpdateMscField(item.id, 'msc_unit_price', e.target.value)}
+                          placeholder="0"
+                          className="w-full text-right bg-slate-900 border border-slate-700 rounded px-2 py-1 text-xs text-blue-200 font-bold focus:outline-none focus:border-blue-400"
+                        />
+                      </td>
+                      <td className="py-1 px-1.5">
+                        <input
+                          type="text"
+                          value={item.msc_tbmt_code || ''}
+                          onChange={(e) => handleUpdateMscField(item.id, 'msc_tbmt_code', e.target.value)}
+                          placeholder="Mã TBMT..."
+                          className="w-full bg-slate-900 border border-slate-800 rounded px-1.5 py-1 text-[11px] text-slate-300 font-mono focus:outline-none focus:border-emerald-500"
+                        />
+                      </td>
+                      <td className="py-1 px-1.5">
+                        <input
+                          type="text"
+                          value={item.msc_approval_date || ''}
+                          onChange={(e) => handleUpdateMscField(item.id, 'msc_approval_date', e.target.value)}
+                          placeholder="dd/mm/yyyy"
+                          className="w-full bg-slate-900 border border-slate-800 rounded px-1.5 py-1 text-[11px] text-slate-300 font-mono focus:outline-none focus:border-emerald-500"
+                        />
+                      </td>
+                      <td className="py-1 px-1.5">
+                        <input
+                          type="text"
+                          value={item.msc_contractor || ''}
+                          onChange={(e) => handleUpdateMscField(item.id, 'msc_contractor', e.target.value)}
+                          placeholder="Nhà thầu..."
+                          className="w-full bg-slate-900 border border-slate-800 rounded px-1.5 py-1 text-[11px] text-slate-300 focus:outline-none focus:border-emerald-500"
+                        />
+                      </td>
+                      <td className="py-2 px-3 text-right font-black text-emerald-400 tabular-nums bg-emerald-950/30">
+                        {Math.round(item.total_quantity_with_waste * (item.msc_unit_price || item.approved_price)).toLocaleString('vi-VN')} đ
+                      </td>
+                    </>
+                  )}
                 </tr>
               );
             })}

@@ -13,6 +13,7 @@ import { Tab04_DungCu } from './tabs/Tab04_DungCu';
 import { Tab05_ThietBi } from './tabs/Tab05_ThietBi';
 import { Tab06_DonGiaNhanCong } from './tabs/Tab06_DonGiaNhanCong';
 import { Tab07_DonGiaVatLieu } from './tabs/Tab07_DonGiaVatLieu';
+import { Tab08_DonGiaDungCuThietBi } from './tabs/Tab08_DonGiaDungCuThietBi';
 import type { PaktItem, FilterState, PricingConfigData } from './types';
 
 export const App: React.FC = () => {
@@ -280,6 +281,11 @@ export const App: React.FC = () => {
               />
             ) : activeTab === 7 ? (
               <Tab07_DonGiaVatLieu
+                paktItems={items}
+                onSelectDrawerItem={setSelectedDrawerItem}
+              />
+            ) : activeTab === 8 ? (
+              <Tab08_DonGiaDungCuThietBi
                 paktItems={items}
                 onSelectDrawerItem={setSelectedDrawerItem}
               />

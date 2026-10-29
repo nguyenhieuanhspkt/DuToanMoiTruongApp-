@@ -159,3 +159,30 @@ class OneDriveAdapter:
 
     def save_material_pricing(self, pricing_db: Dict[str, Any]) -> None:
         self._write_dual('material_pricing.json', pricing_db)
+
+    def load_msc_tools(self) -> Dict[str, Any]:
+        path = self._resolve_read_path('msc_lookup_tools.json')
+        if not os.path.exists(path):
+            return {'metadata': {'total': 0}, 'items': []}
+        return AtomicWriter.read_json(path)
+
+    def save_msc_tools(self, data: Dict[str, Any]) -> None:
+        self._write_dual('msc_lookup_tools.json', data)
+
+    def load_msc_equipment(self) -> Dict[str, Any]:
+        path = self._resolve_read_path('msc_lookup_equipment.json')
+        if not os.path.exists(path):
+            return {'metadata': {'total': 0}, 'items': []}
+        return AtomicWriter.read_json(path)
+
+    def save_msc_equipment(self, data: Dict[str, Any]) -> None:
+        self._write_dual('msc_lookup_equipment.json', data)
+
+    def load_msc_materials(self) -> Dict[str, Any]:
+        path = self._resolve_read_path('msc_lookup_materials.json')
+        if not os.path.exists(path):
+            return {'metadata': {'total': 0}, 'items': []}
+        return AtomicWriter.read_json(path)
+
+    def save_msc_materials(self, data: Dict[str, Any]) -> None:
+        self._write_dual('msc_lookup_materials.json', data)

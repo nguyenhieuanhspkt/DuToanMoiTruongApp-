@@ -400,12 +400,16 @@ flowchart LR
     * Chức năng gán giá nhanh hàng loạt (Min 3 Báo giá, Kế thừa HĐ 71, Bình quân 3 Báo giá) và sửa đơn giá trực tiếp.
     * Drawer xem chi tiết các thông số quan trắc sử dụng loại hóa chất/vật tư và khối lượng phân bổ.
     * Đồng bộ 2-tier dual write (Repo backend + OneDrive) và frontend build Vite 100% 0 lỗi.
-  - [ ] **Tab 8: Đơn giá Dụng cụ & Ca máy Thiết bị (ĐANG TIẾN HÀNH - LẬP DANH MỤC TRA CỨU MUA SẮM CÔNG)**:
-    * **Lập 03 Bảng danh mục tra cứu Mua sắm công (`muasamcong.mpi.gov.vn`)**: Đã xuất ra `DANH_MUC_TRA_CUU_MUA_SAM_CONG_2026.xlsx` gồm 3 sheet:
-      1. Sheet 1: 173 loại vật liệu hóa chất (kèm số lượng +8% hao hụt, cột Mã TBMT, Ngày duyệt, Đơn giá MSC).
-      2. Sheet 2: 158 loại dụng cụ BHLĐ chuẩn bị tra cứu tìm Nguyên giá, tính đơn giá Ca theo niên hạn $22\text{ ca/tháng}$ và $+10\%$ dụng cụ phụ (Khoản 4.2 TT20).
-      3. Sheet 3: 72 loại máy móc, thiết bị đo/phân tích (14.169 ca máy) chuẩn bị tra cứu tìm Nguyên giá, tính khấu hao ca máy theo TT 45/2013 chia $250/200/500\text{ ca/năm}$ + sửa chữa + điện năng $11.188\text{ kWh}$ $\times 2.100\text{ đ/kWh}$.
-    * **Tiếp tục xây dựng component `Tab08_DonGiaDungCuThietBi.tsx`** để hỗ trợ nhập/đồng bộ kết quả tra cứu Mua sắm công trực tiếp trên giao diện.
+  - [x] **Tab 8: Đơn giá Dụng cụ & Ca máy Thiết bị (ĐÃ HOÀN THÀNH)**:
+    * **Quản lý dữ liệu Mua sắm công 2 phân hệ**:
+      1. Dụng cụ & BHLĐ (158 loại): Tính đơn giá Ca theo niên hạn chuẩn $1\text{ tháng} = 22\text{ ca}$ và cộng $+10\%$ dụng cụ nhỏ phụ ($k_{dc\_phu} = 0{,}10$) theo Khoản 4.2 TT20.
+      2. Máy móc, Thiết bị & Ca máy (72 loại máy, 14.169 ca): Tính khấu hao ca máy theo TT 45/2013 chia $250/200/500\text{ ca/năm}$ theo Khoản 4.3 TT20 + chi phí sửa chữa $4\%$ + chi phí điện năng $11.188\text{ kWh} \times 2.100\text{ đ/kWh}$.
+    * **Giao diện chuyên nghiệp `Tab08_DonGiaDungCuThietBi.tsx`**:
+      - Hỗ trợ xem, lọc theo trạng thái (Tất cả / Đã có mã MSC / Chưa tra cứu), tìm kiếm tức thì.
+      - Cho phép nhập trực tiếp hoặc sửa Mã TBMT, Ngày duyệt KQLCNT, Đơn vị trúng thầu, Nguyên giá MSC.
+      - Drawer tra cứu ngược danh sách thông số quan trắc sử dụng dụng cụ/thiết bị đó.
+      - Nút Tải tệp Excel Tra Cứu 3 Sheet (`DANH_MUC_TRA_CUU_MUA_SAM_CONG_2026.xlsx`) và nút Lưu CSDL Backend/OneDrive.
+    * Gắn kết hoàn thiện vào App Shell, Sidebar badge "158 DC + 72 TB", build Vite 100% 0 lỗi.
   - [ ] **Tab 9: Chi phí Gián tiếp & Phân hệ Chi phí Ngoài Định Mức Tính Riêng (KẾ TIẾP)**:
     * Hệ số chi phí gián tiếp $+38{,}23\%$ (Chi phí chung 15%, Thu nhập tính trước 6%, Dự phòng 5%, VAT 8%).
     * Phân hệ 4 khoản chi phí ngoài định mức tính riêng theo Khoản 4.5 TT20 (Giàn giáo ống khói BXD, Đi lại TT40, Thuê tàu biển, Vận chuyển mẫu lạnh).

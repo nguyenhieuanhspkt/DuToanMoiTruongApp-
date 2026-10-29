@@ -5,12 +5,18 @@
 
 ---
 
-## 📌 I. CĂN CỨ PHÁP LÝ & ĐẶC TẢ NGHIỆP VỤ: VĂN BẢN SỐ 5691/EVN-MTPTBV & THÔNG TƯ 20
-> **Văn bản số 5691/EVN-MTPTBV ngày 06/10/2026 của Tập đoàn Điện lực Việt Nam:**  
+## 📌 I. CĂN CỨ PHÁP LÝ & ĐẶC TẢ NGHIỆP VỤ: VĂN BẢN 5691/EVN, QUYẾT ĐỊNH 80/2026/QĐ-UBND & THÔNG TƯ 20
+> **1. Quyết định số 80/2026/QĐ-UBND ngày 19/10/2026 của UBND TP. Hồ Chí Minh (MỚI NHẤT):**  
+> Ban hành Định mức kinh tế - kỹ thuật hoạt động quan trắc môi trường trên địa bàn TP.HCM. Khẳng định 3 nguyên tắc bất biến: (1) Thông tư 20/2017/TT-BTNMT là chuẩn mực tối thượng gốc của Quốc gia, cấp địa phương chỉ ban hành bổ sung cho các thông số chưa có trong TT20; (2) Chuẩn định biên kỹ thuật thực hiện theo Thông tư liên tịch số 56/2015/TTLT-BTNMT-BNV (chức danh QTVTNMT); (3) Ngày công chuẩn bằng 08 giờ làm việc, và hệ số ngừng nghỉ việc do thời tiết đối với ngoại nghiệp lấy mẫu hiện trường được tính thêm tối đa là 0,2 (+20%).  
+>  
+> **2. Thống nhất chế độ làm việc chuẩn 22 ngày/tháng theo Quyết định 80/2026/QĐ-UBND & TTLT 56/2015:**  
+> Toàn bộ hoạt động quan trắc môi trường tuân thủ định biên chức danh Quan trắc viên tài nguyên môi trường (QTVTNMT) theo TTLT 56/2015/TTLT-BTNMT-BNV và Quyết định số 80/2026/QĐ-UBND. Chế độ làm việc quy chuẩn là 08 giờ/ngày, tuần làm việc 40 giờ (5 ngày/tuần, nghỉ Thứ Bảy và Chủ Nhật theo Quyết định số 188/1999/QĐ-TTg của Thủ tướng Chính phủ). Đơn giá ngày công được tính bằng Tiền lương tháng chia cho **22 ngày làm việc chuẩn** (tuyệt đối không áp dụng chia cho 26 ngày).  
+>  
+> **3. Văn bản số 5691/EVN-MTPTBV ngày 06/10/2026 của Tập đoàn Điện lực Việt Nam:**  
 > Ban hành về việc tăng cường quản lý về công tác quan trắc, phân tích môi trường; quán triệt thực hiện Nghị quyết số 66.19/2026/NQ-CP ngày 18/5/2026 của Chính phủ. Tập đoàn chỉ đạo các đơn vị thành viên rà soát, cắt giảm, đơn giản hóa và chuẩn hóa toàn bộ khối lượng, định mức quan trắc môi trường theo đúng quy định tại Thông tư 20/2017/TT-BTNMT, chấm dứt triệt để việc lập dự toán trùng lặp khối lượng hoặc vượt định mức quy chuẩn Nhà nước.  
 >  
-> **Bản đặc tả phương án xác định đơn giá (đồng/mẫu):**  
-> Chi tiết toàn diện tại [docs/PHUONG_AN_XAC_DINH_DON_GIA.md](docs/PHUONG_AN_XAC_DINH_DON_GIA.md) (Phân tầng cấu trúc 2 tầng: Chi phí Trực tiếp $T$ và Chi phí Gián tiếp $C_{GT}$; bóc tách rạch ròi giữa Nhóm yếu tố TRONG ĐỊNH MỨC TT20 và Nhóm yếu tố NGOÀI ĐỊNH MỨC/TÍNH RIÊNG theo Khoản 4.5 TT20).
+> **4. Bản đặc tả phương án xác định đơn giá (đồng/mẫu):**  
+> Chi tiết toàn diện tại [docs/PHUONG_AN_XAC_DINH_DON_GIA.md](docs/PHUONG_AN_XAC_DINH_DON_GIA.md) (Phân tầng cấu trúc 2 tầng: Chi phí Trực tiếp $ và Chi phí Gián tiếp {GT}$; bóc tách rạch ròi giữa Nhóm yếu tố TRONG ĐỊNH MỨC TT20 và Nhóm yếu tố NGOÀI ĐỊNH MỨC/TÍNH RIÊNG theo Khoản 4.5 TT20).
 
 ---
 
@@ -370,23 +376,26 @@ flowchart LR
 
 ### Giai đoạn 2: Xây dựng Bộ Tính Đơn Giá & Chi Phí Gián Tiếp (Tabs 6, 7, 8, 9)
 * **Nhiệm vụ & Quy chuẩn tài chính áp dụng:**
-  - [ ] **Tab 6: Đơn giá Nhân công**:
-    * Áp dụng định mức ngày công TT20 nhân với đơn giá ngày công theo thang lương chuyên gia/kỹ sư môi trường.
-    * Ngoại nghiệp nhân hệ số thời tiết $+20\%$ ($k_{\text{tt}} = 0{,}2$ theo Khoản 4.1.3 TT20).
-    * Phân bổ công lấy mẫu dùng chung: $C_{NC\_field\_per\_test} = C_{NC\_field} / M$ ($M \ge 1$).
-  - [ ] **Tab 7: Đơn giá Vật liệu**:
-    * Nạp bảng giá thị trường từ 3 báo giá cạnh tranh hoặc kết quả trúng thầu gần nhất (theo Luật Đấu thầu và NĐ 24/2024/NĐ-CP).
-  - [ ] **Tab 8: Đơn giá Dụng cụ & Ca máy**:
-    * Tính đơn giá ca máy khấu hao theo Thông tư 45/2013/TT-BTC chia cho số ca chuẩn $250 / 200 / 500$ ca:
-      $$ĐG_{\text{ca}} = \frac{\text{Nguyên giá} \times (T_{\text{khấu hao}} + T_{\text{bảo dưỡng}})}{S_{\text{ca\_năm}}} + ĐG_{\text{năng lượng}} + ĐG_{\text{thay thế}}$$
-  - [ ] **Tab 9: Chi phí Gián tiếp & Phân hệ Chi phí Ngoài Định Mức (Tính riêng)**:
-    * Quản lý các hệ số gián tiếp: Chi phí chung ($k_{\text{c}} = 15\%$), Thu nhập chịu thuế tính trước ($TL = 6\%$), Dự phòng phí ($k_{\text{dp}} = 5\%$), Thuế VAT ($8\%$ hoặc $10\%$).
-    * **Phân hệ Chi phí Ngoài định mức tính riêng (Khoản 4.5 TT20)**:
-      - Chi phí đi lại, lưu trú chuyên gia: Theo Thông tư 40/2017/TT-BTC.
-      - Chi phí giàn giáo phục vụ đo khí thải ống khói cao: Áp dụng định mức Bộ Xây dựng (TT 12/2021/TT-BXD).
-      - Chi phí thuê tàu biển đo đạc xa bờ Vĩnh Tân: 3 báo giá tàu dịch vụ biển địa phương.
-      - Chi phí vận chuyển mẫu lạnh hỏa tốc về PTN: Hợp đồng chuyển phát nhanh chuyên dụng.
-  - [ ] **Commit Git:** `feat: integrate unit pricing and indirect cost calculation (tabs 6-9)`.
+  - [x] **Tab 6: Đơn giá Nhân công (ĐÃ HOÀN THÀNH - Commit 96d5269, 7538194)**:
+    * Áp dụng định mức ngày công TT20 nhân với đơn giá ngày công theo thang lương chuyên gia/kỹ sư môi trường và ngạch bậc TTLT 56/2015.
+    * Tích hợp mức lương cơ sở mới nhất 2,34 tr/tháng theo Nghị định 161/2026/NĐ-CP và cơ chế tiền lương EVN.
+    * Ngoại nghiệp nhân hệ số thời tiết $+20\%$ ({\text{tt}} = 0{,}2$ theo Khoản 4.1.3 TT20 & QĐ 80/2026/QĐ-UBND).
+    * Phân bổ công lấy mẫu dùng chung: {NC\_field\_per\_test} = C_{NC\_field} / M$ ( \ge 1$).
+    * Bổ sung tiểu tab Thuyết minh căn cứ pháp lý và Ví dụ tính chi tiết minh bạch.
+  - [x] **Tab 7: Đơn giá Vật liệu & Hóa chất (ĐÃ HOÀN THÀNH)**:
+    * CSDL 173 loại hóa chất, dung môi, chuẩn đối chiếu ma trận 3 Báo giá cạnh tranh (Khoản 2 Điều 16 NĐ 24/2024/NĐ-CP), giá KTAT và giá HĐ 71/2025.
+    * Tự động tính hệ số hao hụt bắt buộc +8% ($k_{hh} = 0{,}08$) theo Khoản 4.4 TT20.
+    * Chức năng gán giá nhanh hàng loạt (Min 3 Báo giá, Kế thừa HĐ 71, Bình quân 3 Báo giá) và sửa đơn giá trực tiếp.
+    * Drawer xem chi tiết các thông số quan trắc sử dụng loại hóa chất/vật tư và khối lượng phân bổ.
+    * Đồng bộ 2-tier dual write (Repo backend + OneDrive) và frontend build Vite 100% 0 lỗi.
+  - [ ] **Tab 8: Đơn giá Dụng cụ & Ca máy Thiết bị (ĐANG TIẾN HÀNH)**:
+    * **Dụng cụ (158 loại)**: Khấu hao theo niên hạn quy chuẩn $1\text{ tháng} = 22\text{ ca}$ và cộng $+10\%$ dụng cụ nhỏ phụ ($k_{dc\_phu} = 0{,}10$) theo Khoản 4.2 TT20.
+    * **Thiết bị (72 loại máy, 14.169 ca máy)**: Khấu hao theo Thông tư 45/2013/TT-BTC chia cho số ca chuẩn $250 / 200 / 500\text{ ca/năm}$ theo Khoản 4.3 TT20.
+    * **Chi phí năng lượng**: Suất điện năng ($11.188\text{ kWh}$) tiêu thụ $\times$ Đơn giá điện sản xuất EVN ($2.100\text{ đ/kWh}$).
+    * **Cơ chế kế thừa thiết bị**: Triệt tiêu tính trùng cho các chỉ tiêu đo đồng thời ($h_{TB} = 0$).
+  - [ ] **Tab 9: Chi phí Gián tiếp & Phân hệ Chi phí Ngoài Định Mức Tính Riêng (KẾ TIẾP)**:
+    * Hệ số chi phí gián tiếp $+38{,}23\%$ (Chi phí chung 15%, Thu nhập tính trước 6%, Dự phòng 5%, VAT 8%).
+    * Phân hệ 4 khoản chi phí ngoài định mức tính riêng theo Khoản 4.5 TT20 (Giàn giáo ống khói BXD, Đi lại TT40, Thuê tàu biển, Vận chuyển mẫu lạnh).
 
 ---
 

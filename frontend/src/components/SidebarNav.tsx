@@ -28,7 +28,7 @@ export const SidebarNav: React.FC<SidebarNavProps> = ({
 
   const pricingTabs = [
     { id: 6, label: 'ĐG Nhân công', icon: Coins, badge: 'Lương TT56' },
-    { id: 7, label: 'ĐG Vật liệu', icon: ShoppingCart, badge: '3 Báo giá' },
+    { id: 7, label: 'ĐG Vật liệu', icon: ShoppingCart, badge: '173 loại' },
     { id: 8, label: 'ĐG Dụng cụ, Thiết bị', icon: Activity, badge: 'TT 45/BTC' },
     { id: 9, label: 'Chi phí gián tiếp', icon: Percent, badge: '+38,23%' },
     { id: 10, label: 'Tổng hợp kinh phí', icon: PieChart, badge: '3 PAKT' },

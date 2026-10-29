@@ -120,6 +120,15 @@ def get_item_norm_breakdown(item_id: int):
         "equipment": NormCalcService.extract_equipment_details(target)
     }
 
+@app.get("/api/material-pricing")
+def get_material_pricing():
+    return adapter.load_material_pricing()
+
+@app.post("/api/material-pricing")
+def update_material_pricing(data: Dict[str, Any]):
+    adapter.save_material_pricing(data)
+    return {"status": "success", "message": "Updated material pricing successfully", "total_items": len(data.get("items", []))}
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("backend.app:app", host="127.0.0.1", port=8000, reload=True)

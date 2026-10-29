@@ -1,25 +1,29 @@
 {
-  "labor_rates_3072": {
-    "Quan trắc viên tài nguyên môi trường hạng II": 850000,
-    "Quan trắc viên tài nguyên môi trường hạng III.1": 650000,
-    "Quan trắc viên tài nguyên môi trường hạng III.2": 550000,
-    "Quan trắc viên tài nguyên môi trường hạng IV": 450000,
-    "Kỹ thuật viên / Lao động phổ thông": 350000,
-    "Quan trắc viên tài nguyên môi trường hạng III.3": 450000
-  },
   "currency": "VND",
-  "last_updated": "2026-10-28",
-  "source": "Văn bản số 5691/EVN-MTPTBV ngày 06/10/2026 và Quyết định số 1155/QĐ-NĐVT4",
+  "standard_working_days": 22,
+  "standard_daily_hours": 8,
+  "last_updated": "2026-10-29",
+  "source": "Quyết định số 80/2026/QĐ-UBND, TTLT 56/2015, Văn bản số 5691/EVN-MTPTBV và Quyết định số 1155/QĐ-NĐVT4",
   "labor_rates": {
     "Quan trắc viên tài nguyên môi trường hạng II": 850000,
     "Quan trắc viên tài nguyên môi trường hạng III.1": 650000,
     "Quan trắc viên tài nguyên môi trường hạng III.2": 550000,
+    "Quan trắc viên tài nguyên môi trường hạng III.3": 450000,
     "Quan trắc viên tài nguyên môi trường hạng IV": 450000,
-    "Kỹ thuật viên / Lao động phổ thông": 350000,
-    "Quan trắc viên tài nguyên môi trường hạng III.3": 450000
+    "Kỹ thuật viên / Lao động phổ thông": 350000
+  },
+  "labor_rates_3072": {
+    "Quan trắc viên tài nguyên môi trường hạng II": 850000,
+    "Quan trắc viên tài nguyên môi trường hạng III.1": 650000,
+    "Quan trắc viên tài nguyên môi trường hạng III.2": 550000,
+    "Quan trắc viên tài nguyên môi trường hạng III.3": 450000,
+    "Quan trắc viên tài nguyên môi trường hạng IV": 450000,
+    "Kỹ thuật viên / Lao động phổ thông": 350000
   },
   "legal_bases": [
-    "Thông tư liên tịch số 56/2015/TTLT-BTNMT-BNV ngày 08/12/2015",
+    "Quyết định số 80/2026/QĐ-UBND ngày 19/10/2026 của UBND TP. Hồ Chí Minh (Quy chuẩn ngày công 08 giờ, chuẩn 22 ngày/tháng)",
+    "Thông tư liên tịch số 56/2015/TTLT-BTNMT-BNV ngày 08/12/2015 (Quy định mã số, tiêu chuẩn chức danh nghề nghiệp QTVTNMT)",
+    "Quyết định số 188/1999/QĐ-TTg của Thủ tướng Chính phủ (Chế độ tuần làm việc 40 giờ trong 5 ngày, 22 ngày/tháng)",
     "Nghị định số 161/2026/NĐ-CP ngày 15/5/2026 (Mức lương cơ sở 2.530.000 đồng/tháng từ 01/7/2026)",
     "Văn bản số 5691/EVN-MTPTBV ngày 06/10/2026 của Tập đoàn Điện lực Việt Nam",
     "Quyết định số 1155/QĐ-NĐVT4 của NMNĐ Vĩnh Tân 4"

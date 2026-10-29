@@ -12,6 +12,7 @@ import { Tab03_VatLieu } from './tabs/Tab03_VatLieu';
 import { Tab04_DungCu } from './tabs/Tab04_DungCu';
 import { Tab05_ThietBi } from './tabs/Tab05_ThietBi';
 import { Tab06_DonGiaNhanCong } from './tabs/Tab06_DonGiaNhanCong';
+import { Tab07_DonGiaVatLieu } from './tabs/Tab07_DonGiaVatLieu';
 import type { PaktItem, FilterState, PricingConfigData } from './types';
 
 export const App: React.FC = () => {
@@ -276,6 +277,11 @@ export const App: React.FC = () => {
                 items={items}
                 pricingConfig={pricingConfig}
                 onUpdatePricing={handleUpdatePricing}
+              />
+            ) : activeTab === 7 ? (
+              <Tab07_DonGiaVatLieu
+                paktItems={items}
+                onSelectDrawerItem={setSelectedDrawerItem}
               />
             ) : (
               <div className="flex-1 flex flex-col items-center justify-center p-8 text-center bg-slate-950">

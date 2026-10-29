@@ -116,3 +116,35 @@ export interface PricingConfigData {
   legal_bases?: string[];
   last_updated?: string;
 }
+
+export interface MaterialPriceItem {
+  id: string;
+  name: string;
+  unit: string;
+  category: 'hoa_chat' | 'chuan' | 'vat_tu_tieu_hao' | 'thong_dung';
+  total_quantity_raw: number;
+  total_quantity_with_waste: number;
+  param_count: number;
+  price_ktat: number;
+  quote_1: number;
+  quote_2: number;
+  quote_3: number;
+  price_hd71: number;
+  approved_price: number;
+  approval_basis: string;
+  note?: string;
+}
+
+export interface MaterialPricingMetadata {
+  total_items: number;
+  currency: string;
+  vat_included: boolean;
+  waste_factor_statutory: number;
+  legal_basis: string[];
+  last_updated: string;
+}
+
+export interface MaterialPricingDatabase {
+  metadata: MaterialPricingMetadata;
+  items: MaterialPriceItem[];
+}

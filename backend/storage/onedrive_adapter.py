@@ -150,3 +150,12 @@ class OneDriveAdapter:
             "section_title": sec_data.get("section_title"),
             "parameter": full_param
         }
+
+    def load_material_pricing(self) -> Dict[str, Any]:
+        path = self._resolve_read_path('material_pricing.json')
+        if not os.path.exists(path):
+            return {'metadata': {'total_items': 0}, 'items': []}
+        return AtomicWriter.read_json(path)
+
+    def save_material_pricing(self, pricing_db: Dict[str, Any]) -> None:
+        self._write_dual('material_pricing.json', pricing_db)

@@ -1,5 +1,5 @@
 import React from 'react';
-import { RefreshCw, Maximize2, ShieldCheck } from 'lucide-react';
+import { RefreshCw, Maximize2, ShieldCheck, FileSpreadsheet } from 'lucide-react';
 
 interface HeaderNavProps {
   onRefresh: () => void;
@@ -30,7 +30,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onRefresh, isLoading }) =>
               DuToanMoiTruongApp
             </h1>
             <span className="text-[10px] uppercase font-semibold bg-blue-500/20 text-blue-300 border border-blue-400/30 px-1.5 py-0.5 rounded">
-              v0.1.0 Baseline
+              v1.0 Final
             </span>
           </div>
           <p className="text-[11px] text-blue-200/70 truncate max-w-md">
@@ -42,7 +42,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onRefresh, isLoading }) =>
       {/* Center: Legal Bases */}
       <div className="hidden lg:flex items-center space-x-2 text-[11px] text-blue-200/80 bg-blue-900/30 border border-blue-700/40 px-3 py-1 rounded-full">
         <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />
-        <span>Căn cứ: <strong>Thông tư 20/2017/TT-BTNMT</strong> & <strong>Văn bản 3072/EVN-MTPTBV</strong></span>
+        <span>Căn cứ: <strong>TT 20/2017/TT-BTNMT</strong>, <strong>QĐ 80/2026/QĐ-UBND</strong> & <strong>VB 5691/EVN</strong></span>
       </div>
 
       {/* Right Controls */}
@@ -52,6 +52,17 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onRefresh, isLoading }) =>
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           <span className="hidden sm:inline font-medium">OneDrive Synced</span>
         </div>
+
+        {/* Export Excel Button */}
+        <a
+          href="/api/export/excel"
+          download="DU_TOAN_QUAN_TRAC_MOI_TRUONG_2026_10_SHEET.xlsx"
+          title="Tải tệp Excel 10 Sheet động khép kín công thức"
+          className="px-2.5 py-1 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white border border-emerald-500 text-xs font-bold transition active:scale-95 flex items-center space-x-1.5 shadow-md shadow-emerald-600/30"
+        >
+          <FileSpreadsheet className="w-3.5 h-3.5" />
+          <span className="hidden sm:inline">Xuất Excel 10 Sheet</span>
+        </a>
 
         {/* Refresh button */}
         <button

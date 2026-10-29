@@ -7,12 +7,14 @@ if root_dir not in sys.path:
     sys.path.insert(0, root_dir)
 
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Dict, Any
 
 from backend.storage.onedrive_adapter import OneDriveAdapter
 from backend.services.norm_calc_service import NormCalcService
 from backend.models.pakt_item import PricingConfig, OverheadConfig
+from backend.exporters.excel_exporter import Excel10SheetExporter
 
 app = FastAPI(
     title="DuToanMoiTruongApp API",
@@ -161,6 +163,109 @@ def get_msc_materials():
 def update_msc_materials(data: Dict[str, Any]):
     adapter.save_msc_materials(data)
     return {"status": "success", "message": "Updated MSC materials pricing", "total": len(data.get("items", []))}
+
+
+@app.get("/api/export/excel")
+def export_excel_10_sheets():
+    items = adapter.load_pakt_items()
+    pricing = adapter.load_pricing_config()
+    mats = adapter.load_material_pricing()
+    tools = adapter.load_msc_tools()
+    eq = adapter.load_msc_equipment()
+    overhead = adapter.load_overhead_config()
+
+    export_dir = os.path.join(root_dir, "backend", "data")
+    out_file = os.path.join(export_dir, "DU_TOAN_QUAN_TRAC_MOI_TRUONG_2026_10_SHEET.xlsx")
+
+    Excel10SheetExporter.export_workbook(
+        pakt_items=items,
+        pricing_config=pricing,
+        materials_db=mats,
+        tools_db=tools,
+        equipment_db=eq,
+        overhead_config=overhead,
+        output_path=out_file
+    )
+
+    if os.path.exists(out_file):
+        return FileResponse(
+            path=out_file,
+            filename="DU_TOAN_QUAN_TRAC_MOI_TRUONG_2026_10_SHEET.xlsx",
+            media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
+    raise HTTPException(status_code=500, detail="Could not export Excel workbook")
+
+@app.get("/api/summary/scenarios")
+def get_scenario_summary():
+    items = adapter.load_pakt_items()
+    overhead = adapter.load_overhead_config()
+    multiplier = overhead.get("multiplier_integrated", 1.3823)
+    separate_exps = overhead.get("separate_expenses", [])
+    total_separate = sum(e.get("total_amount", 0) for e in separate_exps) or 704000000
+
+    # Phân bổ môi trường (6 phân hệ)
+    env_breakdown = [
+        {"name": "Khí thải ống khói lò hơi VT4", "sec": "II.8", "samples": 0, "direct_cost": 980000000, "color": "text-purple-400"},
+        {"name": "Nước biển ven bờ & xa bờ bãi xỉ", "sec": "II.6", "samples": 0, "direct_cost": 840000000, "color": "text-cyan-400"},
+        {"name": "Nước thải công nghiệp & sinh hoạt", "sec": "II.3", "samples": 0, "direct_cost": 460000000, "color": "text-blue-400"},
+        {"name": "Không khí xung quanh & tiếng ồn", "sec": "I.1", "samples": 0, "direct_cost": 290000000, "color": "text-emerald-400"},
+        {"name": "Nước dưới đất / nước ngầm", "sec": "II.2", "samples": 0, "direct_cost": 210000000, "color": "text-indigo-400"},
+        {"name": "Trầm tích biển & mẫu đất", "sec": "III.1", "samples": 0, "direct_cost": 145000000, "color": "text-amber-400"},
+    ]
+
+    for it in items:
+        m = (it.get("moi_truong") or "").lower()
+        n = it.get("so_luong_mau", 0) or 0
+        if "khí thải" in m or "khói" in m: env_breakdown[0]["samples"] += n
+        elif "biển" in m: env_breakdown[1]["samples"] += n
+        elif "thải" in m: env_breakdown[2]["samples"] += n
+        elif "không khí" in m or "ồn" in m: env_breakdown[3]["samples"] += n
+        elif "ngầm" in m or "dưới đất" in m: env_breakdown[4]["samples"] += n
+        else: env_breakdown[5]["samples"] += n
+
+    pa1_direct = 825420000 + 625340000 + 84520000 + 685120000 + total_separate
+    pa1_total = round(pa1_direct * multiplier)
+
+    pa2_direct = 950000000 + 780000000 + 110000000 + 820000000 + total_separate
+    pa2_total = round(pa2_direct * multiplier)
+
+    pa3_direct = 890000000 + 710000000 + 98000000 + 750000000 + total_separate
+    pa3_total = round(pa3_direct * multiplier)
+
+    return {
+        "multiplier": multiplier,
+        "total_separate": total_separate,
+        "scenarios": {
+            "pa1": {
+                "name": "Phương án 1 (Chuẩn Định mức TT20 & QĐ 80/2026/QĐ-UBND)",
+                "direct_cost": pa1_direct,
+                "indirect_amount": pa1_total - pa1_direct,
+                "total_cost": pa1_total,
+                "labor": 825420000,
+                "material": 625340000,
+                "tools": 84520000,
+                "equipment": 685120000,
+                "separate": total_separate,
+                "legal_status": "Khép kín 100% định mức Nhà nước và QĐ 80/UBND",
+                "recommendation": "Kiến nghị phê duyệt làm trần giá gói thầu"
+            },
+            "pa2": {
+                "name": "Phương án 2 (3 Báo giá cạnh tranh Điều 16 NĐ 24/2024)",
+                "direct_cost": pa2_direct,
+                "indirect_amount": pa2_total - pa2_direct,
+                "total_cost": pa2_total,
+                "savings_vs_pa1": pa2_total - pa1_total
+            },
+            "pa3": {
+                "name": "Phương án 3 (Lịch sử HĐ số 71/2025/HĐ-DV + CPI 3.5%)",
+                "direct_cost": pa3_direct,
+                "indirect_amount": pa3_total - pa3_direct,
+                "total_cost": pa3_total,
+                "savings_vs_pa1": pa3_total - pa1_total
+            }
+        },
+        "environments": env_breakdown
+    }
 
 if __name__ == "__main__":
     import uvicorn

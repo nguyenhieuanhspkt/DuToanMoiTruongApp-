@@ -15,6 +15,7 @@ import { Tab06_DonGiaNhanCong } from './tabs/Tab06_DonGiaNhanCong';
 import { Tab07_DonGiaVatLieu } from './tabs/Tab07_DonGiaVatLieu';
 import { Tab08_DonGiaDungCuThietBi } from './tabs/Tab08_DonGiaDungCuThietBi';
 import { Tab09_ChiPhiGianTiep } from './tabs/Tab09_ChiPhiGianTiep';
+import { Tab10_TongHopKinhPhi } from './tabs/Tab10_TongHopKinhPhi';
 import type { PaktItem, FilterState, PricingConfigData } from './types';
 
 export const App: React.FC = () => {
@@ -293,6 +294,11 @@ export const App: React.FC = () => {
             ) : activeTab === 9 ? (
               <Tab09_ChiPhiGianTiep
                 paktItems={items}
+                pricingConfig={pricingConfig}
+              />
+            ) : activeTab === 10 ? (
+              <Tab10_TongHopKinhPhi
+                items={items}
                 pricingConfig={pricingConfig}
               />
             ) : (

@@ -1,9 +1,9 @@
 {
-  "general_overhead_rate": 0.15,
-  "taxable_income_rate": 0.06,
-  "contingency_rate": 0.05,
+  "general_overhead_rate": 0.2,
+  "taxable_income_rate": 0.055,
+  "contingency_rate": 0.0,
   "vat_rate": 0.08,
-  "multiplier_integrated": 1.3823,
+  "multiplier_integrated": 1.3673,
   "source": "Quyết định số 80/2026/QĐ-UBND ngày 19/10/2026 của UBND TP.HCM & Nghị định số 24/2024/NĐ-CP",
   "legal_basis": [
     "Khoản 4.5 Thông tư 20/2017/TT-BTNMT (Chi phí ngoài định mức tính riêng)",

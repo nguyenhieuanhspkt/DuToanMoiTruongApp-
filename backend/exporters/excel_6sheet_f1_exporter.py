@@ -263,9 +263,9 @@ class Excel6SheetF1Exporter:
         ws_th.append(["STT", "Khoản Mục Chi Phí", "Ký Hiệu", "Cách Tính / Công Thức", "Giá Trị (VNĐ)", "Tỷ Lệ (%)"])
 
         ws_th.append(["1", "Chi phí trực tiếp", "T", f"=DuToan!P{total_r}", f"=DuToan!P{total_r}", "=E5/E11"])
-        ws_th.append(["2", "Chi phí quản lý chung", "C_GT", "=ROUND(0.15 * E5, 0)", "=ROUND(0.15 * E5, 0)", "=E6/E11"])
-        ws_th.append(["3", "Thu nhập chịu thuế tính trước", "TL", "=ROUND(0.06 * (E5 + E6), 0)", "=ROUND(0.06 * (E5 + E6), 0)", "=E7/E11"])
-        ws_th.append(["4", "Chi phí dự phòng phát sinh", "DP", "=ROUND(0.05 * (E5 + E6 + E7), 0)", "=ROUND(0.05 * (E5 + E6 + E7), 0)", "=E8/E11"])
+        ws_th.append(["2", "Chi phí quản lý chung", "C_GT", "=ROUND(0.20 * E5, 0)", "=ROUND(0.20 * E5, 0)", "=E6/E11"])
+        ws_th.append(["3", "Thu nhập chịu thuế tính trước", "TL", "=ROUND(0.055 * (E5 + E6), 0)", "=ROUND(0.055 * (E5 + E6), 0)", "=E7/E11"])
+        ws_th.append(["4", "Chi phí dự phòng phát sinh", "DP", "=ROUND(0.00 * (E5 + E6 + E7), 0)", "=ROUND(0.00 * (E5 + E6 + E7), 0)", "=E8/E11"])
         ws_th.append(["5", "CỘNG CHI PHÍ TRƯỚC THUẾ", "G_Q", "=E5 + E6 + E7 + E8", "=E5 + E6 + E7 + E8", "=E9/E11"])
         ws_th.append(["6", "Thuế Giá trị gia tăng (VAT)", "VAT", "=ROUND(0.08 * E9, 0)", "=ROUND(0.08 * E9, 0)", "=E10/E11"])
         ws_th.append(["7", "TỔNG KINH PHÍ GÓI THẦU (SAU THUẾ)", "TTS", "=E9 + E10", "=E9 + E10", "100.0%"])

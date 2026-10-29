@@ -223,6 +223,269 @@ class ExcelF1FullReplicaExporter:
         ws_cm.column_dimensions['M'].width = 24
 
         # =============================================================
+                # =============================================================
+        # SHEET 12: 'Đơn giá chi tiết' (Chiết tính 2 tầng Micro & Macro cho toàn bộ 253 công tác)
+        # =============================================================
+        ws_dgct = wb.create_sheet(title="Đơn giá chi tiết")
+        ws_dgct.views.sheetView[0].showGridLines = True
+        ws_dgct.append(["BẢNG ĐƠN GIÁ CHI TIẾT 1 ĐƠN VỊ CÔNG TÁC QUAN TRẮC MÔI TRƯỜNG"])
+        ws_dgct.append(["='Công trình'!A3"])
+        ws_dgct.append(["='Công trình'!A4"])
+        ws_dgct.append([])
+        ws_dgct.append([
+            "STT", "Mã hiệu đơn giá", "TT Vật tư", "Mã hiệu VL, NC, M",
+            "Tên công tác / Thành phần hao phí chi tiết", "Đơn vị", "Định mức", "Đơn giá (VNĐ)", "Hệ số", "Thành tiền (VNĐ)"
+        ])
+
+        # Pre-build lookup dictionaries for fast mapping
+        mats_map = {}
+        for m in (materials_db.get('items', []) if isinstance(materials_db, dict) else materials_db):
+            mats_map[m.get('name', '').lower().strip()] = float(m.get('approved_price') or m.get('price_ktat') or 85000)
+
+        tools_map = {}
+        for t in (tools_db.get('items', []) if isinstance(tools_db, dict) else tools_db):
+            tools_map[t.get('name', '').lower().strip()] = float(t.get('shift_unit_price') or 1458)
+
+        eq_map = {}
+        for e in (equipment_db.get('items', []) if isinstance(equipment_db, dict) else equipment_db):
+            eq_map[e.get('name', '').lower().strip()] = float(e.get('shift_unit_rate') or 88800)
+
+        curr_dgct_r = 6
+        map_dgct = {}
+
+        for idx, it in enumerate(pakt_items, start=1):
+            code_str = it.get("ma_gop", f"TT20_{idx:03d}")
+            name_str = it.get("thong_so", "Thông số quan trắc")
+            dvt_str = it.get("dvt", "mẫu")
+            core_code = it.get("code", f"P_{idx}")
+            tt20_data = it.get("tt20_data", {})
+
+            # 1. Master row of the công tác
+            master_dgct_r = curr_dgct_r
+            ws_dgct.append([idx, code_str, "", "", name_str, dvt_str, "", "", "", ""])
+            curr_dgct_r += 1
+
+            # Extract norms from field, lab, single
+            mat_list = []
+            labor_list = []
+            tool_list = []
+            eq_list = []
+
+            for stage_key, stage_lbl in [('field', 'Ngoại nghiệp'), ('lab', 'Nội nghiệp'), ('single', 'Toàn phần')]:
+                sub = tt20_data.get(stage_key)
+                if not sub or not isinstance(sub, dict):
+                    continue
+                nc_norm = sub.get('dinh_muc_cong')
+                nc_title = sub.get('dinh_bien') or f'Quan trắc viên ({stage_lbl})'
+                if nc_norm and float(nc_norm) > 0:
+                    labor_list.append((nc_title, float(nc_norm), stage_lbl))
+                for m in sub.get('materials', []):
+                    m_name = m.get('name', '').strip()
+                    m_unit = m.get('unit', '').strip()
+                    m_norm = float(m.get('norm') or 0.0)
+                    if m_norm > 0:
+                        mat_list.append((m_name, m_unit, m_norm, stage_lbl))
+                for t in sub.get('tools', []):
+                    raw_name = str(t.get('name') or '').strip()
+                    raw_unit = str(t.get('unit') or '').strip()
+                    raw_life = str(t.get('lifespan_months') or '').strip().lower()
+                    t_norm = float(t.get('norm') or 0.0)
+                    if raw_name.isdigit() or raw_name == "":
+                        t_name = raw_unit
+                        valid_units = ['cái', 'bộ', 'đôi', 'hộp', 'chiếc', 'dây', 'tấm', 'cuốn', 'bình', 'kw']
+                        t_unit = raw_life if raw_life in valid_units else 'cái'
+                    else:
+                        t_name = raw_name
+                        t_unit = raw_unit or 'cái'
+                    if t_norm > 0 and t_name:
+                        tool_list.append((t_name, t_unit, t_norm, stage_lbl))
+                for e in sub.get('equipment', []):
+                    e_name = e.get('name', '').strip()
+                    e_unit = e.get('unit', '').strip()
+                    e_norm = float(e.get('norm') or 0.0)
+                    if e_norm > 0:
+                        eq_list.append((e_name, e_unit, e_norm, stage_lbl))
+
+            # 2. Section Vật liệu
+            vl_row = curr_dgct_r
+            if mat_list:
+                vl_start = curr_dgct_r + 1
+                ws_dgct.append(["", "", "", "", "Vật liệu", "", "", "", "", ""])
+                curr_dgct_r += 1
+                for m_idx, (m_name, m_unit, m_norm, stage_lbl) in enumerate(mat_list, 1):
+                    price = mats_map.get(m_name.lower().strip(), 85000)
+                    ws_dgct.append([
+                        "", f"VL_{core_code}", m_idx, f"VL_{m_idx:03d}", f" - {m_name} ({stage_lbl})", m_unit,
+                        m_norm, price, 1.0, f"=ROUND(G{curr_dgct_r}*H{curr_dgct_r}*I{curr_dgct_r}, 0)"
+                    ])
+                    curr_dgct_r += 1
+                vl_end_main = curr_dgct_r - 1
+                # 8% Vật liệu phụ khác theo Khoản 4.4 TT20
+                ws_dgct.append([
+                    "", "VL_KHAC", len(mat_list)+1, "VL_KHAC", " - Vật liệu phụ khác (8% VL chính theo Khoản 4.4 TT20)", "%",
+                    "='Hệ số'!$C$11", "", 1.0, f"=ROUND(SUM(J{vl_start}:J{vl_end_main})*G{curr_dgct_r}, 0)"
+                ])
+                vl_end = curr_dgct_r
+                curr_dgct_r += 1
+                ws_dgct.cell(vl_row, 10).value = f"=ROUND(SUM(J{vl_start}:J{vl_end}), 0)"
+            else:
+                ws_dgct.append(["", "", "", "", "Vật liệu", "", "", "", "", 0])
+                curr_dgct_r += 1
+
+            # 3. Section Nhân công
+            nc_row = curr_dgct_r
+            if labor_list:
+                nc_start = curr_dgct_r + 1
+                ws_dgct.append(["", "", "", "", "Nhân công", "", "", "", "", ""])
+                curr_dgct_r += 1
+                for l_idx, (nc_title, nc_norm, stage_lbl) in enumerate(labor_list, 1):
+                    price_formula = "='Lương nhân công'!$E$9" if ("phổ thông" in nc_title.lower() or "phụ việc" in nc_title.lower()) else "='Lương nhân công'!$E$8"
+                    ws_dgct.append([
+                        "", f"NC_{core_code}", l_idx, f"NC_{l_idx:02d}", f" - {nc_title} ({stage_lbl})", "công",
+                        nc_norm, price_formula, 1.0, f"=ROUND(G{curr_dgct_r}*H{curr_dgct_r}*I{curr_dgct_r}, 0)"
+                    ])
+                    curr_dgct_r += 1
+                nc_end = curr_dgct_r - 1
+                ws_dgct.cell(nc_row, 10).value = f"=ROUND(SUM(J{nc_start}:J{nc_end}), 0)"
+            else:
+                ws_dgct.append(["", "", "", "", "Nhân công", "", "", "", "", 0])
+                curr_dgct_r += 1
+
+            # 4. Section CCDC & Máy thi công
+            m_row = curr_dgct_r
+            all_machinery = []
+            for t_name, t_unit, t_norm, stage_lbl in tool_list:
+                price = tools_map.get(t_name.lower().strip(), 1458)
+                all_machinery.append((f"DC: {t_name}", t_unit, t_norm, price, stage_lbl))
+            for e_name, e_unit, e_norm, stage_lbl in eq_list:
+                price = eq_map.get(e_name.lower().strip(), 85000)
+                all_machinery.append((f"M: {e_name}", e_unit, e_norm, price, stage_lbl))
+
+            if all_machinery:
+                m_start = curr_dgct_r + 1
+                ws_dgct.append(["", "", "", "", "Máy thi công & CCDC", "", "", "", "", ""])
+                curr_dgct_r += 1
+                for m_idx, (m_name, m_unit, m_norm, price, stage_lbl) in enumerate(all_machinery, 1):
+                    ws_dgct.append([
+                        "", f"M_{core_code}", m_idx, f"M_{m_idx:02d}", f" - {m_name} ({stage_lbl})", m_unit,
+                        m_norm, price, 1.0, f"=ROUND(G{curr_dgct_r}*H{curr_dgct_r}*I{curr_dgct_r}, 0)"
+                    ])
+                    curr_dgct_r += 1
+                m_end = curr_dgct_r - 1
+                ws_dgct.cell(m_row, 10).value = f"=ROUND(SUM(J{m_start}:J{m_end}), 0)"
+            else:
+                ws_dgct.append(["", "", "", "", "Máy thi công & CCDC", "", "", "", "", 0])
+                curr_dgct_r += 1
+
+            # 5. Khối chi phí vĩ mô 1 mẫu (Tier 2 Macro Costs)
+            t_row = curr_dgct_r
+            ws_dgct.append(["", "", "", "", "Chi phí trực tiếp (VL + NC + M)", "T", "", "", "", f"=ROUND(J{vl_row}+J{nc_row}+J{m_row}, 0)"])
+            curr_dgct_r += 1
+
+            gt_row = curr_dgct_r
+            c_row = curr_dgct_r + 1
+            tt_row = curr_dgct_r + 2
+            tl_row = curr_dgct_r + 3
+            g_row = curr_dgct_r + 4
+            gtgt_row = curr_dgct_r + 5
+            gxd_row = curr_dgct_r + 6
+            lt_row = curr_dgct_r + 7
+            total_row = curr_dgct_r + 8
+
+            ws_dgct.append(["", "", "", "", "Chi phí gián tiếp (C + TT)", "GT", "", "", "", f"=J{c_row}+J{tt_row}"])
+            curr_dgct_r += 1
+
+            ws_dgct.append(["", "", "", "", "Chi phí chung (T x 20%)", "C", "='Hệ số'!$C$4", "", "", f"=ROUND(J{t_row}*G{c_row}, 0)"])
+            curr_dgct_r += 1
+
+            ws_dgct.append(["", "", "", "", "Chi phí một số công việc không xác định (T x 2,5%)", "TT", "='Hệ số'!$C$9", "", "", f"=ROUND(J{t_row}*G{tt_row}, 0)"])
+            curr_dgct_r += 1
+
+            ws_dgct.append(["", "", "", "", "Thu nhập chịu thuế tính trước ((T + GT) x 5,5%)", "TL", "='Hệ số'!$C$8", "", "", f"=ROUND((J{t_row}+J{gt_row})*G{tl_row}, 0)"])
+            curr_dgct_r += 1
+
+            ws_dgct.append(["", "", "", "", "Chi phí xây dựng trước thuế (T + GT + TL)", "G", "", "", "", f"=ROUND(J{t_row}+J{gt_row}+J{tl_row}, 0)"])
+            curr_dgct_r += 1
+
+            ws_dgct.append(["", "", "", "", "Thuế giá trị gia tăng (G x 8%)", "GTGT", "='Hệ số'!$C$10", "", "", f"=ROUND(J{g_row}*G{gtgt_row}, 0)"])
+            curr_dgct_r += 1
+
+            ws_dgct.append(["", "", "", "", "CHI PHÍ SAU THUẾ (G + GTGT)", "Gxd", "", "", "", f"=ROUND(J{g_row}+J{gtgt_row}, 0)"])
+            curr_dgct_r += 1
+
+            ws_dgct.append(["", "", "", "", "Chi phí nhà tạm để ở và điều hành (G x 1,1% x (1 + 8%))", "LT", "='Hệ số'!$C$6", "", "", f"=ROUND(J{g_row}*G{lt_row}*(1+'Hệ số'!$C$10), 0)"])
+            curr_dgct_r += 1
+
+            ws_dgct.append(["", "", "", "", "Tổng cộng đơn giá dự thầu 1 mẫu (Gxd + LT)", "VNĐ", "", "", "", f"=ROUND(J{gxd_row}+J{lt_row}, 0)"])
+            curr_dgct_r += 1
+
+            # Dòng phân cách giữa các công tác
+            ws_dgct.append([])
+            curr_dgct_r += 1
+
+            map_dgct[idx] = {
+                'row_vl': vl_row,
+                'row_nc': nc_row,
+                'row_m': m_row,
+                'row_t': t_row,
+                'row_total': total_row
+            }
+
+        # Format Sheet Đơn giá chi tiết
+        ws_dgct.cell(1, 1).font = font_title_15b
+        ws_dgct.cell(2, 1).font = font_sub_11i
+        ws_dgct.cell(3, 1).font = font_sub_11i
+        for c in range(1, 11):
+            ws_dgct.cell(5, c).font = font_header_11b
+            ws_dgct.cell(5, c).fill = fill_header_gray
+            ws_dgct.cell(5, c).alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+
+        for r in range(6, curr_dgct_r):
+            col_e_val = str(ws_dgct.cell(r, 5).value or "")
+            col_a_val = ws_dgct.cell(r, 1).value
+            is_master = isinstance(col_a_val, int)
+            is_sub = col_e_val in ("Vật liệu", "Nhân công", "Máy thi công & CCDC", "Chi phí trực tiếp (VL + NC + M)")
+            is_total = "Tổng cộng đơn giá dự thầu" in col_e_val
+
+            for c in range(1, 11):
+                cell = ws_dgct.cell(r, c)
+                cell.font = font_data_11r
+                if cell.value is not None and str(cell.value) != "":
+                    cell.border = border_cell
+
+                if is_master:
+                    cell.font = font_data_11b
+                    cell.fill = fill_header_gray
+                elif is_sub:
+                    cell.font = font_data_11b
+                    if col_e_val == "Chi phí trực tiếp (VL + NC + M)":
+                        cell.fill = fill_sub_gray
+                elif is_total:
+                    cell.font = font_data_11b
+                    cell.fill = fill_total_pale
+
+                if c in (7, 8, 10):
+                    if c == 7 and isinstance(cell.value, float) and cell.value < 1.0:
+                        cell.number_format = FMT_PCT2
+                    elif c == 7:
+                        cell.number_format = FMT_NORM
+                    else:
+                        cell.number_format = FMT_CURRENCY
+                if c in (1, 6, 9):
+                    cell.alignment = Alignment(horizontal="center", vertical="center")
+
+        ws_dgct.column_dimensions['A'].width = 8
+        ws_dgct.column_dimensions['B'].width = 16
+        ws_dgct.column_dimensions['C'].width = 8
+        ws_dgct.column_dimensions['D'].width = 14
+        ws_dgct.column_dimensions['E'].width = 46
+        ws_dgct.column_dimensions['F'].width = 10
+        ws_dgct.column_dimensions['G'].width = 14
+        ws_dgct.column_dimensions['H'].width = 16
+        ws_dgct.column_dimensions['I'].width = 8
+        ws_dgct.column_dimensions['J'].width = 20
+
+        # =============================================================
         # SHEET 4: 'Công trình' (Bảng tiên lượng khối lượng 253 dòng PAKT)
         # =============================================================
         ws_ct = wb.create_sheet(title="Công trình")
@@ -236,27 +499,31 @@ class ExcelF1FullReplicaExporter:
             "STT", "Ký hiệu vị trí (Bản vẽ)", "Mã hiệu công tác (TT20)", "Danh mục công tác quan trắc", "Đơn vị",
             "Số vị trí quan trắc", "Số đợt / Tần suất (lần/năm)", "Số mẫu song song", "Hệ số chung mẫu (M)",
             "Kích thước phụ", "Ghi chú phương pháp", "KHỐI LƯỢNG THỰC HIỆN (Q)",
-            "Đơn giá Vật liệu", "Đơn giá Nhân công", "Đơn giá Dụng cụ", "Đơn giá Máy thi công", "CỘNG ĐƠN GIÁ (Đ/mẫu)", "THÀNH TIỀN (VNĐ)"
+            "Đơn giá Vật liệu", "Đơn giá Nhân công", "Đơn giá Dụng cụ", "Đơn giá Máy thi công",
+            "CỘNG ĐƠN GIÁ TRỰC TIẾP (Đ/mẫu)", "THÀNH TIỀN TRỰC TIẾP (VNĐ)",
+            "ĐƠN GIÁ DỰ THẦU TRỌN GÓI (Đ/mẫu)", "THÀNH TIỀN DỰ THẦU TRỌN GÓI (VNĐ)"
         ])
 
         start_ct_row = 7
         curr_section = ""
         row_offset = 0
+        item_ct_rows = {}
 
         for idx, it in enumerate(pakt_items, start=1):
             r = start_ct_row + row_offset
             moi_truong = it.get("moi_truong", "KHÔNG KHÍ XUNG QUANH")
-            
-            # Nếu đổi môi trường -> Chèn 1 dòng Header phân nhóm lớn F1
+
             if moi_truong != curr_section:
                 curr_section = moi_truong
-                ws_ct.append(["", "", "", f"PHẦN: GIÁM SÁT {curr_section.upper()}", "", "", "", "", "", "", "", "", "", "", "", "", "", ""])
+                ws_ct.append(["", "", "", f"PHẦN: GIÁM SÁT {curr_section.upper()}", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""])
                 sec_cell = ws_ct.cell(r, 4)
                 sec_cell.font = font_sec_12b
-                for c in range(1, 19):
+                for c in range(1, 21):
                     ws_ct.cell(r, c).fill = fill_header_gray
                 row_offset += 1
                 r = start_ct_row + row_offset
+
+            item_ct_rows[idx] = r
 
             so_vt = it.get("so_vi_tri", 1) or 1
             so_lan = it.get("so_lan", 1) or 1
@@ -266,65 +533,102 @@ class ExcelF1FullReplicaExporter:
             dvt_str = it.get("dvt", "mẫu")
             m_val = it.get("so_thong_so_chung", 1) or 1
 
-            # Công thức Khối lượng Q = Số vị trí * Số lần (Cột L = F * G)
+            # Khối lượng Q = Số vị trí * Số lần
             f_q = f"=F{r}*G{r}"
-            # Thành tiền = Khối lượng Q * Cộng Đơn giá (Cột R = L * Q)
-            f_total = f"=ROUND(L{r}*Q{r}, 0)"
-            # Đơn giá cộng = M + N + O + P
+
+            # Tọa độ link động từ Sheet 'Đơn giá chi tiết'
+            dgct_info = map_dgct.get(idx, {'row_vl': 6, 'row_nc': 7, 'row_m': 8, 'row_total': 18})
+
+            f_vl = f"='Đơn giá chi tiết'!$J${dgct_info['row_vl']}"
+            f_nc = f"='Đơn giá chi tiết'!$J${dgct_info['row_nc']}"
+            f_dc = 0
+            f_m = f"='Đơn giá chi tiết'!$J${dgct_info['row_m']}"
+
+            # Cộng đơn giá trực tiếp = M + N + O + P
             f_unit = f"=M{r}+N{r}+O{r}+P{r}"
+            # Thành tiền trực tiếp = Q * Cộng đơn giá
+            f_total = f"=ROUND(L{r}*Q{r}, 0)"
+
+            # Đơn giá dự thầu trọn gói 1 mẫu (All-in Rate)
+            f_all_in = f"='Đơn giá chi tiết'!$J${dgct_info['row_total']}"
+            # Thành tiền dự thầu trọn gói
+            f_total_all_in = f"=ROUND(L{r}*S{r}, 0)"
 
             ws_ct.append([
                 idx, vi_tri_str, code_str, name_str, dvt_str,
                 so_vt, so_lan, 1, m_val,
                 "", it.get("sec_id", "TT20"), f_q,
-                round(it.get("vl_cost_norm", 185000), 0),
-                round(it.get("nc_cost_norm", 320000), 0),
-                round(it.get("dc_cost_norm", 35000), 0),
-                round(it.get("tb_cost_norm", 120000), 0),
-                f_unit, f_total
+                f_vl, f_nc, f_dc, f_m,
+                f_unit, f_total,
+                f_all_in, f_total_all_in
             ])
             row_offset += 1
 
         last_ct_row = start_ct_row + row_offset - 1
+
+        # Dòng tổng cộng Sheet Công trình
+        tot_ct_row = last_ct_row + 1
+        ws_ct.append([
+            "", "", "", "CỘNG TOÀN BỘ CÔNG TRÌNH QUAN TRẮC MÔI TRƯỜNG (253 CÔNG TÁC)", "",
+            "", "", "", "", "", "", "",
+            "", "", "", "", "",
+            f"=SUM(R{start_ct_row}:R{last_ct_row})",
+            "",
+            f"=SUM(T{start_ct_row}:T{last_ct_row})"
+        ])
+
         # Format Sheet Công trình
         ws_ct.cell(1, 1).font = font_title_15b
         ws_ct.cell(2, 1).font = font_sub_11i
         ws_ct.cell(3, 1).font = font_data_11b
         ws_ct.cell(4, 1).font = font_data_11b
 
-        for c in range(1, 19):
+        for c in range(1, 21):
             cell = ws_ct.cell(6, c)
             cell.font = font_header_11b
             cell.fill = fill_header_gray
             cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
 
         for r in range(start_ct_row, last_ct_row + 1):
-            for c in range(1, 19):
+            for c in range(1, 21):
                 cell = ws_ct.cell(r, c)
                 if cell.font != font_sec_12b:
                     cell.font = font_data_11r
                     cell.border = border_cell
                 if c in (1, 5, 6, 7, 8, 9):
                     cell.alignment = Alignment(horizontal="center", vertical="center")
-                if c in (12, 13, 14, 15, 16, 17, 18):
+                if c in (12, 13, 14, 15, 16, 17, 18, 19, 20):
                     cell.number_format = FMT_CURRENCY
-                if c == 12: # Cột Khối lượng Q in đậm
+                if c == 12:
                     cell.font = font_data_11b
-                if c == 18:
+                if c in (18, 20):
                     cell.font = font_data_11b
                     cell.fill = fill_sub_gray
+
+        # Format dòng tổng cộng
+        for c in range(1, 21):
+            cell = ws_ct.cell(tot_ct_row, c)
+            cell.font = font_data_11b
+            cell.border = border_total
+            if c in (18, 20):
+                cell.fill = fill_total_pale
+                cell.number_format = FMT_CURRENCY
 
         ws_ct.column_dimensions['A'].width = 8
         ws_ct.column_dimensions['B'].width = 18
         ws_ct.column_dimensions['C'].width = 16
         ws_ct.column_dimensions['D'].width = 45
         ws_ct.column_dimensions['L'].width = 16
+        ws_ct.column_dimensions['M'].width = 16
+        ws_ct.column_dimensions['N'].width = 16
+        ws_ct.column_dimensions['O'].width = 12
+        ws_ct.column_dimensions['P'].width = 16
         ws_ct.column_dimensions['Q'].width = 18
         ws_ct.column_dimensions['R'].width = 22
+        ws_ct.column_dimensions['S'].width = 20
+        ws_ct.column_dimensions['T'].width = 24
 
-        # =============================================================
-                # =============================================================
-        # SHEET 5: 'Hao phí VT' (Bung 100% ĐỊNH MỨC CHI TIẾT THÔNG TƯ 20/2017)
+# SHEET 5: 'Hao phí VT' (Bung 100% ĐỊNH MỨC CHI TIẾT THÔNG TƯ 20/2017)
         # =============================================================
         ws_hp = wb.create_sheet(title="Hao phí VT")
         ws_hp.views.sheetView[0].showGridLines = True
@@ -878,62 +1182,12 @@ class ExcelF1FullReplicaExporter:
         ws_thdt.column_dimensions['D'].width = 24
         ws_thdt.column_dimensions['E'].width = 10
 
-        # SHEET 11: 'Đơn giá chi tiết' (Chiết tính đơn giá 1 đơn vị mẫu)
+                # =============================================================
+        # SẮP XẾP LẠI THỨ TỰ CÁC TAB SHEET CHUẨN F1 TRƯỚC KHI LƯU
         # =============================================================
-        ws_dgct = wb.create_sheet(title="Đơn giá chi tiết")
-        ws_dgct.views.sheetView[0].showGridLines = True
-        ws_dgct.append(["BẢNG ĐƠN GIÁ CHI TIẾT 1 ĐƠN VỊ CÔNG TÁC QUAN TRẮC MÔI TRƯỜNG"])
-        ws_dgct.append(["='Công trình'!A3"])
-        ws_dgct.append(["='Công trình'!A4"])
-        ws_dgct.append([])
-        ws_dgct.append([
-            "STT", "Mã hiệu đơn giá", "Tên công tác quan trắc", "Đơn vị",
-            "ĐG Vật liệu (Đ/mẫu)", "ĐG Nhân công (Đ/mẫu)", "ĐG CCDC (Đ/mẫu)", "ĐG Máy thi công (Đ/mẫu)",
-            "CỘNG CHI PHÍ TRỰC TIẾP 1 MẪU (T)", "Ghi chú quy chuẩn TT20"
-        ])
+        wb._sheets = [ws_hs, ws_lnc, ws_cm, ws_ct, ws_hp, ws_vl, ws_nc, ws_dc, ws_m, ws_45, ws_thdt, ws_dgct]
 
-        for idx, it in enumerate(pakt_items[:60], start=1):
-            ct_r = start_ct_row + idx - 1
-            ws_dgct.append([
-                idx,
-                f"='Công trình'!C{ct_r}",
-                f"='Công trình'!D{ct_r}",
-                f"='Công trình'!E{ct_r}",
-                f"='Công trình'!M{ct_r}",
-                f"='Công trình'!N{ct_r}",
-                f"='Công trình'!O{ct_r}",
-                f"='Công trình'!P{ct_r}",
-                f"=E{idx+4}+F{idx+4}+G{idx+4}+H{idx+4}",
-                "Bao gồm lấy mẫu hiện trường và phân tích PTN"
-            ])
-
-        for c in range(1, 11):
-            ws_dgct.cell(4, c).font = font_header_11b
-            ws_dgct.cell(4, c).fill = fill_header_gray
-            ws_dgct.cell(4, c).alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
-
-        for r in range(5, 5 + min(60, len(pakt_items))):
-            for c in range(1, 11):
-                cell = ws_dgct.cell(r, c)
-                cell.font = font_data_11r
-                cell.border = border_cell
-                if c in (5, 6, 7, 8, 9):
-                    cell.number_format = FMT_CURRENCY
-                if c == 9:
-                    cell.font = font_data_11b
-                    cell.fill = fill_sub_gray
-
-        ws_dgct.column_dimensions['B'].width = 16
-        ws_dgct.column_dimensions['C'].width = 45
-        ws_dgct.column_dimensions['E'].width = 18
-        ws_dgct.column_dimensions['F'].width = 18
-        ws_dgct.column_dimensions['G'].width = 18
-        ws_dgct.column_dimensions['H'].width = 18
-        ws_dgct.column_dimensions['I'].width = 24
-
-        # Lưu file workbook
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
-        # Enforce 100% Times New Roman across every single cell in all worksheets
+        # Đảm bảo 100% font chữ là Times New Roman
         for ws in wb.worksheets:
             for row in ws.iter_rows():
                 for cell in row:
@@ -943,5 +1197,6 @@ class ExcelF1FullReplicaExporter:
                     else:
                         cell.font = Font(name='Times New Roman', size=11)
 
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
         wb.save(output_path)
         return output_path

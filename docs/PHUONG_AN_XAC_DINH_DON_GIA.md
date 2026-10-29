@@ -87,19 +87,30 @@ $$\mathbf{C_{DC}} = (1 + k_{\text{dc\_phụ}}) \times \sum_{m=1}^{p} \left( \fra
 - **$T_m$**: Thời hạn niên hạn sử dụng (tính bằng tháng) quy định tại Khoản 4.2 TT20; quy đổi chuẩn 22 ca làm việc/tháng $\to$ Tổng số ca trong niên hạn $= T_m \times 22 \text{ ca}$.
 - **$G_{DC\_m}$**: Nguyên giá mua sắm dụng cụ, trang bị BHLĐ.
 
-#### D. Chi phí Thiết bị máy móc & Năng lượng ($C_{TB}$):
+#### D. Chi phí Thiết bị máy móc & Năng lượng ($C_{TB}$) - Tra cứu Mua sắm công tìm Nguyên giá & Tính Đơn giá Ca máy:
 Công thức xác định:
-$$\mathbf{C_{TB}} = \sum_{k=1}^{r} \Big( t_{TB\_k} \times G_{\text{ca\_}k} \Big) + \sum_{k=1}^{r} \Big( P_k \times (t_{TB\_k} \times 8) \times G_{\text{điện}} \Big)$$
+$$\mathbf{C_{TB}} = \sum_{k=1}^{r} \Big( t_{TB\_k} \times ĐG_{\text{ca\_}k} \Big) + \sum_{k=1}^{r} \Big( P_k \times (t_{TB\_k} \times 8) \times G_{\text{điện}} \Big)$$
 
-*Các biến số và căn cứ pháp lý:*
-- **$t_{TB\_k}$**: Định mức ca máy trên 1 mẫu trong bảng *Hao_Phi_Thiet_Bi* của TT20 (1 ca = 8 giờ). Nếu thông số phụ có ghi chú *"Kế thừa từ mục XYZ"* thì $t_{TB\_k} = 0$.
-- **$G_{\text{ca\_}k}$**: Đơn giá 1 ca máy trích khấu hao:
-  $$G_{\text{ca\_}k} = \frac{\text{Nguyên giá} \times k_{\text{khấu hao năm}} + \text{Chi phí bảo dưỡng, kiểm định/năm}}{N_{\text{ca chuẩn}}}$$
-- **$N_{\text{ca chuẩn}}$ xác định theo Khoản 4.3 TT20:**
-  - $N_{\text{ca chuẩn}} = \mathbf{250 \text{ ca/năm}}$ đối với máy ngoại nghiệp thông thường.
-  - $N_{\text{ca chuẩn}} = \mathbf{200 \text{ ca/năm}}$ đối với thiết bị đo trên biển (Học phần II.6 Nước biển).
-  - $N_{\text{ca chuẩn}} = \mathbf{500 \text{ ca/năm}}$ đối với máy phân tích nội nghiệp trong phòng lab.
-- **$P_k$**: Công suất tiêu thụ của thiết bị (kW) quy định tại bảng *Hao_Phi_Thiet_Bi* làm căn cứ tính điện năng theo Khoản 4.3 TT20; $G_{\text{điện}}$: Biểu giá điện sản xuất của EVN.
+*Các biến số, căn cứ pháp lý & phương pháp tra cứu:*
+- **Cách tiếp cận tương tự phần dụng cụ:** Lập bảng danh mục 72 loại máy móc, thiết bị đo/phân tích (tổng cộng 14.169 ca máy) để tra cứu trên Hệ thống mạng đấu thầu quốc gia nhằm xác định **Nguyên giá mua mới** của thiết bị.
+- **Tính đơn giá 1 ca máy ($ĐG_{\text{ca\_}k}$) theo TT 45/2013/TT-BTC & Khoản 4.3 TT 20/2017/TT-BTNMT:**
+  1. **Khấu hao cơ bản 1 ca ($C_{KH}$):**
+     $$C_{KH} = \frac{\text{Nguyên giá tra cứu MSC}}{T_{\text{khấu hao}} \times S_{\text{ca/năm}}}$$
+     với $T_{\text{khấu hao}} = 5\text{ năm}$ (theo Thông tư 45/2013/TT-BTC về trích khấu hao TSCĐ đo lường chuyên dụng).
+     Số ca chuẩn hàng năm $S_{\text{ca/năm}}$ xác định theo Khoản 4.3 TT20:
+     - $S_{\text{ca/năm}} = \mathbf{250\text{ ca/năm}}$ đối với máy đo ngoại nghiệp trên đất liền.
+     - $S_{\text{ca/năm}} = \mathbf{200\text{ ca/năm}}$ đối với thiết bị đo trên biển xa bờ (Phụ lục II.6).
+     - $S_{\text{ca/năm}} = \mathbf{500\text{ ca/năm}}$ đối với máy phân tích nội nghiệp phòng lab.
+  2. **Chi phí sửa chữa, bảo dưỡng thường xuyên & hiệu chuẩn ($C_{SC}$):**
+     $$C_{SC} = \frac{4\% \times \text{Nguyên giá}}{S_{\text{ca/năm}}}$$
+     (Khoản 4.6 TT20 & Nghị định 105/2016/NĐ-CP về kiểm định thiết bị đo).
+  3. **Chi phí năng lượng điện tiêu thụ ($C_{\text{điện}}$):**
+     $$C_{\text{điện}} = P_k \text{ (kW)} \times 8\text{ giờ/ca} \times 2.100\text{ đ/kWh (biểu giá điện EVN)}$$
+  4. **Đơn giá 1 ca máy tổng thể:**
+     $$ĐG_{\text{ca\_}k} = C_{KH} + C_{SC} + C_{\text{điện}}$$
+- **Cơ chế kế thừa thiết bị (Chống tính trùng):** Các chỉ tiêu phụ đo đồng thời trên cùng một thiết bị đo đa chỉ tiêu có $t_{TB\_k} = 0$.
+- **Cấu trúc bảng danh mục tra cứu Mua sắm công:**
+  `STT` | `Mã Thiết bị` | `Tên máy móc` | `ĐVT` | `Quy cách / Công suất (kW)` | `Công đoạn` | `Ca chuẩn/năm (250/200/500)` | `Số năm KH` | `Tổng số ca định mức` | `Tổng điện (kWh)` | `Nguyên giá tra cứu MSC` | `Mã thông báo tra cứu (Mã TBMT / KQLCNT)` | `Ngày phê duyệt KQLCNT` | `Đơn vị trúng thầu` | `Khấu hao 1 ca` | `Sửa chữa 1 ca` | `Điện năng 1 ca` | `Đơn giá 1 ca máy` | `Tổng thành tiền (VNĐ)`.
 
 ---
 

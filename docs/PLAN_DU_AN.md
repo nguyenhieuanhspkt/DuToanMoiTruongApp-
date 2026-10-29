@@ -251,19 +251,31 @@ $$\mathbf{C_{NC}} = \left[ \frac{H_{NC\_field} \times (1 + k_{\text{thời tiế
 - $L_{\text{bậc}}$: Đơn giá lương ngày công theo ngạch bậc chức danh TTLT 56/2015/TTLT-BTNMT-BNV (Hạng II: 850k; Hạng III.1: 650k; Hạng III.2: 550k; Hạng IV: 450k; Phổ thông: 350k).
 - Đo nhanh sensor tại chỗ (Single/In-situ): $H_{NC\_lab} = 0$, nghiêm cấm tính thêm mã nội nghiệp.
 
-#### B. Chi phí Vật liệu, Hóa chất ($C_{VL}$):
+#### B. Chi phí Vật liệu, Hóa chất ($C_{VL}$) - Xác định theo Mua sắm công (KQLCNT) & 3 Báo giá:
 $$\mathbf{C_{VL}} = (1 + k_{\text{hao hụt}}) \times \sum_{j=1}^{n} \Big( q_{VL\_j} \times G_{VL\_j} \Big) = \mathbf{1{,}08} \times \sum_{j=1}^{n} \Big( q_{VL\_j} \times G_{VL\_j} \Big)$$
-- $k_{\text{hao hụt}} = 0{,}08$: Bắt buộc tính thêm **$+8\%$ vật liệu vụn vặt và hao hụt** theo **Khoản 4.4 TT20**.
+- $k_{\text{hao hụt}} = 0{,}08$: Bắt buộc tính thêm **$+8\% vật liệu vụn vặt và hao hụt** theo **Khoản 4.4 TT20**.
+- **Phương pháp xác định đơn giá qua Mua sắm công (Điều 16 Nghị định 24/2024/NĐ-CP):** Lập bảng danh sách 173 loại hóa chất, dung môi để tra cứu kết quả lựa chọn nhà thầu trên Mạng đấu thầu quốc gia (`muasamcong.mpi.gov.vn`).
+- **Cấu trúc bảng tra cứu Mua sắm công:** `STT` | `Mã VL` | `Tên hóa chất` | `ĐVT` | `Số lượng định mức (+8% hao hụt)` | `Đơn giá tra cứu MSC` | `Mã thông báo tra cứu (Mã TBMT / KQLCNT)` | `Ngày phê duyệt KQLCNT` | `Đơn vị trúng thầu` | `Thành tiền tra cứu`.
 
-#### C. Chi phí Dụng cụ ($C_{DC}$):
+#### C. Chi phí Dụng cụ ($C_{DC}$) - Tra cứu Mua sắm công tìm Nguyên giá & Tính theo Ca:
 $$\mathbf{C_{DC}} = (1 + k_{\text{dc\_phụ}}) \times \sum_{k=1}^{m} \left( \frac{1}{T_{m\_k} \times 22} \times G_{DC\_k} \right) = \mathbf{1{,}10} \times \sum_{k=1}^{m} \left( \frac{1}{T_{m\_k} \times 22} \times G_{DC\_k} \right)$$
-- Niên hạn $T_{m\_k}$ tính bằng tháng; quy chuẩn $1\text{ tháng} = 22\text{ ca}$ theo **Khoản 4.2 TT20**.
-- $k_{\text{dc\_phụ}} = 0{,}10$: Bắt buộc tính thêm **$+10\%$ dụng cụ nhỏ, phụ** theo **Khoản 4.2 TT20**.
+- Niên hạn $T_{m\_k}$ tính bằng tháng; quy chuẩn làm việc **$1\text{ tháng} = 22\text{ ca}$** theo **Khoản 4.2 TT20**, QĐ 80/2026/QĐ-UBND và TTLT 56/2015.
+- $k_{\text{dc\_phụ}} = 0{,}10$: Bắt buộc tính thêm **$+10\% dụng cụ nhỏ, phụ** theo **Khoản 4.2 TT20**.
+- **Phương pháp xác định nguyên giá qua Mua sắm công:** Lập bảng danh mục 158 loại dụng cụ, bình lấy mẫu, đồ BHLĐ để chuẩn bị tra cứu Mua sắm công tìm nguyên giá mua mới.
+- **Đơn giá 1 ca dụng cụ:** $ĐG_{ca\_DC} = \frac{\text{Nguyên giá tra cứu MSC}}{T_m \times 22} \times 1{,}10$.
+- **Cấu trúc bảng tra cứu Mua sắm công:** `STT` | `Mã DC` | `Tên dụng cụ` | `ĐVT` | `Niên hạn Tm (tháng)` | `Số ca chuẩn (Tm x 22)` | `Tổng số ca định mức toàn gói` | `Nguyên giá tra cứu MSC` | `Mã thông báo tra cứu (Mã TBMT / KQLCNT)` | `Ngày phê duyệt KQLCNT` | `Đơn vị trúng thầu` | `Đơn giá 1 ca (VNĐ/ca)` | `Tổng thành tiền`.
 
-#### D. Chi phí Thiết bị, Ca máy & Năng lượng ($C_{TB}$):
+#### D. Chi phí Thiết bị, Ca máy & Năng lượng ($C_{TB}$) - Tra cứu Mua sắm công tìm Nguyên giá & Tính Đơn giá Ca máy:
 $$\mathbf{C_{TB}} = \sum_{l=1}^{p} \Big( h_{TB\_l} \times ĐG_{\text{ca\_l}} \Big) + \Big( A_{\text{điện}} \times ĐG_{\text{điện}} \Big)$$
-- Chuẩn số ca máy hàng năm theo **Khoản 4.3 TT20**: $250\text{ ca}$ (ngoại nghiệp đất liền), $200\text{ ca}$ (biển xa bờ II.6), $500\text{ ca}$ (nội nghiệp PTN).
-- Cơ chế kế thừa: Đối với các chỉ tiêu đo đồng thời trên cùng máy đo khí/nước đa chỉ tiêu, thông số phụ kế thừa có $h_{TB} = 0$ để triệt tiêu việc tính trùng ca máy.
+- **Cách tiếp cận giải quyết như phần dụng cụ:** Lập bảng danh mục 72 loại máy móc, thiết bị đo/phân tích (14.169 ca máy) để chuẩn bị tra cứu Mua sắm công tìm **Nguyên giá mua mới**.
+- **Tính đơn giá 1 ca máy ($ĐG_{\text{ca\_l}}$) theo TT 45/2013/TT-BTC & Khoản 4.3 TT20:**
+  * Khấu hao cơ bản 1 ca: $C_{KH} = \frac{\text{Nguyên giá tra cứu MSC}}{T_{KH} \times S_{\text{ca/năm}}}$ (chuẩn $T_{KH} = 5\text{ năm}$).
+  * Chuẩn ca máy hàng năm ($S_{\text{ca/năm}}$) theo **Khoản 4.3 TT20**: $250\text{ ca}$ (đất), $200\text{ ca}$ (biển II.6), $500\text{ ca}$ (PTN).
+  * Chi phí sửa chữa, bảo dưỡng & hiệu chuẩn: $C_{SC} = \frac{4\% \times \text{Nguyên giá}}{S_{\text{ca/năm}}}$.
+  * Chi phí điện năng: $C_{\text{điện}} = P \times 8 \times 2.100\text{ đ/kWh}$ (Tổng công suất toàn gói tiêu thụ $11.188\text{ kWh}$).
+  * Đơn giá 1 ca máy tổng hợp: $ĐG_{\text{ca}} = C_{KH} + C_{SC} + C_{\text{điện}}$.
+- **Cơ chế kế thừa thiết bị:** Thông số phụ đo đồng thời trên cùng máy đo có $h_{TB} = 0$ để triệt tiêu việc tính trùng ca máy.
+- **Cấu trúc bảng tra cứu Mua sắm công:** `STT` | `Mã TB` | `Tên thiết bị` | `ĐVT` | `Quy cách/Công suất` | `Ca chuẩn/năm` | `Tổng ca định mức` | `Nguyên giá tra cứu MSC` | `Mã thông báo tra cứu (Mã TBMT / KQLCNT)` | `Ngày phê duyệt KQLCNT` | `Đơn vị trúng thầu` | `Khấu hao 1 ca` | `Đơn giá 1 ca` | `Tổng thành tiền`.
 
 #### E. Phân hệ Chi phí Ngoài định mức tính riêng (Khoản 4.5 TT20):
 - **Nhóm có định mức Nhà nước:**
@@ -388,11 +400,12 @@ flowchart LR
     * Chức năng gán giá nhanh hàng loạt (Min 3 Báo giá, Kế thừa HĐ 71, Bình quân 3 Báo giá) và sửa đơn giá trực tiếp.
     * Drawer xem chi tiết các thông số quan trắc sử dụng loại hóa chất/vật tư và khối lượng phân bổ.
     * Đồng bộ 2-tier dual write (Repo backend + OneDrive) và frontend build Vite 100% 0 lỗi.
-  - [ ] **Tab 8: Đơn giá Dụng cụ & Ca máy Thiết bị (ĐANG TIẾN HÀNH)**:
-    * **Dụng cụ (158 loại)**: Khấu hao theo niên hạn quy chuẩn $1\text{ tháng} = 22\text{ ca}$ và cộng $+10\%$ dụng cụ nhỏ phụ ($k_{dc\_phu} = 0{,}10$) theo Khoản 4.2 TT20.
-    * **Thiết bị (72 loại máy, 14.169 ca máy)**: Khấu hao theo Thông tư 45/2013/TT-BTC chia cho số ca chuẩn $250 / 200 / 500\text{ ca/năm}$ theo Khoản 4.3 TT20.
-    * **Chi phí năng lượng**: Suất điện năng ($11.188\text{ kWh}$) tiêu thụ $\times$ Đơn giá điện sản xuất EVN ($2.100\text{ đ/kWh}$).
-    * **Cơ chế kế thừa thiết bị**: Triệt tiêu tính trùng cho các chỉ tiêu đo đồng thời ($h_{TB} = 0$).
+  - [ ] **Tab 8: Đơn giá Dụng cụ & Ca máy Thiết bị (ĐANG TIẾN HÀNH - LẬP DANH MỤC TRA CỨU MUA SẮM CÔNG)**:
+    * **Lập 03 Bảng danh mục tra cứu Mua sắm công (`muasamcong.mpi.gov.vn`)**: Đã xuất ra `DANH_MUC_TRA_CUU_MUA_SAM_CONG_2026.xlsx` gồm 3 sheet:
+      1. Sheet 1: 173 loại vật liệu hóa chất (kèm số lượng +8% hao hụt, cột Mã TBMT, Ngày duyệt, Đơn giá MSC).
+      2. Sheet 2: 158 loại dụng cụ BHLĐ chuẩn bị tra cứu tìm Nguyên giá, tính đơn giá Ca theo niên hạn $22\text{ ca/tháng}$ và $+10\%$ dụng cụ phụ (Khoản 4.2 TT20).
+      3. Sheet 3: 72 loại máy móc, thiết bị đo/phân tích (14.169 ca máy) chuẩn bị tra cứu tìm Nguyên giá, tính khấu hao ca máy theo TT 45/2013 chia $250/200/500\text{ ca/năm}$ + sửa chữa + điện năng $11.188\text{ kWh}$ $\times 2.100\text{ đ/kWh}$.
+    * **Tiếp tục xây dựng component `Tab08_DonGiaDungCuThietBi.tsx`** để hỗ trợ nhập/đồng bộ kết quả tra cứu Mua sắm công trực tiếp trên giao diện.
   - [ ] **Tab 9: Chi phí Gián tiếp & Phân hệ Chi phí Ngoài Định Mức Tính Riêng (KẾ TIẾP)**:
     * Hệ số chi phí gián tiếp $+38{,}23\%$ (Chi phí chung 15%, Thu nhập tính trước 6%, Dự phòng 5%, VAT 8%).
     * Phân hệ 4 khoản chi phí ngoài định mức tính riêng theo Khoản 4.5 TT20 (Giàn giáo ống khói BXD, Đi lại TT40, Thuê tàu biển, Vận chuyển mẫu lạnh).

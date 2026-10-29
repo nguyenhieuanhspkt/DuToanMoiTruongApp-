@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+﻿import React, { useState, useEffect, useCallback } from 'react';
 import { 
   PieChart, FileSpreadsheet, Printer, ShieldCheck, 
   TrendingDown, CheckCircle2,
@@ -55,7 +55,7 @@ export const Tab10_TongHopKinhPhi: React.FC<Tab10Props> = ({ items }) => {
       total_separate: totalSeparate,
       scenarios: {
         pa1: {
-          name: "Phương án 1 (Chuẩn Định mức TT20 & QĐ 80/2026/QĐ-UBND)",
+          name: "PhÆ°Æ¡ng Ã¡n 1 (Chuáº©n Äá»‹nh má»©c TT20 & QÄ 80/2026/QÄ-UBND)",
           direct_cost: pa1Direct,
           indirect_amount: pa1Total - pa1Direct,
           total_cost: pa1Total,
@@ -64,18 +64,18 @@ export const Tab10_TongHopKinhPhi: React.FC<Tab10Props> = ({ items }) => {
           tools: 84520000,
           equipment: 685120000,
           separate: totalSeparate,
-          legal_status: "Khép kín 100% định mức Nhà nước và QĐ 80/UBND",
-          recommendation: "Kiến nghị phê duyệt làm trần giá gói thầu"
+          legal_status: "KhÃ©p kÃ­n 100% Ä‘á»‹nh má»©c NhÃ  nÆ°á»›c vÃ  QÄ 80/UBND",
+          recommendation: "Kiáº¿n nghá»‹ phÃª duyá»‡t lÃ m tráº§n giÃ¡ gÃ³i tháº§u"
         },
         pa2: {
-          name: "Phương án 2 (3 Báo giá cạnh tranh Điều 16 NĐ 24/2024)",
+          name: "PhÆ°Æ¡ng Ã¡n 2 (3 BÃ¡o giÃ¡ cáº¡nh tranh Äiá»u 16 NÄ 24/2024)",
           direct_cost: pa2Direct,
           indirect_amount: pa2Total - pa2Direct,
           total_cost: pa2Total,
           savings_vs_pa1: pa2Total - pa1Total
         },
         pa3: {
-          name: "Phương án 3 (Lịch sử HĐ số 71/2025/HĐ-DV + CPI 3.5%)",
+          name: "PhÆ°Æ¡ng Ã¡n 3 (Lá»‹ch sá»­ HÄ sá»‘ 71/2025/HÄ-DV + CPI 3.5%)",
           direct_cost: pa3Direct,
           indirect_amount: pa3Total - pa3Direct,
           total_cost: pa3Total,
@@ -83,12 +83,12 @@ export const Tab10_TongHopKinhPhi: React.FC<Tab10Props> = ({ items }) => {
         }
       },
       environments: [
-        { name: "Khí thải ống khói lò hơi VT4", sec: "II.8", samples: 144, direct_cost: 980000000, color: "text-purple-400" },
-        { name: "Nước biển ven bờ & xa bờ bãi xỉ", sec: "II.6", samples: 216, direct_cost: 840000000, color: "text-cyan-400" },
-        { name: "Nước thải công nghiệp & sinh hoạt", sec: "II.3", samples: 384, direct_cost: 460000000, color: "text-blue-400" },
-        { name: "Không khí xung quanh & tiếng ồn", sec: "I.1", samples: 192, direct_cost: 290000000, color: "text-emerald-400" },
-        { name: "Nước dưới đất / nước ngầm", sec: "II.2", samples: 120, direct_cost: 210000000, color: "text-indigo-400" },
-        { name: "Trầm tích biển & mẫu đất", sec: "III.1", samples: 48, direct_cost: 145000000, color: "text-amber-400" },
+        { name: "KhÃ­ tháº£i á»‘ng khÃ³i lÃ² hÆ¡i VT4", sec: "II.8", samples: 144, direct_cost: 980000000, color: "text-purple-400" },
+        { name: "NÆ°á»›c biá»ƒn ven bá» & xa bá» bÃ£i xá»‰", sec: "II.6", samples: 216, direct_cost: 840000000, color: "text-cyan-400" },
+        { name: "NÆ°á»›c tháº£i cÃ´ng nghiá»‡p & sinh hoáº¡t", sec: "II.3", samples: 384, direct_cost: 460000000, color: "text-blue-400" },
+        { name: "KhÃ´ng khÃ­ xung quanh & tiáº¿ng á»“n", sec: "I.1", samples: 192, direct_cost: 290000000, color: "text-emerald-400" },
+        { name: "NÆ°á»›c dÆ°á»›i Ä‘áº¥t / nÆ°á»›c ngáº§m", sec: "II.2", samples: 120, direct_cost: 210000000, color: "text-indigo-400" },
+        { name: "Tráº§m tÃ­ch biá»ƒn & máº«u Ä‘áº¥t", sec: "III.1", samples: 48, direct_cost: 145000000, color: "text-amber-400" },
       ]
     };
   }
@@ -99,7 +99,7 @@ export const Tab10_TongHopKinhPhi: React.FC<Tab10Props> = ({ items }) => {
 
   const totalDirect = pa1?.direct_cost || 2924400000;
 
-  // Xử lý in / xuất báo cáo
+  // Xá»­ lÃ½ in / xuáº¥t bÃ¡o cÃ¡o
   const handlePrint = () => {
     window.print();
   };
@@ -109,7 +109,7 @@ export const Tab10_TongHopKinhPhi: React.FC<Tab10Props> = ({ items }) => {
       <div className="flex-1 flex items-center justify-center text-slate-400 bg-slate-950">
         <div className="flex items-center space-x-2">
           <span className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-ping"></span>
-          <span className="text-sm font-medium">Đang tổng hợp Dashboard 3 Kịch Bản & CSDL 10 Sheet...</span>
+          <span className="text-sm font-medium">Äang tá»•ng há»£p Dashboard 3 Ká»‹ch Báº£n & CSDL 10 Sheet...</span>
         </div>
       </div>
     );
@@ -125,13 +125,13 @@ export const Tab10_TongHopKinhPhi: React.FC<Tab10Props> = ({ items }) => {
           </div>
           <div>
             <h2 className="text-sm font-bold text-white flex items-center space-x-2">
-              <span>Tab 10: Dashboard Tổng Hợp So Sánh 3 Kịch Bản Thẩm Định Dự Toán</span>
+              <span>Tab 10: Dashboard Tá»•ng Há»£p So SÃ¡nh 3 Ká»‹ch Báº£n Tháº©m Äá»‹nh Dá»± ToÃ¡n</span>
               <span className="px-2 py-0.5 rounded text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800/60 font-semibold">
-                Năm 2026
+                NÄƒm 2026
               </span>
             </h2>
             <p className="text-[11px] text-slate-400">
-              Căn cứ: TT 20/2017/TT-BTNMT, QĐ 80/2026/QĐ-UBND, TTLT 56/2015, NĐ 24/2024/NĐ-CP & VB 5691/EVN
+              CÄƒn cá»©: TT 20/2017/TT-BTNMT, QÄ 80/2026/QÄ-UBND, TTLT 56/2015, NÄ 24/2024/NÄ-CP & VB 5691/EVN
             </p>
           </div>
         </div>
@@ -143,24 +143,24 @@ export const Tab10_TongHopKinhPhi: React.FC<Tab10Props> = ({ items }) => {
             className="px-2.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 rounded-lg font-semibold transition active:scale-95 flex items-center space-x-1.5"
           >
             <Printer className="w-3.5 h-3.5 text-slate-400" />
-            <span>In Báo Cáo</span>
+            <span>In BÃ¡o CÃ¡o</span>
           </button>
 
           <a
-            href="/api/export/excel"
+            href="/DU_TOAN_QUAN_TRAC_MOI_TRUONG_2026_10_SHEET.xlsx"
             download="DU_TOAN_QUAN_TRAC_MOI_TRUONG_2026_10_SHEET.xlsx"
             className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-bold shadow-md shadow-emerald-600/30 transition active:scale-95 flex items-center space-x-1.5"
-            title="Xuất trọn vẹn tệp Excel 10 Sheet động khép kín công thức"
+            title="Xuáº¥t trá»n váº¹n tá»‡p Excel 10 Sheet Ä‘á»™ng khÃ©p kÃ­n cÃ´ng thá»©c"
           >
             <FileSpreadsheet className="w-3.5 h-3.5 text-white" />
-            <span>Xuất Excel 10 Sheet (Công Thức Sống)</span>
+            <span>Xuáº¥t Excel 10 Sheet (CÃ´ng Thá»©c Sá»‘ng)</span>
           </a>
         </div>
       </div>
 
-      {/* 2. Top Executive KPI Cards (3 Kịch Bản) */}
+      {/* 2. Top Executive KPI Cards (3 Ká»‹ch Báº£n) */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-3 p-3 bg-slate-900/60 border-b border-slate-800 text-xs shrink-0">
-        {/* Card 1: PA 1 Chuẩn Định mức TT20 (Khuyên nghị duyệt) */}
+        {/* Card 1: PA 1 Chuáº©n Äá»‹nh má»©c TT20 (KhuyÃªn nghá»‹ duyá»‡t) */}
         <div 
           onClick={() => setSelectedScenario('pa1')}
           className={`cursor-pointer rounded-xl p-3 border transition ${
@@ -172,22 +172,22 @@ export const Tab10_TongHopKinhPhi: React.FC<Tab10Props> = ({ items }) => {
           <div className="flex items-center justify-between mb-1.5">
             <span className="text-[10px] uppercase font-bold text-blue-300 flex items-center space-x-1">
               <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />
-              <span>PA 1: Chuẩn ĐM TT20 (Đề Xuất Duyệt)</span>
+              <span>PA 1: Chuáº©n ÄM TT20 (Äá» Xuáº¥t Duyá»‡t)</span>
             </span>
             <span className="text-[9px] px-1.5 py-0.2 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-bold">
-              Tối Ưu
+              Tá»‘i Æ¯u
             </span>
           </div>
           <div className="text-lg font-black text-white tabular-nums">
-            {pa1?.total_cost.toLocaleString('vi-VN')} <span className="text-xs font-normal text-slate-400">đ</span>
+            {pa1?.total_cost.toLocaleString('vi-VN')} <span className="text-xs font-normal text-slate-400">Ä‘</span>
           </div>
           <div className="text-[10px] text-slate-400 mt-1 flex items-center justify-between">
-            <span>Trực tiếp: {(pa1?.direct_cost / 1e9).toFixed(2)} Tỷ</span>
-            <span className="text-blue-300 font-semibold">+38,23% gián tiếp</span>
+            <span>Trá»±c tiáº¿p: {(pa1?.direct_cost / 1e9).toFixed(2)} Tá»·</span>
+            <span className="text-blue-300 font-semibold">+38,23% giÃ¡n tiáº¿p</span>
           </div>
         </div>
 
-        {/* Card 2: PA 2 3 Báo giá cạnh tranh */}
+        {/* Card 2: PA 2 3 BÃ¡o giÃ¡ cáº¡nh tranh */}
         <div 
           onClick={() => setSelectedScenario('pa2')}
           className={`cursor-pointer rounded-xl p-3 border transition ${
@@ -197,18 +197,18 @@ export const Tab10_TongHopKinhPhi: React.FC<Tab10Props> = ({ items }) => {
           }`}
         >
           <div className="flex items-center justify-between mb-1.5">
-            <span className="text-[10px] uppercase font-bold text-slate-400">PA 2: 3 Báo Giá Cạnh Tranh</span>
-            <span className="text-[9px] text-slate-500">NĐ 24/2024</span>
+            <span className="text-[10px] uppercase font-bold text-slate-400">PA 2: 3 BÃ¡o GiÃ¡ Cáº¡nh Tranh</span>
+            <span className="text-[9px] text-slate-500">NÄ 24/2024</span>
           </div>
           <div className="text-lg font-black text-purple-300 tabular-nums">
-            {pa2?.total_cost.toLocaleString('vi-VN')} <span className="text-xs font-normal text-slate-400">đ</span>
+            {pa2?.total_cost.toLocaleString('vi-VN')} <span className="text-xs font-normal text-slate-400">Ä‘</span>
           </div>
           <div className="text-[10px] text-amber-400 mt-1">
-            Cao hơn PA1: +{(pa2?.savings_vs_pa1).toLocaleString('vi-VN')} đ
+            Cao hÆ¡n PA1: +{(pa2?.savings_vs_pa1).toLocaleString('vi-VN')} Ä‘
           </div>
         </div>
 
-        {/* Card 3: PA 3 Lịch sử HĐ 71 */}
+        {/* Card 3: PA 3 Lá»‹ch sá»­ HÄ 71 */}
         <div 
           onClick={() => setSelectedScenario('pa3')}
           className={`cursor-pointer rounded-xl p-3 border transition ${
@@ -218,30 +218,30 @@ export const Tab10_TongHopKinhPhi: React.FC<Tab10Props> = ({ items }) => {
           }`}
         >
           <div className="flex items-center justify-between mb-1.5">
-            <span className="text-[10px] uppercase font-bold text-slate-400">PA 3: HĐ 71/2025 + CPI 3.5%</span>
-            <span className="text-[9px] text-slate-500">Lịch sử</span>
+            <span className="text-[10px] uppercase font-bold text-slate-400">PA 3: HÄ 71/2025 + CPI 3.5%</span>
+            <span className="text-[9px] text-slate-500">Lá»‹ch sá»­</span>
           </div>
           <div className="text-lg font-black text-indigo-300 tabular-nums">
-            {pa3?.total_cost.toLocaleString('vi-VN')} <span className="text-xs font-normal text-slate-400">đ</span>
+            {pa3?.total_cost.toLocaleString('vi-VN')} <span className="text-xs font-normal text-slate-400">Ä‘</span>
           </div>
           <div className="text-[10px] text-amber-400 mt-1">
-            Cao hơn PA1: +{(pa3?.savings_vs_pa1).toLocaleString('vi-VN')} đ
+            Cao hÆ¡n PA1: +{(pa3?.savings_vs_pa1).toLocaleString('vi-VN')} Ä‘
           </div>
         </div>
 
-        {/* Card 4: Hiệu quả tiết kiệm */}
+        {/* Card 4: Hiá»‡u quáº£ tiáº¿t kiá»‡m */}
         <div className="bg-gradient-to-r from-emerald-950/60 to-teal-950/60 border border-emerald-500/40 rounded-xl p-3 shadow-sm flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-[10px] uppercase font-bold text-emerald-300 flex items-center space-x-1">
               <TrendingDown className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Tiết Kiệm Cho EVN Vĩnh Tân 4</span>
+              <span>Tiáº¿t Kiá»‡m Cho EVN VÄ©nh TÃ¢n 4</span>
             </span>
           </div>
           <div className="text-xl font-black text-emerald-300 tabular-nums my-1">
-            -{(pa2?.savings_vs_pa1).toLocaleString('vi-VN')} <span className="text-xs font-normal text-emerald-200">đ</span>
+            -{(pa2?.savings_vs_pa1).toLocaleString('vi-VN')} <span className="text-xs font-normal text-emerald-200">Ä‘</span>
           </div>
           <div className="text-[10px] text-emerald-400/90 font-medium">
-            So với báo giá thị trường trọn gói (-13.06%)
+            So vá»›i bÃ¡o giÃ¡ thá»‹ trÆ°á»ng trá»n gÃ³i (-13.06%)
           </div>
         </div>
       </div>
@@ -254,9 +254,9 @@ export const Tab10_TongHopKinhPhi: React.FC<Tab10Props> = ({ items }) => {
             <div className="p-3.5 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
               <h3 className="text-xs font-bold text-white uppercase tracking-wider flex items-center space-x-2">
                 <Scale className="w-4 h-4 text-blue-400" />
-                <span>Bảng Đối Chiếu Chi Tiết 3 Phương Án Dự Toán Năm 2026</span>
+                <span>Báº£ng Äá»‘i Chiáº¿u Chi Tiáº¿t 3 PhÆ°Æ¡ng Ãn Dá»± ToÃ¡n NÄƒm 2026</span>
               </h3>
-              <span className="text-[11px] text-slate-400 font-mono">Đơn vị: Đồng</span>
+              <span className="text-[11px] text-slate-400 font-mono">ÄÆ¡n vá»‹: Äá»“ng</span>
             </div>
 
             <div className="overflow-x-auto">
@@ -264,20 +264,20 @@ export const Tab10_TongHopKinhPhi: React.FC<Tab10Props> = ({ items }) => {
                 <thead className="bg-slate-950 text-[11px] text-slate-300 uppercase border-b border-slate-800 font-sans">
                   <tr>
                     <th className="py-2.5 px-3 w-10 text-center">STT</th>
-                    <th className="py-2.5 px-3 min-w-[180px]">Yếu Tố Chi Phí</th>
-                    <th className="py-2.5 px-3 text-right text-blue-300 bg-blue-950/20">PA 1: TT20 ĐM</th>
-                    <th className="py-2.5 px-3 text-right text-purple-300">PA 2: 3 Báo Giá</th>
-                    <th className="py-2.5 px-3 text-right text-indigo-300">PA 3: HĐ 71</th>
-                    <th className="py-2.5 px-3 text-right text-emerald-400">Tiết Kiệm</th>
+                    <th className="py-2.5 px-3 min-w-[180px]">Yáº¿u Tá»‘ Chi PhÃ­</th>
+                    <th className="py-2.5 px-3 text-right text-blue-300 bg-blue-950/20">PA 1: TT20 ÄM</th>
+                    <th className="py-2.5 px-3 text-right text-purple-300">PA 2: 3 BÃ¡o GiÃ¡</th>
+                    <th className="py-2.5 px-3 text-right text-indigo-300">PA 3: HÄ 71</th>
+                    <th className="py-2.5 px-3 text-right text-emerald-400">Tiáº¿t Kiá»‡m</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-800/80">
-                  {/* Mục 1: Nhân công */}
+                  {/* Má»¥c 1: NhÃ¢n cÃ´ng */}
                   <tr className="hover:bg-slate-800/30 transition">
                     <td className="py-2 px-3 text-center text-slate-500">1</td>
                     <td className="py-2 px-3 font-sans text-white flex items-center space-x-2">
                       <Users className="w-3.5 h-3.5 text-blue-400" />
-                      <span>Nhân công (CNC) <small className="text-slate-400">(+20% thời tiết)</small></span>
+                      <span>NhÃ¢n cÃ´ng (CNC) <small className="text-slate-400">(+20% thá»i tiáº¿t)</small></span>
                     </td>
                     <td className="py-2 px-3 text-right font-bold text-blue-300 bg-blue-950/10">
                       {pa1?.labor.toLocaleString('vi-VN')}
@@ -289,12 +289,12 @@ export const Tab10_TongHopKinhPhi: React.FC<Tab10Props> = ({ items }) => {
                     </td>
                   </tr>
 
-                  {/* Mục 2: Vật liệu */}
+                  {/* Má»¥c 2: Váº­t liá»‡u */}
                   <tr className="hover:bg-slate-800/30 transition">
                     <td className="py-2 px-3 text-center text-slate-500">2</td>
                     <td className="py-2 px-3 font-sans text-white flex items-center space-x-2">
                       <Layers className="w-3.5 h-3.5 text-indigo-400" />
-                      <span>Vật liệu, hóa chất (CVL) <small className="text-slate-400">(+8% TT20)</small></span>
+                      <span>Váº­t liá»‡u, hÃ³a cháº¥t (CVL) <small className="text-slate-400">(+8% TT20)</small></span>
                     </td>
                     <td className="py-2 px-3 text-right font-bold text-blue-300 bg-blue-950/10">
                       {pa1?.material.toLocaleString('vi-VN')}
@@ -306,12 +306,12 @@ export const Tab10_TongHopKinhPhi: React.FC<Tab10Props> = ({ items }) => {
                     </td>
                   </tr>
 
-                  {/* Mục 3: Dụng cụ */}
+                  {/* Má»¥c 3: Dá»¥ng cá»¥ */}
                   <tr className="hover:bg-slate-800/30 transition">
                     <td className="py-2 px-3 text-center text-slate-500">3</td>
                     <td className="py-2 px-3 font-sans text-white flex items-center space-x-2">
                       <Wrench className="w-3.5 h-3.5 text-emerald-400" />
-                      <span>Dụng cụ BHLĐ (CDC) <small className="text-slate-400">(22 ca + 10% phụ)</small></span>
+                      <span>Dá»¥ng cá»¥ BHLÄ (CDC) <small className="text-slate-400">(22 ca + 10% phá»¥)</small></span>
                     </td>
                     <td className="py-2 px-3 text-right font-bold text-blue-300 bg-blue-950/10">
                       {pa1?.tools.toLocaleString('vi-VN')}
@@ -323,12 +323,12 @@ export const Tab10_TongHopKinhPhi: React.FC<Tab10Props> = ({ items }) => {
                     </td>
                   </tr>
 
-                  {/* Mục 4: Thiết bị */}
+                  {/* Má»¥c 4: Thiáº¿t bá»‹ */}
                   <tr className="hover:bg-slate-800/30 transition">
                     <td className="py-2 px-3 text-center text-slate-500">4</td>
                     <td className="py-2 px-3 font-sans text-white flex items-center space-x-2">
                       <Cpu className="w-3.5 h-3.5 text-purple-400" />
-                      <span>Ca máy & điện năng (CTB) <small className="text-slate-400">(250/200/500 ca)</small></span>
+                      <span>Ca mÃ¡y & Ä‘iá»‡n nÄƒng (CTB) <small className="text-slate-400">(250/200/500 ca)</small></span>
                     </td>
                     <td className="py-2 px-3 text-right font-bold text-blue-300 bg-blue-950/10">
                       {pa1?.equipment.toLocaleString('vi-VN')}
@@ -340,12 +340,12 @@ export const Tab10_TongHopKinhPhi: React.FC<Tab10Props> = ({ items }) => {
                     </td>
                   </tr>
 
-                  {/* Mục 5: Ngoài định mức tính riêng */}
+                  {/* Má»¥c 5: NgoÃ i Ä‘á»‹nh má»©c tÃ­nh riÃªng */}
                   <tr className="hover:bg-slate-800/30 transition">
                     <td className="py-2 px-3 text-center text-slate-500">5</td>
                     <td className="py-2 px-3 font-sans text-white flex items-center space-x-2">
                       <Scale className="w-3.5 h-3.5 text-amber-400" />
-                      <span>Khoản 4.5 tính riêng <small className="text-slate-400">(Giàn giáo, Tàu biển...)</small></span>
+                      <span>Khoáº£n 4.5 tÃ­nh riÃªng <small className="text-slate-400">(GiÃ n giÃ¡o, TÃ u biá»ƒn...)</small></span>
                     </td>
                     <td className="py-2 px-3 text-right font-bold text-amber-300 bg-blue-950/10">
                       {pa1?.separate.toLocaleString('vi-VN')}
@@ -355,10 +355,10 @@ export const Tab10_TongHopKinhPhi: React.FC<Tab10Props> = ({ items }) => {
                     <td className="py-2 px-3 text-right text-slate-500">0</td>
                   </tr>
 
-                  {/* TỔNG CHI PHÍ TRỰC TIẾP */}
+                  {/* Tá»”NG CHI PHÃ TRá»°C TIáº¾P */}
                   <tr className="bg-slate-900 font-bold border-y-2 border-slate-700">
                     <td colSpan={2} className="py-2.5 px-3 font-sans text-white uppercase">
-                      TỔNG CHI PHÍ TRỰC TIẾP (T)
+                      Tá»”NG CHI PHÃ TRá»°C TIáº¾P (T)
                     </td>
                     <td className="py-2.5 px-3 text-right text-blue-300 bg-blue-950/30">
                       {pa1?.direct_cost.toLocaleString('vi-VN')}
@@ -370,10 +370,10 @@ export const Tab10_TongHopKinhPhi: React.FC<Tab10Props> = ({ items }) => {
                     </td>
                   </tr>
 
-                  {/* CHI PHÍ GIÁN TIẾP */}
+                  {/* CHI PHÃ GIÃN TIáº¾P */}
                   <tr className="hover:bg-slate-800/30 transition">
                     <td colSpan={2} className="py-2 px-3 font-sans text-slate-300">
-                      + Chi phí Gián tiếp & Thuế (Φ = 1,3823: Chung 15%, TL 6%, DP 5%, VAT 8%)
+                      + Chi phÃ­ GiÃ¡n tiáº¿p & Thuáº¿ (Î¦ = 1,3823: Chung 15%, TL 6%, DP 5%, VAT 8%)
                     </td>
                     <td className="py-2 px-3 text-right text-blue-300 bg-blue-950/10">
                       {pa1?.indirect_amount.toLocaleString('vi-VN')}
@@ -385,48 +385,48 @@ export const Tab10_TongHopKinhPhi: React.FC<Tab10Props> = ({ items }) => {
                     </td>
                   </tr>
 
-                  {/* TỔNG KINH PHÍ DỰ TOÁN TRỌN GÓI */}
+                  {/* Tá»”NG KINH PHÃ Dá»° TOÃN TRá»ŒN GÃ“I */}
                   <tr className="bg-gradient-to-r from-blue-950/80 via-slate-900 to-indigo-950/80 font-black text-sm border-t-2 border-blue-500">
                     <td colSpan={2} className="py-3 px-3 font-sans text-white uppercase flex items-center space-x-1.5">
                       <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                      <span>TỔNG DỰ TOÁN TRỌN GÓI</span>
+                      <span>Tá»”NG Dá»° TOÃN TRá»ŒN GÃ“I</span>
                     </td>
                     <td className="py-3 px-3 text-right text-emerald-300 bg-blue-900/40 text-base">
-                      {pa1?.total_cost.toLocaleString('vi-VN')} đ
+                      {pa1?.total_cost.toLocaleString('vi-VN')} Ä‘
                     </td>
-                    <td className="py-3 px-3 text-right text-purple-300">{pa2?.total_cost.toLocaleString('vi-VN')} đ</td>
-                    <td className="py-3 px-3 text-right text-indigo-300">{pa3?.total_cost.toLocaleString('vi-VN')} đ</td>
+                    <td className="py-3 px-3 text-right text-purple-300">{pa2?.total_cost.toLocaleString('vi-VN')} Ä‘</td>
+                    <td className="py-3 px-3 text-right text-indigo-300">{pa3?.total_cost.toLocaleString('vi-VN')} Ä‘</td>
                     <td className="py-3 px-3 text-right text-emerald-400 text-base">
-                      -{(pa2?.savings_vs_pa1).toLocaleString('vi-VN')} đ
+                      -{(pa2?.savings_vs_pa1).toLocaleString('vi-VN')} Ä‘
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            {/* Thẩm định Recommendation Footer */}
+            {/* Tháº©m Ä‘á»‹nh Recommendation Footer */}
             <div className="p-3 bg-slate-950/90 border-t border-slate-800 text-xs flex items-center justify-between">
               <div className="flex items-center space-x-2 text-slate-300 font-sans">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>
-                  <strong>Kết luận Thẩm định:</strong> Đề xuất áp dụng <strong>Phương án 1 (Định mức TT20)</strong> với trần dự toán là <strong className="text-emerald-300">{pa1?.total_cost.toLocaleString('vi-VN')} đồng</strong>.
+                  <strong>Káº¿t luáº­n Tháº©m Ä‘á»‹nh:</strong> Äá» xuáº¥t Ã¡p dá»¥ng <strong>PhÆ°Æ¡ng Ã¡n 1 (Äá»‹nh má»©c TT20)</strong> vá»›i tráº§n dá»± toÃ¡n lÃ  <strong className="text-emerald-300">{pa1?.total_cost.toLocaleString('vi-VN')} Ä‘á»“ng</strong>.
                 </span>
               </div>
-              <span className="text-[10px] text-slate-500 shrink-0">Tuân thủ VB 5691/EVN</span>
+              <span className="text-[10px] text-slate-500 shrink-0">TuÃ¢n thá»§ VB 5691/EVN</span>
             </div>
           </div>
         </div>
 
         {/* Right Column (5 cols): Environment Breakdown & Structure */}
         <div className="lg:col-span-5 space-y-4">
-          {/* Card: Phân bổ theo 6 phân hệ Môi trường */}
+          {/* Card: PhÃ¢n bá»• theo 6 phÃ¢n há»‡ MÃ´i trÆ°á»ng */}
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-lg space-y-3">
             <div className="flex items-center justify-between pb-2 border-b border-slate-800">
               <h3 className="text-xs font-bold text-white uppercase tracking-wider flex items-center space-x-1.5">
                 <PieChart className="w-4 h-4 text-cyan-400" />
-                <span>Cơ Cấu Kinh Phí Theo 6 Phân Hệ Môi Trường</span>
+                <span>CÆ¡ Cáº¥u Kinh PhÃ­ Theo 6 PhÃ¢n Há»‡ MÃ´i TrÆ°á»ng</span>
               </h3>
-              <span className="text-[10px] text-slate-400 font-mono">253 Dòng PAKT</span>
+              <span className="text-[10px] text-slate-400 font-mono">253 DÃ²ng PAKT</span>
             </div>
 
             <div className="space-y-3">
@@ -458,38 +458,38 @@ export const Tab10_TongHopKinhPhi: React.FC<Tab10Props> = ({ items }) => {
             </div>
           </div>
 
-          {/* Card: Tệp Excel 10 Sheet Sống */}
+          {/* Card: Tá»‡p Excel 10 Sheet Sá»‘ng */}
           <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-lg space-y-3">
             <div className="flex items-center space-x-2 text-white">
               <FileSpreadsheet className="w-4 h-4 text-emerald-400" />
-              <h4 className="text-xs font-bold uppercase tracking-wider">Cấu Trúc Tệp Excel 10 Sheet Đã Xuất Bản</h4>
+              <h4 className="text-xs font-bold uppercase tracking-wider">Cáº¥u TrÃºc Tá»‡p Excel 10 Sheet ÄÃ£ Xuáº¥t Báº£n</h4>
             </div>
 
             <p className="text-[11px] text-slate-400 leading-relaxed">
-              Tệp Excel đã sinh động bằng Engine OpenPyXL, giữ nguyên các công thức số học sống khép kín giữa các Sheet:
+              Tá»‡p Excel Ä‘Ã£ sinh Ä‘á»™ng báº±ng Engine OpenPyXL, giá»¯ nguyÃªn cÃ¡c cÃ´ng thá»©c sá»‘ há»c sá»‘ng khÃ©p kÃ­n giá»¯a cÃ¡c Sheet:
             </p>
 
             <div className="grid grid-cols-2 gap-1.5 text-[10px] font-mono text-slate-300">
-              <div className="p-1.5 rounded bg-slate-950 border border-slate-800">01. Khối lượng 253 dòng</div>
-              <div className="p-1.5 rounded bg-slate-950 border border-slate-800">02. Định mức nhân công</div>
-              <div className="p-1.5 rounded bg-slate-950 border border-slate-800">03. Nhu cầu vật liệu (+8%)</div>
-              <div className="p-1.5 rounded bg-slate-950 border border-slate-800">04. Dụng cụ BHLĐ (+10%)</div>
-              <div className="p-1.5 rounded bg-slate-950 border border-slate-800">05. Ca máy & điện năng</div>
-              <div className="p-1.5 rounded bg-slate-950 border border-slate-800">06. Đơn giá lương TTLT 56</div>
-              <div className="p-1.5 rounded bg-slate-950 border border-slate-800">07. Đơn giá 3 Báo giá</div>
-              <div className="p-1.5 rounded bg-slate-950 border border-slate-800">08. Đơn giá ca máy TT 45</div>
-              <div className="p-1.5 rounded bg-slate-950 border border-slate-800">09. Phí gián tiếp & K4.5</div>
-              <div className="p-1.5 rounded bg-blue-950 border border-blue-800 text-blue-300 font-bold">10. Tổng hợp 3 Kịch bản</div>
+              <div className="p-1.5 rounded bg-slate-950 border border-slate-800">01. Khá»‘i lÆ°á»£ng 253 dÃ²ng</div>
+              <div className="p-1.5 rounded bg-slate-950 border border-slate-800">02. Äá»‹nh má»©c nhÃ¢n cÃ´ng</div>
+              <div className="p-1.5 rounded bg-slate-950 border border-slate-800">03. Nhu cáº§u váº­t liá»‡u (+8%)</div>
+              <div className="p-1.5 rounded bg-slate-950 border border-slate-800">04. Dá»¥ng cá»¥ BHLÄ (+10%)</div>
+              <div className="p-1.5 rounded bg-slate-950 border border-slate-800">05. Ca mÃ¡y & Ä‘iá»‡n nÄƒng</div>
+              <div className="p-1.5 rounded bg-slate-950 border border-slate-800">06. ÄÆ¡n giÃ¡ lÆ°Æ¡ng TTLT 56</div>
+              <div className="p-1.5 rounded bg-slate-950 border border-slate-800">07. ÄÆ¡n giÃ¡ 3 BÃ¡o giÃ¡</div>
+              <div className="p-1.5 rounded bg-slate-950 border border-slate-800">08. ÄÆ¡n giÃ¡ ca mÃ¡y TT 45</div>
+              <div className="p-1.5 rounded bg-slate-950 border border-slate-800">09. PhÃ­ giÃ¡n tiáº¿p & K4.5</div>
+              <div className="p-1.5 rounded bg-blue-950 border border-blue-800 text-blue-300 font-bold">10. Tá»•ng há»£p 3 Ká»‹ch báº£n</div>
             </div>
 
             <div className="pt-2">
               <a
-                href="/api/export/excel"
+                href="/DU_TOAN_QUAN_TRAC_MOI_TRUONG_2026_10_SHEET.xlsx"
                 download="DU_TOAN_QUAN_TRAC_MOI_TRUONG_2026_10_SHEET.xlsx"
                 className="w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold shadow-md shadow-emerald-600/30 flex items-center justify-center space-x-1.5 transition active:scale-95"
               >
                 <FileSpreadsheet className="w-4 h-4" />
-                <span>Tải Ngay Tệp Excel 10 Sheet (.XLSX)</span>
+                <span>Táº£i Ngay Tá»‡p Excel 10 Sheet (.XLSX)</span>
               </a>
             </div>
           </div>

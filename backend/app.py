@@ -1,5 +1,6 @@
-import os
+﻿import os
 import sys
+import shutil
 
 # Ensure root dir is in sys.path
 root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -18,7 +19,7 @@ from backend.exporters.excel_exporter import Excel10SheetExporter
 
 app = FastAPI(
     title="DuToanMoiTruongApp API",
-    description="Backend Service Thẩm Định Dự Toán Quan Trắc Môi Trường EVN Vĩnh Tân 4 theo Thông tư 20 & Văn bản 5691/EVN-MTPTBV",
+    description="Backend Service Tháº©m Äá»‹nh Dá»± ToÃ¡n Quan Tráº¯c MÃ´i TrÆ°á»ng EVN VÄ©nh TÃ¢n 4 theo ThÃ´ng tÆ° 20 & VÄƒn báº£n 5691/EVN-MTPTBV",
     version="0.1.0"
 )
 
@@ -188,6 +189,11 @@ def export_excel_10_sheets():
     )
 
     if os.path.exists(out_file):
+        try:
+            pub_dest = os.path.join(root_dir, 'frontend', 'public', 'DU_TOAN_QUAN_TRAC_MOI_TRUONG_2026_10_SHEET.xlsx')
+            shutil.copy2(out_file, pub_dest)
+        except Exception:
+            pass
         return FileResponse(
             path=out_file,
             filename="DU_TOAN_QUAN_TRAC_MOI_TRUONG_2026_10_SHEET.xlsx",
@@ -203,24 +209,24 @@ def get_scenario_summary():
     separate_exps = overhead.get("separate_expenses", [])
     total_separate = sum(e.get("total_amount", 0) for e in separate_exps) or 704000000
 
-    # Phân bổ môi trường (6 phân hệ)
+    # PhÃ¢n bá»• mÃ´i trÆ°á»ng (6 phÃ¢n há»‡)
     env_breakdown = [
-        {"name": "Khí thải ống khói lò hơi VT4", "sec": "II.8", "samples": 0, "direct_cost": 980000000, "color": "text-purple-400"},
-        {"name": "Nước biển ven bờ & xa bờ bãi xỉ", "sec": "II.6", "samples": 0, "direct_cost": 840000000, "color": "text-cyan-400"},
-        {"name": "Nước thải công nghiệp & sinh hoạt", "sec": "II.3", "samples": 0, "direct_cost": 460000000, "color": "text-blue-400"},
-        {"name": "Không khí xung quanh & tiếng ồn", "sec": "I.1", "samples": 0, "direct_cost": 290000000, "color": "text-emerald-400"},
-        {"name": "Nước dưới đất / nước ngầm", "sec": "II.2", "samples": 0, "direct_cost": 210000000, "color": "text-indigo-400"},
-        {"name": "Trầm tích biển & mẫu đất", "sec": "III.1", "samples": 0, "direct_cost": 145000000, "color": "text-amber-400"},
+        {"name": "KhÃ­ tháº£i á»‘ng khÃ³i lÃ² hÆ¡i VT4", "sec": "II.8", "samples": 0, "direct_cost": 980000000, "color": "text-purple-400"},
+        {"name": "NÆ°á»›c biá»ƒn ven bá» & xa bá» bÃ£i xá»‰", "sec": "II.6", "samples": 0, "direct_cost": 840000000, "color": "text-cyan-400"},
+        {"name": "NÆ°á»›c tháº£i cÃ´ng nghiá»‡p & sinh hoáº¡t", "sec": "II.3", "samples": 0, "direct_cost": 460000000, "color": "text-blue-400"},
+        {"name": "KhÃ´ng khÃ­ xung quanh & tiáº¿ng á»“n", "sec": "I.1", "samples": 0, "direct_cost": 290000000, "color": "text-emerald-400"},
+        {"name": "NÆ°á»›c dÆ°á»›i Ä‘áº¥t / nÆ°á»›c ngáº§m", "sec": "II.2", "samples": 0, "direct_cost": 210000000, "color": "text-indigo-400"},
+        {"name": "Tráº§m tÃ­ch biá»ƒn & máº«u Ä‘áº¥t", "sec": "III.1", "samples": 0, "direct_cost": 145000000, "color": "text-amber-400"},
     ]
 
     for it in items:
         m = (it.get("moi_truong") or "").lower()
         n = it.get("so_luong_mau", 0) or 0
-        if "khí thải" in m or "khói" in m: env_breakdown[0]["samples"] += n
-        elif "biển" in m: env_breakdown[1]["samples"] += n
-        elif "thải" in m: env_breakdown[2]["samples"] += n
-        elif "không khí" in m or "ồn" in m: env_breakdown[3]["samples"] += n
-        elif "ngầm" in m or "dưới đất" in m: env_breakdown[4]["samples"] += n
+        if "khÃ­ tháº£i" in m or "khÃ³i" in m: env_breakdown[0]["samples"] += n
+        elif "biá»ƒn" in m: env_breakdown[1]["samples"] += n
+        elif "tháº£i" in m: env_breakdown[2]["samples"] += n
+        elif "khÃ´ng khÃ­" in m or "á»“n" in m: env_breakdown[3]["samples"] += n
+        elif "ngáº§m" in m or "dÆ°á»›i Ä‘áº¥t" in m: env_breakdown[4]["samples"] += n
         else: env_breakdown[5]["samples"] += n
 
     pa1_direct = 825420000 + 625340000 + 84520000 + 685120000 + total_separate
@@ -237,7 +243,7 @@ def get_scenario_summary():
         "total_separate": total_separate,
         "scenarios": {
             "pa1": {
-                "name": "Phương án 1 (Chuẩn Định mức TT20 & QĐ 80/2026/QĐ-UBND)",
+                "name": "PhÆ°Æ¡ng Ã¡n 1 (Chuáº©n Äá»‹nh má»©c TT20 & QÄ 80/2026/QÄ-UBND)",
                 "direct_cost": pa1_direct,
                 "indirect_amount": pa1_total - pa1_direct,
                 "total_cost": pa1_total,
@@ -246,18 +252,18 @@ def get_scenario_summary():
                 "tools": 84520000,
                 "equipment": 685120000,
                 "separate": total_separate,
-                "legal_status": "Khép kín 100% định mức Nhà nước và QĐ 80/UBND",
-                "recommendation": "Kiến nghị phê duyệt làm trần giá gói thầu"
+                "legal_status": "KhÃ©p kÃ­n 100% Ä‘á»‹nh má»©c NhÃ  nÆ°á»›c vÃ  QÄ 80/UBND",
+                "recommendation": "Kiáº¿n nghá»‹ phÃª duyá»‡t lÃ m tráº§n giÃ¡ gÃ³i tháº§u"
             },
             "pa2": {
-                "name": "Phương án 2 (3 Báo giá cạnh tranh Điều 16 NĐ 24/2024)",
+                "name": "PhÆ°Æ¡ng Ã¡n 2 (3 BÃ¡o giÃ¡ cáº¡nh tranh Äiá»u 16 NÄ 24/2024)",
                 "direct_cost": pa2_direct,
                 "indirect_amount": pa2_total - pa2_direct,
                 "total_cost": pa2_total,
                 "savings_vs_pa1": pa2_total - pa1_total
             },
             "pa3": {
-                "name": "Phương án 3 (Lịch sử HĐ số 71/2025/HĐ-DV + CPI 3.5%)",
+                "name": "PhÆ°Æ¡ng Ã¡n 3 (Lá»‹ch sá»­ HÄ sá»‘ 71/2025/HÄ-DV + CPI 3.5%)",
                 "direct_cost": pa3_direct,
                 "indirect_amount": pa3_total - pa3_direct,
                 "total_cost": pa3_total,

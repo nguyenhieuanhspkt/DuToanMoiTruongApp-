@@ -55,7 +55,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({ onRefresh, isLoading }) =>
 
         {/* Export Excel Button */}
         <a
-          href="/api/export/excel"
+          href="/DU_TOAN_QUAN_TRAC_MOI_TRUONG_2026_10_SHEET.xlsx"
           download="DU_TOAN_QUAN_TRAC_MOI_TRUONG_2026_10_SHEET.xlsx"
           title="Tải tệp Excel 10 Sheet động khép kín công thức"
           className="px-2.5 py-1 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white border border-emerald-500 text-xs font-bold transition active:scale-95 flex items-center space-x-1.5 shadow-md shadow-emerald-600/30"

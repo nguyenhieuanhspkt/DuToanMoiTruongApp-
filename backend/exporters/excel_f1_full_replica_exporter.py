@@ -387,12 +387,23 @@ class ExcelF1FullReplicaExporter:
                         ])
                         hp_row += 1
 
-                # 3. CÔNG CỤ DỤNG CỤ CHI TIẾT
+                                # 3. CÔNG CỤ DỤNG CỤ CHI TIẾT
                 for t in sub.get('tools', []):
-                    t_name = t.get('name', '').strip()
-                    t_unit = t.get('unit', '').strip()
+                    raw_name = str(t.get('name') or '').strip()
+                    raw_unit = str(t.get('unit') or '').strip()
+                    raw_life = str(t.get('lifespan_months') or '').strip().lower()
                     t_norm = float(t.get('norm') or 0.0)
-                    if t_norm > 0:
+
+                    # Tự động nhận diện và hoán đổi trường nếu bị lệch cột (name chứa STT 1, 2, 3...)
+                    if raw_name.isdigit() or raw_name == "":
+                        t_name = raw_unit
+                        valid_units = ['cái', 'bộ', 'đôi', 'hộp', 'chiếc', 'dây', 'tấm', 'cuốn', 'bình', 'kw']
+                        t_unit = raw_life if raw_life in valid_units else (t.get('real_unit') or 'cái')
+                    else:
+                        t_name = raw_name
+                        t_unit = raw_unit or 'cái'
+                    
+                    if t_norm > 0 and t_name:
                         ws_hp.append([
                             "", f"DC_{core_code}", "DỤNG CỤ", f" - {t_name} ({stage_lbl})", t_unit, "",
                             "", "", t_norm, "", "", "", f"=ROUND(F{master_r}*I{hp_row}, 4)", "", "Bảng 3 TT20/2017"

@@ -17,6 +17,7 @@ from backend.services.norm_calc_service import NormCalcService
 from backend.models.pakt_item import PricingConfig, OverheadConfig
 from backend.exporters.excel_exporter import Excel10SheetExporter
 from backend.exporters.excel_6sheet_f1_exporter import Excel6SheetF1Exporter
+from backend.exporters.excel_f1_full_replica_exporter import ExcelF1FullReplicaExporter
 
 app = FastAPI(
     title="DuToanMoiTruongApp API",
@@ -236,6 +237,41 @@ def export_excel_6_sheets_f1():
             media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
     raise HTTPException(status_code=500, detail="Could not export 6-sheet F1 Excel workbook")
+
+@app.get("/api/export/excel-f1-replica")
+def export_excel_f1_full_replica():
+    items = adapter.load_pakt_items()
+    pricing = adapter.load_pricing_config()
+    mats = adapter.load_material_pricing()
+    tools = adapter.load_msc_tools()
+    eq = adapter.load_msc_equipment()
+    overhead = adapter.load_overhead_config()
+
+    export_dir = os.path.join(root_dir, "backend", "data")
+    out_file = os.path.join(export_dir, "DU_TOAN_QUAN_TRAC_MOI_TRUONG_CHUAN_F1_100PCT.xlsx")
+
+    ExcelF1FullReplicaExporter.export_workbook(
+        pakt_items=items,
+        pricing_config=pricing,
+        materials_db=mats,
+        tools_db=tools,
+        equipment_db=eq,
+        overhead_config=overhead,
+        output_path=out_file
+    )
+
+    if os.path.exists(out_file):
+        try:
+            pub_dest = os.path.join(root_dir, 'frontend', 'public', 'DU_TOAN_QUAN_TRAC_MOI_TRUONG_CHUAN_F1_100PCT.xlsx')
+            shutil.copy2(out_file, pub_dest)
+        except Exception:
+            pass
+        return FileResponse(
+            path=out_file,
+            filename="DU_TOAN_QUAN_TRAC_MOI_TRUONG_CHUAN_F1_100PCT.xlsx",
+            media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
+    raise HTTPException(status_code=500, detail="Could not export F1 full replica Excel workbook")
 
 @app.get("/api/summary/scenarios")
 def get_scenario_summary():

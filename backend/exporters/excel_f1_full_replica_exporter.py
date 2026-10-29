@@ -323,28 +323,34 @@ class ExcelF1FullReplicaExporter:
         ws_ct.column_dimensions['R'].width = 22
 
         # =============================================================
-        # SHEET 5: 'Hao phí VT' (Bung định mức TT20 chi tiết Master-Detail)
+                # =============================================================
+        # SHEET 5: 'Hao phí VT' (Bung 100% ĐỊNH MỨC CHI TIẾT THÔNG TƯ 20/2017)
         # =============================================================
         ws_hp = wb.create_sheet(title="Hao phí VT")
         ws_hp.views.sheetView[0].showGridLines = True
-        ws_hp.append(["HAO PHÍ VẬT LIỆU, NHÂN CÔNG, MÁY VÀ CÔNG CỤ DỤNG CỤ"])
+        ws_hp.append(["HAO PHÍ VẬT LIỆU, NHÂN CÔNG, MÁY VÀ CÔNG CỤ DỤNG CỤ CHI TIẾT THEO ĐỊNH MỨC THÔNG TƯ 20/2017/TT-BTNMT"])
         ws_hp.append(["='Công trình'!A3"])
         ws_hp.append(["='Công trình'!A4"])
         ws_hp.append([])
         ws_hp.append([
-            "STT", "Mã hiệu", "TT Vật tư", "Tên công tác / Thành phần hao phí", "Đơn vị", "Khối lượng công trình (Q)",
+            "STT", "Mã hiệu TT20", "Phân loại", "Tên công tác / Thành phần hao phí chi tiết", "Đơn vị", "Khối lượng công trình (Q)",
             "Định mức VL", "Định mức NC", "Định mức CCDC", "Định mức Máy",
-            "Khối lượng VL", "Khối lượng NC", "Khối lượng CCDC", "Khối lượng Máy", "Ghi chú bóc tách"
+            "Khối lượng VL", "Khối lượng NC", "Khối lượng CCDC", "Khối lượng Máy", "Căn cứ pháp lý định mức TT20"
         ])
 
-        # Bung đại diện cho toàn bộ các công việc
         hp_row = 6
-        for i in range(1, min(60, len(pakt_items) + 1)):
+        # Duyệt qua các công việc thực tế để bung chi tiết 100% định mức
+        for i, it in enumerate(pakt_items, 1):
             ct_r = start_ct_row + i - 1
-            # Dòng Cha
+            tt = it.get('tt20_data') or {}
+            core_code = tt.get('coreCode') or it.get('ma_gop') or 'TT20'
+            work_name = it.get('thong_so') or 'Công tác quan trắc'
+            work_unit = it.get('dvt') or 'mẫu'
+
+            # Dòng Cha (Mã công tác)
             ws_hp.append([
-                f"='Công trình'!A{ct_r}", f"='Công trình'!C{ct_r}", "", f"='Công trình'!D{ct_r}", f"='Công trình'!E{ct_r}",
-                f"='Công trình'!L{ct_r}", "", "", "", "", "", "", "", "", "PAKT & Định mức TT20"
+                i, core_code, "CÔNG TÁC", work_name, work_unit,
+                f"='Công trình'!L{ct_r}", "", "", "", "", "", "", "", "", "Thông tư 20/2017/TT-BTNMT"
             ])
             master_r = hp_row
             ws_hp.cell(master_r, 4).font = font_data_11b
@@ -353,93 +359,101 @@ class ExcelF1FullReplicaExporter:
                 ws_hp.cell(master_r, c).border = border_cell
             hp_row += 1
 
-            # Dòng Con 1: Nhân công kỹ thuật (NC_LDKT)
-            ws_hp.append([
-                "", "NC_LDKT", "LĐKT", " - Kỹ sư / Kiểm định viên / Quan trắc viên", "công", "",
-                "", 0.1760, "", "", "", f"=ROUND(F{master_r}*H{hp_row}, 4)", "", "", "TTLT 56/2015"
-            ])
-            hp_row += 1
+            # Bung từng giai đoạn (Ngoại nghiệp, Nội nghiệp, Toàn phần)
+            for stage_key, stage_lbl in [('field', 'Ngoại nghiệp'), ('lab', 'Nội nghiệp'), ('single', 'Toàn phần')]:
+                sub = tt.get(stage_key)
+                if not sub:
+                    continue
 
-            # Dòng Con 2: Lao động phổ thông (NC_LDPT)
-            ws_hp.append([
-                "", "NC_LDPT", "LĐPT", " - Lao động phổ thông phụ việc hiện trường", "công", "",
-                "", 0.0440, "", "", "", f"=ROUND(F{master_r}*H{hp_row}, 4)", "", "", "Hỗ trợ ngoại nghiệp"
-            ])
-            hp_row += 1
+                # 1. NHÂN CÔNG CHI TIẾT
+                nc_norm = sub.get('dinh_muc_cong')
+                nc_title = sub.get('dinh_bien') or f'Quan trắc viên ({stage_lbl})'
+                if nc_norm is not None and float(nc_norm) > 0:
+                    ws_hp.append([
+                        "", f"NC_{core_code}_{stage_key}", "NHÂN CÔNG", f" - {nc_title} ({stage_lbl})", "công", "",
+                        "", float(nc_norm), "", "", "", f"=ROUND(F{master_r}*H{hp_row}, 4)", "", "", "Bảng 1 TT20 & TTLT 56/2015"
+                    ])
+                    hp_row += 1
 
-            # Dòng Con 3: Ca CCDC (CCDC_01)
-            ws_hp.append([
-                "", "CCDC_01", "CCDC", " - Ca dụng cụ, thiết bị nhỏ đo đạc/lấy mẫu", "ca", "",
-                "", "", 0.1000, "", "", "", f"=ROUND(F{master_r}*I{hp_row}, 4)", "", "Khoản 4.2 TT20"
-            ])
-            hp_row += 1
+                # 2. VẬT LIỆU & HÓA CHẤT CHI TIẾT
+                for m in sub.get('materials', []):
+                    m_name = m.get('name', '').strip()
+                    m_unit = m.get('unit', '').strip()
+                    m_norm = float(m.get('norm') or 0.0)
+                    if m_norm > 0:
+                        ws_hp.append([
+                            "", f"VL_{core_code}", "VẬT LIỆU", f" - {m_name} ({stage_lbl})", m_unit, "",
+                            m_norm, "", "", "", f"=ROUND(F{master_r}*G{hp_row}, 4)", "", "", "", "Bảng 5 TT20/2017"
+                        ])
+                        hp_row += 1
 
-            # Dòng Con 4: CCDC phụ 10% (CCDC_PHU)
-            ws_hp.append([
-                "", "CCDC_PHU", "CCDC_PHỤ", " - Dụng cụ phụ khác (10% CCDC chính)", "%", "",
-                "", "", 0.1000, "", "", "", f"=ROUND(M{hp_row-1}*I{hp_row}, 4)", "", "10% Khoản 4.2 TT20"
-            ])
-            hp_row += 1
+                # 3. CÔNG CỤ DỤNG CỤ CHI TIẾT
+                for t in sub.get('tools', []):
+                    t_name = t.get('name', '').strip()
+                    t_unit = t.get('unit', '').strip()
+                    t_norm = float(t.get('norm') or 0.0)
+                    if t_norm > 0:
+                        ws_hp.append([
+                            "", f"DC_{core_code}", "DỤNG CỤ", f" - {t_name} ({stage_lbl})", t_unit, "",
+                            "", "", t_norm, "", "", "", f"=ROUND(F{master_r}*I{hp_row}, 4)", "", "Bảng 3 TT20/2017"
+                        ])
+                        hp_row += 1
 
-            # Dòng Con 5: Khấu hao máy chính (M_KHTSCD)
-            ws_hp.append([
-                "", "M_KHTSCD", "MÁY", " - Khấu hao thiết bị quan trắc chuyên dụng", "ca", "",
-                "", "", "", 0.0800, "", "", "", f"=ROUND(F{master_r}*J{hp_row}, 4)", "TT 45/2013"
-            ])
-            hp_row += 1
+                # 4. THIẾT BỊ & CA MÁY CHI TIẾT
+                for e in sub.get('equipment', []):
+                    e_name = e.get('name', '').strip()
+                    e_unit = e.get('unit', '').strip()
+                    e_norm = float(e.get('norm') or 0.0)
+                    if e_norm > 0:
+                        ws_hp.append([
+                            "", f"M_{core_code}", "THIẾT BỊ", f" - {e_name} ({stage_lbl})", e_unit, "",
+                            "", "", "", e_norm, "", "", "", f"=ROUND(F{master_r}*J{hp_row}, 4)", "Bảng 4 TT20 & TT 45/2013"
+                        ])
+                        hp_row += 1
 
-            # Dòng Con 6: Điện năng tiêu thụ (M_NANGLUONG)
-            ws_hp.append([
-                "", "M_NANGLUONG", "ĐIỆN", " - Năng lượng điện vận hành thiết bị PTN", "kWh", "",
-                "", "", "", 0.5000, "", "", "", f"=ROUND(F{master_r}*J{hp_row}, 4)", "Điện năng PTN"
-            ])
-            hp_row += 1
-
-            # Dòng Con 7: Vật liệu hóa chất (VL_01)
-            ws_hp.append([
-                "", "VL_01", "VL", " - Hóa chất phân tích tinh khiết, màng lọc, chuẩn", "bộ", "",
-                0.0400, "", "", "", f"=ROUND(F{master_r}*G{hp_row}, 4)", "", "", "", "Khoản 4.4 TT20"
-            ])
-            hp_row += 1
-
-            # Dòng Con 8: Vật liệu phụ khác 8% (VL_KHAC)
-            ws_hp.append([
-                "", "VL_KHAC", "VL_PHỤ", " - Vật liệu phụ khác (8% vật liệu chính)", "%", "",
-                0.0800, "", "", "", f"=ROUND(K{hp_row-1}*G{hp_row}, 4)", "", "", "", "8% Khoản 4.4 TT20"
-            ])
+            # Dòng cách giữa các công tác
+            ws_hp.append([])
             hp_row += 1
 
         last_hp_row = hp_row - 1
+
         # Format Sheet Hao phí VT
         ws_hp.cell(1, 1).font = font_title_15b
         ws_hp.cell(2, 1).font = font_sub_11i
         ws_hp.cell(3, 1).font = font_sub_11i
         for c in range(1, 16):
-            cell = ws_hp.cell(5, c)
-            cell.font = font_header_11b
-            cell.fill = fill_header_gray
-            cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+            ws_hp.cell(5, c).font = font_header_11b
+            ws_hp.cell(5, c).fill = fill_header_gray
+            ws_hp.cell(5, c).alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
 
         for r in range(6, last_hp_row + 1):
             for c in range(1, 16):
                 cell = ws_hp.cell(r, c)
-                if cell.fill != fill_header_gray:
-                    cell.font = font_data_11r
+                if cell.value:
+                    if cell.fill != fill_header_gray:
+                        cell.font = font_data_11r
                     cell.border = border_cell
-                if c in (7, 8, 9, 10, 11, 12, 13, 14):
-                    cell.number_format = FMT_NORM
+                    if c in (7, 8, 9, 10, 11, 12, 13, 14):
+                        cell.number_format = FMT_NORM
+                    if c in (1, 2, 3, 5):
+                        cell.alignment = Alignment(horizontal="center", vertical="center")
 
         ws_hp.column_dimensions['A'].width = 8
         ws_hp.column_dimensions['B'].width = 16
-        ws_hp.column_dimensions['C'].width = 12
-        ws_hp.column_dimensions['D'].width = 46
+        ws_hp.column_dimensions['C'].width = 14
+        ws_hp.column_dimensions['D'].width = 50
+        ws_hp.column_dimensions['E'].width = 10
+        ws_hp.column_dimensions['F'].width = 16
+        ws_hp.column_dimensions['G'].width = 14
+        ws_hp.column_dimensions['H'].width = 14
+        ws_hp.column_dimensions['I'].width = 14
+        ws_hp.column_dimensions['J'].width = 14
         ws_hp.column_dimensions['K'].width = 16
         ws_hp.column_dimensions['L'].width = 16
         ws_hp.column_dimensions['M'].width = 16
         ws_hp.column_dimensions['N'].width = 16
+        ws_hp.column_dimensions['O'].width = 28
 
-        # =============================================================
-                # =============================================================
         # SHEET 6: 'Vật liệu' (Đầy đủ 173 danh mục hóa chất & vật tư theo TT20)
         # =============================================================
         ws_vl = wb.create_sheet(title="Vật liệu")

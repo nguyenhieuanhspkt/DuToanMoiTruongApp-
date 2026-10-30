@@ -2,40 +2,22 @@ import os
 import json
 from openpyxl.worksheet.worksheet import Worksheet
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
-from typing import Dict, Any, List, Tuple
+from typing import Dict, Any, List, Tuple, Optional
 
-def build_vat_lieu_sheet(
-    wb, 
-    last_hp_row: int,
-    jobs_dtos: List[Any], # <--- Nhận danh sách JobItemDTO đã bóc tách
-    font_title_15b: Font,
-    font_sub_11i: Font,
-    font_header_11b: Font,
-    font_data_11r: Font,
-    font_data_11b: Font,
-    fill_header_gray: PatternFill,
-    fill_sub_gray: PatternFill,
-    fill_total_pale: PatternFill,
-    border_cell: Border,
-    border_total: Border,
-    FMT_CURRENCY: str,
-    FMT_NORM: str
-) -> Tuple[Worksheet, int]:
-    """
-    Xây dựng sheet 'Vật liệu' chuẩn F1:
-    - Lọc bỏ triệt để các dòng tiêu đề phân mục dựa trên STT dạng số.
-    - Cột B dòng con: Link công thức động trực tiếp sang STT của sheet 'Công trình' (='Công trình'!A{row}).
-    - Cột C dòng con: Link tên công tác trực tiếp sang sheet 'Công trình' (='Công trình'!D{row}).
-    - Dòng cha tự động dùng hàm =SUM() tổng khối lượng các dòng con.
-    """
+
+def _init_vat_lieu_sheet(wb) -> Worksheet:
+    """Khởi tạo hoặc làm mới sheet 'Vật liệu' và kích hoạt hiển thị đường lưới."""
     if "Vật liệu" in wb.sheetnames:
         ws_vl = wb["Vật liệu"]
         wb.remove(ws_vl)
     
     ws_vl = wb.create_sheet(title="Vật liệu")
     ws_vl.views.sheetView[0].showGridLines = True
+    return ws_vl
 
-    # 1. Khối Tiêu đề chuẩn F1
+
+def _write_vat_lieu_header(ws_vl):
+    """Ghi khối tiêu đề dự án và tiêu đề cột bảng Vật liệu (Dòng 1 đến 6)."""
     ws_vl.append(["BẢNG TỔNG HỢP VẬT LIỆU VÀ CHÊNH LỆCH GIÁ"])
     ws_vl.append(["(Theo giá thông báo và định mức Thông tư 20/2017/TT-BTNMT)"])
     ws_vl.append(["='Công trình'!A3"])
@@ -46,10 +28,11 @@ def build_vat_lieu_sheet(
         "Khối lượng tổng cộng", "Đơn giá chưa VAT", "Thành tiền vật liệu (VNĐ)", "Ghi chú nguồn giá"
     ])
 
-    # 2. Tự động bóc tách danh mục vật liệu từ jobs_dtos (Loại bỏ dòng tiêu đề phân mục)
+
+def _collect_vat_lieu_items(jobs_dtos: List[Any]) -> List[Dict[str, Any]]:
+    """Tự động bóc tách danh mục vật liệu duy nhất từ jobs_dtos (loại bỏ dòng tiêu đề phân mục)."""
     mat_map = {}
     for job in jobs_dtos:
-        # Kiểm tra chuẩn: Chỉ lấy công tác có STT dạng số hợp lệ (bỏ qua dòng tiêu đề phân mục như 'PHẦN: ...')
         raw_stt = getattr(job, 'stt', None)
         if not raw_stt or not str(raw_stt).strip().isdigit():
             continue
@@ -64,120 +47,165 @@ def build_vat_lieu_sheet(
                         "id": f"VL_{len(mat_map)+1:03d}",
                         "name": vl_name,
                         "unit": vl_unit,
-                        "price": 0.0, # Giá tính toán độc lập ở bước sau
+                        "price": 0.0,
                         "basis": "Chưa có giá"
                     }
-    mat_items = list(mat_map.values())
+    return list(mat_map.values())
 
-    vl_start_row = 7
-    curr_row = vl_start_row
 
-    # 3. Vòng lặp ghi danh mục vật liệu chuẩn F1
-    for idx, it in enumerate(mat_items, 1):
-        mat_id = it.get('id', f'VL_{idx:03d}')
-        mat_name = it.get('name', '').strip()
-        mat_unit = str(it.get('unit', '')).strip().lower()
-        price = float(it.get('price') or 0.0)
-        basis = str(it.get('basis') or 'Chưa có giá')
-        
-        # --- Lấy danh sách usage_jobs thông qua DTO một cách chính xác ---
-        usage_jobs = []
-        for job in jobs_dtos:
-            # Lọc chặn các dòng tiêu đề phân mục không có STT số
-            raw_stt = getattr(job, 'stt', None)
-            if not raw_stt or not str(raw_stt).strip().isdigit():
-                continue
+def _find_usage_jobs_for_mat(jobs_dtos: List[Any], mat_name: str) -> List[Dict[str, Any]]:
+    """Tìm danh sách các công tác sử dụng vật tư tương ứng kèm theo mỏ neo dòng sheet Công trình."""
+    usage_jobs = []
+    for job in jobs_dtos:
+        raw_stt = getattr(job, 'stt', None)
+        if not raw_stt or not str(raw_stt).strip().isdigit():
+            continue
 
-            vl_group = job.groups.get("VL")
-            if vl_group and hasattr(vl_group, 'items'):
-                for detail_item in vl_group.items:
-                    detail_vl_name = str(detail_item.name).strip()
-                    if detail_vl_name.lower() == mat_name.lower():
-                        usage_jobs.append({
-                            "job": job,
-                            "detail_item": detail_item
-                        })
-
-        # Xác định trước dải dòng con để dòng cha tính toán chính xác
-        num_children = len(usage_jobs)
-        child_start_row = curr_row + 1
-        child_end_row = curr_row + num_children if num_children > 0 else curr_row
-
-        # --- DÒNG CHA (VẬT LIỆU CHÍNH) ---
-        if num_children > 0:
-            f_sum_qty = f"=ROUND(SUM(E{child_start_row}:E{child_end_row}), 4)"
-        else:
-            f_sum_qty = 0.0
-
-        f_thanhtien = f"=ROUND(E{curr_row}*F{curr_row}, 0)"
-
-        ws_vl.append([
-            idx, mat_id, mat_name, mat_unit,
-            f_sum_qty, price, f_thanhtien, basis
-        ])
-        ws_vl.cell(curr_row, 3).font = font_data_11b
-        curr_row += 1  # Dịch chuyển con trỏ xuống dòng con đầu tiên
-
-        # --- CÁC DÒNG CON (TRUY VẾT CÔNG TÁC) ---
-        for item_data in usage_jobs:
-            job = item_data["job"]
-            detail_item = item_data["detail_item"]
-
-            raw_stt = getattr(job, 'stt', 1)
+        c_row = getattr(job, 'cong_trinh_row', None)
+        if not c_row:
             try:
                 stt_int = int(raw_stt)
             except (ValueError, TypeError):
                 stt_int = 1
-                
-            cong_trinh_row = getattr(job, 'row_index_in_cong_trinh', None) 
-            if not cong_trinh_row:
-                cong_trinh_row = 6 + stt_int - 1
+            c_row = getattr(job, 'row_index_in_cong_trinh', 6 + stt_int - 1)
 
-            # 1. Cột C: Link tên công tác trực tiếp sang cột D của sheet 'Công trình'
-            j_name_formula = f"='Công trình'!D{cong_trinh_row}"
-            
-            # 2. Cột B: Link công thức động STT công tác trực tiếp từ cột A của sheet 'Công trình'
-            j_stt_formula = f"='Công trình'!A{cong_trinh_row}"
-            
-            # 3. Cột E: Khối lượng định mức
-            j_qty = f"={detail_item.norm}" if hasattr(detail_item, 'norm') else "=0"
+        vl_group = job.groups.get("VL")
+        if vl_group and hasattr(vl_group, 'items'):
+            for detail_item in vl_group.items:
+                detail_vl_name = str(detail_item.name).strip()
+                if detail_vl_name.lower() == mat_name.lower():
+                    usage_jobs.append({
+                        "job": job,
+                        "detail_item": detail_item,
+                        "cong_trinh_row": c_row
+                    })
+    return usage_jobs
 
-            ws_vl.append([
-                "",             # Cột A: STT (để trống cho dòng con)
-                j_stt_formula,  # Cột B: Link STT từ 'Công trình'!A{row}
-                j_name_formula, # Cột C: Link tên công tác từ 'Công trình'!D{row}
-                "",             # Cột D: Đơn vị dòng con để trống
-                j_qty,          # Cột E: Khối lượng định mức
-                "",             # Cột F: Đơn giá dòng con để trống
-                f"=ROUND(E{curr_row}*F{curr_row-1}, 0)", # Cột G: Thành tiền
-                ""              # Cột H: Ghi chú để trống
-            ])
-            
-            blue_font = Font(name="Times New Roman", size=11, bold=False, color="0000FF")
-            for c_idx in range(1, 9):
-                ws_vl.cell(curr_row, c_idx).font = blue_font
-            curr_row += 1
 
-        # --- GOM NHÓM (GROUP) ĐỂ ẨN/HIỆN DÒNG CON ---
-        if child_start_row <= child_end_row and num_children > 0:
-            ws_vl.row_dimensions.group(child_start_row, child_end_row, outline_level=1, hidden=True)
+def _write_mat_parent_row(
+    ws_vl, 
+    idx: int, 
+    curr_row: int, 
+    it: Dict[str, Any], 
+    num_children: int,
+    font_data_11b: Font
+) -> int:
+    """Ghi dòng Cha tổng hợp vật liệu (Cột E tính SUM dòng con, Cột G tính thành tiền)."""
+    child_start_row = curr_row + 1
+    child_end_row = curr_row + num_children if num_children > 0 else curr_row
 
-    # --- KẾT THÚC VÒNG LẶP FOR ---
-    last_mat_item_row = curr_row - 1
+    f_sum_qty = f"=ROUND(SUM(E{child_start_row}:E{child_end_row}), 4)" if num_children > 0 else 0.0
+    f_thanhtien = f"=ROUND(E{curr_row}*F{curr_row}, 0)"
 
-    # 4. Thêm dòng Vật liệu phụ khác (8% theo Khoản 4.4 TT20)
+    mat_id = it.get('id', f'VL_{idx:03d}')
+    mat_name = it.get('name', '').strip()
+    mat_unit = str(it.get('unit', '')).strip().lower()
+    price = float(it.get('price') or 0.0)
+    basis = str(it.get('basis') or 'Chưa có giá')
+
+    parent_row = curr_row
     ws_vl.append([
-        len(mat_items) + 1, "VL_KHAC", "Vật liệu phụ khác (8% vật liệu chính theo Khoản 4.4 TT20)", "%",
+        idx, mat_id, mat_name, mat_unit,
+        f_sum_qty, price, f_thanhtien, basis
+    ])
+    ws_vl.cell(parent_row, 3).font = font_data_11b
+    return parent_row
+
+
+def _write_mat_child_rows(
+    ws_vl, 
+    curr_row: int, 
+    usage_jobs: List[Dict[str, Any]], 
+    parent_row: int
+) -> int:
+    """
+    Ghi các dòng Con truy vết công tác:
+    - Cột B: Link số thứ tự công tác từ sheet Công trình ('Công trình'!A{c_row})
+    - Cột C: Link tên công tác từ sheet Công trình ('Công trình'!D{c_row})
+    - Cột E: Link trực tiếp khối lượng hao phí từ Cột M của sheet 'Hao phí VT' ('Hao phí VT'!$M${hp_row})
+    - Cột G: Thành tiền theo đơn giá dòng Cha (=ROUND(E{curr_row}*$F${parent_row}, 0))
+    """
+    child_start_row = curr_row
+    for item_data in usage_jobs:
+        detail_item = item_data["detail_item"]
+        c_row = item_data["cong_trinh_row"]
+
+        j_stt_formula = f"='Công trình'!A{c_row}" if c_row else ""
+        j_name_formula = f"='Công trình'!D{c_row}" if c_row else ""
+
+        # Link trực tiếp sang cột M (Khối lượng hao phí VL đã nhân Q) của sheet 'Hao phí VT'
+        hp_row = getattr(detail_item, 'hp_row', None)
+        if hp_row:
+            j_qty = f"='Hao phí VT'!$M${hp_row}"
+        else:
+            j_qty = 0
+
+        child_row = [
+            "",             # Cột A: STT để trống
+            j_stt_formula,  # Cột B: Link STT từ 'Công trình'!A{row}
+            j_name_formula, # Cột C: Link tên công tác từ 'Công trình'!D{row}
+            "",             # Cột D: Đơn vị để trống
+            j_qty,          # Cột E: Khối lượng hao phí
+            "",             # Cột F: Đơn giá để trống
+            f"=ROUND(E{curr_row}*$F${parent_row}, 0)", # Cột G: Thành tiền
+            ""              # Cột H: Ghi chú để trống
+        ]
+
+        ws_vl.append(child_row)
+        blue_font = Font(name="Times New Roman", size=11, bold=False, color="0000FF")
+        for c_idx in range(1, 9):
+            ws_vl.cell(curr_row, c_idx).font = blue_font
+        curr_row += 1
+
+    child_end_row = curr_row - 1
+    if child_start_row <= child_end_row:
+        ws_vl.row_dimensions.group(child_start_row, child_end_row, outline_level=1, hidden=True)
+
+    return curr_row
+
+
+def _write_mat_extra_and_total_rows(
+    ws_vl, 
+    curr_row: int, 
+    vl_start_row: int, 
+    last_mat_item_row: int, 
+    num_mat_items: int
+) -> Tuple[int, int]:
+    """Ghi dòng Vật liệu phụ khác (8% theo Khoản 4.4 TT20) và dòng Cộng chi phí vật liệu."""
+    # 1. Dòng Vật liệu phụ khác (8%)
+    ws_vl.append([
+        num_mat_items + 1, "VL_KHAC", "Vật liệu phụ khác (8% vật liệu chính theo Khoản 4.4 TT20)", "%",
         "8.0%", "", f"=ROUND(SUM(G{vl_start_row}:G{last_mat_item_row})*'Hệ số'!$C$11, 0)", "Hệ số 8% theo Khoản 4.4 TT20"
     ])
     vl_khac_row = curr_row
     curr_row += 1
 
-    # 5. Dòng CỘNG TỔNG CHI PHÍ VẬT LIỆU
-    ws_vl.append(["", "", "CỘNG CHI PHÍ VẬT LIỆU:", "", "", "", f"=SUM(G{vl_start_row}:G{vl_khac_row})", "Tổng chi phí vật liệu (VL)"])
+    # 2. Dòng Cộng tổng chi phí vật liệu
+    ws_vl.append([
+        "", "", "CỘNG CHI PHÍ VẬT LIỆU:", "", "", "", 
+        f"=SUM(G{vl_start_row}:G{vl_khac_row})", "Tổng chi phí vật liệu (VL)"
+    ])
     total_vl_row = curr_row
 
-    # 6. Thiết lập Định dạng & Kiểu chữ Times New Roman đồng bộ 100%
+    return vl_khac_row, total_vl_row
+
+
+def _apply_vat_lieu_styling(
+    ws_vl,
+    vl_start_row: int,
+    total_vl_row: int,
+    font_title_15b: Font,
+    font_sub_11i: Font,
+    font_header_11b: Font,
+    font_data_11r: Font,
+    font_data_11b: Font,
+    fill_header_gray: PatternFill,
+    border_cell: Border,
+    border_total: Border,
+    FMT_CURRENCY: str,
+    FMT_NORM: str
+):
+    """Định dạng phông chữ, màu sắc, viền và độ rộng cột cho sheet Vật liệu."""
     ws_vl.cell(1, 1).font = font_title_15b
     ws_vl.cell(2, 1).font = font_sub_11i
     ws_vl.cell(3, 1).font = font_sub_11i
@@ -208,14 +236,89 @@ def build_vat_lieu_sheet(
             if c in (1, 2, 4):
                 cell.alignment = Alignment(horizontal="center", vertical="center")
 
-    # Tùy chỉnh độ rộng cột chuẩn hiển thị
-    ws_vl.column_dimensions['A'].width = 8
-    ws_vl.column_dimensions['B'].width = 14
-    ws_vl.column_dimensions['C'].width = 52
-    ws_vl.column_dimensions['D'].width = 12
-    ws_vl.column_dimensions['E'].width = 22
-    ws_vl.column_dimensions['F'].width = 22
-    ws_vl.column_dimensions['G'].width = 26
-    ws_vl.column_dimensions['H'].width = 38
+    col_widths = {
+        'A': 8, 'B': 14, 'C': 52, 'D': 12, 'E': 22, 'F': 22, 'G': 26, 'H': 38
+    }
+    for col_letter, width in col_widths.items():
+        ws_vl.column_dimensions[col_letter].width = width
+
+
+def build_vat_lieu_sheet(
+    wb, 
+    last_hp_row: int,
+    jobs_dtos: List[Any],
+    font_title_15b: Font,
+    font_sub_11i: Font,
+    font_header_11b: Font,
+    font_data_11r: Font,
+    font_data_11b: Font,
+    fill_header_gray: PatternFill,
+    fill_sub_gray: PatternFill,
+    fill_total_pale: PatternFill,
+    border_cell: Border,
+    border_total: Border,
+    FMT_CURRENCY: str,
+    FMT_NORM: str
+) -> Tuple[Worksheet, int]:
+    """
+    Xây dựng sheet 'Vật liệu' chuẩn F1 điều phối qua các module chức năng chuyên biệt:
+    - Dòng cha: Tính tổng từ các dòng con theo từng loại vật liệu.
+    - Dòng con: Link trực tiếp khối lượng sang cột M của sheet 'Hao phí VT'.
+    """
+    ws_vl = _init_vat_lieu_sheet(wb)
+    _write_vat_lieu_header(ws_vl)
+
+    mat_items = _collect_vat_lieu_items(jobs_dtos)
+
+    vl_start_row = 7
+    curr_row = vl_start_row
+
+    for idx, it in enumerate(mat_items, 1):
+        mat_name = it.get('name', '').strip()
+        usage_jobs = _find_usage_jobs_for_mat(jobs_dtos, mat_name)
+        num_children = len(usage_jobs)
+
+        parent_row = _write_mat_parent_row(
+            ws_vl=ws_vl,
+            idx=idx,
+            curr_row=curr_row,
+            it=it,
+            num_children=num_children,
+            font_data_11b=font_data_11b
+        )
+        curr_row += 1
+
+        if num_children > 0:
+            curr_row = _write_mat_child_rows(
+                ws_vl=ws_vl,
+                curr_row=curr_row,
+                usage_jobs=usage_jobs,
+                parent_row=parent_row
+            )
+
+    last_mat_item_row = curr_row - 1
+    vl_khac_row, total_vl_row = _write_mat_extra_and_total_rows(
+        ws_vl=ws_vl,
+        curr_row=curr_row,
+        vl_start_row=vl_start_row,
+        last_mat_item_row=last_mat_item_row,
+        num_mat_items=len(mat_items)
+    )
+
+    _apply_vat_lieu_styling(
+        ws_vl=ws_vl,
+        vl_start_row=vl_start_row,
+        total_vl_row=total_vl_row,
+        font_title_15b=font_title_15b,
+        font_sub_11i=font_sub_11i,
+        font_header_11b=font_header_11b,
+        font_data_11r=font_data_11r,
+        font_data_11b=font_data_11b,
+        fill_header_gray=fill_header_gray,
+        border_cell=border_cell,
+        border_total=border_total,
+        FMT_CURRENCY=FMT_CURRENCY,
+        FMT_NORM=FMT_NORM
+    )
 
     return ws_vl, total_vl_row

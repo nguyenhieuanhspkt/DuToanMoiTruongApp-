@@ -294,15 +294,15 @@ class IndirectCostSummaryDTO:
         total_r = start_row + 8
 
         rows = [
-            (["", "Chi phí gián tiếp (C + TT)", "", "", "", "", "", "", "", f"=J{c_r}+J{tt_r}"], start_row),
-            (["", "Chi phí chung (T x 20%)", "", "", "", "", "='Hệ số'!$C$4", "", "", f"=ROUND(J{self.t_row}*G{start_row+1}, 0)"], c_r),
-            (["", "Chi phí công việc không xác định từ thiết kế", "", "", "", "", "='Hệ số'!$C$9", "", "", f"=ROUND(J{self.t_row}*G{start_row+2}, 0)"], tt_r),
-            (["", "Thu nhập chịu thuế tính trước", "", "", "", "", "='Hệ số'!$C$8", "", "", f"=ROUND((J{self.t_row}+J{start_row})*G{start_row+3}, 0)"], tl_r),
-            (["", "Chi phí trước thuế", "", "", "", "", "", "", "", f"=ROUND(J{self.t_row}+J{start_row}+J{start_row+3}, 0)"], g_r),
-            (["", "Thuế giá trị gia tăng (VAT 8%)", "", "", "", "", "='Hệ số'!$C$10", "", "", f"=ROUND(J{g_r}*G{gtgt_r}, 0)"], gtgt_r),
-            (["", "CHI PHÍ SAU THUẾ", "", "", "", "", "", "", "", f"=ROUND(J{g_r}+J{gtgt_r}, 0)"], gxd_r),
-            (["", "Chi phí nhà tạm để ở và điều hành", "", "", "", "", "='Hệ số'!$C$6", "", "", f"=ROUND(J{g_r}*G{lt_r}*(1+'Hệ số'!$C$10), 0)"], lt_r),
-            (["", "Tổng cộng đơn giá dự thầu 1 mẫu", "", "", "", "", "", "", "", f"=ROUND(J{gxd_r}+J{lt_r}, 0)"], total_r),
+            (["", "", "", "", "Chi phí gián tiếp (C + TT)", "GT", "", "", "", f"=J{c_r}+J{tt_r}"], start_row),
+            (["", "", "", "", "Chi phí chung (T x 7,3%)", "C", "='Hệ số'!$C$4", "", "", f"=ROUND(J{self.t_row}*G{c_r}, 0)"], c_r),
+            (["", "", "", "", "Chi phí một số công việc không xác định được khối lượng từ thiết kế (T x 2,5%)", "TT", "='Hệ số'!$C$9", "", "", f"=ROUND(J{self.t_row}*G{tt_r}, 0)"], tt_r),
+            (["", "", "", "", "Thu nhập chịu thuế tính trước ((T + GT) x 5,5%)", "TL", "='Hệ số'!$C$8", "", "", f"=ROUND((J{self.t_row}+J{start_row})*G{tl_r}, 0)"], tl_r),
+            (["", "", "", "", "Chi phí xây dựng trước thuế (T + GT + TL)", "G", "", "", "", f"=ROUND(J{self.t_row}+J{start_row}+J{tl_r}, 0)"], g_r),
+            (["", "", "", "", "Thuế giá trị gia tăng (G x 8%)", "GTGT", "='Hệ số'!$C$10", "", "", f"=ROUND(J{g_r}*G{gtgt_r}, 0)"], gtgt_r),
+            (["", "", "", "", "CHI PHÍ XÂY DỰNG SAU THUẾ (G + GTGT)", "Gxd", "", "", "", f"=ROUND(J{g_r}+J{gtgt_r}, 0)"], gxd_r),
+            (["", "", "", "", "Chi phí nhà tạm để ở và điều hành thi công (G x 1,1% x (1 + 8%))", "LT", "='Hệ số'!$C$6", "", "", f"=ROUND(J{g_r}*G{lt_r}*(1+'Hệ số'!$C$10), 0)"], lt_r),
+            (["", "", "", "", "Tổng cộng (Gxd + LT)", "", "", "", "", f"=ROUND(J{gxd_r}+J{lt_r}, 0)"], total_r),
         ]
         return rows, total_r
     

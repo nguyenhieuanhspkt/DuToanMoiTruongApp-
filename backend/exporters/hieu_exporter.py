@@ -8,7 +8,7 @@ from backend.models.hieu_models_dto import (
 )
 
 # Import các module con chuyên trách từng sheet
-from backend.exporters.cong_trinh_exporter import build_cong_trinh_sheet
+from backend.exporters.cong_trinh_exporter import build_cong_trinh_sheet, update_cong_trinh_from_dgct
 from backend.exporters.dinh_muc_exporter import build_dinh_muc_sheet
 from backend.exporters.don_gia_ct_exporter import build_sheet_12_with_dto
 from backend.exporters.hao_phi_vt_exporter import build_hao_phi_vt_sheet
@@ -105,10 +105,11 @@ def export_full_du_toan(
         wb=wb,
         jobs_dtos=jobs_dtos,
         style_mgr=style_mgr
-        )
+    )
 
-    # (Tùy chọn nâng cao): Nếu cần cập nhật lại đơn giá vào sheet Công trình từ map_dgct thật, 
-    # ta có thể duyệt lại ws_ct tại đây hoặc tận dụng cơ chế cell update. Tuy nhiên với pre-calculate, các mỏ neo dòng đã hoàn toàn khớp lệnh!
+    # 5.1 Cập nhật sheet 'Công trình' link chính xác sang 'Đơn giá chi tiết'
+    print("[4.1] Đang cập nhật đơn giá và thành tiền sang sheet Công trình...")
+    update_cong_trinh_from_dgct(ws_ct, item_ct_rows, map_dgct)
 
     # 6. Xây dựng sheet 'Hao phí VT'
     print("[5] Đang xây dựng sheet Hao phí VT...")

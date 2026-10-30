@@ -11,34 +11,39 @@ from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 # ============================================================
 
 class DinhMucRegistry:
-    """Quản lý kho định mức chuẩn hóa dựa trên Unique ID định danh tuyệt đối."""
+    """Quản lý kho định mức chuẩn hóa dựa trên Unique ID định danh tuyệt đối có phân tách giai đoạn."""
     def __init__(self):
         self._registry_map: Dict[str, int] = {}
 
     @staticmethod
-    def generate_unique_id(ma: str, loai: str, index: int) -> str:
-        """
-        Quy chuẩn sinh Unique ID duy nhất cho từng dòng hao phí:
-        Format: {ma_gop}_{loai}_{stt} (Ví dụ: kk1a_vl_1, kk1a_nc_1)
-        """
-        clean_ma = re.sub(r'^1', '', str(ma)).lower().strip()
+    def normalize_stage(stage: str, ma: str = "") -> str:
+        s = str(stage).lower().strip()
+        if "ngoại" in s or "field" in s:
+            return "ngoai_nghiep"
+        if "nội" in s or "lab" in s:
+            return "noi_nghiep"
+        # Nếu không truyền stage, suy luận từ tiền tố mã (1... là Ngoại, 2... là Nội)
+        if str(ma).startswith("1"):
+            return "ngoai_nghiep"
+        if str(ma).startswith("2"):
+            return "noi_nghiep"
+        return "toan_phan"
+
+    @staticmethod
+    def generate_unique_id(ma: str, loai: str, index: int, stage: str = "") -> str:
+        clean_ma = re.sub(r'^[12]', '', str(ma)).lower().strip()
         clean_loai = str(loai).lower().strip()
-        return f"{clean_ma}_{clean_loai}_{index}"
+        clean_stage = DinhMucRegistry.normalize_stage(stage, ma)
+        return f"{clean_ma}_{clean_stage}_{clean_loai}_{index}"
 
     def register_by_id(self, unique_id: str, row_index: int):
-        """Đăng ký trực tiếp bằng Unique ID chuẩn."""
         key = unique_id.lower().strip()
         self._registry_map[key] = row_index
 
     def get_formula_by_id(self, unique_id: str, fallback_value: Any) -> Any:
-        """Tra cứu tọa độ dòng bằng Unique ID và trả về công thức Excel chuẩn."""
         key = unique_id.lower().strip()
         row_idx = self._registry_map.get(key)
         
-        # print(f"[DEBUG UNIQUE ID] ID đi tìm: '{key}' | Tìm thấy dòng: {row_idx}")
-        
-        if row_idx:
-            return f"='Dữ liệu định mức'!$G${row_idx}"
         return fallback_value
 
 # Chuyên gia nhận dữ liệu thô, gọi Registry để bóc tách và lắp ráp thành các danh sách DTO hoàn chỉnh.
@@ -84,7 +89,7 @@ class JobMappingManager:
                     is_pt = ("phổ thông" in nc_title.lower() or "phụ việc" in nc_title.lower())
                     target_row_nc = self.nc_row_mapping.get("nc_ldpt" if is_pt else "nc_ldkt", 7)
                     
-                    uid = self.registry.generate_unique_id(ma_gop, 'NC', 1)
+                    uid = self.registry.generate_unique_id(ma_gop, 'NC', 1, stage=stage_lbl)
                     norm_val = self.registry.get_formula_by_id(uid, float(nc_norm))
                     
                     job_dto.add_detail("NC", DetailItemDTO(
@@ -99,7 +104,7 @@ class JobMappingManager:
                     if m_norm > 0:
                         target_row_vl = self.vl_row_mapping.get(m_name.lower().strip(), 7)
                         
-                        uid = self.registry.generate_unique_id(ma_gop, 'VL', m_idx)
+                        uid = self.registry.generate_unique_id(ma_gop, 'VL', m_idx, stage=stage_lbl)
                         norm_val = self.registry.get_formula_by_id(uid, m_norm)
                         
                         job_dto.add_detail("VL", DetailItemDTO(
@@ -115,7 +120,7 @@ class JobMappingManager:
                     if t_norm > 0:
                         target_row_t = self.tools_row_mapping.get(t_unit.lower().strip(), 7)
                         
-                        uid = self.registry.generate_unique_id(ma_gop, 'DC', t_idx)
+                        uid = self.registry.generate_unique_id(ma_gop, 'DC', t_idx, stage=stage_lbl)
                         norm_val = self.registry.get_formula_by_id(uid, t_norm)
                         
                         job_dto.add_detail("DC", DetailItemDTO(
@@ -130,7 +135,7 @@ class JobMappingManager:
                     if e_norm > 0:
                         target_row_e = self.eq_row_mapping.get(e_name.lower().strip(), 7)
                         
-                        uid = self.registry.generate_unique_id(ma_gop, 'M', e_idx)
+                        uid = self.registry.generate_unique_id(ma_gop, 'M', e_idx, stage=stage_lbl)
                         norm_val = self.registry.get_formula_by_id(uid, e_norm)
                         
                         job_dto.add_detail("M", DetailItemDTO(

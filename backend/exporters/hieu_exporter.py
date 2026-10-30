@@ -112,7 +112,7 @@ def export_full_du_toan(
 
     # 6. Xây dựng sheet 'Hao phí VT'
     print("[5] Đang xây dựng sheet Hao phí VT...")
-    last_hp_row = build_hao_phi_vt_sheet(
+    ws_hp, last_hp_row = build_hao_phi_vt_sheet(
         wb=wb,
         pakt_items=pakt_items,
         start_ct_row=7,
@@ -124,7 +124,8 @@ def export_full_du_toan(
         font_data_11b=style_mgr.font_data_11b,
         fill_header_gray=style_mgr.fill_header_gray,
         border_cell=style_mgr.border_cell,
-        FMT_NORM=style_mgr.FMT_NORM
+        FMT_NORM=style_mgr.FMT_NORM,
+        jobs_dtos=jobs_dtos
     )
 
     # 7. Xây dựng sheet 'Nhân công'

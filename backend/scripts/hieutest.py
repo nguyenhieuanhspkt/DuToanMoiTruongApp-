@@ -50,8 +50,14 @@ def run_test():
     out_dir = os.path.join(root_dir, 'output')
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, 'hieu_test_output.xlsx')
-    wb.save(out_path)
-    print(f"✅ Xuất file thành công tại: {os.path.abspath(out_path)}")
+    try:
+        wb.save(out_path)
+        print(f"✅ Xuất file thành công tại: {os.path.abspath(out_path)}")
+    except PermissionError:
+        alt_path = os.path.join(out_dir, 'hieu_test_output_temp.xlsx')
+        wb.save(alt_path)
+        print(f"⚠️ File '{out_path}' đang được mở bởi Excel.")
+        print(f"✅ Đã lưu kết quả thành công vào file tạm: {os.path.abspath(alt_path)}")
 
 if __name__ == "__main__":
     run_test()

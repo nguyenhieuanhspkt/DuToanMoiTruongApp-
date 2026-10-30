@@ -43,7 +43,8 @@ class DinhMucRegistry:
     def get_formula_by_id(self, unique_id: str, fallback_value: Any) -> Any:
         key = unique_id.lower().strip()
         row_idx = self._registry_map.get(key)
-        
+        if row_idx:
+            return f"='Dữ liệu định mức'!$G${row_idx}"
         return fallback_value
 
 # Chuyên gia nhận dữ liệu thô, gọi Registry để bóc tách và lắp ráp thành các danh sách DTO hoàn chỉnh.
@@ -202,6 +203,7 @@ class DetailItemDTO:
         self.norm = norm                # Định mức tiêu hao (có thể là float hoặc chuỗi công thức)
         self.price_formula = price_formula  # Công thức link đơn giá (ví dụ: ='Vật liệu'!$F$7)
         self.stage = stage              # Giai đoạn (Ngoại nghiệp, Nội nghiệp...)
+        self.hp_row: Optional[int] = None # Tọa độ dòng tương ứng trong sheet 'Hao phí VT'
 
     def to_row_data(self, current_row: int) -> List[Any]:
         display_name = f" - {self.name} ({self.stage})" if self.stage else f" - {self.name}"

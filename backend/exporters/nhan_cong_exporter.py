@@ -123,7 +123,7 @@ def _write_labor_child_rows(
     Ghi các dòng Con truy vết công tác:
     - Cột B: Link số thứ tự công tác từ sheet Công trình ('Công trình'!A{c_row})
     - Cột E: Link tên công tác từ sheet Công trình ('Công trình'!D{c_row})
-    - Cột J: Link trực tiếp mức hao phí (ô chưa nhân khối lượng) từ sheet Hao phí VT ('Hao phí VT'!$I${hp_row})
+    - Cột J: Link trực tiếp khối lượng nhân công từ sheet Hao phí VT ('Hao phí VT'!$N${hp_row})
     - Cột P, Q: Thành tiền chênh lệch và thành tiền theo đơn giá dòng Cha
     """
     child_start_row = curr_row
@@ -134,10 +134,10 @@ def _write_labor_child_rows(
         j_stt_formula = f"='Công trình'!A{c_row}" if c_row else ""
         j_name_formula = f"='Công trình'!D{c_row}" if c_row else ""
 
-        # Link trực tiếp sang cột I (Mức hao phí - ô chưa nhân khối lượng) của sheet 'Hao phí VT'
+        # Link trực tiếp sang cột N (Khối lượng NC) của sheet 'Hao phí VT'
         hp_row = getattr(detail_item, 'hp_row', None)
         if hp_row:
-            j_qty = f"='Hao phí VT'!$I${hp_row}"
+            j_qty = f"='Hao phí VT'!$N${hp_row}"
         else:
             j_qty = 0
 

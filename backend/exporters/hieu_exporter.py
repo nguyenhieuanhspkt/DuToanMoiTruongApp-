@@ -126,7 +126,8 @@ def export_full_du_toan(
         fill_header_gray=style_mgr.fill_header_gray,
         border_cell=style_mgr.border_cell,
         FMT_NORM=style_mgr.FMT_NORM,
-        jobs_dtos=jobs_dtos
+        jobs_dtos=jobs_dtos,
+        item_ct_rows=item_ct_rows  # <--- Bổ sung dòng này để đồng bộ tọa độ chính xác 100%
     )
 
     # 7. Xây dựng sheet 'Nhân công'

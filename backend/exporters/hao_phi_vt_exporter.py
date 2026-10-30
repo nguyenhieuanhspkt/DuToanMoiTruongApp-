@@ -210,7 +210,8 @@ def build_hao_phi_vt_sheet(
     fill_header_gray: PatternFill, 
     border_cell: Border, 
     FMT_NORM: str,
-    jobs_dtos: List[Any] = None
+    jobs_dtos: List[Any] = None,
+    item_ct_rows: Dict[int, int] = None  # <--- Nhận thêm dictionary tọa độ thực tế từ sheet Công trình
 ):
     registry = job_mapper.registry if job_mapper else None
     ws_hp = _init_hao_phi_vt_sheet(wb)
@@ -220,7 +221,13 @@ def build_hao_phi_vt_sheet(
 
     # Duyệt qua các công việc thực tế để điều phối ghi dòng cha và dòng con
     for i, it in enumerate(pakt_items, 1):
-        ct_r = start_ct_row + i - 1
+        # Lấy chính xác tọa độ dòng thực tế của công tác i từ sheet 'Công trình'
+        if item_ct_rows and i in item_ct_rows:
+            ct_r = item_ct_rows[i]
+        else:
+            # Fallback an toàn nếu chưa truyền item_ct_rows
+            ct_r = start_ct_row + i - 1
+
         tt = it.get('tt20_data') or {}
         core_code = it.get('ma_gop') or tt.get('coreCode') or it.get('code') or 'TT20'
         work_unit = it.get('dvt') or 'mẫu'

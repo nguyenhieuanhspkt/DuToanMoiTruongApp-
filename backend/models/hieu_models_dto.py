@@ -118,7 +118,8 @@ class JobMappingManager:
                 for t_idx, t in enumerate(sub.get('tools', []), 1):
                     t_norm = float(t.get('norm') or 0.0)
                     t_name = t.get('name', 'Công cụ dụng cụ').strip()
-                    t_unit = t.get('unit') or "ca"
+                    # 📌 Đơn vị tính chuẩn định mức TT20 luôn là "ca/thông số" (ghi tắt là "ca")
+                    t_unit = "ca" 
                     
                     if t_norm > 0:
                         target_row_t = self.tools_row_mapping.get(t_unit.lower().strip(), 7)
@@ -135,7 +136,8 @@ class JobMappingManager:
                 for e_idx, e in enumerate(sub.get('equipment', []), 1):
                     e_norm = float(e.get('norm') or 0.0)
                     e_name = e.get('name', '').strip()
-                    e_unit = e.get('unit') or "ca"
+                    # 📌 Đơn vị tính chuẩn định mức TT20 luôn là "ca/thông số" (ghi tắt là "ca")
+                    e_unit = "ca"
                     
                     if e_norm > 0:
                         target_row_e = self.eq_row_mapping.get(e_name.lower().strip(), 7)

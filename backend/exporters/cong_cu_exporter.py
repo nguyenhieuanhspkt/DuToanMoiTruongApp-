@@ -89,25 +89,35 @@ def _write_tool_parent_row(
     curr_row: int, 
     it: Dict[str, Any], 
     num_children: int,
-    font_data_11b: Font
+    font_data_11b: Font,
+    ca_may_rows: Dict[str, Any] = None
 ) -> int:
-    """Ghi dòng Cha tổng hợp CCDC (Cột E tính SUM dòng con, Cột G tính thành tiền)."""
+    """Ghi dòng Cha tổng hợp CCDC, tự động liên kết đơn giá sang sheet 'Tính giá ca máy'."""
     child_start_row = curr_row + 1
     child_end_row = curr_row + num_children if num_children > 0 else curr_row
 
     f_sum_qty = f"=ROUND(SUM(E{child_start_row}:E{child_end_row}), 4)" if num_children > 0 else 0.0
     f_thanhtien = f"=ROUND(E{curr_row}*F{curr_row}, 0)"
 
-    dc_id = it.get('id', f'DC_{idx:03d}')
-    dc_name = it.get('name', '').strip()
+    dc_id = str(it.get('id', f'DC_{idx:03d}')).strip()
+    dc_name = str(it.get('name', '')).strip()
     dc_unit = str(it.get('unit', '')).strip()
     price = float(it.get('price') or 0.0)
     basis = str(it.get('basis') or 'Đơn giá công bố')
 
+    # Tự động sinh công thức link sang Cột O của sheet 'Tính giá ca máy'
+    price_formula = price
+    if ca_may_rows and "dc_rows" in ca_may_rows:
+        dc_map = ca_may_rows["dc_rows"]
+        row_cadc = dc_map.get(dc_id) or dc_map.get(dc_id.lower()) or dc_map.get(dc_name.lower())
+        if row_cadc:
+            price_formula = f"='Tính giá ca máy'!$O${row_cadc}"
+            basis = "Tính theo TT 13/2021/TT-BXD"
+
     parent_row = curr_row
     ws_dc.append([
         idx, dc_id, dc_name, dc_unit,
-        f_sum_qty, price, f_thanhtien, basis
+        f_sum_qty, price_formula, f_thanhtien, basis
     ])
     ws_dc.cell(parent_row, 3).font = font_data_11b
     return parent_row
@@ -247,11 +257,12 @@ def build_cong_cu_sheet(
     border_cell: Border,
     border_total: Border,
     FMT_CURRENCY: str,
-    FMT_NORM: str
+    FMT_NORM: str,
+    ca_may_rows: Dict[str, Any] = None
 ) -> Tuple[Worksheet, int]:
     """
     Xây dựng sheet 'Công cụ dụng cụ' chuẩn F1 điều phối qua các module chức năng chuyên biệt:
-    - Dòng cha: Tính tổng từ các dòng con theo từng loại CCDC.
+    - Dòng cha: Tính tổng từ các dòng con theo từng loại CCDC, link đơn giá sang 'Tính giá ca máy'.
     - Dòng con: Link trực tiếp khối lượng sang cột O của sheet 'Hao phí VT'.
     """
     ws_dc = _init_cong_cu_sheet(wb)
@@ -273,7 +284,8 @@ def build_cong_cu_sheet(
             curr_row=curr_row,
             it=it,
             num_children=num_children,
-            font_data_11b=font_data_11b
+            font_data_11b=font_data_11b,
+            ca_may_rows=ca_may_rows
         )
         curr_row += 1
 

@@ -101,18 +101,27 @@ def _write_machine_parent_row(
     curr_row: int, 
     it: Dict[str, Any], 
     num_children: int,
-    font_data_11b: Font
+    font_data_11b: Font,
+    ca_may_rows: Dict[str, Any] = None
 ) -> int:
-    """Ghi dòng Cha tổng hợp máy thi công (Cột J tính SUM dòng con, Cột Q tính thành tiền)."""
+    """Ghi dòng Cha tổng hợp máy thi công, tự động liên kết đơn giá sang sheet 'Tính giá ca máy'."""
     child_start_row = curr_row + 1
     child_end_row = curr_row + num_children if num_children > 0 else curr_row
 
     f_sum_qty = f"=ROUND(SUM(J{child_start_row}:J{child_end_row}), 4)" if num_children > 0 else 0.0
 
-    m_id = it.get('id', f'M_{idx:03d}')
-    m_name = it.get('name', '').strip()
+    m_id = str(it.get('id', f'M_{idx:03d}')).strip()
+    m_name = str(it.get('name', '')).strip()
     m_unit = str(it.get('unit', '')).strip()
     price = float(it.get('price') or 0.0)
+
+    # Tự động sinh công thức link sang Cột O của sheet 'Tính giá ca máy'
+    price_formula = price
+    if ca_may_rows and "m_rows" in ca_may_rows:
+        m_map = ca_may_rows["m_rows"]
+        row_camay = m_map.get(m_id) or m_map.get(m_id.lower()) or m_map.get(m_name.lower())
+        if row_camay:
+            price_formula = f"='Tính giá ca máy'!$O${row_camay}"
 
     parent_row = curr_row
     row_data = [""] * 17
@@ -124,7 +133,7 @@ def _write_machine_parent_row(
     row_data[10] = 0
     row_data[11] = 0
     row_data[12] = 0
-    row_data[13] = price
+    row_data[13] = price_formula
     row_data[14] = f"=N{parent_row}-K{parent_row}"
     row_data[15] = f"=ROUND(J{parent_row}*O{parent_row}, 0)"
     row_data[16] = f"=ROUND(J{parent_row}*N{parent_row}, 0)"
@@ -267,11 +276,12 @@ def build_may_thi_cong_sheet(
     border_cell: Border,
     border_total: Border,
     FMT_CURRENCY: str,
-    FMT_NORM: str
+    FMT_NORM: str,
+    ca_may_rows: Dict[str, Any] = None
 ) -> Tuple[Worksheet, int]:
     """
     Xây dựng sheet 'Máy thi công' chuẩn mẫu F1 điều phối qua các module chức năng chuyên biệt:
-    - Dòng cha: Tính tổng từ các dòng con theo từng loại máy móc/thiết bị.
+    - Dòng cha: Tính tổng từ các dòng con theo từng loại máy móc/thiết bị, link đơn giá sang 'Tính giá ca máy'.
     - Dòng con: Link trực tiếp khối lượng sang cột P của sheet 'Hao phí VT'.
     """
     ws_m = _init_may_thi_cong_sheet(wb)
@@ -293,7 +303,8 @@ def build_may_thi_cong_sheet(
             curr_row=curr_row,
             it=it,
             num_children=num_children,
-            font_data_11b=font_data_11b
+            font_data_11b=font_data_11b,
+            ca_may_rows=ca_may_rows
         )
         curr_row += 1
 

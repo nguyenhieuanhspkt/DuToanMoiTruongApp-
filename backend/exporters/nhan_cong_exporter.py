@@ -1,3 +1,4 @@
+import re
 import os
 import json
 from openpyxl.worksheet.worksheet import Worksheet
@@ -76,24 +77,53 @@ def _find_usage_jobs_for_labor(valid_jobs: List[Any], nc_name: str) -> List[Dict
                     })
     return usage_jobs
 
-
+def _get_ngach_code_from_title(title: str) -> str:
+    """
+    Sử dụng Regex với ranh giới từ (\b) để bóc tách chuẩn xác mã ngạch,
+    ngăn chặn tình trạng chuỗi 'hạng ii' nuốt nhầm 'hạng iii'.
+    """
+    title_lower = str(title).lower().strip()
+    
+    # Kiểm tra Hạng IV trước
+    if re.search(r'hạng\s+iv\b', title_lower) or 'v.06.05.15' in title_lower:
+        return "v.06.05.15"
+    
+    # Kiểm tra Hạng III (đặt trước Hạng II để tránh quét nhầm chữ 'ii' trong 'iii')
+    elif re.search(r'hạng\s+iii\b', title_lower) or 'v.06.05.14' in title_lower:
+        return "v.06.05.14"
+        
+    # Kiểm tra Hạng II chuẩn xác có ranh giới từ
+    elif re.search(r'hạng\s+ii\b', title_lower) or 'v.06.05.13' in title_lower:
+        return "v.06.05.13"
+        
+    # Fallback an toàn về Hạng III
+    return "v.06.05.14"
 def _write_labor_parent_row(
     ws_nc, 
     idx: int, 
     curr_row: int, 
     it: Dict[str, Any], 
     num_children: int,
-    font_data_11b: Font
+    font_data_11b: Font,
+    nc_rows: Dict[str, int] = None
 ) -> int:
-    """Ghi dòng Cha tổng hợp nhân công (Cột J tính SUM dòng con, Cột Q thành tiền)."""
     child_start_row = curr_row + 1
     child_end_row = curr_row + num_children if num_children > 0 else curr_row
     f_sum_qty = f"=ROUND(SUM(J{child_start_row}:J{child_end_row}), 4)" if num_children > 0 else 0.0
 
     nc_id = it.get('id')
-    nc_name = it.get('name')
+    nc_name = it.get('name', '')
     nc_unit = it.get('unit')
-    price = float(it.get('price', 0.0))
+
+    # Bóc tách và đồng bộ khóa chữ thường
+    ma_ngach = _get_ngach_code_from_title(nc_name).lower().strip()
+    
+    if nc_rows and ma_ngach in nc_rows:
+        row_tinh_luong = nc_rows[ma_ngach]
+        # Link trực tiếp sang Cột K (Đơn giá ngày công) của sheet 'Tính lương NC'
+        price_formula = f"='Tính lương NC'!$K${row_tinh_luong}"
+    else:
+        price_formula = float(it.get('price', 0.0))
 
     parent_row = curr_row
     row_data = [""] * 17
@@ -103,7 +133,7 @@ def _write_labor_parent_row(
     row_data[7] = nc_unit
     row_data[9] = f_sum_qty
     row_data[10] = 0
-    row_data[13] = price
+    row_data[13] = price_formula  # Cột N nhận công thức link từ cột K sheet Tính lương NC
     row_data[14] = f"=N{parent_row}-K{parent_row}"
     row_data[15] = f"=ROUND(J{parent_row}*O{parent_row}, 0)"
     row_data[16] = f"=ROUND(J{parent_row}*N{parent_row}, 0)"
@@ -111,7 +141,6 @@ def _write_labor_parent_row(
     ws_nc.append(row_data)
     ws_nc.cell(parent_row, 5).font = font_data_11b
     return parent_row
-
 
 def _write_labor_child_rows(
     ws_nc, 
@@ -240,7 +269,8 @@ def build_nhan_cong_sheet(
     border_cell: Border,
     border_total: Border,
     FMT_CURRENCY: str,
-    FMT_NORM: str
+    FMT_NORM: str,
+    nc_rows: Dict[str, int] = None,
 ) -> Tuple[Worksheet, int]:
     """
     Xây dựng sheet 'Nhân công' chuẩn mẫu F1 điều phối qua các module chức năng chuyên biệt:
@@ -267,8 +297,10 @@ def build_nhan_cong_sheet(
             curr_row=curr_row,
             it=it,
             num_children=num_children,
-            font_data_11b=font_data_11b
+            font_data_11b=font_data_11b,
+            nc_rows=nc_rows  # <--- Bổ sung truyền biến này vào đây để tránh bị nhận giá trị None!
         )
+        
         curr_row += 1
 
         if num_children > 0:

@@ -1,4 +1,3 @@
-# backend/exporters/hieu_exporter.py
 import sys, os, json
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
@@ -20,7 +19,8 @@ from backend.exporters.may_thi_cong_exporter import build_may_thi_cong_sheet
 from backend.exporters.he_so_exporter import build_he_so_sheet
 from backend.exporters.khoan_4_5_tt20_exporter import build_khoan_4_5_tt20_sheet
 from backend.exporters.thdt_hang_muc_exporter import build_thdt_hang_muc_sheet
-
+from backend.exporters.luong_nhan_cong_exporter import build_luong_nhan_cong_sheet
+from backend.exporters.tinh_gia_ca_may_exporter import build_tinh_gia_ca_may_sheet
 
 def _reorder_sheets_tab(wb, desired_order: list) -> None:
     """Sắp xếp lại thứ tự các sheet theo chuẩn Executive Summary First."""
@@ -41,9 +41,11 @@ def _apply_all_freeze_panes(wb) -> None:
         "Đơn giá chi tiết": "A6",
         "Hao phí VT": "H7",
         "Nhân công": "A7",
+        "Tính lương NC": "A6",
         "Vật liệu": "A7",
         "Công cụ dụng cụ": "A7",
         "Máy thi công": "A7",
+        "Tính giá ca máy": "A7",
         "Dữ liệu định mức": "A2",
         "Hệ số": "A6",
     }
@@ -90,7 +92,6 @@ def export_full_du_toan(
 
     # 3. Build sheet Công trình trước
     print("[3] Đang xây dựng sheet Công trình...")
-
     ws_ct, item_ct_rows, tot_ct_row = build_cong_trinh_sheet(
         wb=wb,
         pakt_items=pakt_items,
@@ -110,34 +111,12 @@ def export_full_du_toan(
     )
     ctx.register_cong_trinh(item_ct_rows, tot_ct_row)
 
-    # print("===== ITEM CT ROWS =====")
-    # for k, v in list(item_ct_rows.items())[:10]:
-    #     print(k, "->", v)
-
     # Gán lại row thực tế từ sheet Công trình
     for idx, job in enumerate(jobs_dtos, start=1):
-
         row = item_ct_rows.get(idx)
-
         job.cong_trinh_row = row
 
-        # if row is None:
-        #     print(
-        #         f"[WARNING] "
-        #         f"idx={idx} "
-        #         f"stt={job.stt} "
-        #         f"code={job.code} "
-        #         f"row=None"
-        #     )
-
-    # print("===== JOB ROW MAP =====")
-    # for job in jobs_dtos[:10]:
-    #     print(
-    #         f"stt={job.stt} "
-    #         f"code={job.code} "
-    #         f"row={job.cong_trinh_row}"
-    #     )
-    # 6. Xây dựng sheet 'Hao phí VT'
+    # 4. Xây dựng sheet 'Hao phí VT'
     print("[4] Đang xây dựng sheet Hao phí VT...")
     ws_hp, last_hp_row = build_hao_phi_vt_sheet(
         wb=wb,
@@ -153,10 +132,11 @@ def export_full_du_toan(
         border_cell=style_mgr.border_cell,
         FMT_NORM=style_mgr.FMT_NORM,
         jobs_dtos=jobs_dtos,
-        item_ct_rows=item_ct_rows  # <--- Bổ sung dòng này để đồng bộ tọa độ chính xác 100%
+        item_ct_rows=item_ct_rows
     )
     ctx.register_hao_phi(last_hp_row)
-    # 5. Xây dựng sheet 'Đơn giá chi tiết' (Sử dụng job.cong_trinh_row đã được gán sẵn để link về Công trình)
+
+    # 5. Xây dựng sheet 'Đơn giá chi tiết'
     print("[5] Đang xây dựng sheet Đơn giá chi tiết...")
     ws_dgct, map_dgct = build_sheet_12_with_dto(
         wb=wb,
@@ -165,17 +145,31 @@ def export_full_du_toan(
     )
 
     # 5.1 Cập nhật sheet 'Công trình' link chính xác sang 'Đơn giá chi tiết'
-    print("[4.1] Đang cập nhật đơn giá và thành tiền sang sheet Công trình...")
+    print("[5.1] Đang cập nhật đơn giá và thành tiền sang sheet Công trình...")
     update_cong_trinh_from_dgct(ws_ct, item_ct_rows, map_dgct)
 
-    
+    # 6. Xây dựng sheet 'Tính lương NC' (Lương nhân công theo TTLT 56/2015)
+    print("[6] Đang xây dựng sheet Tính lương nhân công...")
+    ws_luong_nc, total_luong_nc_row, nc_rows = build_luong_nhan_cong_sheet(
+        wb=wb,
+        font_title_15b=style_mgr.font_title_15b,
+        font_sub_11i=style_mgr.font_sub_11i,
+        font_header_11b=style_mgr.font_header_11b,
+        font_data_11r=style_mgr.font_data_11r,
+        font_data_11b=style_mgr.font_data_11b,
+        fill_header_gray=style_mgr.fill_header_gray,
+        border_cell=style_mgr.border_cell,
+        border_total=style_mgr.border_total,
+        luong_co_so=2_530_000
+    )
 
-    # 7. Xây dựng sheet 'Nhân công'
-    print("[6] Đang xây dựng sheet Nhân công...")
+    # 7. Xây dựng sheet 'Nhân công' (Đơn giá nhân công tổng hợp)
+    print("[7] Đang xây dựng sheet Nhân công...")
     ws_nc, total_nc_row = build_nhan_cong_sheet(
         wb=wb,
         last_hp_row=last_hp_row,
         jobs_dtos=jobs_dtos,
+        nc_rows=nc_rows, # <--- Truyền bản đồ tọa độ dòng sang đây
         font_title_15b=style_mgr.font_title_15b,
         font_sub_11i=style_mgr.font_sub_11i,
         font_header_11b=style_mgr.font_header_11b,
@@ -191,7 +185,7 @@ def export_full_du_toan(
     )
 
     # 8. Xây dựng sheet 'Vật liệu'
-    print("[7] Đang xây dựng sheet Vật liệu...")
+    print("[8] Đang xây dựng sheet Vật liệu...")
     ws_vl, total_vl_row = build_vat_lieu_sheet(
         wb=wb,
         last_hp_row=last_hp_row,
@@ -210,12 +204,29 @@ def export_full_du_toan(
         FMT_NORM=style_mgr.FMT_NORM
     )
 
-    # 9. Xây dựng sheet 'Công cụ dụng cụ'
-    print("[8] Đang xây dựng sheet Công cụ dụng cụ...")
+    # 9. Xây dựng sheet 'Tính giá ca máy' (Xác định theo phương pháp chuẩn BXD)
+    print("[9] Đang xây dựng sheet Tính giá ca máy...")
+    ws_camay, ca_may_rows = build_tinh_gia_ca_may_sheet(
+        wb=wb,
+        jobs_dtos=jobs_dtos,
+        font_title_15b=style_mgr.font_title_15b,
+        font_sub_11i=style_mgr.font_sub_11i,
+        font_header_11b=style_mgr.font_header_11b,
+        font_data_11r=style_mgr.font_data_11r,
+        font_data_11b=style_mgr.font_data_11b,
+        fill_header_gray=style_mgr.fill_header_gray,
+        border_cell=style_mgr.border_cell,
+        border_total=style_mgr.border_total,
+        FMT_CURRENCY=style_mgr.FMT_CURRENCY
+    )
+
+    # 10. Xây dựng sheet 'Công cụ dụng cụ'
+    print("[10] Đang xây dựng sheet Công cụ dụng cụ...")
     ws_dc, total_dc_row = build_cong_cu_sheet(
         wb=wb,
         last_hp_row=last_hp_row,
         jobs_dtos=jobs_dtos,
+        ca_may_rows=ca_may_rows,
         font_title_15b=style_mgr.font_title_15b,
         font_sub_11i=style_mgr.font_sub_11i,
         font_header_11b=style_mgr.font_header_11b,
@@ -230,12 +241,13 @@ def export_full_du_toan(
         FMT_NORM=style_mgr.FMT_NORM
     )
 
-    # 10. Xây dựng sheet 'Máy thi công'
-    print("[9] Đang xây dựng sheet Máy thi công...")
+    # 11. Xây dựng sheet 'Máy thi công'
+    print("[11] Đang xây dựng sheet Máy thi công...")
     ws_m, total_m_row = build_may_thi_cong_sheet(
         wb=wb,
         last_hp_row=last_hp_row,
         jobs_dtos=jobs_dtos,
+        ca_may_rows=ca_may_rows,
         font_title_15b=style_mgr.font_title_15b,
         font_sub_11i=style_mgr.font_sub_11i,
         font_header_11b=style_mgr.font_header_11b,
@@ -294,11 +306,21 @@ def export_full_du_toan(
     # 14. Thiết lập Freeze Panes chuẩn xác cho toàn bộ các sheet
     _apply_all_freeze_panes(wb)
 
-    # 15. Sắp xếp lại thứ tự Tab hiển thị chuẩn Executive Summary First
+    # 15. Sắp xếp lại thứ tự Tab hiển thị chuẩn Executive Summary First (Đã loại bỏ tab lặp)
     desired_tab_order = [
-        "THDT hạng mục", "Khoản 4.5 TT20", "Công trình", "Đơn giá chi tiết", 
-        "Hao phí VT", "Vật liệu", "Nhân công", "Công cụ dụng cụ", 
-        "Máy thi công", "Dữ liệu định mức", "Hệ số"
+        "THDT hạng mục",
+        "Khoản 4.5 TT20",
+        "Công trình",
+        "Đơn giá chi tiết",
+        "Hao phí VT",
+        "Vật liệu",
+        "Nhân công",
+        "Tính lương NC",
+        "Công cụ dụng cụ",
+        "Máy thi công",
+        "Tính giá ca máy",
+        "Dữ liệu định mức",
+        "Hệ số"
     ]
     _reorder_sheets_tab(wb, desired_tab_order)
 

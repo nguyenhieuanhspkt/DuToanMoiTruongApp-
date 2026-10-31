@@ -45,7 +45,8 @@ def _write_thdt_data(
     font_data_11r: Font, 
     font_data_11b: Font, 
     border_cell: Border, 
-    FMT_MONEY: str
+    FMT_MONEY: str,
+    border_total: Border = None
 ) -> int:
     """Ghi dữ liệu và tự động sinh dải ô công thức liên kết động từ sheet Công trình, Khoản 4.5 và Hệ số."""
     start_row = 6
@@ -68,6 +69,9 @@ def _write_thdt_data(
         f_m  = f"=SUM('Hao phí VT'!P7:P{hp_end})"
         note_direct = "Tổng hợp từ chi tiết hao phí"
 
+    tot_45 = ctx.get_khoan_4_5_row(24) if ctx and hasattr(ctx, "get_khoan_4_5_row") else 24
+    f_45 = f"='Khoản 4.5 TT20'!$J${tot_45}"
+
     raw_items = items if items else [
         {"ma": "CP_VL", "ten": "Chi phí vật liệu", "dvt": "Lô", "cach_tinh": "Từ sheet 'Công trình'", "formula": f_vl, "ghi_chu": note_direct},
         {"ma": "CP_NC", "ten": "Chi phí nhân công", "dvt": "Lô", "cach_tinh": "Từ sheet 'Công trình'", "formula": f_nc, "ghi_chu": note_direct},
@@ -75,9 +79,9 @@ def _write_thdt_data(
         {"ma": "CP_M", "ten": "Chi phí máy và thiết bị thi công", "dvt": "Lô", "cach_tinh": "Từ sheet 'Công trình'", "formula": f_m, "ghi_chu": note_direct},
         {"ma": "CP_TC", "ten": "1. Chi phí trực tiếp (T = VL + NC + DC + M)", "dvt": "Lô", "cach_tinh": "T = VL + NC + DC + M", "is_bold": True, "ghi_chu": "Cộng chi phí trực tiếp"},
         {"ma": "CP_C", "ten": "2. Chi phí quản lý chung (C)", "dvt": "Lô", "cach_tinh": "Theo sheet 'Hệ số'", "is_bold": False, "ghi_chu": "Thông tư 02/2017/TT-BTC (Phụ lục 03/04)"},
-        {"ma": "CP_KHAC", "ten": "3. Chi phí khác (Chi phí phụ trợ theo PAKT)", "dvt": "Lô", "cach_tinh": "Khoản 4.5 TT20", "formula": "=SUM('Khoản 4.5 TT20'!G6:G9)", "ghi_chu": "Tổng hợp từ sheet Khoản 4.5 TT20 (PAKT 2026)"},
+        {"ma": "CP_KHAC", "ten": "3. Chi phí khác (Chi phí phụ trợ theo PAKT)", "dvt": "Lô", "cach_tinh": "Khoản 4.5 TT20", "formula": f_45, "ghi_chu": "Tổng hợp từ sheet Khoản 4.5 TT20 (PAKT 2026)"},
         {"ma": "CP_TN", "ten": "4. Thu nhập chịu thuế tính trước (TL)", "dvt": "Lô", "cach_tinh": "Theo sheet 'Hệ số'", "is_bold": False, "ghi_chu": "Lợi nhuận định mức (5.5%)"},
-        {"ma": "CP_G", "ten": "5. Giá trị dự toán hạng mục trước thuế (G)", "dvt": "Lô", "cach_tinh": "G = T + C + Khác + TL", "is_bold": True, "ghi_chu": "Tổng chi phí dự toán trước thuế"}
+        {"ma": "CP_G", "ten": "5. Giá trị dự toán hạng mục trước thuế (G)", "dvt": "Lô", "cach_tinh": "G = T + C + Khác + TL", "is_bold": True, "is_grand_total": True, "ghi_chu": "Tổng chi phí dự toán trước thuế"}
     ]
 
     # Ánh xạ mã định danh để tự động tra cứu tọa độ dòng
@@ -114,6 +118,7 @@ def _write_thdt_data(
     curr_row = start_row
     for idx, item in enumerate(raw_items, 1):
         is_bold = item.get("is_bold", False)
+        is_grand = item.get("is_grand_total", False)
         cach_tinh_val = str(item.get("cach_tinh", ""))
         # Đảm bảo cột mô tả cách tính luôn là chuỗi thuần túy, không để openpyxl nhận diện thành công thức Excel
         if cach_tinh_val.startswith("="):
@@ -132,7 +137,7 @@ def _write_thdt_data(
         for c in range(1, 8):
             cell = ws.cell(curr_row, c)
             cell.font = font_data_11b if is_bold else font_data_11r
-            cell.border = border_cell
+            cell.border = border_total if (is_grand and border_total) else border_cell
             if c in (1, 2, 4):
                 cell.alignment = Alignment(horizontal="center", vertical="center")
             elif c in (3, 5, 7):
@@ -166,6 +171,7 @@ def build_thdt_hang_muc_sheet(
     font_data_11b: Font = None,
     fill_header_gray: PatternFill = None, 
     border_cell: Border = None, 
+    border_total: Border = None,
     FMT_MONEY: str = "#,##0"
 ):
     """
@@ -173,7 +179,7 @@ def build_thdt_hang_muc_sheet(
     """
     ws = _init_thdt_hang_muc_sheet(wb)
     _write_thdt_header(ws, font_title_15b, font_header_11b, fill_header_gray, border_cell)
-    last_row = _write_thdt_data(ws, items, ctx, tot_ct_row, last_hp_row, font_data_11r, font_data_11b, border_cell, FMT_MONEY)
+    last_row = _write_thdt_data(ws, items, ctx, tot_ct_row, last_hp_row, font_data_11r, font_data_11b, border_cell, FMT_MONEY, border_total=border_total)
     _apply_thdt_column_widths(ws)
 
     return ws, last_row

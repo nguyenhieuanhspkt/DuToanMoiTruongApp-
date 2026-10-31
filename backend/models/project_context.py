@@ -14,6 +14,7 @@ class ProjectContext:
         self.nc_parent_rows = {}     # NEW
         self.total_nc_row = 0        # NEW
         self.total_salary_row = 0    # NEW
+        self.total_45_row: int = 24  # Dòng tổng cộng Sheet Khoản 4.5 TT20
 
     def register_he_so(self, rows: Dict[str, int]) -> None:
         """Đăng ký bảng tra tọa độ dòng từ Sheet Hệ số."""
@@ -28,7 +29,15 @@ class ProjectContext:
         """Đăng ký biên độ dòng thực tế từ Sheet Hao phí VT."""
         self.last_hp_row = last_row
 
+    def register_khoan_4_5(self, tot_row: int) -> None:
+        """Đăng ký dòng tổng cộng thực tế từ Sheet Khoản 4.5 TT20."""
+        self.total_45_row = tot_row
+
     def get_he_so_row(self, ma: str, fallback: int = 9) -> int:
         """Lấy chính xác tọa độ dòng Excel của mã hệ số tương ứng."""
         return self.he_so_rows.get(ma, fallback)
+
+    def get_khoan_4_5_row(self, fallback: int = 24) -> int:
+        """Lấy chính xác tọa độ dòng tổng cộng của Sheet Khoản 4.5 TT20."""
+        return getattr(self, "total_45_row", fallback) or fallback
     

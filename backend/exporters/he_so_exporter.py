@@ -37,7 +37,15 @@ def _write_he_so_header(ws_hs, font_title_15b: Font, font_header_11b: Font, fill
         cell.border = border_cell
 
 
-def _write_he_so_data(ws_hs, he_so_items: list, font_data_11r: Font, border_cell: Border, FMT_NORM: str) -> tuple:
+def _write_he_so_data(
+    ws_hs, 
+    he_so_items: list, 
+    font_data_11r: Font, 
+    border_cell: Border, 
+    FMT_NORM: str,
+    fill_input_yellow: PatternFill = None,
+    font_input_11b: Font = None
+) -> tuple:
     """Ghi danh sách các hệ số kỹ thuật / chi phí vào sheet và trả về (last_row, he_so_rows)."""
     start_row = 6
     curr_row = start_row
@@ -74,6 +82,10 @@ def _write_he_so_data(ws_hs, he_so_items: list, font_data_11r: Font, border_cell
             elif c == 5:
                 cell.alignment = Alignment(horizontal="right", vertical="center")
                 cell.number_format = FMT_NORM
+                if fill_input_yellow:
+                    cell.fill = fill_input_yellow
+                if font_input_11b:
+                    cell.font = font_input_11b
 
         curr_row += 1
 
@@ -97,14 +109,24 @@ def build_he_so_sheet(
     font_data_11r: Font = None, 
     fill_header_gray: PatternFill = None, 
     border_cell: Border = None, 
-    FMT_NORM: str = "#,##0.0000"
+    FMT_NORM: str = "#,##0.0000",
+    fill_input_yellow: PatternFill = None,
+    font_input_11b: Font = None
 ):
     """
     Hàm điều phối chính: Khởi tạo, viết tiêu đề, điền dữ liệu hệ số và trả về (ws_hs, he_so_rows).
     """
     ws_hs = _init_he_so_sheet(wb)
     _write_he_so_header(ws_hs, font_title_15b, font_header_11b, fill_header_gray, border_cell)
-    last_row, he_so_rows = _write_he_so_data(ws_hs, he_so_items, font_data_11r, border_cell, FMT_NORM)
+    last_row, he_so_rows = _write_he_so_data(
+        ws_hs=ws_hs, 
+        he_so_items=he_so_items, 
+        font_data_11r=font_data_11r, 
+        border_cell=border_cell, 
+        FMT_NORM=FMT_NORM,
+        fill_input_yellow=fill_input_yellow,
+        font_input_11b=font_input_11b
+    )
     _apply_he_so_column_widths(ws_hs)
 
     return ws_hs, he_so_rows

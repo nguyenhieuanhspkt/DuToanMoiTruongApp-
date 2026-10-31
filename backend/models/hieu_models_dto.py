@@ -431,27 +431,34 @@ class IndirectCostSummaryDTO:
 
 #excel style
 class ExcelStyleManager:
-    """Class chuyên biệt quản lý toàn bộ Styles, Fills, Fonts, Borders và Number Formats cho Excel."""
+    """Class chuyên biệt quản lý toàn bộ Styles, Fills, Fonts, Borders và Number Formats cho Excel kế thừa chuẩn F1."""
     def __init__(self):
-        # Fonts
-        self.font_title_15b  = Font(size=15, bold=True)
-        self.font_sub_11i    = Font(size=11, italic=True)
-        self.font_header_11b = Font(size=11, bold=True)
-        self.font_sec_12b    = Font(size=12, bold=True)
-        self.font_data_11r   = Font(size=11)
-        self.font_data_11b   = Font(size=11, bold=True)
+        # Fonts (100% Times New Roman chuẩn F1)
+        fn_name = "Times New Roman"
+        self.font_title_15b  = Font(name=fn_name, size=15, bold=True, color="000000")
+        self.font_sub_11i    = Font(name=fn_name, size=11, italic=True, color="000000")
+        self.font_header_11b = Font(name=fn_name, size=11, bold=True, color="000000")
+        self.font_sec_12b    = Font(name=fn_name, size=12, bold=True, color="000000")
+        self.font_data_11r   = Font(name=fn_name, size=11, bold=False, color="000000")
+        self.font_data_11b   = Font(name=fn_name, size=11, bold=True, color="000000")
+        self.font_input_11b  = Font(name=fn_name, size=11, bold=True, color="0000FF") # Chữ xanh F1 cho ô nhập liệu
 
-        # Fills (Màu nền)
-        self.fill_header_gray = PatternFill("solid", fgColor="CCCCCC")
-        self.fill_sub_gray    = PatternFill("solid", fgColor="EEEEEE")
-        self.fill_total_pale  = PatternFill("solid", fgColor="FFF2CC")
+        # Fills (Màu nền chuẩn F1 thanh lịch)
+        self.fill_header_gray  = PatternFill(start_color="FFEFEFF2", end_color="FFEFEFF2", fill_type="solid")
+        self.fill_sub_gray     = PatternFill(start_color="FFF2F2F2", end_color="FFF2F2F2", fill_type="solid")
+        self.fill_input_yellow = PatternFill(start_color="FFFFFFB4", end_color="FFFFFFB4", fill_type="solid") # Vàng kem F1 đặc trưng
+        self.fill_total_pale   = PatternFill(start_color="FFEFEFF2", end_color="FFEFEFF2", fill_type="solid")
 
-        # Borders (Đường viền)
-        thin_side = Side(style="thin")
+        # Borders (Đường viền chuẩn kế toán F1: nét mỏng và viền kép dưới cho tổng cộng)
+        thin_side = Side(style='thin', color='A6A6A6')
+        double_side = Side(style='double', color='000000')
         self.border_cell  = Border(left=thin_side, right=thin_side, top=thin_side, bottom=thin_side)
-        self.border_total = Border(left=thin_side, right=thin_side, top=thin_side, bottom=thin_side)
+        self.border_total = Border(top=thin_side, bottom=double_side, left=thin_side, right=thin_side)
 
         # Number Formats
         self.FMT_CURRENCY = '#,##0'
-        self.FMT_NORM     = '0.000'
-        self.FMT_PCT      = '0%'
+        self.FMT_NORM     = '#,##0.0000'
+        self.FMT_QTY      = '#,##0.000'
+        self.FMT_INT      = '#,##0'
+        self.FMT_PCT      = '0.0%'
+        self.FMT_PCT2     = '0.00%'

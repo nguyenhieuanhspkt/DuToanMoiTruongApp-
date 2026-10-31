@@ -36,7 +36,7 @@ def _apply_all_freeze_panes(wb) -> None:
     """Cấu hình freeze_panes phù hợp cho toàn bộ các sheet."""
     freeze_map = {
         "THDT hạng mục": "A6",
-        "Khoản 4.5 TT20": "A6",
+        "Khoản 4.5 TT20": "A7",
         "Công trình": "A7",
         "Đơn giá chi tiết": "A6",
         "Hao phí VT": "H7",
@@ -271,21 +271,27 @@ def export_full_du_toan(
         font_data_11r=style_mgr.font_data_11r,
         fill_header_gray=style_mgr.fill_header_gray,
         border_cell=style_mgr.border_cell,
-        FMT_NORM=style_mgr.FMT_NORM
+        FMT_NORM=style_mgr.FMT_NORM,
+        fill_input_yellow=style_mgr.fill_input_yellow,
+        font_input_11b=style_mgr.font_input_11b
     )
     ctx.register_he_so(he_so_rows)
 
     # 12. Xây dựng sheet 'Khoản 4.5 TT20'
     print("[12] Đang xây dựng sheet Khoản 4.5 TT20...")
-    build_khoan_4_5_tt20_sheet(
+    ws_45, tot_45_row = build_khoan_4_5_tt20_sheet(
         wb=wb,
         font_title_15b=style_mgr.font_title_15b,
         font_header_11b=style_mgr.font_header_11b,
         font_data_11r=style_mgr.font_data_11r,
+        font_data_11b=style_mgr.font_data_11b,
         fill_header_gray=style_mgr.fill_header_gray,
+        fill_sub_gray=style_mgr.fill_sub_gray,
         border_cell=style_mgr.border_cell,
+        border_total=style_mgr.border_total,
         FMT_MONEY=style_mgr.FMT_CURRENCY
     )
+    ctx.register_khoan_4_5(tot_45_row)
 
     # 13. Xây dựng sheet 'THDT hạng mục' (Sử dụng ProjectContext Hub để liên kết động)
     print("[13] Đang xây dựng sheet THDT hạng mục...")
@@ -300,6 +306,7 @@ def export_full_du_toan(
         font_data_11b=style_mgr.font_data_11b,
         fill_header_gray=style_mgr.fill_header_gray,
         border_cell=style_mgr.border_cell,
+        border_total=style_mgr.border_total,
         FMT_MONEY=style_mgr.FMT_CURRENCY
     )
 

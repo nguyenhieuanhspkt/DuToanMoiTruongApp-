@@ -21,6 +21,7 @@ from backend.exporters.khoan_4_5_tt20_exporter import build_khoan_4_5_tt20_sheet
 from backend.exporters.thdt_hang_muc_exporter import build_thdt_hang_muc_sheet
 from backend.exporters.luong_nhan_cong_exporter import build_luong_nhan_cong_sheet
 from backend.exporters.tinh_gia_ca_may_exporter import build_tinh_gia_ca_may_sheet
+from backend.exporters.co_so_gia_msc_exporter import build_co_so_gia_msc_sheet
 
 def _reorder_sheets_tab(wb, desired_order: list) -> None:
     """Sắp xếp lại thứ tự các sheet theo chuẩn Executive Summary First."""
@@ -46,6 +47,7 @@ def _apply_all_freeze_panes(wb) -> None:
         "Công cụ dụng cụ": "A7",
         "Máy thi công": "A7",
         "Tính giá ca máy": "A7",
+        "Cơ sở giá MSC": "A7",
         "Dữ liệu định mức": "A2",
         "Hệ số": "A6",
     }
@@ -74,6 +76,14 @@ def export_full_du_toan(
     
     FMT_CURRENCY = style_mgr.FMT_CURRENCY
     FMT_NORM = style_mgr.FMT_NORM
+
+    # Đảm bảo danh sách items luôn là list ngay cả khi truyền dict có bọc metadata
+    if isinstance(mat_items, dict):
+        mat_items = mat_items.get('items', [])
+    if isinstance(tools_items, dict):
+        tools_items = tools_items.get('items', [])
+    if isinstance(equip_items, dict):
+        equip_items = equip_items.get('items', [])
 
     # 1. Xây dựng sheet 'Dữ liệu định mức' & đăng ký Unique ID trước
     print("[1] Đang xây dựng sheet Dữ liệu định mức...")
@@ -201,7 +211,9 @@ def export_full_du_toan(
         border_cell=style_mgr.border_cell,
         border_total=style_mgr.border_total,
         FMT_CURRENCY=style_mgr.FMT_CURRENCY,
-        FMT_NORM=style_mgr.FMT_NORM
+        FMT_NORM=style_mgr.FMT_NORM,
+        root_dir=root_dir,
+        mat_lookup_items=mat_items
     )
 
     # 9. Xây dựng sheet 'Tính giá ca máy' (Xác định theo phương pháp chuẩn BXD)
@@ -215,6 +227,26 @@ def export_full_du_toan(
         font_data_11r=style_mgr.font_data_11r,
         font_data_11b=style_mgr.font_data_11b,
         fill_header_gray=style_mgr.fill_header_gray,
+        border_cell=style_mgr.border_cell,
+        border_total=style_mgr.border_total,
+        FMT_CURRENCY=style_mgr.FMT_CURRENCY,
+        root_dir=root_dir
+    )
+
+    # 9.1 Xây dựng sheet 'Cơ sở giá MSC' (Đối soát dữ liệu giá trúng thầu Mạng đấu thầu quốc gia)
+    print("[9.1] Đang xây dựng sheet Cơ sở giá MSC...")
+    build_co_so_gia_msc_sheet(
+        wb=wb,
+        root_dir=root_dir,
+        jobs_dtos=jobs_dtos,
+        font_title_15b=style_mgr.font_title_15b,
+        font_sub_11i=style_mgr.font_sub_11i,
+        font_header_11b=style_mgr.font_header_11b,
+        font_sec_12b=style_mgr.font_sec_12b,
+        font_data_11r=style_mgr.font_data_11r,
+        font_data_11b=style_mgr.font_data_11b,
+        fill_header_gray=style_mgr.fill_header_gray,
+        fill_sub_gray=style_mgr.fill_sub_gray,
         border_cell=style_mgr.border_cell,
         border_total=style_mgr.border_total,
         FMT_CURRENCY=style_mgr.FMT_CURRENCY
@@ -326,6 +358,7 @@ def export_full_du_toan(
         "Công cụ dụng cụ",
         "Máy thi công",
         "Tính giá ca máy",
+        "Cơ sở giá MSC",
         "Dữ liệu định mức",
         "Hệ số"
     ]

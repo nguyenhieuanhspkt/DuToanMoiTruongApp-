@@ -103,8 +103,13 @@ def _write_mat_parent_row(
     mat_id = it.get('id', f'VL_{idx:03d}')
     mat_name = it.get('name', '').strip()
     mat_unit = str(it.get('unit', '')).strip().lower()
-    price = float(it.get('price') or 0.0)
-    basis = str(it.get('basis') or 'Chưa có giá')
+    price = float(it.get('price') or it.get('approved_price') or it.get('msc_unit_price') or 0.0)
+    tbmt = str(it.get('msc_tbmt_code') or '')
+    contractor = str(it.get('msc_contractor') or '')
+    if tbmt:
+        basis = f"TBMT: {tbmt} - {contractor}"
+    else:
+        basis = str(it.get('basis') or it.get('approval_basis') or it.get('note') or 'Giá trúng thầu MSC')
 
     # Thứ tự các cột: [STT (A), Mã hiệu (B), Tên vật tư (C), Đơn vị (D), Giai đoạn (E), Khối lượng (F), Đơn giá (G), Thành tiền (H), Ghi chú (I)]
     ws_vl.append([
@@ -263,7 +268,9 @@ def build_vat_lieu_sheet(
     border_cell: Border,
     border_total: Border,
     FMT_CURRENCY: str,
-    FMT_NORM: str
+    FMT_NORM: str,
+    root_dir: Optional[str] = None,
+    mat_lookup_items: Optional[List[Dict[str, Any]]] = None
 ) -> Tuple[Worksheet, int]:
     """
     Xây dựng sheet 'Vật liệu' chuẩn F1 điều phối qua các module chức năng chuyên biệt:
@@ -274,6 +281,29 @@ def build_vat_lieu_sheet(
     _write_vat_lieu_header(ws_vl)
 
     mat_items = _collect_vat_lieu_items(jobs_dtos)
+
+    mat_lookup = {}
+    if mat_lookup_items:
+        mat_lookup = {str(it.get("name", "")).strip().lower(): it for it in mat_lookup_items}
+    elif root_dir:
+        try:
+            from backend.storage.onedrive_adapter import OneDriveAdapter
+            adapter = OneDriveAdapter(root_dir)
+            raw = adapter.load_msc_materials()
+            items = raw.get("items", []) if isinstance(raw, dict) else (raw if isinstance(raw, list) else [])
+            mat_lookup = {str(it.get("name", "")).strip().lower(): it for it in items}
+        except Exception as e:
+            print(f"Warning: could not load MSC materials lookup: {e}")
+
+    if mat_lookup:
+        for it in mat_items:
+            m_key = it.get("name", "").strip().lower()
+            if m_key in mat_lookup:
+                src = mat_lookup[m_key]
+                it["price"] = src.get("msc_unit_price") or src.get("price") or 0.0
+                it["msc_tbmt_code"] = src.get("msc_tbmt_code", "")
+                it["msc_contractor"] = src.get("msc_contractor", "")
+                it["msc_approval_date"] = src.get("msc_approval_date", "")
 
     vl_start_row = 7
     curr_row = vl_start_row

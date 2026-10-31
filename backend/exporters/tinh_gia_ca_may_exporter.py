@@ -4,6 +4,7 @@ from openpyxl.worksheet.worksheet import Worksheet
 from typing import List, Dict, Any, Tuple
 from backend.exporters.cong_cu_exporter import _collect_cong_cu_items
 from backend.exporters.may_thi_cong_exporter import _collect_may_items
+from backend.storage.onedrive_adapter import OneDriveAdapter
 
 
 def _init_tinh_gia_ca_may_sheet(wb: openpyxl.Workbook) -> Worksheet:
@@ -70,7 +71,8 @@ def _write_items_block(
     border_cell: Border,
     font_data_11r: Font,
     font_data_11b: Font,
-    FMT_CURRENCY: str
+    FMT_CURRENCY: str,
+    lookup_db: Dict[str, Any] = None
 ) -> Dict[str, int]:
     """Ghi danh sách máy hoặc dụng cụ kèm công thức chuẩn BXD, trả về từ điển tọa độ."""
     row_map = {}
@@ -79,6 +81,17 @@ def _write_items_block(
         item_id = str(it.get('id', f"{prefix_type}_{idx:03d}")).strip()
         item_name = str(it.get('name', '')).strip()
         item_unit = "ca"
+
+        matched = lookup_db.get(item_name.lower().strip(), {}) if lookup_db else {}
+        orig_price = float(matched.get('msc_original_price') or it.get('original_price') or (50000000.0 if prefix_type == 'M' else 500000.0))
+        tbmt = str(matched.get('msc_tbmt_code') or '')
+        contractor = str(matched.get('msc_contractor') or '')
+        appr_date = str(matched.get('msc_approval_date') or '')
+
+        if tbmt:
+            basis_text = f"TBMT: {tbmt} - {contractor} ({appr_date})"
+        else:
+            basis_text = "Thông tư 13/2021/TT-BXD"
 
         r = ws.max_row + 1
 
@@ -97,7 +110,7 @@ def _write_items_block(
             item_id,
             item_name,
             item_unit,
-            0,                     # E: Nguyên giá mặc định 0 để người dùng điền
+            orig_price,            # E: Nguyên giá tra cứu từ MSC
             default_nca,           # F: Số ca làm việc năm
             default_kh,            # G: Tỷ lệ Khấu hao %
             f_kh,                  # H: Chi phí Khấu hao
@@ -108,7 +121,7 @@ def _write_items_block(
             0,                     # M: Chi phí Nhiên liệu/Năng lượng
             0,                     # N: Chi phí Nhân công điều khiển
             f_total,               # O: Đơn giá ca máy tổng cộng
-            "Thông tư 13/2021/TT-BXD" # P: Căn cứ pháp lý
+            basis_text             # P: Căn cứ pháp lý & Cơ sở giá
         ])
 
         for c in range(1, 17):
@@ -174,7 +187,7 @@ def _apply_tinh_gia_ca_may_styling(
         'M': 18,  # Nhiên liệu/ca
         'N': 18,  # Nhân công/ca
         'O': 22,  # ĐƠN GIÁ CA MÁY (VNĐ)
-        'P': 26   # Căn cứ pháp lý
+        'P': 42   # Căn cứ pháp lý & Cơ sở giá MSC
     }
     for col_letter, width in col_widths.items():
         ws.column_dimensions[col_letter].width = width
@@ -193,7 +206,8 @@ def build_tinh_gia_ca_may_sheet(
     fill_header_gray: PatternFill,
     border_cell: Border,
     border_total: Border,
-    FMT_CURRENCY: str
+    FMT_CURRENCY: str,
+    root_dir: str = None
 ) -> Tuple[Worksheet, Dict[str, Dict[str, int]]]:
     """
     Hàm điều phối chính: Khởi tạo và ghi đầy đủ bảng tính giá ca máy & thiết bị theo chuẩn BXD.
@@ -209,6 +223,16 @@ def build_tinh_gia_ca_may_sheet(
     # 1. Bóc tách danh mục duy nhất từ jobs_dtos
     m_items = _collect_may_items(jobs_dtos)
     dc_items = _collect_cong_cu_items(jobs_dtos)
+
+    eq_lookup = {}
+    tools_lookup = {}
+    if root_dir:
+        try:
+            adapter = OneDriveAdapter(root_dir)
+            eq_lookup = {it.get("name", "").lower().strip(): it for it in adapter.load_msc_equipment().get("items", [])}
+            tools_lookup = {it.get("name", "").lower().strip(): it for it in adapter.load_msc_tools().get("items", [])}
+        except Exception as e:
+            print(f"Warning: could not load MSC lookup in tinh_gia_ca_may_exporter: {e}")
 
     font_sec_12b = Font(name="Times New Roman", size=12, bold=True)
 
@@ -226,7 +250,8 @@ def build_tinh_gia_ca_may_sheet(
         border_cell=border_cell,
         font_data_11r=font_data_11r,
         font_data_11b=font_data_11b,
-        FMT_CURRENCY=FMT_CURRENCY
+        FMT_CURRENCY=FMT_CURRENCY,
+        lookup_db=eq_lookup
     )
 
     # Dòng trống ngăn cách
@@ -246,7 +271,8 @@ def build_tinh_gia_ca_may_sheet(
         border_cell=border_cell,
         font_data_11r=font_data_11r,
         font_data_11b=font_data_11b,
-        FMT_CURRENCY=FMT_CURRENCY
+        FMT_CURRENCY=FMT_CURRENCY,
+        lookup_db=tools_lookup
     )
 
     # 4. Áp dụng định dạng và freeze panes

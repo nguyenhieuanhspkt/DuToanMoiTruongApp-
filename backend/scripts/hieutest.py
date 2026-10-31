@@ -29,13 +29,13 @@ def run_test():
     pakt_items = adapter.load_pakt_items()
     # inspect_real_pakt_items(pakt_items)
     
-    mats = adapter.load_material_pricing()
+    mats = adapter.load_msc_materials()
     tools = adapter.load_msc_tools()
     eq = adapter.load_msc_equipment()
     
-    mat_items = mats if isinstance(mats, list) else list(mats.values()) if isinstance(mats, dict) else []
-    tools_items = tools if isinstance(tools, list) else list(tools.values()) if isinstance(tools, dict) else []
-    equip_items = eq if isinstance(eq, list) else list(eq.values()) if isinstance(eq, dict) else []
+    mat_items = mats.get("items", []) if isinstance(mats, dict) else (mats if isinstance(mats, list) else [])
+    tools_items = tools.get("items", []) if isinstance(tools, dict) else (tools if isinstance(tools, list) else [])
+    equip_items = eq.get("items", []) if isinstance(eq, dict) else (eq if isinstance(eq, list) else [])
 
     # 2. Gọi hàm điều phối trung tâm để xây dựng toàn bộ Workbook hoàn chỉnh
     wb, ws_result = export_full_du_toan(

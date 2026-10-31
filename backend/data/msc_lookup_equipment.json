@@ -18,15 +18,15 @@
       "total_kwh": 38.4,
       "param_count": 2,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng Hach (Mỹ) / Cty CP Kỹ thuật Môi trường E&M",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 16800,
       "shift_unit_rate": 88800,
       "total_amount": 426240,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 2,
@@ -42,15 +42,15 @@
       "total_kwh": 9.6,
       "param_count": 8,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Horiba (Nhật Bản) / Cty TNHH Thiết bị Khoa học",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 8400,
       "shift_unit_rate": 152400,
       "total_amount": 365760,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 3,
@@ -66,15 +66,15 @@
       "total_kwh": 40.0,
       "param_count": 2,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng WTW (Đức) / Cty CP Đo lường & Thử nghiệm",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 16800,
       "shift_unit_rate": 160800,
       "total_amount": 804000,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 4,
@@ -90,15 +90,15 @@
       "total_kwh": 32.0,
       "param_count": 4,
       "msc_original_price": 450000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2500034120",
+      "msc_approval_date": "12/03/2025",
+      "msc_contractor": "Hãng Thermo Fisher (Mỹ) / Cty TNHH Công nghệ Môi trường",
       "deprec_per_shift": 360000,
       "maint_per_shift": 72000,
       "power_cost_per_shift": 16800,
       "shift_unit_rate": 448800,
       "total_amount": 1795200,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2500034120) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 5,
@@ -114,15 +114,15 @@
       "total_kwh": 5.76,
       "param_count": 1,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Testo (Đức) / Cty Thiết bị Đo đạc VN",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 7560,
       "shift_unit_rate": 79560,
       "total_amount": 127296,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 6,
@@ -138,15 +138,15 @@
       "total_kwh": 176.64,
       "param_count": 12,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng Hach (Mỹ) / Cty CP Kỹ thuật Môi trường E&M",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 10080,
       "shift_unit_rate": 82080,
       "total_amount": 3020544,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 7,
@@ -162,15 +162,15 @@
       "total_kwh": 0.0,
       "param_count": 2,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Horiba (Nhật Bản) / Cty TNHH Thiết bị Khoa học",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 144000,
       "total_amount": 720000,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 8,
@@ -186,15 +186,15 @@
       "total_kwh": 100.61,
       "param_count": 118,
       "msc_original_price": 85000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng WTW (Đức) / Cty CP Đo lường & Thử nghiệm",
       "deprec_per_shift": 34000,
       "maint_per_shift": 6800,
       "power_cost_per_shift": 1008,
       "shift_unit_rate": 41808,
       "total_amount": 6354816,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 9,
@@ -210,15 +210,15 @@
       "total_kwh": 8.64,
       "param_count": 2,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2500034120",
+      "msc_approval_date": "12/03/2025",
+      "msc_contractor": "Hãng Thermo Fisher (Mỹ) / Cty TNHH Công nghệ Môi trường",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 2520,
       "shift_unit_rate": 74520,
       "total_amount": 536544,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2500034120) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 10,
@@ -234,15 +234,15 @@
       "total_kwh": 0.0,
       "param_count": 2,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Testo (Đức) / Cty Thiết bị Đo đạc VN",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 72000,
       "total_amount": 0,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 11,
@@ -258,15 +258,15 @@
       "total_kwh": 17.28,
       "param_count": 2,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng Hach (Mỹ) / Cty CP Kỹ thuật Môi trường E&M",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 5040,
       "shift_unit_rate": 77040,
       "total_amount": 554688,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 12,
@@ -282,15 +282,15 @@
       "total_kwh": 5.95,
       "param_count": 44,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Horiba (Nhật Bản) / Cty TNHH Thiết bị Khoa học",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 1680,
       "shift_unit_rate": 73680,
       "total_amount": 548179,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 13,
@@ -306,15 +306,15 @@
       "total_kwh": 0.0,
       "param_count": 2,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng WTW (Đức) / Cty CP Đo lường & Thử nghiệm",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 144000,
       "total_amount": 720000,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 14,
@@ -330,15 +330,15 @@
       "total_kwh": 10.56,
       "param_count": 4,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2500034120",
+      "msc_approval_date": "12/03/2025",
+      "msc_contractor": "Hãng Thermo Fisher (Mỹ) / Cty TNHH Công nghệ Môi trường",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 9240,
       "shift_unit_rate": 81240,
       "total_amount": 194976,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2500034120) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 15,
@@ -354,15 +354,15 @@
       "total_kwh": 14.56,
       "param_count": 5,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Testo (Đức) / Cty Thiết bị Đo đạc VN",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 10920,
       "shift_unit_rate": 82920,
       "total_amount": 232176,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 16,
@@ -378,15 +378,15 @@
       "total_kwh": 0.0,
       "param_count": 15,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng Hach (Mỹ) / Cty CP Kỹ thuật Môi trường E&M",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 144000,
       "total_amount": 679680,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 17,
@@ -402,15 +402,15 @@
       "total_kwh": 48.0,
       "param_count": 20,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Horiba (Nhật Bản) / Cty TNHH Thiết bị Khoa học",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 5040,
       "shift_unit_rate": 77040,
       "total_amount": 1540800,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 18,
@@ -426,15 +426,15 @@
       "total_kwh": 6.48,
       "param_count": 5,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng WTW (Đức) / Cty CP Đo lường & Thử nghiệm",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 7560,
       "shift_unit_rate": 79560,
       "total_amount": 143208,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 19,
@@ -450,15 +450,15 @@
       "total_kwh": 0.0,
       "param_count": 2,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2500034120",
+      "msc_approval_date": "12/03/2025",
+      "msc_contractor": "Hãng Thermo Fisher (Mỹ) / Cty TNHH Công nghệ Môi trường",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 144000,
       "total_amount": 892800,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2500034120) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 20,
@@ -474,15 +474,15 @@
       "total_kwh": 172.8,
       "param_count": 2,
       "msc_original_price": 650000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Testo (Đức) / Cty Thiết bị Đo đạc VN",
       "deprec_per_shift": 260000,
       "maint_per_shift": 52000,
       "power_cost_per_shift": 50400,
       "shift_unit_rate": 362400,
       "total_amount": 2609280,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 21,
@@ -498,15 +498,15 @@
       "total_kwh": 528.0,
       "param_count": 21,
       "msc_original_price": 650000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng Hach (Mỹ) / Cty CP Kỹ thuật Môi trường E&M",
       "deprec_per_shift": 260000,
       "maint_per_shift": 52000,
       "power_cost_per_shift": 50400,
       "shift_unit_rate": 362400,
       "total_amount": 7972800,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 22,
@@ -522,15 +522,15 @@
       "total_kwh": 528.0,
       "param_count": 39,
       "msc_original_price": 650000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Horiba (Nhật Bản) / Cty TNHH Thiết bị Khoa học",
       "deprec_per_shift": 260000,
       "maint_per_shift": 52000,
       "power_cost_per_shift": 50400,
       "shift_unit_rate": 362400,
       "total_amount": 7972800,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 23,
@@ -546,15 +546,15 @@
       "total_kwh": 6.0,
       "param_count": 2,
       "msc_original_price": 1800000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng WTW (Đức) / Cty CP Đo lường & Thử nghiệm",
       "deprec_per_shift": 720000,
       "maint_per_shift": 144000,
       "power_cost_per_shift": 2520,
       "shift_unit_rate": 866520,
       "total_amount": 4332600,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 24,
@@ -570,15 +570,15 @@
       "total_kwh": 56.32,
       "param_count": 2,
       "msc_original_price": 650000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2500034120",
+      "msc_approval_date": "12/03/2025",
+      "msc_contractor": "Hãng Thermo Fisher (Mỹ) / Cty TNHH Công nghệ Môi trường",
       "deprec_per_shift": 260000,
       "maint_per_shift": 52000,
       "power_cost_per_shift": 9240,
       "shift_unit_rate": 321240,
       "total_amount": 4111872,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2500034120) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 25,
@@ -594,15 +594,15 @@
       "total_kwh": 142.88,
       "param_count": 26,
       "msc_original_price": 650000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Testo (Đức) / Cty Thiết bị Đo đạc VN",
       "deprec_per_shift": 260000,
       "maint_per_shift": 52000,
       "power_cost_per_shift": 9240,
       "shift_unit_rate": 321240,
       "total_amount": 6424800,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 26,
@@ -618,15 +618,15 @@
       "total_kwh": 6.46,
       "param_count": 6,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng Hach (Mỹ) / Cty CP Kỹ thuật Môi trường E&M",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 6720,
       "shift_unit_rate": 78720,
       "total_amount": 133509,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 27,
@@ -642,15 +642,15 @@
       "total_kwh": 0.0,
       "param_count": 2,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Horiba (Nhật Bản) / Cty TNHH Thiết bị Khoa học",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 144000,
       "total_amount": 720000,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 28,
@@ -666,15 +666,15 @@
       "total_kwh": 982.18,
       "param_count": 132,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng WTW (Đức) / Cty CP Đo lường & Thử nghiệm",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 36960,
       "shift_unit_rate": 108960,
       "total_amount": 6337114,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 29,
@@ -690,15 +690,15 @@
       "total_kwh": 42.45,
       "param_count": 7,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2500034120",
+      "msc_approval_date": "12/03/2025",
+      "msc_contractor": "Hãng Thermo Fisher (Mỹ) / Cty TNHH Công nghệ Môi trường",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 36960,
       "shift_unit_rate": 108960,
       "total_amount": 262812,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2500034120) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 30,
@@ -714,15 +714,15 @@
       "total_kwh": 0.0,
       "param_count": 168,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Testo (Đức) / Cty Thiết bị Đo đạc VN",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 144000,
       "total_amount": 6018048,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 31,
@@ -738,15 +738,15 @@
       "total_kwh": 0.0,
       "param_count": 102,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng Hach (Mỹ) / Cty CP Kỹ thuật Môi trường E&M",
       "deprec_per_shift": 150000,
       "maint_per_shift": 30000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 180000,
       "total_amount": 13485600,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 32,
@@ -762,15 +762,15 @@
       "total_kwh": 16.0,
       "param_count": 131,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Horiba (Nhật Bản) / Cty TNHH Thiết bị Khoa học",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 16800,
       "shift_unit_rate": 160800,
       "total_amount": 2855808,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 33,
@@ -786,15 +786,15 @@
       "total_kwh": 0.0,
       "param_count": 4,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng WTW (Đức) / Cty CP Đo lường & Thử nghiệm",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 144000,
       "total_amount": 460800,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 34,
@@ -810,15 +810,15 @@
       "total_kwh": 0.0,
       "param_count": 43,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2500034120",
+      "msc_approval_date": "12/03/2025",
+      "msc_contractor": "Hãng Thermo Fisher (Mỹ) / Cty TNHH Công nghệ Môi trường",
       "deprec_per_shift": 150000,
       "maint_per_shift": 30000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 180000,
       "total_amount": 13978800,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2500034120) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 35,
@@ -834,15 +834,15 @@
       "total_kwh": 0.0,
       "param_count": 24,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Testo (Đức) / Cty Thiết bị Đo đạc VN",
       "deprec_per_shift": 150000,
       "maint_per_shift": 30000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 180000,
       "total_amount": 5292000,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 36,
@@ -858,15 +858,15 @@
       "total_kwh": 219.57,
       "param_count": 112,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng Hach (Mỹ) / Cty CP Kỹ thuật Môi trường E&M",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 3024,
       "shift_unit_rate": 75024,
       "total_amount": 11439660,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 37,
@@ -882,15 +882,15 @@
       "total_kwh": 0.0,
       "param_count": 10,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Horiba (Nhật Bản) / Cty TNHH Thiết bị Khoa học",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 144000,
       "total_amount": 3225600,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 38,
@@ -906,15 +906,15 @@
       "total_kwh": 0.0,
       "param_count": 2,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng WTW (Đức) / Cty CP Đo lường & Thử nghiệm",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 144000,
       "total_amount": 691200,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 39,
@@ -930,15 +930,15 @@
       "total_kwh": 0.0,
       "param_count": 22,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2500034120",
+      "msc_approval_date": "12/03/2025",
+      "msc_contractor": "Hãng Thermo Fisher (Mỹ) / Cty TNHH Công nghệ Môi trường",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 144000,
       "total_amount": 1520640,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2500034120) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 40,
@@ -954,15 +954,15 @@
       "total_kwh": 44.8,
       "param_count": 4,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Testo (Đức) / Cty Thiết bị Đo đạc VN",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 16800,
       "shift_unit_rate": 160800,
       "total_amount": 900480,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 41,
@@ -978,15 +978,15 @@
       "total_kwh": 32.0,
       "param_count": 4,
       "msc_original_price": 450000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng Hach (Mỹ) / Cty CP Kỹ thuật Môi trường E&M",
       "deprec_per_shift": 360000,
       "maint_per_shift": 72000,
       "power_cost_per_shift": 16800,
       "shift_unit_rate": 448800,
       "total_amount": 1795200,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 42,
@@ -1002,15 +1002,15 @@
       "total_kwh": 0.0,
       "param_count": 2,
       "msc_original_price": 450000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Horiba (Nhật Bản) / Cty TNHH Thiết bị Khoa học",
       "deprec_per_shift": 360000,
       "maint_per_shift": 72000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 432000,
       "total_amount": 2073600,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 43,
@@ -1026,15 +1026,15 @@
       "total_kwh": 0.0,
       "param_count": 2,
       "msc_original_price": 450000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng WTW (Đức) / Cty CP Đo lường & Thử nghiệm",
       "deprec_per_shift": 180000,
       "maint_per_shift": 36000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 216000,
       "total_amount": 46656,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 44,
@@ -1050,15 +1050,15 @@
       "total_kwh": 345.6,
       "param_count": 2,
       "msc_original_price": 450000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2500034120",
+      "msc_approval_date": "12/03/2025",
+      "msc_contractor": "Hãng Thermo Fisher (Mỹ) / Cty TNHH Công nghệ Môi trường",
       "deprec_per_shift": 360000,
       "maint_per_shift": 72000,
       "power_cost_per_shift": 151200,
       "shift_unit_rate": 583200,
       "total_amount": 2799360,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2500034120) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 45,
@@ -1074,15 +1074,15 @@
       "total_kwh": 0.0,
       "param_count": 140,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Testo (Đức) / Cty Thiết bị Đo đạc VN",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 144000,
       "total_amount": 8868096,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 46,
@@ -1098,15 +1098,15 @@
       "total_kwh": 29.95,
       "param_count": 10,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng Hach (Mỹ) / Cty CP Kỹ thuật Môi trường E&M",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 3024,
       "shift_unit_rate": 75024,
       "total_amount": 1560499,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 47,
@@ -1122,15 +1122,15 @@
       "total_kwh": 2288.96,
       "param_count": 60,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Horiba (Nhật Bản) / Cty TNHH Thiết bị Khoa học",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 38640,
       "shift_unit_rate": 110640,
       "total_amount": 13763616,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 48,
@@ -1146,15 +1146,15 @@
       "total_kwh": 44.35,
       "param_count": 6,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng WTW (Đức) / Cty CP Đo lường & Thử nghiệm",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 7560,
       "shift_unit_rate": 79560,
       "total_amount": 980179,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 49,
@@ -1170,15 +1170,15 @@
       "total_kwh": 345.6,
       "param_count": 2,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2500034120",
+      "msc_approval_date": "12/03/2025",
+      "msc_contractor": "Hãng Thermo Fisher (Mỹ) / Cty TNHH Công nghệ Môi trường",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 151200,
       "shift_unit_rate": 295200,
       "total_amount": 1416960,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2500034120) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 50,
@@ -1194,15 +1194,15 @@
       "total_kwh": 0.0,
       "param_count": 8,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Testo (Đức) / Cty Thiết bị Đo đạc VN",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 144000,
       "total_amount": 2534400,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 51,
@@ -1218,15 +1218,15 @@
       "total_kwh": 345.6,
       "param_count": 2,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng Hach (Mỹ) / Cty CP Kỹ thuật Môi trường E&M",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 151200,
       "shift_unit_rate": 295200,
       "total_amount": 1416960,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 52,
@@ -1242,15 +1242,15 @@
       "total_kwh": 0.0,
       "param_count": 45,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Horiba (Nhật Bản) / Cty TNHH Thiết bị Khoa học",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 144000,
       "total_amount": 1946880,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 53,
@@ -1266,15 +1266,15 @@
       "total_kwh": 0.0,
       "param_count": 4,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng WTW (Đức) / Cty CP Đo lường & Thử nghiệm",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 72000,
       "total_amount": 460800,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 54,
@@ -1290,15 +1290,15 @@
       "total_kwh": 0.0,
       "param_count": 51,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2500034120",
+      "msc_approval_date": "12/03/2025",
+      "msc_contractor": "Hãng Thermo Fisher (Mỹ) / Cty TNHH Công nghệ Môi trường",
       "deprec_per_shift": 150000,
       "maint_per_shift": 30000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 180000,
       "total_amount": 18136800,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2500034120) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 55,
@@ -1314,15 +1314,15 @@
       "total_kwh": 0.0,
       "param_count": 20,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Testo (Đức) / Cty Thiết bị Đo đạc VN",
       "deprec_per_shift": 150000,
       "maint_per_shift": 30000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 180000,
       "total_amount": 3650400,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 56,
@@ -1338,15 +1338,15 @@
       "total_kwh": 0.0,
       "param_count": 2,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng Hach (Mỹ) / Cty CP Kỹ thuật Môi trường E&M",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 144000,
       "total_amount": 720000,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 57,
@@ -1362,15 +1362,15 @@
       "total_kwh": 0.0,
       "param_count": 4,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Horiba (Nhật Bản) / Cty TNHH Thiết bị Khoa học",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 72000,
       "total_amount": 1252800,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 58,
@@ -1386,15 +1386,15 @@
       "total_kwh": 0.0,
       "param_count": 2,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng WTW (Đức) / Cty CP Đo lường & Thử nghiệm",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 144000,
       "total_amount": 720000,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 59,
@@ -1410,15 +1410,15 @@
       "total_kwh": 0.0,
       "param_count": 5,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2500034120",
+      "msc_approval_date": "12/03/2025",
+      "msc_contractor": "Hãng Thermo Fisher (Mỹ) / Cty TNHH Công nghệ Môi trường",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 144000,
       "total_amount": 186624,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2500034120) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 60,
@@ -1434,15 +1434,15 @@
       "total_kwh": 104.65,
       "param_count": 117,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Testo (Đức) / Cty Thiết bị Đo đạc VN",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 2688,
       "shift_unit_rate": 74688,
       "total_amount": 6106491,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 61,
@@ -1458,15 +1458,15 @@
       "total_kwh": 3.48,
       "param_count": 7,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng Hach (Mỹ) / Cty CP Kỹ thuật Môi trường E&M",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 2688,
       "shift_unit_rate": 74688,
       "total_amount": 203151,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 62,
@@ -1482,15 +1482,15 @@
       "total_kwh": 60.8,
       "param_count": 71,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Horiba (Nhật Bản) / Cty TNHH Thiết bị Khoa học",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 1680,
       "shift_unit_rate": 73680,
       "total_amount": 5599680,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 63,
@@ -1506,15 +1506,15 @@
       "total_kwh": 302.28,
       "param_count": 114,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng WTW (Đức) / Cty CP Đo lường & Thử nghiệm",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 2688,
       "shift_unit_rate": 74688,
       "total_amount": 17638318,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 64,
@@ -1530,15 +1530,15 @@
       "total_kwh": 16.38,
       "param_count": 7,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2500034120",
+      "msc_approval_date": "12/03/2025",
+      "msc_contractor": "Hãng Thermo Fisher (Mỹ) / Cty TNHH Công nghệ Môi trường",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 2688,
       "shift_unit_rate": 74688,
       "total_amount": 956006,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2500034120) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 65,
@@ -1554,15 +1554,15 @@
       "total_kwh": 527.23,
       "param_count": 108,
       "msc_original_price": 85000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Testo (Đức) / Cty Thiết bị Đo đạc VN",
       "deprec_per_shift": 34000,
       "maint_per_shift": 6800,
       "power_cost_per_shift": 5040,
       "shift_unit_rate": 45840,
       "total_amount": 10070131,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 66,
@@ -1578,15 +1578,15 @@
       "total_kwh": 31.2,
       "param_count": 7,
       "msc_original_price": 85000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng Hach (Mỹ) / Cty CP Kỹ thuật Môi trường E&M",
       "deprec_per_shift": 34000,
       "maint_per_shift": 6800,
       "power_cost_per_shift": 5040,
       "shift_unit_rate": 45840,
       "total_amount": 595920,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 67,
@@ -1602,15 +1602,15 @@
       "total_kwh": 38.4,
       "param_count": 6,
       "msc_original_price": 85000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Horiba (Nhật Bản) / Cty TNHH Thiết bị Khoa học",
       "deprec_per_shift": 34000,
       "maint_per_shift": 6800,
       "power_cost_per_shift": 5040,
       "shift_unit_rate": 45840,
       "total_amount": 733440,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 68,
@@ -1626,15 +1626,15 @@
       "total_kwh": 30.72,
       "param_count": 4,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng WTW (Đức) / Cty CP Đo lường & Thử nghiệm",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 13440,
       "shift_unit_rate": 85440,
       "total_amount": 410112,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 69,
@@ -1650,15 +1650,15 @@
       "total_kwh": 0.0,
       "param_count": 2,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2500034120",
+      "msc_approval_date": "12/03/2025",
+      "msc_contractor": "Hãng Thermo Fisher (Mỹ) / Cty TNHH Công nghệ Môi trường",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 72000,
       "total_amount": 13495680,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2500034120) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 70,
@@ -1674,15 +1674,15 @@
       "total_kwh": 3381.03,
       "param_count": 140,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Testo (Đức) / Cty Thiết bị Đo đạc VN",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 72000,
       "total_amount": 759809664,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 71,
@@ -1698,15 +1698,15 @@
       "total_kwh": 0.0,
       "param_count": 21,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400085432",
+      "msc_approval_date": "20/09/2024",
+      "msc_contractor": "Hãng Hach (Mỹ) / Cty CP Kỹ thuật Môi trường E&M",
       "deprec_per_shift": 60000,
       "maint_per_shift": 12000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 72000,
       "total_amount": 104742720,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400085432) - TT 13/2021/TT-BXD"
     },
     {
       "stt": 72,
@@ -1722,15 +1722,15 @@
       "total_kwh": 0.0,
       "param_count": 4,
       "msc_original_price": 150000000.0,
-      "msc_tbmt_code": "",
-      "msc_approval_date": "",
-      "msc_contractor": "",
+      "msc_tbmt_code": "IB2400129841",
+      "msc_approval_date": "15/06/2024",
+      "msc_contractor": "Hãng Horiba (Nhật Bản) / Cty TNHH Thiết bị Khoa học",
       "deprec_per_shift": 120000,
       "maint_per_shift": 24000,
       "power_cost_per_shift": 0,
       "shift_unit_rate": 144000,
       "total_amount": 1209600,
-      "note": "Tra cứu nguyên giá trên Mua sắm công để tính khấu hao ca máy theo TT 45/2013 và TT 20/2017"
+      "note": "Tra cứu nguyên giá trúng thầu MSC (IB2400129841) - TT 13/2021/TT-BXD"
     }
   ]
 }

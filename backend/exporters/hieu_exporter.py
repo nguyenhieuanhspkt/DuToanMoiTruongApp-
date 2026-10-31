@@ -6,6 +6,7 @@ import openpyxl
 from backend.models.hieu_models_dto import (
     ExcelStyleManager, JobMappingManager, DinhMucRegistry
 )
+from backend.models.project_context import ProjectContext
 
 # Import các module con chuyên trách từng sheet
 from backend.exporters.cong_trinh_exporter import build_cong_trinh_sheet, update_cong_trinh_from_dgct
@@ -16,6 +17,39 @@ from backend.exporters.vat_lieu_exporter import build_vat_lieu_sheet
 from backend.exporters.nhan_cong_exporter import build_nhan_cong_sheet
 from backend.exporters.cong_cu_exporter import build_cong_cu_sheet
 from backend.exporters.may_thi_cong_exporter import build_may_thi_cong_sheet
+from backend.exporters.he_so_exporter import build_he_so_sheet
+from backend.exporters.khoan_4_5_tt20_exporter import build_khoan_4_5_tt20_sheet
+from backend.exporters.thdt_hang_muc_exporter import build_thdt_hang_muc_sheet
+
+
+def _reorder_sheets_tab(wb, desired_order: list) -> None:
+    """Sắp xếp lại thứ tự các sheet theo chuẩn Executive Summary First."""
+    sheet_map = {ws.title: ws for ws in wb.worksheets}
+    new_sheets = [sheet_map[title] for title in desired_order if title in sheet_map]
+    for ws in wb.worksheets:
+        if ws not in new_sheets:
+            new_sheets.append(ws)
+    wb._sheets = new_sheets
+
+
+def _apply_all_freeze_panes(wb) -> None:
+    """Cấu hình freeze_panes phù hợp cho toàn bộ các sheet."""
+    freeze_map = {
+        "THDT hạng mục": "A6",
+        "Khoản 4.5 TT20": "A6",
+        "Công trình": "A7",
+        "Đơn giá chi tiết": "A6",
+        "Hao phí VT": "H7",
+        "Nhân công": "A7",
+        "Vật liệu": "A7",
+        "Công cụ dụng cụ": "A7",
+        "Máy thi công": "A7",
+        "Dữ liệu định mức": "A2",
+        "Hệ số": "A6",
+    }
+    for sname, fp in freeze_map.items():
+        if sname in wb.sheetnames:
+            wb[sname].freeze_panes = fp
 
 
 def export_full_du_toan(
@@ -30,7 +64,11 @@ def export_full_du_toan(
     Đưa sheet Công trình lên trước tiên theo đúng logic trực quan của bảng F1.
     """
     wb = openpyxl.Workbook()
+    # 🧹 Xóa bỏ sheet mặc định ("Sheet") do openpyxl tự động tạo ra
+    if "Sheet" in wb.sheetnames:
+        wb.remove(wb["Sheet"])
     style_mgr = ExcelStyleManager()
+    ctx = ProjectContext() # ⭐ Trung tâm quản lý tọa độ dòng liên sheet
     
     FMT_CURRENCY = style_mgr.FMT_CURRENCY
     FMT_NORM = style_mgr.FMT_NORM
@@ -53,7 +91,7 @@ def export_full_du_toan(
     # 3. Build sheet Công trình trước
     print("[3] Đang xây dựng sheet Công trình...")
 
-    ws_ct, item_ct_rows = build_cong_trinh_sheet(
+    ws_ct, item_ct_rows, tot_ct_row = build_cong_trinh_sheet(
         wb=wb,
         pakt_items=pakt_items,
         map_dgct={},
@@ -70,10 +108,11 @@ def export_full_du_toan(
         border_total=style_mgr.border_total,
         FMT_CURRENCY=style_mgr.FMT_CURRENCY
     )
+    ctx.register_cong_trinh(item_ct_rows, tot_ct_row)
 
-    print("===== ITEM CT ROWS =====")
-    for k, v in list(item_ct_rows.items())[:10]:
-        print(k, "->", v)
+    # print("===== ITEM CT ROWS =====")
+    # for k, v in list(item_ct_rows.items())[:10]:
+    #     print(k, "->", v)
 
     # Gán lại row thực tế từ sheet Công trình
     for idx, job in enumerate(jobs_dtos, start=1):
@@ -82,37 +121,24 @@ def export_full_du_toan(
 
         job.cong_trinh_row = row
 
-        if row is None:
-            print(
-                f"[WARNING] "
-                f"idx={idx} "
-                f"stt={job.stt} "
-                f"code={job.code} "
-                f"row=None"
-            )
+        # if row is None:
+        #     print(
+        #         f"[WARNING] "
+        #         f"idx={idx} "
+        #         f"stt={job.stt} "
+        #         f"code={job.code} "
+        #         f"row=None"
+        #     )
 
-    print("===== JOB ROW MAP =====")
-    for job in jobs_dtos[:10]:
-        print(
-            f"stt={job.stt} "
-            f"code={job.code} "
-            f"row={job.cong_trinh_row}"
-        )
-
-    # 5. Xây dựng sheet 'Đơn giá chi tiết' (Sử dụng job.cong_trinh_row đã được gán sẵn để link về Công trình)
-    print("[4] Đang xây dựng sheet Đơn giá chi tiết...")
-    ws_dgct, map_dgct = build_sheet_12_with_dto(
-        wb=wb,
-        jobs_dtos=jobs_dtos,
-        style_mgr=style_mgr
-    )
-
-    # 5.1 Cập nhật sheet 'Công trình' link chính xác sang 'Đơn giá chi tiết'
-    print("[4.1] Đang cập nhật đơn giá và thành tiền sang sheet Công trình...")
-    update_cong_trinh_from_dgct(ws_ct, item_ct_rows, map_dgct)
-
+    # print("===== JOB ROW MAP =====")
+    # for job in jobs_dtos[:10]:
+    #     print(
+    #         f"stt={job.stt} "
+    #         f"code={job.code} "
+    #         f"row={job.cong_trinh_row}"
+    #     )
     # 6. Xây dựng sheet 'Hao phí VT'
-    print("[5] Đang xây dựng sheet Hao phí VT...")
+    print("[4] Đang xây dựng sheet Hao phí VT...")
     ws_hp, last_hp_row = build_hao_phi_vt_sheet(
         wb=wb,
         pakt_items=pakt_items,
@@ -129,6 +155,20 @@ def export_full_du_toan(
         jobs_dtos=jobs_dtos,
         item_ct_rows=item_ct_rows  # <--- Bổ sung dòng này để đồng bộ tọa độ chính xác 100%
     )
+    ctx.register_hao_phi(last_hp_row)
+    # 5. Xây dựng sheet 'Đơn giá chi tiết' (Sử dụng job.cong_trinh_row đã được gán sẵn để link về Công trình)
+    print("[5] Đang xây dựng sheet Đơn giá chi tiết...")
+    ws_dgct, map_dgct = build_sheet_12_with_dto(
+        wb=wb,
+        jobs_dtos=jobs_dtos,
+        style_mgr=style_mgr
+    )
+
+    # 5.1 Cập nhật sheet 'Công trình' link chính xác sang 'Đơn giá chi tiết'
+    print("[4.1] Đang cập nhật đơn giá và thành tiền sang sheet Công trình...")
+    update_cong_trinh_from_dgct(ws_ct, item_ct_rows, map_dgct)
+
+    
 
     # 7. Xây dựng sheet 'Nhân công'
     print("[6] Đang xây dựng sheet Nhân công...")
@@ -209,13 +249,65 @@ def export_full_du_toan(
         FMT_CURRENCY=style_mgr.FMT_CURRENCY,
         FMT_NORM=style_mgr.FMT_NORM
     )
-    
-    # 11. Hoàn thiện các sheet hệ thống phụ trợ
-    print("[10] Đang hoàn thiện các sheet hệ thống phụ trợ...")
-    for sname in ['Hệ số', 'Nhân công', 'Công cụ dụng cụ', 'Máy thi công', 'Khoản 4.5 TT20', 'THDT hạng mục']:
-        if sname not in wb.sheetnames:
-            ws_tmp = wb.create_sheet(title=sname)
-            ws_tmp.append(["placeholder"])
+
+    # 11. Xây dựng sheet 'Hệ số'
+    print("[11] Đang xây dựng sheet Hệ số...")
+    ws_hs, he_so_rows = build_he_so_sheet(
+        wb=wb,
+        font_title_15b=style_mgr.font_title_15b,
+        font_header_11b=style_mgr.font_header_11b,
+        font_data_11r=style_mgr.font_data_11r,
+        fill_header_gray=style_mgr.fill_header_gray,
+        border_cell=style_mgr.border_cell,
+        FMT_NORM=style_mgr.FMT_NORM
+    )
+    ctx.register_he_so(he_so_rows)
+
+    # 12. Xây dựng sheet 'Khoản 4.5 TT20'
+    print("[12] Đang xây dựng sheet Khoản 4.5 TT20...")
+    build_khoan_4_5_tt20_sheet(
+        wb=wb,
+        font_title_15b=style_mgr.font_title_15b,
+        font_header_11b=style_mgr.font_header_11b,
+        font_data_11r=style_mgr.font_data_11r,
+        fill_header_gray=style_mgr.fill_header_gray,
+        border_cell=style_mgr.border_cell,
+        FMT_MONEY=style_mgr.FMT_CURRENCY
+    )
+
+    # 13. Xây dựng sheet 'THDT hạng mục' (Sử dụng ProjectContext Hub để liên kết động)
+    print("[13] Đang xây dựng sheet THDT hạng mục...")
+    build_thdt_hang_muc_sheet(
+        wb=wb,
+        ctx=ctx,
+        tot_ct_row=tot_ct_row,
+        last_hp_row=last_hp_row,
+        font_title_15b=style_mgr.font_title_15b,
+        font_header_11b=style_mgr.font_header_11b,
+        font_data_11r=style_mgr.font_data_11r,
+        font_data_11b=style_mgr.font_data_11b,
+        fill_header_gray=style_mgr.fill_header_gray,
+        border_cell=style_mgr.border_cell,
+        FMT_MONEY=style_mgr.FMT_CURRENCY
+    )
+
+    # 14. Thiết lập Freeze Panes chuẩn xác cho toàn bộ các sheet
+    _apply_all_freeze_panes(wb)
+
+    # 15. Sắp xếp lại thứ tự Tab hiển thị chuẩn Executive Summary First
+    desired_tab_order = [
+        "THDT hạng mục", "Khoản 4.5 TT20", "Công trình", "Đơn giá chi tiết", 
+        "Hao phí VT", "Vật liệu", "Nhân công", "Công cụ dụng cụ", 
+        "Máy thi công", "Dữ liệu định mức", "Hệ số"
+    ]
+    _reorder_sheets_tab(wb, desired_tab_order)
+
+    # 16. Thiết lập Sheet mặc định khi mở file là 'THDT hạng mục'
+    if "THDT hạng mục" in wb.sheetnames:
+        ws_thdt = wb["THDT hạng mục"]
+        wb.active = ws_thdt
+        for ws in wb.worksheets:
+            ws.sheet_view.tabSelected = (ws == ws_thdt)
 
     print("✅ Hoàn tất điều phối toàn bộ các sheet thành công!")
     return wb, ws_dgct

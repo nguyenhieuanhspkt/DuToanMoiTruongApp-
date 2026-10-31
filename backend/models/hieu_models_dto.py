@@ -31,10 +31,9 @@ class DinhMucRegistry:
 
     @staticmethod
     def generate_unique_id(ma: str, loai: str, index: int, stage: str = "") -> str:
-        clean_ma = re.sub(r'^[12]', '', str(ma)).lower().strip()
-        clean_loai = str(loai).lower().strip()
-        clean_stage = DinhMucRegistry.normalize_stage(stage, ma)
-        return f"{clean_ma}_{clean_stage}_{clean_loai}_{index}"
+        clean_code = str(ma).strip().lower()
+        clean_loai = str(loai).strip().lower()
+        return f"{clean_code}_{clean_loai}_{index}"
 
     def register_by_id(self, unique_id: str, row_index: int):
         key = unique_id.lower().strip()
@@ -83,6 +82,8 @@ class JobMappingManager:
                 if not sub or not isinstance(sub, dict):
                     continue
 
+                code_dm = (sub.get('ma_thong_so') or sub.get('code') or ma_gop).strip()
+
                 # 1. Nhân công (NC - index 1)
                 nc_norm = sub.get('dinh_muc_cong')
                 nc_title = sub.get('dinh_bien') or f'Quan trắc viên ({stage_lbl})'
@@ -90,12 +91,12 @@ class JobMappingManager:
                     is_pt = ("phổ thông" in nc_title.lower() or "phụ việc" in nc_title.lower())
                     target_row_nc = self.nc_row_mapping.get("nc_ldpt" if is_pt else "nc_ldkt", 7)
                     
-                    uid = self.registry.generate_unique_id(ma_gop, 'NC', 1, stage=stage_lbl)
+                    uid = self.registry.generate_unique_id(code_dm, 'NC', 1)
                     norm_val = self.registry.get_formula_by_id(uid, float(nc_norm))
                     
                     job_dto.add_detail("NC", DetailItemDTO(
                         code=f"NC_{ma_gop}", sub_code="1", name=nc_title, unit="công",
-                        norm=norm_val, price_formula=f"='Nhân công'!$F${target_row_nc}", stage=stage_lbl
+                        norm=norm_val, price_formula=f"='Nhân công'!$N${target_row_nc}", stage=stage_lbl
                     ))
 
                 # 2. Vật liệu (VL)
@@ -105,23 +106,24 @@ class JobMappingManager:
                     if m_norm > 0:
                         target_row_vl = self.vl_row_mapping.get(m_name.lower().strip(), 7)
                         
-                        uid = self.registry.generate_unique_id(ma_gop, 'VL', m_idx, stage=stage_lbl)
+                        uid = self.registry.generate_unique_id(code_dm, 'VL', m_idx)
                         norm_val = self.registry.get_formula_by_id(uid, m_norm)
                         
                         job_dto.add_detail("VL", DetailItemDTO(
                             code=f"VL_{ma_gop}", sub_code=str(m_idx), name=m_name, unit=m.get('unit', '').strip(),
-                            norm=norm_val, price_formula=f"='Vật liệu'!$F${target_row_vl}", stage=stage_lbl
+                            norm=norm_val, price_formula=f"='Vật liệu'!$G${target_row_vl}", stage=stage_lbl
                         ))
 
                 # 3. Công cụ dụng cụ (DC)
                 for t_idx, t in enumerate(sub.get('tools', []), 1):
                     t_norm = float(t.get('norm') or 0.0)
                     t_name = t.get('name', 'Công cụ dụng cụ').strip()
-                    t_unit = t.get('unit', 'cái').strip()
+                    t_unit = t.get('unit') or "ca"
+                    
                     if t_norm > 0:
                         target_row_t = self.tools_row_mapping.get(t_unit.lower().strip(), 7)
                         
-                        uid = self.registry.generate_unique_id(ma_gop, 'DC', t_idx, stage=stage_lbl)
+                        uid = self.registry.generate_unique_id(code_dm, 'DC', t_idx)
                         norm_val = self.registry.get_formula_by_id(uid, t_norm)
                         
                         job_dto.add_detail("DC", DetailItemDTO(
@@ -133,17 +135,18 @@ class JobMappingManager:
                 for e_idx, e in enumerate(sub.get('equipment', []), 1):
                     e_norm = float(e.get('norm') or 0.0)
                     e_name = e.get('name', '').strip()
+                    e_unit = e.get('unit') or "ca"
+                    
                     if e_norm > 0:
                         target_row_e = self.eq_row_mapping.get(e_name.lower().strip(), 7)
                         
-                        uid = self.registry.generate_unique_id(ma_gop, 'M', e_idx, stage=stage_lbl)
+                        uid = self.registry.generate_unique_id(code_dm, 'M', e_idx)
                         norm_val = self.registry.get_formula_by_id(uid, e_norm)
                         
                         job_dto.add_detail("M", DetailItemDTO(
-                            code=f"M_{ma_gop}", sub_code=f"M_{e_idx}", name=e_name, unit=e.get('unit', ''),
-                            norm=norm_val, price_formula=f"='Máy thi công'!$F${target_row_e}", stage=stage_lbl
+                            code=f"M_{ma_gop}", sub_code=f"M_{e_idx}", name=e_name, unit=e_unit,
+                            norm=norm_val, price_formula=f"='Máy thi công'!$N${target_row_e}", stage=stage_lbl
                         ))
-
             jobs_dtos.append(job_dto)
         return jobs_dtos
 # ============================================================
@@ -277,33 +280,32 @@ class JobItemDTO:
 class IndirectCostSummaryDTO:
     """DTO chuyên quản lý khối chi phí gián tiếp, VAT, và tổng giá dự thầu từ dòng trực tiếp T."""
     def __init__(self, t_row: int):
-        self.t_row = t_row  # Tọa độ dòng Chi phí trực tiếp T
+        self.t_row = t_row  # Tọa độ dòng Chi phí trực tiếp T (ví dụ: Tổng cộng trực tiếp)
 
-    def render_rows(self, start_row: int) -> list[tuple[list, int]]:
+    def render_rows(self, start_row: int) -> tuple[list[tuple[list, int]], int]:
         """
-        Sinh ra danh sách các dòng dữ liệu chuẩn 10 cột (A đến J) và tính toán công thức tương ứng.
-        Cấu trúc mảng: [Col A, Col B (Tên chi phí), Col C, D, E, F, Col G (Tỷ lệ %), Col H, I, Col J (Thành tiền)]
+        Sinh ra danh sách các dòng dữ liệu chuẩn 10 cột (A đến J) và liên kết động sang sheet 'Hệ số'.
+        Cấu trúc mảng: [Col A, Col B, Col C, Col D, Col E (Tên chi phí), Col F (Ký hiệu), Col G (Tỷ lệ %), Col H, Col I, Col J (Thành tiền)]
         """
-        c_r  = start_row + 1
-        tt_r = start_row + 2
-        tl_r = start_row + 3
-        g_r  = start_row + 4
-        gtgt_r = start_row + 5
-        gxd_r  = start_row + 6
-        lt_r   = start_row + 7
-        total_r = start_row + 8
+        c_r    = start_row + 1  # Dòng Chi phí quản lý chung (C)
+        tl_r   = start_row + 2  # Dòng Thu nhập chịu thuế tính trước (TL)
+        g_r    = start_row + 3  # Dòng Giá trị dự toán trước thuế (G)
 
         rows = [
-            (["", "", "", "", "Chi phí gián tiếp (C + TT)", "GT", "", "", "", f"=J{c_r}+J{tt_r}"], start_row),
-            (["", "", "", "", "Chi phí chung (T x 7,3%)", "C", "='Hệ số'!$C$4", "", "", f"=ROUND(J{self.t_row}*G{c_r}, 0)"], c_r),
-            (["", "", "", "", "Chi phí một số công việc không xác định được khối lượng từ thiết kế (T x 2,5%)", "TT", "='Hệ số'!$C$9", "", "", f"=ROUND(J{self.t_row}*G{tt_r}, 0)"], tt_r),
-            (["", "", "", "", "Thu nhập chịu thuế tính trước ((T + GT) x 5,5%)", "TL", "='Hệ số'!$C$8", "", "", f"=ROUND((J{self.t_row}+J{start_row})*G{tl_r}, 0)"], tl_r),
-            (["", "", "", "", "Chi phí xây dựng trước thuế (T + GT + TL)", "G", "", "", "", f"=ROUND(J{self.t_row}+J{start_row}+J{tl_r}, 0)"], g_r),
-            (["", "", "", "", "Thuế giá trị gia tăng (G x 8%)", "GTGT", "='Hệ số'!$C$10", "", "", f"=ROUND(J{g_r}*G{gtgt_r}, 0)"], gtgt_r),
-            (["", "", "", "", "CHI PHÍ XÂY DỰNG SAU THUẾ (G + GTGT)", "Gxd", "", "", "", f"=ROUND(J{g_r}+J{gtgt_r}, 0)"], gxd_r),
-            (["", "", "", "", "Chi phí nhà tạm để ở và điều hành thi công (G x 1,1% x (1 + 8%))", "LT", "='Hệ số'!$C$6", "", "", f"=ROUND(J{g_r}*G{lt_r}*(1+'Hệ số'!$C$10), 0)"], lt_r),
-            (["", "", "", "", "Tổng cộng (Gxd + LT)", "", "", "", "", f"=ROUND(J{gxd_r}+J{lt_r}, 0)"], total_r),
+            # 1. Dòng Tiêu đề nhóm chi phí gián tiếp
+            (["", "", "", "", "CHI PHÍ GIÁN TIẾP", "", "", "", "", ""], start_row),
+            
+            # 2. Chi phí quản lý chung: Lấy tỷ lệ từ ô E6 của sheet 'Hệ số' nhân với Chi phí trực tiếp (T)
+            (["", "", "", "", "Chi phí quản lý chung", "C", "='Hệ số'!$E$6", "", "", f"=ROUND(J{self.t_row}*G{c_r}, 0)"], c_r),
+            
+            # 3. Thu nhập chịu thuế tính trước: Lấy tỷ lệ từ ô E7 của sheet 'Hệ số' nhân với (T + C)
+            (["", "", "", "", "Thu nhập chịu thuế tính trước", "TL", "='Hệ số'!$E$7", "", "", f"=ROUND((J{self.t_row}+J{c_r})*G{tl_r}, 0)"], tl_r),
+            
+            # 4. Giá trị dự toán hạng mục trước thuế (G = T + C + TL)
+            (["", "", "", "", "Giá trị dự toán hạng mục trước thuế (G = T + C + TL)", "G", "", "", "", f"=ROUND(J{self.t_row}+J{c_r}+J{tl_r}, 0)"], g_r),
         ]
+        
+        total_r = g_r  # Dòng kết thúc cuối cùng của khối gián tiếp
         return rows, total_r
     
     

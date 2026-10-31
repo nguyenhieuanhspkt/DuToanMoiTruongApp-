@@ -17,17 +17,16 @@ def _init_vat_lieu_sheet(wb) -> Worksheet:
 
 
 def _write_vat_lieu_header(ws_vl):
-    """Ghi khối tiêu đề dự án và tiêu đề cột bảng Vật liệu (Dòng 1 đến 6)."""
+    """Ghi khối tiêu đề dự án và tiêu đề cột bảng Vật liệu (Dòng 1 đến 6) - Bổ sung cột Giai đoạn."""
     ws_vl.append(["BẢNG TỔNG HỢP VẬT LIỆU VÀ CHÊNH LỆCH GIÁ"])
     ws_vl.append(["(Theo giá thông báo và định mức Thông tư 20/2017/TT-BTNMT)"])
     ws_vl.append(["='Công trình'!A3"])
     ws_vl.append(["='Công trình'!A4"])
     ws_vl.append([])
     ws_vl.append([
-        "STT", "Mã hiệu", "Tên vật tư, hóa chất, dung môi", "Đơn vị",
-        "Khối lượng tổng cộng", "Đơn giá chưa VAT", "Thành tiền vật liệu (VNĐ)", "Ghi chú nguồn giá"
+        "STT", "Mã hiệu", "Tên vật tư, hóa chất, dung môi", "Đơn vị tính",
+        "Giai đoạn", "Khối lượng tổng cộng", "Đơn giá chưa VAT", "Thành tiền vật liệu (VNĐ)", "Ghi chú nguồn giá"
     ])
-
 
 def _collect_vat_lieu_items(jobs_dtos: List[Any]) -> List[Dict[str, Any]]:
     """Tự động bóc tách danh mục vật liệu duy nhất từ jobs_dtos (loại bỏ dòng tiêu đề phân mục)."""
@@ -90,12 +89,16 @@ def _write_mat_parent_row(
     num_children: int,
     font_data_11b: Font
 ) -> int:
-    """Ghi dòng Cha tổng hợp vật liệu (Cột E tính SUM dòng con, Cột G tính thành tiền)."""
+    """Ghi dòng Cha tổng hợp vật liệu tương ứng với cấu trúc cột mới (Cột F tổng khối lượng, Cột H thành tiền)."""
     child_start_row = curr_row + 1
     child_end_row = curr_row + num_children if num_children > 0 else curr_row
 
-    f_sum_qty = f"=ROUND(SUM(E{child_start_row}:E{child_end_row}), 4)" if num_children > 0 else 0.0
-    f_thanhtien = f"=ROUND(E{curr_row}*F{curr_row}, 0)"
+    # Cột F chứa khối lượng của các dòng con từ child_start_row đến child_end_row
+    f_sum_qty = f"=ROUND(SUM(F{child_start_row}:F{child_end_row}), 4)" if num_children > 0 else 0.0
+    
+    # Cột F (Khối lượng tổng cộng) nhân với Cột G (Đơn giá chưa VAT) ra Cột H (Thành tiền)
+    parent_row = curr_row
+    f_thanhtien = f"=ROUND(F{parent_row}*G{parent_row}, 0)"
 
     mat_id = it.get('id', f'VL_{idx:03d}')
     mat_name = it.get('name', '').strip()
@@ -103,9 +106,9 @@ def _write_mat_parent_row(
     price = float(it.get('price') or 0.0)
     basis = str(it.get('basis') or 'Chưa có giá')
 
-    parent_row = curr_row
+    # Thứ tự các cột: [STT (A), Mã hiệu (B), Tên vật tư (C), Đơn vị (D), Giai đoạn (E), Khối lượng (F), Đơn giá (G), Thành tiền (H), Ghi chú (I)]
     ws_vl.append([
-        idx, mat_id, mat_name, mat_unit,
+        idx, mat_id, mat_name, mat_unit, "",
         f_sum_qty, price, f_thanhtien, basis
     ])
     ws_vl.cell(parent_row, 3).font = font_data_11b
@@ -119,11 +122,13 @@ def _write_mat_child_rows(
     parent_row: int
 ) -> int:
     """
-    Ghi các dòng Con truy vết công tác:
-    - Cột B: Link số thứ tự công tác từ sheet Công trình ('Công trình'!A{c_row})
+    Ghi các dòng Con truy vết công tác kèm theo Giai đoạn (Nội nghiệp / Ngoại nghiệp):
+    - Cột B: Link STT công tác từ sheet Công trình ('Công trình'!A{c_row})
     - Cột C: Link tên công tác từ sheet Công trình ('Công trình'!D{c_row})
-    - Cột E: Link trực tiếp khối lượng hao phí từ Cột M của sheet 'Hao phí VT' ('Hao phí VT'!$M${hp_row})
-    - Cột G: Thành tiền theo đơn giá dòng Cha (=ROUND(E{curr_row}*$F${parent_row}, 0))
+    - Cột D: Đơn vị tính
+    - Cột E: Giai đoạn (Ngoại nghiệp / Nội nghiệp) từ detail_item.stage
+    - Cột F: Link trực tiếp khối lượng hao phí từ Cột M của sheet 'Hao phí VT' ('Hao phí VT'!$M${hp_row})
+    - Cột H: Thành tiền theo đơn giá dòng Cha (=ROUND(F{curr_row}*$G${parent_row}, 0))
     """
     child_start_row = curr_row
     for item_data in usage_jobs:
@@ -132,28 +137,28 @@ def _write_mat_child_rows(
 
         j_stt_formula = f"='Công trình'!A{c_row}" if c_row else ""
         j_name_formula = f"='Công trình'!D{c_row}" if c_row else ""
+        j_unit = getattr(detail_item, 'unit', '') or ''
+        j_stage = getattr(detail_item, 'stage', '') or 'Toàn phần' # Lấy trực tiếp thông tin Nội/Ngoại nghiệp
 
         # Link trực tiếp sang cột M (Khối lượng hao phí VL đã nhân Q) của sheet 'Hao phí VT'
         hp_row = getattr(detail_item, 'hp_row', None)
-        if hp_row:
-            j_qty = f"='Hao phí VT'!$M${hp_row}"
-        else:
-            j_qty = 0
+        j_qty = f"='Hao phí VT'!$M${hp_row}" if hp_row else 0
 
         child_row = [
-            "",             # Cột A: STT để trống
-            j_stt_formula,  # Cột B: Link STT từ 'Công trình'!A{row}
-            j_name_formula, # Cột C: Link tên công tác từ 'Công trình'!D{row}
-            "",             # Cột D: Đơn vị để trống
-            j_qty,          # Cột E: Khối lượng hao phí
-            "",             # Cột F: Đơn giá để trống
-            f"=ROUND(E{curr_row}*$F${parent_row}, 0)", # Cột G: Thành tiền
-            ""              # Cột H: Ghi chú để trống
+            "",             # Cột A: STT trống
+            j_stt_formula,  # Cột B: STT công trình
+            j_name_formula, # Cột C: Tên công việc
+            j_unit,         # Cột D: Đơn vị
+            j_stage,        # Cột E: Giai đoạn (Ngoại nghiệp / Nội nghiệp) [MỚI BỔ SUNG]
+            j_qty,          # Cột F: Khối lượng hao phí
+            "",             # Cột G: Đơn giá trống
+            f"=ROUND(F{curr_row}*$G${parent_row}, 0)", # Cột H: Thành tiền
+            ""              # Cột I: Ghi chú trống
         ]
 
         ws_vl.append(child_row)
         blue_font = Font(name="Times New Roman", size=11, bold=False, color="0000FF")
-        for c_idx in range(1, 9):
+        for c_idx in range(1, 10):
             ws_vl.cell(curr_row, c_idx).font = blue_font
         curr_row += 1
 
@@ -237,7 +242,7 @@ def _apply_vat_lieu_styling(
                 cell.alignment = Alignment(horizontal="center", vertical="center")
 
     col_widths = {
-        'A': 8, 'B': 14, 'C': 52, 'D': 12, 'E': 22, 'F': 22, 'G': 26, 'H': 38
+        'A': 8, 'B': 12, 'C': 44, 'D': 10, 'E': 16, 'F': 20, 'G': 20, 'H': 24, 'I': 32
     }
     for col_letter, width in col_widths.items():
         ws_vl.column_dimensions[col_letter].width = width

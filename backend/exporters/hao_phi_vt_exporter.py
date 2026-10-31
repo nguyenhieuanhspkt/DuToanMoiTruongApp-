@@ -79,7 +79,8 @@ def _write_nhan_cong_rows(ws_hp, sub, core_code, stage_lbl, master_r, hp_row, re
     nc_norm = sub.get('dinh_muc_cong')
     nc_title = sub.get('dinh_bien') or 'Quan trắc viên'
     if nc_norm is not None and float(nc_norm) > 0:
-        uid_nc = registry.generate_unique_id(core_code, 'NC', 1, stage=stage_lbl) if registry else None
+        code_dm = (sub.get('ma_thong_so') or sub.get('code') or core_code).strip()
+        uid_nc = registry.generate_unique_id(code_dm, 'NC', 1) if registry else None
         norm_val_nc = registry.get_formula_by_id(uid_nc, float(nc_norm)) if registry else float(nc_norm)
         
         ws_hp.append([
@@ -104,12 +105,13 @@ def _write_nhan_cong_rows(ws_hp, sub, core_code, stage_lbl, master_r, hp_row, re
 def _write_vat_lieu_rows(ws_hp, sub, core_code, stage_lbl, master_r, hp_row, registry, job_dto=None) -> int:
     """Quản lý và ghi các dòng Vật liệu (VL) theo giai đoạn."""
     count = 0
+    code_dm = (sub.get('ma_thong_so') or sub.get('code') or core_code).strip()
     for m_idx, m in enumerate(sub.get('materials', []), 1):
         m_name = m.get('name', '').strip()
         m_unit = m.get('unit', '').strip()
         m_norm = float(m.get('norm') or 0.0)
         if m_norm > 0:
-            uid_vl = registry.generate_unique_id(core_code, 'VL', m_idx, stage=stage_lbl) if registry else None
+            uid_vl = registry.generate_unique_id(code_dm, 'VL', m_idx) if registry else None
             norm_val_vl = registry.get_formula_by_id(uid_vl, m_norm) if registry else m_norm
 
             curr_row = hp_row + count
@@ -131,69 +133,60 @@ def _write_vat_lieu_rows(ws_hp, sub, core_code, stage_lbl, master_r, hp_row, reg
 
 
 def _write_dung_cu_rows(ws_hp, sub, core_code, stage_lbl, master_r, hp_row, registry, job_dto=None) -> int:
-    """Quản lý và ghi các dòng Công cụ dụng cụ (DC) theo giai đoạn."""
+    """Quản lý và ghi các dòng Công cụ dụng cụ (DC) theo giai đoạn lấy trực tiếp từ DTO."""
+    if not job_dto or "DC" not in job_dto.groups:
+        return 0
+
     count = 0
-    for t_idx, t in enumerate(sub.get('tools', []), 1):
-        raw_name = str(t.get('name') or '').strip()
-        raw_unit = str(t.get('unit') or '').strip()
-        raw_life = str(t.get('lifespan_months') or '').strip().lower()
-        t_norm = float(t.get('norm') or 0.0)
+    # Lọc các item DC thuộc đúng giai đoạn (stage_lbl) từ DTO
+    dc_items = [item for item in job_dto.groups["DC"].items if getattr(item, 'stage', '') == stage_lbl]
 
-        if raw_name.isdigit() or raw_name == "":
-            t_name = raw_unit if raw_unit and not raw_unit.isdigit() else "Công cụ dụng cụ"
-            t_unit = raw_life if raw_life in ['cái', 'bộ', 'đôi', 'hộp', 'chiếc', 'dây', 'tấm', 'cuốn', 'bình'] else 'cái'
-        else:
-            t_name = raw_name
-            t_unit = raw_unit or 'cái'
+    for t_idx, d_item in enumerate(dc_items, 1):
+        t_name = d_item.name
+        t_unit = d_item.unit         # Đã chuẩn hóa từ DTO (ví dụ: "ca/thông số")
+        norm_val_dc = d_item.norm    # Đã nhận giá trị hoặc công thức link từ Registry thông qua DTO
 
-        if t_norm > 0 and t_name:
-            uid_dc = registry.generate_unique_id(core_code, 'DC', t_idx, stage=stage_lbl) if registry else None
-            norm_val_dc = registry.get_formula_by_id(uid_dc, t_norm) if registry else t_norm
+        curr_row = hp_row + count
+        ws_hp.append([
+            "", f"DC_{core_code}", "DỤNG CỤ", stage_lbl, f" - {t_name}", t_unit, "",
+            "", "", norm_val_dc, "", "",    
+            "", "", f"=ROUND(G{master_r}*J{curr_row}, 4)", "",  
+            "Bảng 3 TT20/2017"
+        ])
 
-            curr_row = hp_row + count
-            ws_hp.append([
-                "", f"DC_{core_code}", "DỤNG CỤ", stage_lbl, f" - {t_name}", t_unit, "",
-                "", "", norm_val_dc, "", "",   
-                "", "", f"=ROUND(G{master_r}*J{curr_row}, 4)", "",  
-                "Bảng 3 TT20/2017"
-            ])
+        # Gán ngược lại tọa độ dòng để sheet Đơn giá chi tiết link sang chính xác
+        d_item.hp_row = curr_row
 
-            if job_dto and hasattr(job_dto, 'groups') and "DC" in job_dto.groups:
-                for d_item in job_dto.groups["DC"].items:
-                    if getattr(d_item, 'stage', '') == stage_lbl and str(getattr(d_item, 'sub_code', '')) in (str(t_idx), f"DC_{t_idx}"):
-                        d_item.hp_row = curr_row
-                        break
-
-            count += 1
+        count += 1
     return count
 
 
 def _write_thiet_bi_rows(ws_hp, sub, core_code, stage_lbl, master_r, hp_row, registry, job_dto=None) -> int:
-    """Quản lý và ghi các dòng Thiết bị / Máy thi công (M) theo giai đoạn."""
+    """Quản lý và ghi các dòng Thiết bị / Máy thi công (M) theo giai đoạn lấy trực tiếp từ DTO."""
+    if not job_dto or "M" not in job_dto.groups:
+        return 0
+
     count = 0
-    for e_idx, e in enumerate(sub.get('equipment', []), 1):
-        e_name = e.get('name', '').strip()
-        e_unit = e.get('unit', '').strip()
-        e_norm = float(e.get('norm') or 0.0)
-        if e_norm > 0:
-            uid_m = registry.generate_unique_id(core_code, 'M', e_idx, stage=stage_lbl) if registry else None
-            norm_val_m = registry.get_formula_by_id(uid_m, e_norm) if registry else e_norm
+    # Lọc các item M thuộc đúng giai đoạn (stage_lbl) từ DTO
+    m_items = [item for item in job_dto.groups["M"].items if getattr(item, 'stage', '') == stage_lbl]
 
-            curr_row = hp_row + count
-            ws_hp.append([
-                "", f"M_{core_code}", "THIẾT BỊ", stage_lbl, f" - {e_name}", e_unit, "",
-                "", "", "", norm_val_m, "",   
-                "", "", "", f"=ROUND(G{master_r}*K{curr_row}, 4)",  
-                "Bảng 4 TT20 & TT 45/2013"
-            ])
+    for e_idx, d_item in enumerate(m_items, 1):
+        e_name = d_item.name
+        e_unit = d_item.unit         # Đã chuẩn hóa từ DTO
+        norm_val_m = d_item.norm     # Đã nhận giá trị hoặc công thức từ DTO
 
-            if job_dto and hasattr(job_dto, 'groups') and "M" in job_dto.groups:
-                for d_item in job_dto.groups["M"].items:
-                    if getattr(d_item, 'stage', '') == stage_lbl and str(getattr(d_item, 'sub_code', '')) in (str(e_idx), f"M_{e_idx}"):
-                        d_item.hp_row = curr_row
-                        break
+        curr_row = hp_row + count
+        ws_hp.append([
+            "", f"M_{core_code}", "THIẾT BỊ", stage_lbl, f" - {e_name}", e_unit, "",
+            "", "", "", norm_val_m, "",    
+            "", "", "", f"=ROUND(G{master_r}*K{curr_row}, 4)",  
+            "Bảng 4 TT20 & TT 45/2013"
+        ])
 
-            count += 1
+        # Gán ngược lại tọa độ dòng cho DTO
+        d_item.hp_row = curr_row
+
+        count += 1
     return count
 
 

@@ -121,9 +121,32 @@ def _write_group_items(
         item_tt = getattr(item, 'sub_code', '') or str(sub_idx)
         item_code = getattr(item, 'code', '')
         
+        # Lấy tọa độ dòng bên sheet 'Hao phí VT' đã được gán trước đó
+        hp_row = getattr(item, 'hp_row', None)
+        
+        # Nếu có hp_row, cột Định mức (G) sẽ link động sang Hao phí VT
+        # Tùy theo nhóm (VL, NC, DC, M) mà cột mức hao phí bên sheet Hao phí VT nằm ở cột H, I, J hoặc K:
+        # - Vật liệu (VL): Cột H
+        # - Nhân công (NC): Cột I
+        # - Công cụ dụng cụ (DC): Cột J
+        # - Máy thi công (M): Cột K
+        if hp_row:
+            if g_key == "VL":
+                f_norm = f"='Hao phí VT'!H{hp_row}"
+            elif g_key == "NC":
+                f_norm = f"='Hao phí VT'!I{hp_row}"
+            elif g_key == "DC":
+                f_norm = f"='Hao phí VT'!J{hp_row}"
+            elif g_key == "M":
+                f_norm = f"='Hao phí VT'!K{hp_row}"
+            else:
+                f_norm = item.norm
+        else:
+            f_norm = item.norm
+
         row_data = [
             "", "", item_tt, item_code, display_name, item.unit, 
-            item.norm, item.price_formula, 1.0, 
+            f_norm, item.price_formula, 1.0, 
             f"=ROUND(G{curr_r}*H{curr_r}*I{curr_r}, 0)"
         ]
         _append_typed_row(ws_dgct, row_data, RowType.DETAIL, row_types_map, curr_r=curr_r, outline_level=2, hidden=False)

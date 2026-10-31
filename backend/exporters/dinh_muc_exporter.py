@@ -2,7 +2,7 @@ import os
 import json
 from openpyxl.worksheet.worksheet import Worksheet
 from backend.models.hieu_models_dto import DinhMucRowDTO, DinhMucRegistry
-
+from typing import Any
 def _init_dinh_muc_sheet(wb) -> Worksheet:
     """Khởi tạo hoặc lấy sẵn sheet 'Dữ liệu định mức' và thiết lập tiêu đề cột chuẩn."""
     if "Dữ liệu định mức" in wb.sheetnames:
@@ -35,12 +35,16 @@ def _parse_materials(param: dict, dm_dto: DinhMucRowDTO):
 
 
 def _parse_tools(param: dict, dm_dto: DinhMucRowDTO):
-    """Nạp danh sách Công cụ dụng cụ (DC) vào đối tượng DTO."""
+    """Nạp danh sách Công cụ dụng cụ (DC) vào đối tượng DTO với đơn vị chuẩn 'ca/thông số'."""
     for t in param.get('tools', []):
         t_norm = float(t.get('norm') or 0.0)
+        
+        # 🔍 Sửa lại cách bóc tách: Lấy 'unit' trong JSON làm tên dụng cụ (VD: Đầu đo, Quần áo BHLĐ...)
         t_name = str(t.get('unit') or '').strip()
-        raw_unit = str(t.get('lifespan_months') or '').strip()
-        t_unit = raw_unit.lower() if raw_unit else 'cái'
+        
+        # 📌 Ép đơn vị tính về chuẩn 'ca/thông số' theo đúng định mức gốc trong Word
+        # Hoặc nếu muốn lấy từ trường lifespan_months / unit khác, bạn có thể điều chỉnh tại đây
+        t_unit = "ca"  
         
         if t_norm > 0 and t_name:
             dm_dto.add_hao_phi('DC', t_name, t_unit, t_norm)
@@ -50,13 +54,21 @@ def _parse_equipment(param: dict, dm_dto: DinhMucRowDTO):
     """Nạp danh sách Thiết bị / Máy thi công (M) vào đối tượng DTO."""
     for e in param.get('equipment', []):
         e_norm = float(e.get('norm') or 0.0)
-        e_name = str(e.get('name') or '').strip()
-        raw_unit = str(e.get('unit') or '').strip()
-        e_unit = raw_unit.lower() if raw_unit else ''
+        e_name = str(e.get('unit') or e.get('name') or '').strip() # Lấy đúng tên thiết bị
+        
+        # Ép đơn vị tính về ca/thông số hoặc ca tùy theo định mức gốc
+        e_unit = "ca" 
         
         if e_norm > 0 and e_name:
             dm_dto.add_hao_phi('M', e_name, e_unit, e_norm)
-
+def _sanitize(val: Any) -> Any:
+    """Chặn các chuỗi bắt đầu bằng dấu '=' khiến openpyxl hiểu nhầm là công thức XML."""
+    if isinstance(val, str):
+        s = val.strip()
+        if s.startswith('='):
+            return "'" + s
+        return s
+    return val
 
 def _write_parameter_block(
     ws: Worksheet, 
@@ -67,12 +79,17 @@ def _write_parameter_block(
     curr_row: int
 ) -> int:
     """Ghi dòng Nhân công và toàn bộ hao phí của thông số ra sheet, đồng thời đăng ký Registry."""
-    # 1. Ghi dòng Nhân công (NC)
+    
+    # 1. Ghi dòng Nhân công (NC) - Bọc sanitize các giá trị text
     dm_dto.block_start = curr_row
     dm_dto.nc_row_index = curr_row
-    ws.append(dm_dto.to_nc_row(curr_row))
+    
+    nc_row_data = dm_dto.to_nc_row(curr_row)
+    # Lọc chống lỗi dấu '=' cho toàn bộ các cột kiểu chuỗi (index 1, 2, 3, 7)
+    safe_nc_row = [_sanitize(val) if isinstance(val, str) else val for val in nc_row_data]
+    ws.append(safe_nc_row)
 
-    uid_nc = registry.generate_unique_id(ma, 'NC', 1, stage=phan_loai)
+    uid_nc = registry.generate_unique_id(ma, 'NC', 1)
     registry.register_by_id(uid_nc, curr_row)
     curr_row += 1
 
@@ -80,16 +97,20 @@ def _write_parameter_block(
     vl_idx, dc_idx, m_idx = 1, 1, 1
     for hp in dm_dto.hao_phi:
         hp.row_index = curr_row
-        ws.append(dm_dto.to_haophi_row(hp))
+        
+        hp_row_data = dm_dto.to_haophi_row(hp)
+        # Lọc chống lỗi dấu '=' cho cột tên vật liệu/tiêu chuẩn (index 7)
+        safe_hp_row = [_sanitize(val) if isinstance(val, str) else val for val in hp_row_data]
+        ws.append(safe_hp_row)
         
         if hp.loai == 'VL':
-            cur_id = registry.generate_unique_id(ma, 'VL', vl_idx, stage=phan_loai)
+            cur_id = registry.generate_unique_id(ma, 'VL', vl_idx)
             vl_idx += 1
         elif hp.loai == 'DC':
-            cur_id = registry.generate_unique_id(ma, 'DC', dc_idx, stage=phan_loai)
+            cur_id = registry.generate_unique_id(ma, 'DC', dc_idx)
             dc_idx += 1
         else:
-            cur_id = registry.generate_unique_id(ma, 'M', m_idx, stage=phan_loai)
+            cur_id = registry.generate_unique_id(ma, 'M', m_idx)
             m_idx += 1
 
         registry.register_by_id(cur_id, curr_row)
@@ -132,7 +153,7 @@ def build_dinh_muc_sheet(wb, data_dir: str):
         section_title = section_data.get('section_title', '')
         parameters    = section_data.get('parameters', {})
 
-        ws.append([f"=== {section_id}: {section_title} ==="])
+        ws.append([f"*** {section_id}: {section_title} ***"])
         curr_row += 1
 
         for ma, param in parameters.items():

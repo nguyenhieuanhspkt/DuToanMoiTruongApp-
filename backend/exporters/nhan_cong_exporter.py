@@ -285,9 +285,10 @@ def build_nhan_cong_sheet(
 
     nc_start_row = 7
     curr_row = nc_start_row
+    nc_parent_rows = {}
 
     for idx, it in enumerate(nc_items, 1):
-        nc_name = it.get('name')
+        nc_name = it.get('name', '')
         usage_jobs = _find_usage_jobs_for_labor(valid_jobs, nc_name)
         num_children = len(usage_jobs)
 
@@ -300,6 +301,12 @@ def build_nhan_cong_sheet(
             font_data_11b=font_data_11b,
             nc_rows=nc_rows  # <--- Bổ sung truyền biến này vào đây để tránh bị nhận giá trị None!
         )
+        nc_parent_rows[nc_name.lower().strip()] = parent_row
+        if it.get('id'):
+            nc_parent_rows[str(it['id']).lower().strip()] = parent_row
+        ma_ngach = _get_ngach_code_from_title(nc_name).lower().strip()
+        if ma_ngach:
+            nc_parent_rows[ma_ngach] = parent_row
         
         curr_row += 1
 
@@ -336,4 +343,4 @@ def build_nhan_cong_sheet(
         FMT_NORM=FMT_NORM
     )
 
-    return ws_nc, total_nc_row
+    return ws_nc, total_nc_row, nc_parent_rows

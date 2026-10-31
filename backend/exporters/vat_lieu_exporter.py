@@ -307,6 +307,7 @@ def build_vat_lieu_sheet(
 
     vl_start_row = 7
     curr_row = vl_start_row
+    vl_parent_rows = {}
 
     for idx, it in enumerate(mat_items, 1):
         mat_name = it.get('name', '').strip()
@@ -321,6 +322,10 @@ def build_vat_lieu_sheet(
             num_children=num_children,
             font_data_11b=font_data_11b
         )
+        vl_parent_rows[mat_name.lower().strip()] = parent_row
+        if it.get('id'):
+            vl_parent_rows[str(it['id']).lower().strip()] = parent_row
+
         curr_row += 1
 
         if num_children > 0:
@@ -356,4 +361,4 @@ def build_vat_lieu_sheet(
         FMT_NORM=FMT_NORM
     )
 
-    return ws_vl, total_vl_row
+    return ws_vl, total_vl_row, vl_parent_rows

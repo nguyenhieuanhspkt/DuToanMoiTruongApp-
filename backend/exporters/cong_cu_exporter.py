@@ -272,6 +272,7 @@ def build_cong_cu_sheet(
 
     dc_start_row = 7
     curr_row = dc_start_row
+    dc_parent_rows = {}
 
     for idx, it in enumerate(tools_items, 1):
         dc_name = it.get('name', '').strip()
@@ -287,6 +288,10 @@ def build_cong_cu_sheet(
             font_data_11b=font_data_11b,
             ca_may_rows=ca_may_rows
         )
+        dc_parent_rows[dc_name.lower().strip()] = parent_row
+        if it.get('id'):
+            dc_parent_rows[str(it['id']).lower().strip()] = parent_row
+
         curr_row += 1
 
         if num_children > 0:
@@ -321,4 +326,4 @@ def build_cong_cu_sheet(
         FMT_NORM=FMT_NORM
     )
 
-    return ws_dc, total_dc_row
+    return ws_dc, total_dc_row, dc_parent_rows

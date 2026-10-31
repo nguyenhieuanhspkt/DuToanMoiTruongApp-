@@ -146,20 +146,8 @@ def export_full_du_toan(
     )
     ctx.register_hao_phi(last_hp_row)
 
-    # 5. Xây dựng sheet 'Đơn giá chi tiết'
-    print("[5] Đang xây dựng sheet Đơn giá chi tiết...")
-    ws_dgct, map_dgct = build_sheet_12_with_dto(
-        wb=wb,
-        jobs_dtos=jobs_dtos,
-        style_mgr=style_mgr
-    )
-
-    # 5.1 Cập nhật sheet 'Công trình' link chính xác sang 'Đơn giá chi tiết'
-    print("[5.1] Đang cập nhật đơn giá và thành tiền sang sheet Công trình...")
-    update_cong_trinh_from_dgct(ws_ct, item_ct_rows, map_dgct)
-
-    # 6. Xây dựng sheet 'Tính lương NC' (Lương nhân công theo TTLT 56/2015)
-    print("[6] Đang xây dựng sheet Tính lương nhân công...")
+    # 5. Xây dựng sheet 'Tính lương NC' (Lương nhân công theo TTLT 56/2015)
+    print("[5] Đang xây dựng sheet Tính lương nhân công...")
     ws_luong_nc, total_luong_nc_row, nc_rows = build_luong_nhan_cong_sheet(
         wb=wb,
         font_title_15b=style_mgr.font_title_15b,
@@ -173,13 +161,13 @@ def export_full_du_toan(
         luong_co_so=2_530_000
     )
 
-    # 7. Xây dựng sheet 'Nhân công' (Đơn giá nhân công tổng hợp)
-    print("[7] Đang xây dựng sheet Nhân công...")
-    ws_nc, total_nc_row = build_nhan_cong_sheet(
+    # 6. Xây dựng sheet 'Nhân công' (Đơn giá nhân công tổng hợp)
+    print("[6] Đang xây dựng sheet Nhân công...")
+    ws_nc, total_nc_row, nc_parent_rows = build_nhan_cong_sheet(
         wb=wb,
         last_hp_row=last_hp_row,
         jobs_dtos=jobs_dtos,
-        nc_rows=nc_rows, # <--- Truyền bản đồ tọa độ dòng sang đây
+        nc_rows=nc_rows,
         font_title_15b=style_mgr.font_title_15b,
         font_sub_11i=style_mgr.font_sub_11i,
         font_header_11b=style_mgr.font_header_11b,
@@ -194,9 +182,9 @@ def export_full_du_toan(
         FMT_NORM=style_mgr.FMT_NORM
     )
 
-    # 8. Xây dựng sheet 'Vật liệu'
-    print("[8] Đang xây dựng sheet Vật liệu...")
-    ws_vl, total_vl_row = build_vat_lieu_sheet(
+    # 7. Xây dựng sheet 'Vật liệu'
+    print("[7] Đang xây dựng sheet Vật liệu...")
+    ws_vl, total_vl_row, vl_parent_rows = build_vat_lieu_sheet(
         wb=wb,
         last_hp_row=last_hp_row,
         jobs_dtos=jobs_dtos,
@@ -216,8 +204,8 @@ def export_full_du_toan(
         mat_lookup_items=mat_items
     )
 
-    # 9. Xây dựng sheet 'Tính giá ca máy' (Xác định theo phương pháp chuẩn BXD)
-    print("[9] Đang xây dựng sheet Tính giá ca máy...")
+    # 8. Xây dựng sheet 'Tính giá ca máy' (Xác định theo phương pháp chuẩn BXD)
+    print("[8] Đang xây dựng sheet Tính giá ca máy...")
     ws_camay, ca_may_rows = build_tinh_gia_ca_may_sheet(
         wb=wb,
         jobs_dtos=jobs_dtos,
@@ -233,8 +221,8 @@ def export_full_du_toan(
         root_dir=root_dir
     )
 
-    # 9.1 Xây dựng sheet 'Cơ sở giá MSC' (Đối soát dữ liệu giá trúng thầu Mạng đấu thầu quốc gia)
-    print("[9.1] Đang xây dựng sheet Cơ sở giá MSC...")
+    # 8.1 Xây dựng sheet 'Cơ sở giá MSC' (Đối soát dữ liệu giá trúng thầu Mạng đấu thầu quốc gia)
+    print("[8.1] Đang xây dựng sheet Cơ sở giá MSC...")
     build_co_so_gia_msc_sheet(
         wb=wb,
         root_dir=root_dir,
@@ -252,9 +240,9 @@ def export_full_du_toan(
         FMT_CURRENCY=style_mgr.FMT_CURRENCY
     )
 
-    # 10. Xây dựng sheet 'Công cụ dụng cụ'
-    print("[10] Đang xây dựng sheet Công cụ dụng cụ...")
-    ws_dc, total_dc_row = build_cong_cu_sheet(
+    # 9. Xây dựng sheet 'Công cụ dụng cụ'
+    print("[9] Đang xây dựng sheet Công cụ dụng cụ...")
+    ws_dc, total_dc_row, dc_parent_rows = build_cong_cu_sheet(
         wb=wb,
         last_hp_row=last_hp_row,
         jobs_dtos=jobs_dtos,
@@ -273,9 +261,9 @@ def export_full_du_toan(
         FMT_NORM=style_mgr.FMT_NORM
     )
 
-    # 11. Xây dựng sheet 'Máy thi công'
-    print("[11] Đang xây dựng sheet Máy thi công...")
-    ws_m, total_m_row = build_may_thi_cong_sheet(
+    # 10. Xây dựng sheet 'Máy thi công'
+    print("[10] Đang xây dựng sheet Máy thi công...")
+    ws_m, total_m_row, m_parent_rows = build_may_thi_cong_sheet(
         wb=wb,
         last_hp_row=last_hp_row,
         jobs_dtos=jobs_dtos,
@@ -293,6 +281,57 @@ def export_full_du_toan(
         FMT_CURRENCY=style_mgr.FMT_CURRENCY,
         FMT_NORM=style_mgr.FMT_NORM
     )
+
+    # 10.1 Đồng bộ chính xác 100% công thức link đơn giá từ các sheet Vật liệu, Nhân công, CCDC, Máy thi công vào jobs_dtos
+    print("[10.1] Đang đồng bộ công thức đơn giá vào DTO trước khi sinh Đơn giá chi tiết...")
+    from backend.exporters.nhan_cong_exporter import _get_ngach_code_from_title
+    for job in jobs_dtos:
+        # Vật liệu: link sang Cột G của dòng cha tương ứng trong sheet Vật liệu
+        vl_grp = job.groups.get("VL")
+        if vl_grp and hasattr(vl_grp, 'items'):
+            for it in vl_grp.items:
+                p_row = vl_parent_rows.get(it.name.strip().lower())
+                if p_row:
+                    it.price_formula = f"='Vật liệu'!$G${p_row}"
+        
+        # Nhân công: link sang Cột N của dòng cha tương ứng trong sheet Nhân công
+        nc_grp = job.groups.get("NC")
+        if nc_grp and hasattr(nc_grp, 'items'):
+            for it in nc_grp.items:
+                p_row = nc_parent_rows.get(it.name.strip().lower())
+                if not p_row:
+                    ngach = _get_ngach_code_from_title(it.name).strip().lower()
+                    p_row = nc_parent_rows.get(ngach)
+                if p_row:
+                    it.price_formula = f"='Nhân công'!$N${p_row}"
+
+        # Công cụ dụng cụ: link sang Cột F của dòng cha tương ứng trong sheet Công cụ dụng cụ
+        dc_grp = job.groups.get("DC")
+        if dc_grp and hasattr(dc_grp, 'items'):
+            for it in dc_grp.items:
+                p_row = dc_parent_rows.get(it.name.strip().lower())
+                if p_row:
+                    it.price_formula = f"='Công cụ dụng cụ'!$F${p_row}"
+
+        # Máy thi công: link sang Cột N của dòng cha tương ứng trong sheet Máy thi công
+        m_grp = job.groups.get("M")
+        if m_grp and hasattr(m_grp, 'items'):
+            for it in m_grp.items:
+                p_row = m_parent_rows.get(it.name.strip().lower())
+                if p_row:
+                    it.price_formula = f"='Máy thi công'!$N${p_row}"
+
+    # 11. Xây dựng sheet 'Đơn giá chi tiết'
+    print("[11] Đang xây dựng sheet Đơn giá chi tiết...")
+    ws_dgct, map_dgct = build_sheet_12_with_dto(
+        wb=wb,
+        jobs_dtos=jobs_dtos,
+        style_mgr=style_mgr
+    )
+
+    # 11.1 Cập nhật sheet 'Công trình' link chính xác sang 'Đơn giá chi tiết'
+    print("[11.1] Đang cập nhật đơn giá và thành tiền sang sheet Công trình...")
+    update_cong_trinh_from_dgct(ws_ct, item_ct_rows, map_dgct)
 
     # 11. Xây dựng sheet 'Hệ số'
     print("[11] Đang xây dựng sheet Hệ số...")

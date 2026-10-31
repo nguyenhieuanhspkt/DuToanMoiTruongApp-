@@ -100,10 +100,31 @@ def _write_items_block(
         row_map[item_id.lower()] = r
         row_map[item_name.lower()] = r
 
-        f_kh = f"=ROUND(E{r}*G{r}/100/F{r}, 0)"
-        f_sc = f"=ROUND(E{r}*I{r}/100/F{r}, 0)"
-        f_cpk = f"=ROUND(E{r}*K{r}/100/F{r}, 0)"
-        f_total = f"=H{r}+J{r}+L{r}+M{r}+N{r}"
+        is_electric = item_name.lower().strip() in ['điện', 'điện năng'] or str(it.get('unit', '')).lower().strip() in ['kw', 'kwh']
+        if is_electric:
+            item_unit = "kWh"
+            orig_price = 0.0
+            nca_val = 1
+            kh_val = 0.0
+            sc_val = 0.0
+            cpk_val = 0.0
+            f_kh = 0
+            f_sc = 0
+            f_cpk = 0
+            fuel_cost = 2100  # Đơn giá điện sản xuất EVN
+            f_total = "=M" + str(r)
+            basis_text = "QĐ 2699/QĐ-BCT giá điện bán lẻ EVN"
+        else:
+            item_unit = "ca"
+            nca_val = default_nca
+            kh_val = default_kh
+            sc_val = default_sc
+            cpk_val = default_cpk
+            f_kh = f"=ROUND(E{r}*G{r}/100/F{r}, 0)"
+            f_sc = f"=ROUND(E{r}*I{r}/100/F{r}, 0)"
+            f_cpk = f"=ROUND(E{r}*K{r}/100/F{r}, 0)"
+            fuel_cost = 0
+            f_total = f"=H{r}+J{r}+L{r}+M{r}+N{r}"
 
         ws.append([
             idx,
@@ -111,14 +132,14 @@ def _write_items_block(
             item_name,
             item_unit,
             orig_price,            # E: Nguyên giá tra cứu từ MSC
-            default_nca,           # F: Số ca làm việc năm
-            default_kh,            # G: Tỷ lệ Khấu hao %
+            nca_val,               # F: Số ca làm việc năm
+            kh_val,                # G: Tỷ lệ Khấu hao %
             f_kh,                  # H: Chi phí Khấu hao
-            default_sc,            # I: Tỷ lệ Sửa chữa %
+            sc_val,                # I: Tỷ lệ Sửa chữa %
             f_sc,                  # J: Chi phí Sửa chữa
-            default_cpk,           # K: Tỷ lệ CP khác %
+            cpk_val,               # K: Tỷ lệ CP khác %
             f_cpk,                 # L: Chi phí khác
-            0,                     # M: Chi phí Nhiên liệu/Năng lượng
+            fuel_cost,             # M: Chi phí Nhiên liệu/Năng lượng
             0,                     # N: Chi phí Nhân công điều khiển
             f_total,               # O: Đơn giá ca máy tổng cộng
             basis_text             # P: Căn cứ pháp lý & Cơ sở giá

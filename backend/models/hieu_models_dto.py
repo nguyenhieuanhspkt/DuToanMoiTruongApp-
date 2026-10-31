@@ -136,9 +136,12 @@ class JobMappingManager:
                 for e_idx, e in enumerate(sub.get('equipment', []), 1):
                     e_norm = float(e.get('norm') or 0.0)
                     e_name = e.get('name', '').strip()
-                    # 📌 Đơn vị tính chuẩn định mức TT20 luôn là "ca/thông số" (ghi tắt là "ca")
-                    e_unit = "ca"
-                    
+                    raw_e_unit = str(e.get('unit', '')).strip().lower()
+                    if 'kw' in raw_e_unit or e_name.lower() in ['điện', 'điện năng']:
+                        e_unit = "kWh"
+                    else:
+                        e_unit = "ca"
+
                     if e_norm > 0:
                         target_row_e = self.eq_row_mapping.get(e_name.lower().strip(), 7)
                         

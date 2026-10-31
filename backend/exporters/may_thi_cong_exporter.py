@@ -291,6 +291,7 @@ def build_may_thi_cong_sheet(
 
     m_start_row = 7
     curr_row = m_start_row
+    m_parent_rows = {}
 
     for idx, it in enumerate(equip_items, 1):
         m_name = it.get('name', '').strip()
@@ -306,6 +307,10 @@ def build_may_thi_cong_sheet(
             font_data_11b=font_data_11b,
             ca_may_rows=ca_may_rows
         )
+        m_parent_rows[m_name.lower().strip()] = parent_row
+        if it.get('id'):
+            m_parent_rows[str(it['id']).lower().strip()] = parent_row
+
         curr_row += 1
 
         if num_children > 0:
@@ -341,4 +346,4 @@ def build_may_thi_cong_sheet(
         FMT_NORM=FMT_NORM
     )
 
-    return ws_m, total_m_row
+    return ws_m, total_m_row, m_parent_rows
